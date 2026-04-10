@@ -19,7 +19,7 @@ import "../styles/global.css";
         <!-- Navbar -->
         <header
           id="main-header"
-          class="sticky top-0 z-50 bg-[#1a1c22] border-b border-white/5 opacity-0"
+          class="sticky top-0 z-50 bg-[#1a1c22] border-b border-white/5"
         >
           <nav
             class="container mx-auto px-4 py-4 flex items-center justify-between"
@@ -187,15 +187,3 @@ import "../styles/global.css";
   </body>
 </html>
 
-<script>
-  import { animate } from "motion";
-
-  const header = document.getElementById("main-header");
-  if (header) {
-    animate(
-      header,
-      { opacity: [0, 1], y: [-50, 0] },
-      { duration: 0.8, easing: [0.16, 1, 0.3, 1] }
-    );
-  }
-</script>
