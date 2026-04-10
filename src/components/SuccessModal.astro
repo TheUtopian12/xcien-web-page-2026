@@ -1,0 +1,50 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+  message?: string;
+  buttonText?: string;
+}
+
+const { 
+  id, 
+  title = "¡Mensaje enviado!", 
+  message = "Gracias por contactarnos. Uno de nuestros especialistas te contactará en menos de 24 horas para darte una propuesta a tu medida.",
+  buttonText = "Entendido"
+} = Astro.props;
+---
+
+<dialog id={id} class="modal backdrop-blur-sm">
+  <div class="modal-box bg-base-200/95 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-10 text-center space-y-6 shadow-2xl">
+    <div class="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-2 scale-110">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+      </svg>
+    </div>
+    
+    <h3 class="text-3xl font-black text-white px-2 leading-tight">{title}</h3>
+    
+    <p class="text-gray-400 text-lg leading-relaxed max-w-sm mx-auto">
+      {message}
+    </p>
+    
+    <div class="modal-action justify-center pt-4">
+      <form method="dialog">
+        <button class="btn btn-primary btn-wide rounded-xl h-14 normal-case font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+          {buttonText}
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <form method="dialog" class="modal-backdrop bg-black/50 backdrop-blur-sm">
+    <button>close</button>
+  </form>
+</dialog>
+
+<style>
+  .modal-box {
+    width: 95%;
+    max-width: 450px;
+  }
+</style>
