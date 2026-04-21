@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SolutionHero from "../../components/sections/solutions/SolutionHero.astro";
+import SolutionDetails from "../../components/sections/solutions/SolutionDetails.astro";
+
+const features = [
+  {
+    title: "Análisis Predictivo",
+    description: "Utilizamos modelos de ML para anticipar fallos en red o comportamientos de mercado.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-circuit"><path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0-1.32 4.24 3 3 0 0 0 .34 5.58 2.5 2.5 0 0 0 2.96 3.08 2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 12 4.5Z"/><path d="M9 12h6"/><path d="M12 9v6"/><circle cx="12" cy="12" r="3"/></svg>`
+  },
+  {
+    title: "Automatización con IA",
+    description: "Optimiza procesos repetitivos mediante agentes inteligentes y visión por computadora.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>`
+  },
+  {
+    title: "Seguridad Inteligente",
+    description: "Detección de anomalías en tiempo real basada en patrones de comportamiento atípicos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z"/><circle cx="12" cy="12" r="3"/></svg>`
+  }
+];
+---
+
+<Layout>
+  <SolutionHero 
+    title="Inteligencia Artificial"
+    subtitle="AI & Automation"
+    description="Impulsa tu competitividad con soluciones basadas en IA. Análisis de datos, automatización inteligente y modelos predictivos para optimizar tu operación."
+    image="/background.png"
+  />
+  
+  <SolutionDetails 
+    features={features}
+    sectionTitle="Innovación Tecnológica"
+  />
+
+  <section id="contacto" class="py-24 border-t border-white/5">
+     <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-8">El futuro ya está aquí</h2>
+        <p class="text-white/50 mb-12 max-w-xl mx-auto">Integramos IA en tus flujos de trabajo actuales.</p>
+        <a href="https://wa.me/something" class="inline-block bg-primary text-black px-12 py-5 rounded-full font-black hover:scale-110 transition-transform shadow-2xl shadow-primary/40 text-lg uppercase tracking-wider">
+           Explorar soluciones IA
+        </a>
+     </div>
+  </section>
+</Layout>

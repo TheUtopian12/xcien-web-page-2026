@@ -1,0 +1,44 @@
+---
+const partners = [
+  { name: "Cisco", logo: "https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg" },
+  { name: "Meraki", logo: "https://upload.wikimedia.org/wikipedia/commons/d/de/Cisco_Meraki_logo.svg" },
+  { name: "VMware", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Vmware.svg" },
+  { name: "Peplink", logo: "https://logos-world.net/wp-content/uploads/2023/02/Peplink-Logo.png" },
+  { name: "Cambium", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Cambium_Networks_Logo.svg" }
+];
+---
+
+<section class="py-24 bg-[#0a0b0d] relative overflow-hidden">
+  <div class="absolute inset-0 bg-primary/5 pointer-events-none opacity-50"></div>
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-16">
+      <div>
+        <p class="text-primary font-bold text-xs uppercase tracking-widest mb-4">• Our Awards</p>
+        <h2 class="text-5xl md:text-7xl font-black text-white leading-tight italic uppercase tracking-tighter">
+          Alianzas <br/>
+          <span class="text-primary italic-none">Estratégicas</span>
+        </h2>
+      </div>
+      <div>
+        <p class="text-white/40 text-lg leading-relaxed max-w-md">
+          Nuestras soluciones se construyen sobre alianzas estratégicas con proveedores líderes de la industria que nos brindan acceso a servicios y tecnologías de primer nivel.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {partners.map((p) => (
+        <div class="aspect-video bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-center p-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:border-primary/30 transition-all group">
+           <!-- Placeholder for logo till we have real ones -->
+           <span class="text-white font-black text-xl italic uppercase tracking-widest group-hover:text-primary transition-colors">{p.name}</span>
+        </div>
+      ))}
+      <div class="col-span-full mt-12">
+         <a href="/alianzas" class="inline-flex items-center gap-4 bg-primary text-black px-8 py-4 rounded-full font-black uppercase text-sm hover:scale-105 transition-transform shadow-2xl shadow-primary/40">
+            Learn Today with Us
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="rotate-45"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+         </a>
+      </div>
+    </div>
+  </div>
+</section>

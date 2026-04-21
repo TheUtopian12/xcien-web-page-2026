@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
+import CommonBenefits from "../../components/sections/solutions/CommonBenefits.astro";
+import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
+import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
+import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+
+const specialFeatures = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: "Inspección Profunda",
+    description: "Visión de uso de servicio de Internet. Segmentación por categorías o páginas web."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud"><path d="M17.5 19c3.037 0 5.5-2.463 5.5-5.5 0-2.799-2.095-5.107-4.833-5.441a7.5 7.5 0 1 0-14.167 0C1.095 8.393-1 10.701-1 13.5 -1 16.537 1.463 19 4.5 19h13Z"/></svg>`,
+    title: "Gestión en Nube",
+    description: "Notificaciones de estado y desempeño de enlaces en tiempo real."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+    title: "Monitoreo Libre",
+    description: "Acceso a reportes históricos del consumo y desempeño de tus conexiones de Internet."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-merge"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>`,
+    title: "Equipo Compatible",
+    description: "Integración y optimización de otros proveedores de Internet a nuestros equipos."
+  }
+];
+---
+
+<Layout>
+  <PageHeroWithForm 
+    title="SD-"
+    greenTitle="WAN"
+    description="La solución de Alta Disponibilidad minimiza y reduce un posible corte de servicio, derivado de una falla o degradación de alguno de los proveedores de Internet conectados al equipo Alta Disponibilidad. Con esto se garantiza la continuidad operativa de forma rápida y automática."
+  />
+  
+  <CommonBenefits />
+  
+  <SpecialFeatures features={specialFeatures} />
+  
+  <HighAvailabilityDiagram />
+  <BreadcrumbBar path={["Soluciones", "SD-WAN", "Descripción General"]} />
+</Layout>

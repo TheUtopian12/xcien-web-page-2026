@@ -1,5 +1,5 @@
 ---
-import SuccessModal from "./SuccessModal.astro";
+import SuccessModal from "../../layout/SuccessModal.astro";
 ---
 
 <section
@@ -10,16 +10,18 @@ import SuccessModal from "./SuccessModal.astro";
     <img
       src="/background.png"
       alt="Modern Cityscape"
-      class="w-full h-full object-cover opacity-20"
+      class="w-full h-full object-cover opacity-20 scale-105"
     />
-    <div
-      class="absolute inset-0 animate-slide-in-left from-black via-black/40 to-transparent"
-    >
-    </div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#0a0b0d] via-[#0a0b0d]/80 to-primary/5"></div>
+    <div class="absolute inset-0 bg-radial-at-bl from-primary/10 via-transparent to-transparent"></div>
   </div>
 
+  <!-- Decorative Blobs -->
+  <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-primary/10 blur-[140px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-primary/5 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+
   <div
-    class="z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-16 pt-10 pb-12 lg:py-12 max-w-480 mx-auto"
+    class="z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-6 xl:gap-16 pt-10 pb-12 lg:py-12 max-w-480 mx-auto"
   >
     <!-- Left Section: Bleed-out box -->
     <div
@@ -69,7 +71,7 @@ import SuccessModal from "./SuccessModal.astro";
     <!-- Right Section: Compact Form -->
     <div
       id="proposta"
-      class="w-full max-w-lg md:max-w-2xl lg:w-[45%] xl:w-[40%] flex items-center order-1 lg:order-2 px-4 sm:px-8 lg:px-6 xl:pr-12 2xl:pr-32"
+      class="w-full max-w-lg md:max-w-3xl lg:w-[45%] xl:w-[40%] flex items-center order-1 lg:order-2 px-4 sm:px-8 lg:px-6 xl:pr-12 2xl:pr-32"
     >
       <div
         id="hero-form-box"

@@ -1,0 +1,42 @@
+---
+const steps = [
+  { id: "01", title: "Escuchando tus Necesidades", active: false },
+  { id: "02", title: "Soluciones a la Medida", active: false },
+  { id: "03", title: "Alineamiento Táctico", active: false },
+  { id: "04", title: "Resultados Medibles", active: true }
+];
+---
+
+<section class="py-24 bg-[#0a0b0d] overflow-hidden">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-black text-white mb-16 tracking-tight uppercase italic">Nuestro <span class="text-primary italic-none">Proceso</span></h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: Steps -->
+      <div class="space-y-4">
+        {steps.map((step) => (
+          <div class={`p-6 rounded-2xl border transition-all ${step.active ? 'bg-primary/10 border-primary text-primary' : 'bg-white/[0.02] border-white/5 text-white/50'}`}>
+            <div class="flex items-center justify-between font-black uppercase tracking-widest text-sm">
+                <span>{step.id}. {step.title}</span>
+                <span>+</span>
+            </div>
+          </div>
+        ))}
+        <div class="p-8 mt-8 bg-white/[0.03] rounded-2xl border border-white/5 text-sm text-white/50 leading-relaxed max-w-lg">
+           Nuestras soluciones se construyen sobre alianzas estratégicas con proveedores líderes de la industria como Cisco, Meraki y VMware, la que te brinda acceso a servicios y tecnologías de primer nivel.
+        </div>
+      </div>
+
+      <!-- Right: Circles Representation -->
+      <div class="relative py-20">
+         <div class="absolute inset-0 bg-primary/5 blur-[100px]"></div>
+         <div class="relative flex flex-col items-center gap-4">
+            <div class="w-full max-w-sm py-4 border border-white/10 rounded-full flex items-center justify-center text-[10px] uppercase font-bold text-white/30 italic">Escuchando tus Necesidades</div>
+            <div class="w-full max-w-sm py-4 border border-white/15 rounded-full flex items-center justify-center text-[10px] uppercase font-bold text-white/40 italic">Soluciones a la Medida</div>
+            <div class="w-full max-w-sm py-4 border border-white/20 rounded-full flex items-center justify-center text-[10px] uppercase font-bold text-white/50 italic">Alineamiento Táctico</div>
+            <div class="w-full max-w-sm py-8 bg-primary rounded-full flex items-center justify-center text-sm font-black text-black uppercase scale-110 shadow-2xl shadow-primary/30 transform hover:rotate-2 transition-transform">Resultados Medibles</div>
+         </div>
+      </div>
+    </div>
+  </div>
+</section>

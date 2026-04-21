@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Blog from "../components/sections/home/Blog.astro";
+import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
+---
+
+<Layout>
+  <div class="pt-20">
+    <Blog />
+  </div>
+  <BreadcrumbBar path={["Comunidad", "Blog", "Artículos"]} />
+</Layout>

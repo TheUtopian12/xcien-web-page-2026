@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
+import CommonBenefits from "../../components/sections/solutions/CommonBenefits.astro";
+import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
+import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
+import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+
+const specialFeatures = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    title: "Red Blindada",
+    description: "Protocolos de seguridad uno a uno, desde aplicaciones, Burles e IP's para blindar en todos los..."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .52 8.125A5 5 0 0 0 12 22a5 5 0 0 0 8-4.018 4 4 0 0 0 .52-8.125 4 4 0 0 0-2.526-5.77A3 3 0 1 0 12 5z"/></svg>`,
+    title: "Auto Aprendizaje",
+    description: "Identificación y registro de riesgos en la nube para anticipar vulnerabilidades."
+  },
+  {
+    icon: `<span class="font-bold text-xs">AI</span>`,
+    title: "IA",
+    description: "Actualización constante de puntos de control, a través de su activador IA."
+  }
+];
+---
+
+<Layout>
+  <PageHeroWithForm 
+    title="Ciber"
+    greenTitle="seguridad"
+    description="Los Hackers están siempre al acecho, ¿tu red está preparada para ellos?, con Xcien puedes tener tu información protegida, segura y a la mano."
+  />
+  
+  <SpecialFeatures features={specialFeatures} />
+
+  <CommonBenefits />
+  
+  <HighAvailabilityDiagram />
+  <BreadcrumbBar path={["Soluciones", "Ciberseguridad", "Descripción General"]} />
+</Layout>

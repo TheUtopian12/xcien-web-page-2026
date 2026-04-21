@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SolutionHero from "../../components/sections/solutions/SolutionHero.astro";
+import SolutionDetails from "../../components/sections/solutions/SolutionDetails.astro";
+
+const features = [
+  {
+    title: "Alta Disponibilidad",
+    description: "Diseño de infraestructuras redundantes que garantizan la continuidad incluso ante fallos críticos de hardware.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-infinity"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>`
+  },
+  {
+    title: "Sistemas Críticos",
+    description: "Especialistas en sectores que no permiten caídas: salud, finanzas y centros de datos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`
+  },
+  {
+    title: "Ingeniería a la medida",
+    description: "No adaptamos tu negocio a la tecnología, adaptamos la tecnología a las necesidades únicas de tu operación.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-drafting-compass"><circle cx="12" cy="12" r="1"/><path d="m11 8 2 2 1-1"/><path d="m7 21 4-10-1-1"/><path d="m17 21-4-10 1-1"/><path d="M15 5a3 3 0 1 0-6 0"/></svg>`
+  }
+];
+---
+
+<Layout>
+  <SolutionHero 
+    title="Proyectos Especiales"
+    subtitle="High Availability & Engineering"
+    description="Soluciones de ingeniería a la medida para desafíos críticos. Redundancia multi-enlace, alta disponibilidad y arquitecturas complejas diseñadas por expertos."
+    image="/background.png"
+  />
+  
+  <SolutionDetails 
+    features={features}
+    sectionTitle="Ingeniería de Vanguardia"
+  />
+
+  <section id="contacto" class="py-24 border-t border-white/5">
+     <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-8">¿Tienes un reto complejo?</h2>
+        <p class="text-white/50 mb-12 max-w-xl mx-auto">Nuestros mejores ingenieros están listos para diseñarlo.</p>
+        <a href="https://wa.me/something" class="inline-block bg-primary text-black px-12 py-5 rounded-full font-black hover:scale-110 transition-transform shadow-2xl shadow-primary/40 text-lg uppercase tracking-wider">
+           Hablar con Ingeniería
+        </a>
+     </div>
+  </section>
+</Layout>

@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
+import CommonBenefits from "../../components/sections/solutions/CommonBenefits.astro";
+import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
+import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
+import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+
+const specialFeatures = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>`,
+    title: "WiFi a la Medida",
+    description: "Creación de múltiples redes WiFi de acuerdo a las necesidades del cliente."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><path d="m22 7-8.5 8.5L9 11l-7 7"/><path d="M16 7h6v6"/></svg>`,
+    title: "Inversión Inteligente",
+    description: "Diseño de red pensado en el crecimiento de cobertura de red WiFi. Habilitado para realizar upgrades de AP's."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-panel-left"><rect width="7" height="18" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>`,
+    title: "Panorama de Red",
+    description: "Análisis predictivo de la cobertura de la red WiFi."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    title: "Reporte de Red",
+    description: "Generación de reportes de consumo de dispositivos dentro de tu red."
+  }
+];
+---
+
+<Layout>
+  <PageHeroWithForm 
+    title="Red"
+    greenTitle="WiFi"
+    description="Buscas potenciar la información de los invitados a tu evento, utiliza Nuestra plataforma y Red para lograr eso y mucho más."
+  />
+  
+  <CommonBenefits />
+  
+  <SpecialFeatures features={specialFeatures} />
+  
+  <HighAvailabilityDiagram />
+  <BreadcrumbBar path={["Soluciones", "Red WiFi", "Descripción General"]} />
+</Layout>

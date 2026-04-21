@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
+---
+
+<Layout>
+  <section class="pt-40 pb-20 bg-[#0a0b0d]">
+    <div class="container mx-auto px-4">
+      <h1 class="text-6xl font-black text-white italic uppercase mb-8">Eventos</h1>
+      <p class="text-white/50 text-xl max-w-2xl">Próximamente más información sobre nuestros eventos y webinars.</p>
+    </div>
+  </section>
+  <BreadcrumbBar path={["Comunidad", "Eventos", "Calendario"]} />
+</Layout>

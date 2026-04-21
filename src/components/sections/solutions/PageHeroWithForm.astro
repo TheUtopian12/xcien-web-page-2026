@@ -1,0 +1,92 @@
+---
+import SuccessModal from "../../layout/SuccessModal.astro";
+
+interface Props {
+  title: string;
+  greenTitle?: string;
+  description: string;
+}
+
+const { title, greenTitle, description } = Astro.props;
+---
+
+<section class="relative min-h-[80vh] flex items-center bg-[#0a1128] overflow-hidden pt-28 pb-16">
+  <!-- Abstract Network Background (Placeholder effect with CSS + image) -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0a1128] via-[#0a1128]/80 to-transparent"></div>
+    <!-- We can use a generated image for the network web background -->
+    <img 
+      src="/network-web.png" 
+      alt="Network Background" 
+      class="w-full h-full object-cover opacity-40 mix-blend-screen"
+    />
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- Left: Content -->
+    <div>
+      <h1 class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-tight italic uppercase">
+        {title} <br/>
+        <span class="text-primary">{greenTitle}</span>
+      </h1>
+      <p class="text-xl text-white/70 leading-relaxed max-w-xl">
+        {description}
+      </p>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="bg-[#1a1c22]/90 backdrop-blur-2xl p-8 rounded-[2rem] border border-white/10 shadow-2xl">
+        <h2 class="text-2xl font-black text-white mb-2">Solicita tu propuesta personalizada.</h2>
+        <p class="text-white/50 text-sm mb-8">Cuéntanos de tu empresa y te contactamos en &lt; 24 hrs</p>
+        
+        <form class="space-y-4">
+            <div class="form-control">
+                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Nombre completo *</span></label>
+                <input type="text" placeholder="Ej. Alex Fdz." class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+            </div>
+            <div class="form-control">
+                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Compañía / Giro *</span></label>
+                <input type="text" placeholder="Ej. Comercializadora" class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="form-control">
+                    <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Teléfono *</span></label>
+                    <input type="tel" class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+                </div>
+                <div class="form-control">
+                    <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Email *</span></label>
+                    <input type="email" class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+                </div>
+            </div>
+            <div class="form-control">
+                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">¿Qué necesitas?</span></label>
+                <select class="select bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm">
+                    <option disabled selected>Internet Dedicado</option>
+                    <option>Seguridad Administrada</option>
+                    <option>Redes Locales</option>
+                    <option>Telefonía IP</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Mensaje</span></label>
+                <textarea class="textarea bg-white/5 border-none focus:ring-1 focus:ring-primary h-24 text-sm" placeholder="Cuéntanos el reto..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-full h-14 rounded-xl font-black text-base shadow-lg shadow-primary/20 mt-4">
+                Enviar y recibir propuesta
+            </button>
+        </form>
+    </div>
+  </div>
+
+  <SuccessModal id="form_success" />
+</section>
+
+<script>
+  const form = document.querySelector('form');
+  const modal = document.getElementById('form_success') as HTMLDialogElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    modal?.showModal();
+    (form as HTMLFormElement).reset();
+  });
+</script>

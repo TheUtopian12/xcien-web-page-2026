@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
+import CommonBenefits from "../../components/sections/solutions/CommonBenefits.astro";
+import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
+import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
+import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+
+const specialFeatures = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>`,
+    title: "Redundancia",
+    description: "Ubicación e instalaciones propias."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>`,
+    title: "Escalabilidad",
+    description: "Flexibilidad de crecimiento de servicio en base a las necesidades del cliente."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+    title: "Conectividad",
+    description: "Conectividad o redundancia con opción proveedores Tier 1."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database"><circle cx="12" cy="5" r="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>`,
+    title: "Centros Tier",
+    description: "No hay límite en la transferencia de datos."
+  }
+];
+---
+
+<Layout>
+  <PageHeroWithForm 
+    title="Data"
+    greenTitle="Centers"
+    description="Si requieres un servicio de alojamiento, que te permita operar con seguridad, capacidad ilimitada y dentro de instalaciones con Redundancia y Alta Disponibilidad, Xcien es la respuesta."
+  />
+  
+  <CommonBenefits />
+  
+  <SpecialFeatures features={specialFeatures} />
+  
+  <HighAvailabilityDiagram />
+  <BreadcrumbBar path={["Soluciones", "Data Centers", "Descripción General"]} />
+</Layout>

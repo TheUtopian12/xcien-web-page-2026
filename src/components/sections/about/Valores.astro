@@ -1,0 +1,27 @@
+---
+const valores = [
+  { title: "Audacia Visionaria", icon: "🚀" },
+  { title: "Innovación disruptiva", icon: "💡" },
+  { title: "Autodeterminación Responsable", icon: "⚖️" },
+  { title: "Agilidad Asertiva", icon: "⚡" },
+  { title: "Colaboración sinérgica", icon: "🤝" }
+];
+---
+
+<section class="py-24 bg-[#0a0b0d]">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-black text-primary mb-16 tracking-tight uppercase italic">Valores</h2>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      {valores.map((v) => (
+        <div class="p-8 rounded-[1.5rem] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all">
+          <div class="text-3xl mb-4 group-hover:scale-110 transition-transform grayscale hover:grayscale-0">
+             <div class="w-16 h-16 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center shadow-inner">
+                {v.title.split(' ')[0][0]}
+             </div>
+          </div>
+          <p class="text-sm font-bold text-white group-hover:text-primary transition-colors">{v.title}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

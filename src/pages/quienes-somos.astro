@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import VisionMission from "../components/sections/about/VisionMission.astro";
+import Valores from "../components/sections/about/Valores.astro";
+import Proceso from "../components/sections/about/Proceso.astro";
+import AlianzasDetalle from "../components/sections/about/AlianzasDetalle.astro";
+import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
+---
+
+<Layout>
+  <!-- Simple Hero for About -->
+  <section class="pt-40 pb-20 bg-[#0a0b0d] relative overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+      <h1 class="text-6xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-8 py-1">
+        ¿<span class="text-primary italic-none">Quienes</span> Somos?
+      </h1>
+      <p class="text-white/50 text-xl leading-relaxed max-w-2xl">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+      </p>
+    </div>
+    <div class="absolute -right-20 -top-20 w-96 h-96 bg-primary/10 blur-[150px] rounded-full"></div>
+  </section>
+
+  <VisionMission />
+  <Valores />
+  <Proceso />
+  <AlianzasDetalle />
+
+  <BreadcrumbBar path={["Empresa", "Quiénes Somos", "Descripción General"]} />
+</Layout>

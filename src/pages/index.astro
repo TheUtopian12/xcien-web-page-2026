@@ -1,10 +1,16 @@
 ---
-import LandingHero from "../components/LandingHero.astro";
+import Hero from "../components/sections/home/Hero.astro";
+import Partners from "../components/sections/home/Partners.astro";
+import WhyChooseUs from "../components/sections/home/WhyChooseUs.astro";
+import SolutionsGrid from "../components/sections/home/SolutionsGrid.astro";
+import Blog from "../components/sections/home/Blog.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <main>
-    <LandingHero />
-  </main>
+  <Hero />
+  <Partners />
+  <WhyChooseUs />
+  <SolutionsGrid />
+  <Blog />
 </Layout>
