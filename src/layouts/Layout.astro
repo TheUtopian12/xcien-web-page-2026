@@ -13,10 +13,18 @@ import Footer from "../components/layout/Footer.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Xcien - Conectividad Inteligente</title>
   </head>
-  <body class="bg-[#0a0b0d] text-white selection:bg-primary selection:text-black">
+  <body
+    class="bg-[#0a0b0d] text-white selection:bg-primary selection:text-black"
+  >
     <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-      <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
-      <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/5 blur-[120px] rounded-full"></div>
+      <div
+        class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"
+      >
+      </div>
+      <div
+        class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/5 blur-[120px] rounded-full"
+      >
+      </div>
     </div>
     <div class="drawer">
       <input id="main-drawer" type="checkbox" class="drawer-toggle" />
@@ -47,54 +55,162 @@ import Footer from "../components/layout/Footer.astro";
               class="flex items-center gap-3 text-2xl font-bold p-0 hover:bg-transparent focus:bg-transparent"
             >
               <div class="bg-primary p-1.5 rounded">
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 128 128"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z"
-                    fill="black"></path>
-                </svg>
+                <img src="../../../public/Logo.png" class="w-12" alt="" />
               </div>
               xcien
             </a>
           </li>
 
-          <li><a href="/mapa-de-cobertura" class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white">Mapa de Cobertura</a></li>
+          <li>
+            <a
+              href="/mapa-de-cobertura"
+              class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white"
+              >Mapa de Cobertura</a
+            >
+          </li>
           <li>
             <details>
-              <summary class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white">XCIEN</summary>
+              <summary
+                class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white"
+                >XCIEN</summary
+              >
               <ul class="pl-4">
-                <li><a href="/quienes-somos" class="py-2 opacity-70 hover:opacity-100">Quiénes Somos</a></li>
-                <li><a href="/alianzas" class="py-2 opacity-70 hover:opacity-100">Alianzas</a></li>
-                <li><a href="/eventos" class="py-2 opacity-70 hover:opacity-100">Eventos</a></li>
-                <li><a href="/blog" class="py-2 opacity-70 hover:opacity-100">Blog</a></li>
+                <li>
+                  <a
+                    href="/quienes-somos"
+                    class="py-2 opacity-70 hover:opacity-100">Quiénes Somos</a
+                  >
+                </li>
+                <li>
+                  <a href="/alianzas" class="py-2 opacity-70 hover:opacity-100"
+                    >Alianzas</a
+                  >
+                </li>
+                <li>
+                  <a href="/eventos" class="py-2 opacity-70 hover:opacity-100"
+                    >Eventos</a
+                  >
+                </li>
+                <li>
+                  <a href="/blog" class="py-2 opacity-70 hover:opacity-100"
+                    >Blog</a
+                  >
+                </li>
               </ul>
             </details>
           </li>
           <li>
             <details>
-              <summary class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white">Soluciones</summary>
+              <summary
+                class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white"
+                >Soluciones</summary
+              >
               <ul class="pl-4">
-                <li><a href="/soluciones/conectividad" class="py-2 opacity-70 hover:opacity-100">Conectividad</a></li>
-                <li><a href="/soluciones/alta-disponibilidad" class="py-2 opacity-70 hover:opacity-100 font-bold">Alta Disponibilidad</a></li>
-                <li><a href="/soluciones/internet-dedicado" class="py-2 opacity-70 hover:opacity-100">Internet Dedicado</a></li>
-                <li><a href="/soluciones/internet-pyme" class="py-2 opacity-70 hover:opacity-100">Internet Pyme</a></li>
-                <li><a href="/soluciones/internet-eventos" class="py-2 opacity-70 hover:opacity-100">Internet Eventos</a></li>
-                <li><a href="/soluciones/internet-satelital" class="py-2 opacity-70 hover:opacity-100">Internet Satelital</a></li>
-                <li><a href="/soluciones/comunicaciones-unificadas" class="py-2 opacity-70 hover:opacity-100">Comunicaciones Unificadas</a></li>
-                <li><a href="/soluciones/servicios-administrados" class="py-2 opacity-70 hover:opacity-100">Servicios Administrados</a></li>
-                <li><a href="/soluciones/ciberseguridad" class="py-2 opacity-70 hover:opacity-100">Ciberseguridad</a></li>
-                <li><a href="/soluciones/proyectos-especiales" class="py-2 opacity-70 hover:opacity-100">Proyectos Especiales</a></li>
-                <li><a href="/soluciones/inteligencia-artificial" class="py-2 opacity-70 hover:opacity-100">Inteligencia Artificial</a></li>
-                <li><a href="/soluciones/red-wifi" class="py-2 opacity-70 hover:opacity-100">Red WiFi</a></li>
-                <li><a href="/soluciones/servicios-tics" class="py-2 opacity-70 hover:opacity-100">Servicios Tic's</a></li>
-                <li><a href="/soluciones/sd-wan" class="py-2 opacity-70 hover:opacity-100">SD-WAN</a></li>
-                <li><a href="/soluciones/video-vigilancia" class="py-2 opacity-70 hover:opacity-100">Video Vigilancia</a></li>
-                <li><a href="/soluciones/data-centers" class="py-2 opacity-70 hover:opacity-100">Data Centers</a></li>
+                <li>
+                  <a
+                    href="/soluciones/conectividad"
+                    class="py-2 opacity-70 hover:opacity-100">Conectividad</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/alta-disponibilidad"
+                    class="py-2 opacity-70 hover:opacity-100 font-bold"
+                    >Alta Disponibilidad</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/internet-dedicado"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Internet Dedicado</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/internet-pyme"
+                    class="py-2 opacity-70 hover:opacity-100">Internet Pyme</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/internet-eventos"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Internet Eventos</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/internet-satelital"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Internet Satelital</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/comunicaciones-unificadas"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Comunicaciones Unificadas</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/servicios-administrados"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Servicios Administrados</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/ciberseguridad"
+                    class="py-2 opacity-70 hover:opacity-100">Ciberseguridad</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/proyectos-especiales"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Proyectos Especiales</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/inteligencia-artificial"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Inteligencia Artificial</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/red-wifi"
+                    class="py-2 opacity-70 hover:opacity-100">Red WiFi</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/servicios-tics"
+                    class="py-2 opacity-70 hover:opacity-100">Servicios Tic's</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/sd-wan"
+                    class="py-2 opacity-70 hover:opacity-100">SD-WAN</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/video-vigilancia"
+                    class="py-2 opacity-70 hover:opacity-100"
+                    >Video Vigilancia</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/soluciones/data-centers"
+                    class="py-2 opacity-70 hover:opacity-100">Data Centers</a
+                  >
+                </li>
               </ul>
             </details>
           </li>
