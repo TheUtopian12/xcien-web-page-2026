@@ -1,93 +1,280 @@
 ---
+
 ---
+
 <section class="py-24 bg-[#0a0b0d] overflow-hidden">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <!-- Left: Text -->
       <div>
-        <span class="inline-block px-4 py-1.5 rounded-full border border-white/20 text-xs font-bold text-white mb-6">Servicios Complementarios</span>
-        <h2 class="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
-          <span class="text-primary tracking-tighter">Alta Disponibilidad:</span><br/>
+        <span
+          class="inline-block px-4 py-1.5 rounded-full border border-white/20 text-xs font-bold text-white mb-6"
+          >Servicios Complementarios</span
+        >
+        <h2
+          class="text-4xl md:text-5xl font-black text-white mb-8 leading-tight italic uppercase tracking-tighter"
+        >
+          <span class="text-primary">Alta Disponibilidad:</span><br />
           Construir una red confiable, de alto rendimiento y segura
         </h2>
-        <p class="text-white/50 text-lg leading-relaxed mb-10">
-          Nuestra solución SD-WAN está diseñada para gestionar enlaces multioperador y multitecnología; construya una red equilibrada implementando enlaces de acceso.
+        <p
+          class="text-white/50 text-lg leading-relaxed mb-10 font-medium italic"
+        >
+          Nuestra solución SD-WAN está diseñada para gestionar enlaces
+          multioperador y multitecnología; construya una red equilibrada
+          implementando enlaces de acceso.
         </p>
-        
+
         <div class="flex items-center gap-8">
-            <div>
-                <p class="text-primary font-black text-2xl mb-1">99.9%</p>
-                <p class="text-white/30 text-[10px] uppercase font-bold tracking-widest">Disponibilidad</p>
-            </div>
-            <div class="w-px h-12 bg-white/10"></div>
-            <div>
-                <p class="text-primary font-black text-2xl mb-1">24/7</p>
-                <p class="text-white/30 text-[10px] uppercase font-bold tracking-widest">Monitoreo</p>
-            </div>
+          <div class="group cursor-default">
+            <p
+              class="text-primary font-black text-3xl mb-1 group-hover:scale-110 transition-transform italic"
+            >
+              99.9%
+            </p>
+            <p
+              class="text-white/30 text-[10px] uppercase font-bold tracking-[0.2em]"
+            >
+              Disponibilidad
+            </p>
+          </div>
+          <div class="w-px h-12 bg-white/10"></div>
+          <div class="group cursor-default">
+            <p
+              class="text-primary font-black text-3xl mb-1 group-hover:scale-110 transition-transform italic"
+            >
+              24/7
+            </p>
+            <p
+              class="text-white/30 text-[10px] uppercase font-bold tracking-[0.2em]"
+            >
+              Monitoreo
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- Right: Diagram Mockup -->
-      <div class="relative group">
-         <!-- Outer glow -->
-         <div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full group-hover:scale-125 transition-transform duration-1000"></div>
-         
-         <!-- Simplified Diagram Representation -->
-         <div class="relative bg-white/[0.02] border border-white/5 p-12 rounded-[3rem] backdrop-blur-xl">
-            <div class="flex flex-col items-center gap-12">
-                <!-- Top Nodes -->
-                <div class="flex justify-between w-full max-w-md">
-                    <div class="flex flex-col items-center gap-2">
-                        <div class="w-16 h-8 bg-white/10 rounded-lg flex items-center justify-center text-[10px] font-bold text-white/50">Data Center</div>
-                        <div class="w-0.5 h-12 bg-gradient-to-b from-primary/50 to-transparent"></div>
-                    </div>
-                    <div class="flex flex-col items-center gap-2">
-                        <div class="w-16 h-8 bg-white/10 rounded-lg flex items-center justify-center text-[10px] font-bold text-white/50">Oficina</div>
-                        <div class="w-0.5 h-12 bg-gradient-to-b from-primary/50 to-transparent"></div>
-                    </div>
-                     <div class="flex flex-col items-center gap-2">
-                        <div class="w-16 h-8 bg-white/10 rounded-lg flex items-center justify-center text-[10px] font-bold text-white/50">Sucursales</div>
-                        <div class="w-0.5 h-12 bg-gradient-to-b from-primary/50 to-transparent"></div>
-                    </div>
-                </div>
+      <!-- Right: The Advanced Diagram -->
+      <div class="relative py-20 lg:py-0">
+        <div
+          class="relative w-full max-w-2xl mx-auto flex flex-col items-center"
+        >
+          <!-- Top Nodes -->
+          <div class="w-full flex justify-between items-end px-4 mb-2">
+            <div class="node-top">Data Center</div>
+            <div class="node-top-empty"></div>
+            <div class="node-top">Oficina</div>
+            <div class="node-top-empty"></div>
+            <div class="node-top">Sucursales</div>
+          </div>
 
-                <!-- Central Router -->
-                <div class="w-full max-w-sm h-32 bg-[#1a1c22] border-2 border-primary/20 rounded-2xl flex items-center justify-around px-8 relative">
-                    <div class="absolute -top-1 left-4 right-4 h-0.5 bg-primary/20 blur-sm"></div>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#65d46e" stroke-width="2" class="opacity-50"><path d="M17 3H21L15 12L21 21H17L13 15L9 21H5L11 12L5 3H9L13 9L17 3Z"/></svg>
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                            <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
-                        </div>
-                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10"></div>
-                        <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10"></div>
-                    </div>
-                </div>
+          <!-- SVG Connections (Top) -->
+          <div class="w-full h-32 relative">
+            <svg
+              class="w-full h-full"
+              viewBox="0 0 600 128"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <!-- Animated Paths -->
+              <path d="M50 0 C 50 80, 300 40, 300 128" class="connection-line"
+              ></path>
+              <path d="M175 0 C 175 80, 300 40, 300 128" class="connection-line"
+              ></path>
+              <path d="M300 0 L 300 128" class="connection-line"></path>
+              <path d="M425 0 C 425 80, 300 40, 300 128" class="connection-line"
+              ></path>
+              <path d="M550 0 C 550 80, 300 40, 300 128" class="connection-line"
+              ></path>
+            </svg>
+          </div>
 
-                <!-- Bottom Links -->
-                <div class="flex justify-between w-full max-w-md">
-                   <div class="p-3 bg-white/5 border border-white/10 rounded-xl">
-                      <p class="text-[8px] font-bold text-white/30 uppercase mb-1">Satélite</p>
-                      <div class="flex items-center gap-2 text-primary font-black text-xs">
-                         <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span> 140 Mbps
-                      </div>
-                   </div>
-                   <div class="p-3 bg-white/5 border border-white/10 rounded-xl">
-                      <p class="text-[8px] font-bold text-white/30 uppercase mb-1">Fibra</p>
-                      <div class="flex items-center gap-2 text-primary font-black text-xs">
-                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 600 Mbps
-                      </div>
-                   </div>
-                   <div class="p-3 bg-white/5 border border-white/10 rounded-xl">
-                      <p class="text-[8px] font-bold text-white/30 uppercase mb-1">Microondas</p>
-                      <div class="flex items-center gap-2 text-primary font-black text-xs">
-                         <span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 450 Mbps
-                      </div>
-                   </div>
-                </div>
+          <!-- Central Device -->
+          <div class="relative group">
+            <div
+              class="absolute -inset-1 bg-primary/20 blur-2xl rounded-3xl opacity-0 group-hover:opacity-100 transition duration-700"
+            >
             </div>
-         </div>
+            <div
+              class="relative w-[340px] sm:w-[420px] h-32 bg-[#1a1c22] border border-white/10 rounded-2xl flex items-center justify-between px-8 shadow-2xl overflow-hidden"
+            >
+              <!-- Device Details -->
+              <div class="flex items-center gap-6">
+                <!-- Logo stylized -->
+                <div
+                  class="text-primary opacity-80 group-hover:opacity-100 transition-opacity"
+                >
+                  <img src="../../../public/Logo.png" class="w-12" alt="" />
+                </div>
+              </div>
+
+              <!-- Ports -->
+              <div class="flex gap-3">
+                <div class="port"></div>
+                <div class="port"></div>
+                <div class="port"></div>
+              </div>
+
+              <!-- Status LEDs -->
+              <div class="flex flex-col gap-2">
+                <div
+                  class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(101,212,110,0.8)]"
+                >
+                </div>
+                <div class="w-1.5 h-1.5 rounded-full bg-primary/40"></div>
+              </div>
+
+              <!-- Glossy overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"
+              >
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Connections Container -->
+          <div class="w-full flex justify-between h-48 relative px-10">
+            <!-- Connection Satelital -->
+            <div class="flex-1 flex flex-col items-center">
+              <div class="w-px h-24 bg-primary/30"></div>
+              <div class="node-bottom group">
+                <p
+                  class="text-[9px] font-bold text-white/30 uppercase tracking-tighter mb-1"
+                >
+                  Satelital
+                </p>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex items-center text-primary text-[10px] font-black italic"
+                  >
+                    <svg
+                      class="w-2.5 h-2.5 rotate-180 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg
+                    >
+                    430 Mbps
+                  </div>
+                  <div
+                    class="flex items-center text-primary text-[10px] font-black italic"
+                  >
+                    <svg
+                      class="w-2.5 h-2.5 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z"></path></svg
+                    >
+                    141 Mbps
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connection Microondas -->
+            <div class="flex-1 flex flex-col items-center mt-12">
+              <div class="w-px h-24 bg-primary/30"></div>
+              <div class="node-bottom">
+                <p
+                  class="text-[9px] font-bold text-white/30 uppercase tracking-tighter mb-1"
+                >
+                  Microondas
+                </p>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex items-center text-primary text-[10px] font-black italic"
+                  >
+                    <svg
+                      class="w-2.5 h-2.5 rotate-180 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg
+                    >
+                    430 Mbps
+                  </div>
+                  <div
+                    class="flex items-center text-primary text-[10px] font-black italic"
+                  >
+                    <svg
+                      class="w-2.5 h-2.5 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z"></path></svg
+                    >
+                    141 Mbps
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connection Fibra -->
+            <div class="flex-1 flex flex-col items-center">
+              <div class="w-px h-24 bg-primary/30"></div>
+              <div class="node-bottom">
+                <p
+                  class="text-[9px] font-bold text-white/30 uppercase tracking-tighter mb-1"
+                >
+                  Fibra
+                </p>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex items-center text-primary text-[10px] font-black italic"
+                  >
+                    <svg
+                      class="w-2.5 h-2.5 rotate-180 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg
+                    >
+                    430 Mbps
+                  </div>
+                  <div
+                    class="flex items-center text-primary text-[10px] font-black italic"
+                  >
+                    <svg
+                      class="w-2.5 h-2.5 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z"></path></svg
+                    >
+                    141 Mbps
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  @reference "../../../styles/global.css";
+
+  .node-top {
+    @apply bg-[#1a1c22] border border-white/5 py-2.5 px-6 rounded-xl text-[11px] font-black text-white/80 uppercase tracking-wider italic shadow-lg z-10;
+  }
+  .node-top-empty {
+    @apply w-12 h-6 bg-white/5 rounded-lg border border-white/5;
+  }
+  .node-bottom {
+    @apply bg-[#1a1c22] border border-white/10 p-3 px-5 rounded-2xl shadow-2xl relative z-10 hover:scale-105 transition-transform;
+  }
+  .connection-line {
+    @apply stroke-primary/30;
+    stroke-width: 1.5px;
+  }
+  .port {
+    @apply w-10 h-8 rounded-lg border border-white/10 bg-white/5 relative flex items-center justify-center;
+  }
+  .port::after {
+    content: "";
+    @apply w-5 h-3 border border-white/10 rounded-sm bg-white/5;
+  }
+
+  /* Drawing line animation */
+  .connection-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 3s forwards ease-in-out;
+  }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>

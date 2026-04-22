@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
+import CommonBenefits from "../../components/sections/solutions/CommonBenefits.astro";
+import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
+import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
+import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+
+const specialFeatures = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>`,
+    title: "Inspección profunda",
+    description: "Visión de uso de servicio de Internet. Segmentación por categorías o páginas web."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-cog"><path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"/><path d="M12 13v1"/><path d="M12 18v1"/><path d="M12 22v-.5"/><path d="m15.5 14.9-.5.5"/><path d="m10.5 19.1-.5.5"/><path d="m15.5 20.1-.5-.5"/><path d="m10.5 15.9-.5-.5"/></svg>`,
+    title: "Gestión en Nube",
+    description: "Notificaciones de estado y desempeño de enlaces en tiempo real."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-area-chart"><path d="M3 3v18h18"/><path d="M7 12v5"/><path d="M11 9v8"/><path d="M15 13v4"/><path d="M19 7v10"/></svg>`,
+    title: "Monitoreo Libre",
+    description: "Acceso a reportes históricos del consumo y desempeño de tus conexiones a Internet."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cable"><path d="M4 17h16"/><path d="M4 22V12a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M12 2v4"/><path d="M8 6h8"/><path d="m4 6 2 2"/><path d="m18 8 2-2"/></svg>`,
+    title: "Equipo Compatible",
+    description: "Integración y optimización de otros proveedores de Internet a nuestros equipos."
+  }
+];
+---
+
+<Layout title="Alta Disponibilidad | Xcien">
+  <PageHeroWithForm 
+    title="Alta"
+    greenTitle="Disponibilidad"
+    description="La solución de Alta Disponibilidad minimiza y reduce un posible corte de servicio, derivado de una falla o degradación de alguno de los proveedores de Internet conectados al equipo Alta Disponibilidad. Con esto se garantiza la continuidad de forma rápida y automática."
+  />
+  
+  <CommonBenefits />
+  
+  <SpecialFeatures features={specialFeatures} />
+  
+  <HighAvailabilityDiagram />
+  <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
+</Layout>
