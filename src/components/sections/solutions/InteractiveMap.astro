@@ -2,10 +2,7 @@
 // Interactive Mexico Map Component
 ---
 
-<div
-  class="relative w-full max-w-4xl mx-auto py-20 perspective-2000"
-  id="mexico-map-container"
->
+<div class="relative w-full max-w-4xl mx-auto py-20" id="mexico-map-container">
   <!-- Status Indicator -->
   <div
     class="absolute top-0 right-0 flex items-center gap-6 text-xs font-bold uppercase tracking-widest italic z-10"
@@ -18,7 +15,7 @@
       <span class="text-white">Con Cobertura</span>
     </div>
     <div class="flex items-center gap-2 opacity-50">
-      <div class="w-3 h-3 bg-white/20 rounded-full border border-white/20">
+      <div class="w-3 h-3 bg-white/20 rounded-full border border-red-200/20">
       </div>
       <span class="text-white text-[10px]">Sin Cobertura</span>
     </div>
@@ -27,8 +24,7 @@
   <!-- 3D Perspective Wrapper -->
   <div
     id="svg-map-wrapper"
-    class="w-full transition-all duration-700 ease-out opacity-0 min-h-[400px] flex items-center justify-center transform-style-3d"
-    style="transform: rotateX(10deg) rotateY(-5deg);"
+    class="w-full transition-all duration-700 ease-out opacity-0 min-h-[400px] flex items-center justify-center"
   >
     <span class="loading loading-ring loading-lg text-primary"></span>
   </div>
@@ -196,13 +192,6 @@
 </div>
 
 <style is:global>
-  .perspective-2000 {
-    perspective: 2000px;
-  }
-  .transform-style-3d {
-    transform-style: preserve-3d;
-  }
-
   #svg-map-wrapper svg {
     width: 100%;
     height: auto;
@@ -225,7 +214,7 @@
     stroke-width: 2px !important;
     fill: rgba(101, 212, 110, 0.2) !important;
     filter: drop-shadow(0 0 15px rgba(101, 212, 110, 0.4));
-    transform: translateZ(50px) scale(1.02);
+    transform: scale(1.02);
   }
 
   /* Specific style for non-covered states when hovered for feedback */
@@ -282,25 +271,7 @@
     const modalStateName = document.getElementById("modal-state-name");
     const noModalStateName = document.getElementById("no-modal-state-name");
 
-    // 3D Tilt Logic
-    container.addEventListener("mousemove", (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const tiltY = (x - centerX) / 100; // Left-Right tilt
-      const tiltX = (centerY - y) / 100; // Top-Bottom tilt
-
-      // Add a base rotation for the map
-      wrapper.style.transform = `rotateX(${tiltX + 15}deg) rotateY(${tiltY - 10}deg)`;
-    });
-
-    container.addEventListener("mouseleave", () => {
-      wrapper.style.transform = `rotateX(15deg) rotateY(-10deg)`;
-    });
+    // 3D Tilt Logic removed as requested
 
     try {
       const response = await fetch("/images/map/mexico.svg");

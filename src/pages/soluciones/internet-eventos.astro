@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
+import CommonBenefits from "../../components/sections/solutions/CommonBenefits.astro";
+import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
+import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
+import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+
+const specialFeatures = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-2"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>`,
+    title: "Adaptabilidad",
+    description: "Nos adaptamos al tiempo de tu evento y a la velocidad que necesites."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M18 15V9a6 6 0 0 0-12 0v6"/></svg>`,
+    title: "Acompañamiento",
+    description: "Asistencia de personal técnico durante el evento."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-off"><path d="M12.75 7.09a3 3 0 0 1 2.16 2.16"/><path d="M17.07 17.07 12 22l-5-5"/><path d="M22 2 2 22"/><path d="M8.27 8.27a7.51 7.51 0 0 1 10.3 10.3"/><path d="M9.41 13.62A7.5 7.5 0 0 1 7 12a7.5 7.5 0 0 1 3.6-6.4"/></svg>`,
+    title: "Zonas Limitadas",
+    description: "Entregamos el servicio en zonas con difícil acceso."
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-router"><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6.01 18H6"/><path d="M10.01 18H10"/><path d="M15 10v4"/><path d="M17.84 7.17a4 4 0 0 0-5.66 0"/><path d="M20.66 4.34a8 8 0 0 0-11.31 0"/></svg>`,
+    title: "Conectividad WIFI",
+    description: "Incluimos 2 access points con la contratación de tu servicio."
+  }
+];
+---
+
+<Layout title="Internet Eventos | Xcien">
+  <PageHeroWithForm 
+    title="Internet"
+    greenTitle="Eventos"
+    description="Buscas potenciar la información de los invitados a tu evento, utiliza Nuestra plataforma y Red para lograr eso y mucho más."
+  />
+  
+  <CommonBenefits />
+  
+  <SpecialFeatures features={specialFeatures} />
+  
+  <HighAvailabilityDiagram />
+  <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
+</Layout>

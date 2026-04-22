@@ -41,37 +41,54 @@ const { title, greenTitle, description } = Astro.props;
         
         <form class="space-y-4">
             <div class="form-control">
-                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Nombre completo *</span></label>
-                <input type="text" placeholder="Ej. Alex Fdz." class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+                <label class="label py-1">
+                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Nombre completo *</span>
+                </label>
+                <input type="text" placeholder="Ej. Alex Fdz." class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
             </div>
+
             <div class="form-control">
-                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Compañía / Giro *</span></label>
-                <input type="text" placeholder="Ej. Comercializadora" class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+                <label class="label py-1">
+                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Compañía / Giro *</span>
+                </label>
+                <input type="text" placeholder="Ej. Comercializadora" class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
             </div>
+
             <div class="grid grid-cols-2 gap-4">
                 <div class="form-control">
-                    <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Teléfono *</span></label>
-                    <input type="tel" class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+                    <label class="label py-1">
+                        <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Teléfono *</span>
+                    </label>
+                    <input type="tel" class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
                 </div>
                 <div class="form-control">
-                    <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Email *</span></label>
-                    <input type="email" class="input bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm" required />
+                    <label class="label py-1">
+                        <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Email *</span>
+                    </label>
+                    <input type="email" class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
                 </div>
             </div>
+
             <div class="form-control">
-                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">¿Qué necesitas?</span></label>
-                <select class="select bg-white/5 border-none focus:ring-1 focus:ring-primary h-12 text-sm">
+                <label class="label py-1">
+                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">¿Qué necesitas?</span>
+                </label>
+                <select class="select bg-[#2a2d34] border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm w-full">
                     <option disabled selected>Internet Dedicado</option>
                     <option>Seguridad Administrada</option>
                     <option>Redes Locales</option>
                     <option>Telefonía IP</option>
                 </select>
             </div>
+
             <div class="form-control">
-                <label class="label"><span class="label-text text-primary font-bold text-[10px] uppercase">Mensaje</span></label>
-                <textarea class="textarea bg-white/5 border-none focus:ring-1 focus:ring-primary h-24 text-sm" placeholder="Cuéntanos el reto..."></textarea>
+                <label class="label py-1">
+                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Mensaje</span>
+                </label>
+                <textarea class="textarea bg-[#2a2d34] border-none focus:ring-1 focus:ring-primary rounded-lg text-sm p-4 h-24 w-full" placeholder="Cuéntanos el reto o la ubicación de tu sitios ..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary w-full h-14 rounded-xl font-black text-base shadow-lg shadow-primary/20 mt-4">
+
+            <button type="submit" class="btn btn-primary w-full h-14 rounded-xl normal-case font-black text-base shadow-lg shadow-primary/20 mt-4 hover:scale-[1.01] transition-transform">
                 Enviar y recibir propuesta
             </button>
         </form>
