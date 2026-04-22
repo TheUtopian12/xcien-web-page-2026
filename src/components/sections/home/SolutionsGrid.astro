@@ -28,21 +28,21 @@ const solutions = [
 ];
 ---
 
-<section class="py-24 bg-[#0a0b0d]">
-  <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-white mb-16 tracking-tight">Soluciones</h2>
+<section class="py-24 relative overflow-hidden">
+  <div class="container mx-auto px-4 relative z-10">
+    <h2 class="text-5xl font-black text-white mb-16 tracking-tighter italic uppercase">Soluciones</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
       {solutions.map((solution) => (
-        <div class="group p-8 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/20 transition-all duration-500 hover:bg-white/[0.05] flex flex-col gap-6">
+        <div class="group p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-primary/20 transition-all duration-500 hover:bg-black/60 flex flex-col gap-6">
           <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all duration-500">
             <Fragment set:html={solution.icon} />
           </div>
           <div>
-            <h3 class="text-lg font-bold text-white mb-3 tracking-tight">
+            <h3 class="text-sm font-black text-white mb-3 tracking-widest uppercase italic group-hover:text-primary transition-colors">
               {solution.title}
             </h3>
-            <p class="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">
+            <p class="text-[11px] text-white/30 leading-relaxed group-hover:text-white/50 transition-colors uppercase font-medium">
               {solution.description}
             </p>
           </div>

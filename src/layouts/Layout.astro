@@ -16,13 +16,18 @@ import Footer from "../components/layout/Footer.astro";
   <body
     class="bg-[#0a0b0d] text-white selection:bg-primary selection:text-black"
   >
-    <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+    <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-[#0a0b0d]">
+      <!-- Atmosphere / Glows -->
       <div
-        class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-[#0b1a2e]/50 via-[#0a0b0d] to-[#0a0b0d] opacity-80"
       >
       </div>
       <div
-        class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/5 blur-[120px] rounded-full"
+        class="absolute top-[20%] left-[10%] w-[50%] h-[50%] bg-primary/5 blur-[140px] rounded-full"
+      >
+      </div>
+      <div
+        class="absolute bottom-[20%] right-[10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full"
       >
       </div>
     </div>
@@ -55,7 +60,7 @@ import Footer from "../components/layout/Footer.astro";
               class="flex items-center gap-3 text-2xl font-bold p-0 hover:bg-transparent focus:bg-transparent"
             >
               <div class="bg-primary p-1.5 rounded">
-                <img src="../../../public/Logo.png" class="w-12" alt="" />
+                <img src="/Logo.png" class="w-10 h-10 object-contain" alt="Xcien Logo" />
               </div>
               xcien
             </a>
