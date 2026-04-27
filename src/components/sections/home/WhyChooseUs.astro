@@ -3,67 +3,79 @@ const reasons = [
   {
     icon: "25",
     title: "Pioneros en la industria",
-    description: "Contamos con más de 25 años de experiencia."
+    description: "Contamos con más de 25 años de experiencia.",
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>`,
     title: "Velocidad garantizada",
-    description: "Conexión simétrica, estable y dedicada."
+    description: "Conexión simétrica, estable y dedicada.",
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-9"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 7.5 12"/></svg>`,
     title: "Disponibilidad 24/7/365",
-    description: "Noc propio y soporte siempre activo. Por nuestros ingenieros."
+    description:
+      "Noc propio y soporte siempre activo. Por nuestros ingenieros.",
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`,
     title: "Seguridad empresarial",
-    description: "Segmentación, firewalls y cifrado."
+    description: "Segmentación, firewalls y cifrado.",
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize-2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`,
     title: "Escalabilidad",
-    description: "Crece por sitio, por usuario o por demanda"
-  }
+    description: "Crece por sitio, por usuario o por demanda",
+  },
 ];
 ---
 
 <section class="pt-12 pb-24 relative overflow-hidden">
   <!-- Gradient Background Decoration -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-radial-at-t from-primary/10 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-radial-at-t from-primary/10 via-transparent to-transparent opacity-40 pointer-events-none"
+  >
+  </div>
 
   <div class="container mx-auto px-4 relative z-10">
     <div class="max-w-3xl mb-16 px-4 md:px-0">
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-6 leading-tight italic uppercase tracking-tighter">
+      <h2
+        class="text-4xl md:text-5xl font-black text-white mb-6 leading-tight italic uppercase tracking-tighter"
+      >
         ¿Por qué escoger a <span class="text-primary">XCIEN</span>?
       </h2>
-      <p class="text-lg text-white/50 leading-relaxed max-w-2xl font-medium italic">
-        Diseñamos redes robustas con monitoreo proactivo y <span class="text-white font-semibold underline underline-offset-4 decoration-primary/50">SLA</span> empresariales para 
-        que tu operación nunca se detenga, respaldando cada conexión con tecnología, 
-        soporte y experiencia. Más que conexión, continuidad garantizada.
+      <p
+        class="text-lg text-white/50 leading-relaxed max-w-2xl font-medium italic"
+      >
+        Diseñamos redes robustas con monitoreo proactivo y <span
+          class="text-white font-semibold underline underline-offset-4 decoration-primary/50"
+          >SLA</span
+        > empresariales para que tu operación nunca se detenga, respaldando cada conexión
+        con tecnología, soporte y experiencia. Más que conexión, continuidad garantizada.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-      {reasons.map((reason) => (
-        <div class="group p-8 rounded-2xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-primary/30 transition-all duration-500 hover:bg-black/60 flex flex-col gap-6">
-          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
-            {typeof reason.icon === 'string' && reason.icon.length < 3 ? (
-              <span class="text-xl font-black">{reason.icon}</span>
-            ) : (
-              <Fragment set:html={reason.icon} />
-            )}
+      {
+        reasons.map((reason) => (
+          <div class="group p-8 rounded-2xl bg-[#191e24] backdrop-blur-sm border border-white/5 hover:border-primary/30 transition-all duration-500 hover:bg-black/60 flex flex-col gap-6">
+            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+              {typeof reason.icon === "string" && reason.icon.length < 3 ? (
+                <span class="text-xl font-black">{reason.icon}</span>
+              ) : (
+                <Fragment set:html={reason.icon} />
+              )}
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                {reason.title}
+              </h3>
+              <p class="text-sm text-white/50 leading-relaxed group-hover:text-white/70 transition-colors">
+                {reason.description}
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 class="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors">
-              {reason.title}
-            </h3>
-            <p class="text-sm text-white/50 leading-relaxed group-hover:text-white/70 transition-colors">
-              {reason.description}
-            </p>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

@@ -14,23 +14,54 @@ import Analytics from "@vercel/analytics/astro";
     <meta name="generator" content={Astro.generator} />
     <title>Xcien - Conectividad Inteligente</title>
   </head>
-  <body
-    class="bg-[#0a0b0d] text-white selection:bg-primary selection:text-black"
-  >
-    <div
-      class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-[#0a0b0d]"
-    >
-      <!-- Atmosphere / Glows -->
+  <body class="text-white selection:bg-primary selection:text-black">
+    <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+      <!-- Base gradient: vivid navy-blue top → teal-green mid → dark green bottom -->
       <div
-        class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-[#0b1a2e]/50 via-[#0a0b0d] to-[#0a0b0d] opacity-80"
+        class="absolute inset-0"
+        style="background: linear-gradient(165deg, #0c2060 0%, #0d3050 18%, #0b3838 33%, #0d4a2a 50%, #083520 68%, #051a0e 85%, #030a06 100%);"
       >
       </div>
+
+      <!-- Top-left BLUE glow — primary, concentrated -->
       <div
-        class="absolute top-[20%] left-[10%] w-[50%] h-[50%] bg-primary/5 blur-[140px] rounded-full"
+        class="absolute top-[-10%] left-[-10%] w-[70%] h-[60%] rounded-full blur-[70px]"
+        style="background: radial-gradient(ellipse, rgba(40, 120, 255, 0.9) 0%, rgba(30, 90, 210, 0.6) 35%, transparent 65%);"
       >
       </div>
+
+      <!-- Top-right BLUE accent — so blue covers the full top band -->
       <div
-        class="absolute bottom-[20%] right-[10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full"
+        class="absolute top-[-10%] right-[-5%] w-[55%] h-[50%] rounded-full blur-[80px]"
+        style="background: radial-gradient(ellipse, rgba(30, 100, 230, 0.75) 0%, rgba(20, 70, 180, 0.4) 40%, transparent 65%);"
+      >
+      </div>
+
+      <!-- Mid teal transition — blue fades into green here -->
+      <div
+        class="absolute top-[15%] left-[10%] w-[60%] h-[40%] rounded-full blur-[100px]"
+        style="background: radial-gradient(ellipse, rgba(15, 130, 100, 0.45) 0%, transparent 65%);"
+      >
+      </div>
+
+      <!-- Center-left green wash - wide band across page -->
+      <div
+        class="absolute top-[25%] left-[-10%] w-[75%] h-[50%] rounded-full blur-[130px]"
+        style="background: radial-gradient(ellipse, rgba(15, 110, 60, 0.45) 0%, transparent 65%);"
+      >
+      </div>
+
+      <!-- Bottom center-right deep green -->
+      <div
+        class="absolute bottom-[-5%] right-[-5%] w-[65%] h-[55%] rounded-full blur-[160px]"
+        style="background: radial-gradient(ellipse, rgba(10, 80, 40, 0.6) 0%, transparent 65%);"
+      >
+      </div>
+
+      <!-- Extra: small bright green spot at mid-right for depth -->
+      <div
+        class="absolute top-[45%] right-[10%] w-[30%] h-[25%] rounded-full blur-[100px]"
+        style="background: radial-gradient(ellipse, rgba(30, 140, 70, 0.35) 0%, transparent 65%);"
       >
       </div>
     </div>

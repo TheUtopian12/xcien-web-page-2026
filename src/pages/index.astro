@@ -9,8 +9,26 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
   <Hero />
-  <Partners />
-  <WhyChooseUs />
-  <SolutionsGrid />
-  <Blog />
+
+  <div class="relative overflow-hidden">
+    <!-- Fondo mejorado -->
+    <div
+      class="absolute inset-0 pointer-events-none z-0
+  bg-gradient-to-tr from-[#0c2900] via-[#032053] `"
+    >
+    </div>
+
+    <!-- Glow sutil (clave para que se vea pro) -->
+    <div
+      class="absolute inset-0 z-0 pointer-events-none bg-green-500/5 blur-3xl"
+    >
+    </div>
+
+    <div class="relative z-10">
+      <Partners />
+      <WhyChooseUs />
+      <SolutionsGrid />
+      <Blog />
+    </div>
+  </div>
 </Layout>
