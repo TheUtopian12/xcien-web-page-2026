@@ -11,18 +11,20 @@ import Layout from "../layouts/Layout.astro";
   <Hero />
 
   <div class="relative overflow-hidden">
-    <!-- Fondo mejorado -->
+    <!-- Premium Textured Background -->
     <div
-      class="absolute inset-0 pointer-events-none z-0
-  bg-gradient-to-tr from-[#0c2900] via-[#032053] `"
+      class="absolute inset-0 pointer-events-none z-0 bg-[#06070a]"
     >
+      <!-- Deep atmospheric gradient -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(20,40,80,0.18)_0%,rgba(6,7,10,1)_85%)]"></div>
+      <!-- Central soft green glow -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.05)_0%,transparent_70%)]"></div>
+      <!-- Subtle Noise/Grain Texture for 'Premium' feel -->
+      <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
     </div>
 
-    <!-- Glow sutil (clave para que se vea pro) -->
-    <div
-      class="absolute inset-0 z-0 pointer-events-none bg-green-500/5 blur-3xl"
-    >
-    </div>
+    <!-- High-DPI Animated Neural Network (Plexus) -->
+    <canvas id="global-plexus-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
 
     <div class="relative z-10">
       <Partners />
@@ -31,4 +33,149 @@ import Layout from "../layouts/Layout.astro";
       <Blog />
     </div>
   </div>
+
+  <script>
+    const canvas = document.getElementById('global-plexus-canvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d', { alpha: false })!;
+    
+    let w: number, h: number;
+    let particles: Particle[] = [];
+    const dpr = window.devicePixelRatio || 1;
+
+    // Mouse interaction state
+    const mouse = { x: -1000, y: -1000, radius: 250 };
+
+    function resize() {
+      w = canvas.offsetWidth;
+      h = canvas.offsetHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.scale(dpr, dpr);
+      initParticles();
+    }
+
+    class Particle {
+      x: number; y: number;
+      vx: number; vy: number;
+      size: number;
+      color: string;
+      baseX: number; baseY: number;
+
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.35;
+        this.vy = (Math.random() - 0.5) * 0.35;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.color = Math.random() > 0.5 ? '#22c55e' : '#3b82f6';
+      }
+
+      update() {
+        // Mouse Repulsion Logic
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < mouse.radius) {
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (mouse.radius - distance) / mouse.radius;
+          const directionX = forceDirectionX * force * 5;
+          const directionY = forceDirectionY * force * 5;
+          
+          this.x -= directionX;
+          this.y -= directionY;
+        }
+
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+      }
+    }
+
+    function initParticles() {
+      const count = Math.floor((w * h) / 12000); 
+      particles = [];
+      for (let i = 0; i < Math.min(count, 180); i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function draw() {
+      ctx.fillStyle = '#06070a';
+      ctx.fillRect(0, 0, w, h);
+
+      const connectionDist = 220;
+
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        p1.update();
+        
+        // Connections between particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < connectionDist) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - dist / connectionDist)})`;
+            ctx.lineWidth = 0.35;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+
+        // Connection to Mouse
+        const mdx = p1.x - mouse.x;
+        const mdy = p1.y - mouse.y;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (mdist < mouse.radius) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(34, 197, 94, ${0.3 * (1 - mdist / mouse.radius)})`;
+            ctx.lineWidth = 0.6;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        }
+        
+        // Draw particle node
+        const glow = ctx.createRadialGradient(p1.x, p1.y, 0, p1.x, p1.y, p1.size * 5);
+        glow.addColorStop(0, p1.color);
+        glow.addColorStop(1, 'transparent');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(p1.x, p1.y, p1.size * 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = p1.color;
+        ctx.beginPath();
+        ctx.arc(p1.x, p1.y, p1.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    // Event Listeners
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    resize();
+    draw();
+    window.addEventListener('resize', resize);
+  </script>
+
 </Layout>
