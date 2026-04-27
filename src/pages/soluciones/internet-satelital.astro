@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -25,7 +26,30 @@ const specialFeatures = [
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-2.235-2.977a1 1 0 0 0-.796-.383H15"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>`,
     title: "Movilidad",
-    description: "Instalación en unidades fijas o móviles."
+    description: "Instalación en unidades fijas or móviles."
+  }
+];
+
+const faqs = [
+  {
+    question: "¿En qué situaciones es recomendable el Internet Satelital de Xcien?",
+    answer: "Es la solución perfecta para operaciones en zonas rurales, proyectos temporales en sitios remotos o como Conexión Confiable de respaldo (redundancia). Al no depender de cables ni torres locales, garantiza que tu empresa siga conectada mediante internet satelital y SIM LTE incluso si las redes terrestres fallan."
+  },
+  {
+    question: "¿Cuánto tiempo tarda en estar activo el servicio?",
+    answer: "Somos líderes en velocidad de respuesta. Gracias a nuestro diferenciador de Tiempo, podemos realizar la instalación y configuración del servicio en un lapso menor a 3 horas. Es ideal para emergencias o necesidades operativas inmediatas donde cada minuto cuenta."
+  },
+  {
+    question: "¿Puedo usar el internet satelital en unidades móviles?",
+    answer: "Sí. Ofrecemos total Movilidad, permitiendo la instalación tanto en unidades fijas (oficinas temporales, campamentos) como en unidades móviles (vehículos de respuesta o logística). Esto te permite llevar conectividad de alta calidad a cualquier lugar donde se encuentre tu operación."
+  },
+  {
+    question: "¿Cómo puedo administrar el consumo de mi servicio?",
+    answer: "El servicio incluye acceso a una plataforma de Gestión y Control personalizada. Desde este panel, podrás monitorear el estado de tu conexión, administrar el uso de datos y tener una visibilidad completa de tu red en tiempo real, facilitando la toma de decisiones operativas."
+  },
+  {
+    question: "¿Qué tan estable es la conexión ante condiciones climáticas?",
+    answer: "Nuestras soluciones satelitales de última generación están diseñadas para ofrecer una alta disponibilidad. Además, al integrar redundancia con SIM LTE, creamos un ecosistema de conectividad híbrido que minimiza las interrupciones, asegurando que tu comunicación sea constante y segura sin importar el entorno."
   }
 ];
 ---
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
 </Layout>
+

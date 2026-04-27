@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,6 +29,29 @@ const specialFeatures = [
     description: "Equipos de entrega con tecnología innovadora y de altas prestaciones. Facilidad de incrementar capacidades."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Qué ventajas tiene el Internet PYME de Xcien sobre un servicio residencial?",
+    answer: "El servicio residencial suele saturarse en horas pico porque compartes la conexión con cientos de usuarios. El Internet PYME de Xcien ofrece una baja sobre-suscripción y rutas cortas hacia Internet, lo que garantiza una navegación fluida, mayor velocidad de respuesta y estabilidad, incluso cuando todos tus colaboradores están conectados."
+  },
+  {
+    question: "¿Es simétrico el internet para mi negocio?",
+    answer: "¡Sí! Entendemos que tu PYME no solo consume datos, también los genera (subida de archivos a la nube, videollamadas, respaldos). Ofrecemos una conexión estable donde la velocidad de subida es igual a la de bajada, optimizando herramientas como Google Drive, Dropbox o sistemas de facturación en línea."
+  },
+  {
+    question: "¿Cuánto tiempo tarda la instalación del servicio?",
+    answer: "Sabemos que tu negocio no puede esperar. Gracias a nuestra infraestructura de tecnología inalámbrica de última generación, podemos realizar instalaciones de forma mucho más ágil que los proveedores tradicionales de cableado, evitando trámites de permisos de construcción y largos tiempos de espera."
+  },
+  {
+    question: "¿Qué tan segura es la conexión para mis transacciones bancarias y cobros?",
+    answer: "Muy segura. Al utilizar equipos de entrega con tecnología de alta prestación, garantizamos una conexión confiable y estable. Nuestras rutas directas hacia los principales operadores de Internet reducen los puntos de falla, brindando un entorno seguro para tus operaciones críticas y el uso de terminales punto de venta."
+  },
+  {
+    question: "¿Qué sucede si mi negocio necesita más velocidad en el futuro?",
+    answer: "No necesitas cambiar de equipo ni realizar nuevas instalaciones. Nuestro servicio es totalmente escalable; conforme tu PYME crezca, podemos incrementar tu ancho de banda de manera remota y rápida, adaptándonos a tus nuevas necesidades operativas."
+  }
+];
 ---
 
 <Layout title="Internet Pyme | Xcien">
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
 </Layout>
+

@@ -1,0 +1,97 @@
+---
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQ[];
+  title?: string;
+}
+
+const { faqs, title = "Preguntas Frecuentes" } = Astro.props;
+---
+
+<section class="py-24 bg-[#0a0b0d]">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-white italic uppercase tracking-tighter mb-4">
+        {title.split(' ')[0]} <span class="text-primary">{title.split(' ').slice(1).join(' ')}</span>
+      </h2>
+      <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="faq-item group">
+          <button 
+            class="faq-trigger w-full flex items-center justify-between p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/30 transition-all duration-300 text-left"
+            aria-expanded="false"
+            data-index={index}
+          >
+            <span class="text-lg md:text-xl font-bold text-white group-hover:text-primary transition-colors pr-8">
+              {faq.question}
+            </span>
+            <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:border-primary/50 transition-all shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="faq-icon transition-transform duration-300">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </div>
+          </button>
+          
+          <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+            <div class="p-8 pt-2 text-white/60 leading-relaxed italic text-base">
+              {faq.answer}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-trigger[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+  
+  .faq-trigger[aria-expanded="true"] {
+    border-color: rgba(101, 212, 110, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .faq-item {
+    perspective: 1000px;
+  }
+</style>
+
+<script>
+  function initFAQ() {
+    const items = document.querySelectorAll('.faq-item');
+    
+    items.forEach(item => {
+      const trigger = item.querySelector('.faq-trigger');
+      const content = item.querySelector('.faq-content') as HTMLElement;
+      
+      trigger?.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        
+        // Close others
+        document.querySelectorAll('.faq-trigger').forEach(otherTrigger => {
+          if (otherTrigger !== trigger) {
+            otherTrigger.setAttribute('aria-expanded', 'false');
+            (otherTrigger.nextElementSibling as HTMLElement).style.maxHeight = '0';
+          }
+        });
+        
+        // Toggle current
+        trigger.setAttribute('aria-expanded', (!isExpanded).toString());
+        content.style.maxHeight = isExpanded ? '0' : `${content.scrollHeight}px`;
+      });
+    });
+  }
+
+  // Initialize on load and on Astro swap
+  document.addEventListener('astro:page-load', initFAQ);
+  initFAQ();
+</script>

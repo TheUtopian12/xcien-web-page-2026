@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,6 +29,29 @@ const specialFeatures = [
     description: "Incluimos 2 access points con la contratación de tu servicio."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Con cuánta anticipación debo contratar el internet para mi evento?",
+    answer: "Gracias a nuestra tecnología de microondas, tenemos una gran adaptabilidad. Podemos realizar instalaciones en tiempos récord, incluso en lugares de difícil acceso o zonas limitadas. Sin embargo, recomendamos contactarnos con al menos 1 o 2 semanas de antelación para realizar las pruebas de cobertura y garantizar una conectividad perfecta el día del evento."
+  },
+  {
+    question: "¿Qué incluye el servicio de \"Acompañamiento\" durante el evento?",
+    answer: "No te dejamos solo. Xcien ofrece asistencia de personal técnico especializado de manera presencial durante el tiempo que dure tu evento. Esto garantiza una respuesta inmediata ante cualquier ajuste de red necesario o duda técnica, asegurando que tú solo te preocupes por el éxito de tu programa."
+  },
+  {
+    question: "¿El servicio incluye la distribución de señal (Wi-Fi) para los asistentes?",
+    answer: "¡Sí! En la contratación de tu servicio de eventos, incluimos 2 Access Points de alta densidad. Estos equipos están diseñados para gestionar múltiples dispositivos conectados simultáneamente, asegurando que tanto tus expositores como tus invitados disfruten de una conectividad fluida."
+  },
+  {
+    question: "¿Pueden llevar internet a lugares donde otros proveedores no llegan?",
+    answer: "Es una de nuestras especialidades. Gracias a nuestra infraestructura de microondas, llegamos a zonas limitadas o espacios abiertos (como quintas, naves industriales o explanadas) donde la fibra óptica tradicional no tiene cobertura, entregando la misma estabilidad y velocidad que en la ciudad."
+  },
+  {
+    question: "¿Qué sucede si necesito aumentar la velocidad durante el evento?",
+    answer: "Nuestro servicio es totalmente flexible. Nos adaptamos a la velocidad que necesites en tiempo real. Si detectamos que el flujo de usuarios es mayor al esperado, podemos escalar el ancho de banda de forma inmediata para evitar saturaciones, garantizando que transmisiones en vivo o registros digitales no se interrumpan."
+  }
+];
 ---
 
 <Layout title="Internet Eventos | Xcien">
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
 </Layout>
+

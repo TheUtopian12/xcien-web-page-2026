@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,6 +29,29 @@ const specialFeatures = [
     description: "Generación de reportes y gráficas detalladas de consumo de tu servicio."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Cuál es la diferencia entre internet dedicado y el internet comercial (residencial)?",
+    answer: "A diferencia del internet comercial, donde el ancho de banda se comparte con otros vecinos o empresas (asimétrico), el Internet Dedicado de Xcien te ofrece un canal exclusivo para tu organización. Esto garantiza que recibas el 100% de la velocidad contratada de forma simétrica (misma velocidad de subida y bajada) y con un tiempo de respuesta (latencia) mínimo."
+  },
+  {
+    question: "¿Qué tan confiable es la conexión por microondas comparada con la fibra óptica?",
+    answer: "En Xcien utilizamos tecnología de microondas de grado carrier, diseñada para ofrecer una disponibilidad del 99.9%. Es una solución ideal tanto para conexión principal como para respaldo (redundancia), ya que no depende de cableado físico propenso a cortes por excavaciones o accidentes en la vía pública, asegurando que tu empresa nunca se detenga."
+  },
+  {
+    question: "¿Qué incluye el Acuerdo de Nivel de Servicio (SLA)?",
+    answer: "Nuestro servicio está respaldado por un SLA (Service Level Agreement) robusto que garantiza altos estándares de disponibilidad y tiempos de respuesta técnicos inmediatos. Monitoreamos tu red las 24/7 para detectar cualquier anomalía y resolverla incluso antes de que tu equipo lo note."
+  },
+  {
+    question: "¿Puedo escalar mi ancho de banda si mi empresa crece?",
+    answer: "¡Totalmente! Una de las ventajas de nuestra infraestructura es la flexibilidad de capacidades. Puedes solicitar un incremento de Megas en cualquier momento sin necesidad de instalaciones complejas adicionales, permitiendo que tu conexión crezca al ritmo de tu operación, desde 50 Mbps hasta capacidades Multi-Giga."
+  },
+  {
+    question: "¿Ofrecen soporte técnico especializado o es a través de un call center general?",
+    answer: "En Xcien cuentas con soporte técnico especializado de segundo nivel. No pasarás por filtros innecesarios; nuestro equipo de ingenieros monitorea tu red proactivamente y está disponible para atender cualquier requerimiento técnico directamente, asegurando una atención ágil y profesional."
+  }
+];
 ---
 
 <Layout title="Internet Dedicado | Xcien">
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
 </Layout>
+
