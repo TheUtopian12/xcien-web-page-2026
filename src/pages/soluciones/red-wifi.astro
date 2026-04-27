@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,9 +29,32 @@ const specialFeatures = [
     description: "Generación de reportes de consumo de dispositivos dentro de tu red."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Cómo aseguran que el WiFi cubra todas las áreas de mi empresa?",
+    answer: "Realizamos un diseño de WiFi a la Medida. No instalamos equipos al azar; analizamos la estructura de tus instalaciones para crear múltiples redes que se adapten a tus necesidades específicas, garantizando señal óptima tanto en oficinas como en áreas comunes o almacenes."
+  },
+  {
+    question: "¿Qué sucede si mi empresa crece y necesito más cobertura después?",
+    answer: "Nuestra solución es una Inversión Inteligente. El diseño de red original está pensado para el crecimiento; nuestra infraestructura está habilitada para realizar upgrades de Access Points (APs) de manera sencilla, permitiéndote expandir la cobertura sin tener que reemplazar toda la red desde cero."
+  },
+  {
+    question: "¿Puedo separar la red de mis empleados de la red de mis invitados?",
+    answer: "Totalmente. Gracias a la creación de múltiples redes WiFi, podemos configurar accesos independientes. Esto mejora la seguridad de tu información corporativa y permite que tus clientes o invitados naveguen sin comprometer el ancho de banda de tus operaciones críticas."
+  },
+  {
+    question: "¿Cómo puedo saber si hay zonas con interferencia o mala señal?",
+    answer: "Utilizamos una herramienta de Panorama de Red. Realizamos un análisis predictivo de la cobertura de la red WiFi para identificar posibles obstáculos o interferencias. Esto nos permite ajustar la potencia y ubicación de los equipos para que siempre tengas el mejor desempeño posible."
+  },
+  {
+    question: "¿Es posible saber qué dispositivos consumen más internet en mi red?",
+    answer: "Sí, a través de nuestro Reporte de Red. Tendrás acceso a la generación de reportes detallados sobre el consumo de los dispositivos dentro de tu red. Esto te da una visibilidad total para gestionar mejor tu ancho de banda y detectar usos no autorizados o cuellos de botella."
+  }
+];
 ---
 
-<Layout>
+<Layout title="Red WiFi | Xcien">
   <PageHeroWithForm 
     title="Red"
     greenTitle="WiFi"
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Red WiFi", "Descripción General"]} />
 </Layout>
+

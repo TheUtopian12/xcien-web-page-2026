@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,6 +29,29 @@ const specialFeatures = [
     description: "Integración y optimización de otros proveedores de Internet a nuestros equipos."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Qué es exactamente una solución de Alta Disponibilidad?",
+    answer: "Es un sistema de redundancia diseñado para que tu empresa nunca pierda la conexión. Si tu enlace principal falla, nuestro servicio entra en operación automáticamente. Gracias a nuestra Inspección profunda, podemos segmentar el tráfico por categorías o páginas web, priorizando las aplicaciones críticas de tu negocio para que nunca se detengan."
+  },
+  {
+    question: "¿Puedo integrar el servicio de Xcien con mi proveedor de internet actual?",
+    answer: "Sí. Contamos con Equipo Compatible que permite la integración y optimización de otros proveedores de internet a nuestra infraestructura. Esto crea un ecosistema robusto donde sumamos fuerzas para garantizar que tu conectividad sea infalible."
+  },
+  {
+    question: "¿Cómo puedo saber si mi conexión está funcionando correctamente?",
+    answer: "Ofrecemos Gestión en Nube con notificaciones de estado y desempeño en tiempo real. Recibirás alertas inmediatas sobre el comportamiento de tus enlaces, permitiéndote tener el control total de tu red desde cualquier lugar, asegurando que el respaldo esté siempre listo cuando se necesite."
+  },
+  {
+    question: "¿Qué visibilidad tengo sobre el consumo de datos en mi empresa?",
+    answer: "Incluimos un servicio de Monitoreo Libre, con el cual tienes acceso a reportes históricos detallados sobre el consumo y desempeño de tus conexiones. Esto te permite analizar patrones de uso y tomar decisiones informadas para optimizar tus recursos de red."
+  },
+  {
+    question: "¿Es posible restringir el uso de ciertas páginas para mejorar el rendimiento?",
+    answer: "Totalmente. Mediante nuestra herramienta de Inspección profunda, tienes una visión clara del uso del servicio. Esto permite la segmentación por categorías, dándote la facultad de limitar sitios no productivos y asegurar que el ancho de banda se utilice exclusivamente para las operaciones vitales de tu empresa."
+  }
+];
 ---
 
 <Layout title="Alta Disponibilidad | Xcien">
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
 </Layout>
+

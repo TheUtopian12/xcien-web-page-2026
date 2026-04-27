@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,9 +29,32 @@ const specialFeatures = [
     description: "Integración y optimización de otros proveedores de Internet a nuestros equipos."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Qué es SD-WAN y cómo ayuda a mi empresa?",
+    answer: "SD-WAN es una tecnología que permite administrar tu red de manera inteligente a través de software. En lugar de depender solo de hardware costoso, el servicio de Xcien optimiza el tráfico de tus sucursales, priorizando aplicaciones críticas (como SAP, VoIP o Zoom) para que tu operación sea siempre fluida y eficiente."
+  },
+  {
+    question: "¿Puedo administrar mis sucursales de forma remota?",
+    answer: "¡Totalmente! Gracias a nuestra Gestión en Nube, tienes el control centralizado de todos tus nodos o sucursales desde una sola plataforma. Podrás recibir notificaciones de estado y monitorear el desempeño de tus enlaces en tiempo real, sin necesidad de desplazar personal técnico a cada ubicación."
+  },
+  {
+    question: "¿Cómo garantiza SD-WAN que mis aplicaciones importantes no se traben?",
+    answer: "Utilizamos la Inspección Profunda de paquetes para identificar qué tipo de datos están viajando por tu red. Esto nos permite segmentar el tráfico por categorías o páginas web, asegurando que las herramientas de trabajo tengan prioridad sobre el tráfico de entretenimiento o redes sociales."
+  },
+  {
+    question: "¿Es compatible con mi infraestructura de internet actual?",
+    answer: "Sí. Ofrecemos un Equipo Compatible que permite la integración y optimización de otros proveedores de internet. SD-WAN puede combinar enlaces de fibra, microondas o incluso LTE de distintos proveedores para crear una red híbrida más robusta y económica."
+  },
+  {
+    question: "¿Qué visibilidad tengo sobre el uso de internet en cada sede?",
+    answer: "Con nuestro servicio de Monitoreo Libre, tienes acceso total a reportes históricos del consumo. Podrás ver exactamente cómo se están utilizando tus conexiones en cada sucursal, identificar cuellos de botella y optimizar tus recursos para mejorar el rendimiento general de la empresa."
+  }
+];
 ---
 
-<Layout>
+<Layout title="SD-WAN | Xcien">
   <PageHeroWithForm 
     title="SD-"
     greenTitle="WAN"
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "SD-WAN", "Descripción General"]} />
 </Layout>
+

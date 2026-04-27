@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -23,9 +24,32 @@ const specialFeatures = [
     description: "Detección de posibles mejoras previo y durante la fase de implementación del servicio."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Qué incluyen los Servicios TIC's de Xcien?",
+    answer: "Nuestros servicios abarcan un ecosistema integral de Tecnologías de la Información y Comunicación. Más allá de la conectividad, ofrecemos un enfoque de Servicio de Consultoría donde analizamos tus requerimientos técnicos para implementar soluciones que realmente resuelvan los retos tecnológicos de tu empresa."
+  },
+  {
+    question: "¿Cómo se adaptan sus servicios a las necesidades específicas de mi negocio?",
+    answer: "No creemos en soluciones \"de molde\". Nos enfocamos en la Personalización de Servicio, lo que significa que diseñamos cada proyecto en base a las necesidades actuales de tu empresa, asegurando que cada herramienta tecnológica contratada esté alineada con tus objetivos operativos y de presupuesto."
+  },
+  {
+    question: "¿Qué beneficio obtengo con el enfoque de Mejora Continua?",
+    answer: "Nuestro compromiso no termina con la instalación. Mediante la Mejora Continua, realizamos detecciones de posibles optimizaciones tanto antes como durante la fase de implementación del servicio. Esto garantiza que tu infraestructura TIC se mantenga siempre actualizada y eficiente frente a las nuevas demandas del mercado."
+  },
+  {
+    question: "¿Cuentan con asesoría para el diseño de nuevos proyectos tecnológicos?",
+    answer: "Sí. Ofrecemos un Servicio de Consultoría especializado. Si tu empresa está planeando una expansión, una migración a la nube o un cambio de infraestructura, nuestros expertos te guían en el diseño y selección de la tecnología más adecuada para asegurar un retorno de inversión positivo."
+  },
+  {
+    question: "¿Es posible monitorear el desempeño de los servicios TIC contratados?",
+    answer: "Totalmente. Al igual que en nuestras soluciones de conectividad, incluimos el Monitoreo de tu Red y servicios. Generamos reportes y gráficas detalladas que te permiten visualizar el consumo y estado de tus sistemas, brindándote la transparencia necesaria para gestionar tus TIC's con total confianza."
+  }
+];
 ---
 
-<Layout>
+<Layout title="Servicios TIC's | Xcien">
   <PageHeroWithForm 
     title="Servicios"
     greenTitle="Tic's"
@@ -37,5 +61,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Servicios Tic's", "Descripción General"]} />
 </Layout>
+

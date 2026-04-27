@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -23,9 +24,32 @@ const specialFeatures = [
     description: "Actualización constante de puntos de control, a través de su activador IA."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Cómo garantiza Xcien la seguridad de mi información empresarial?",
+    answer: "Implementamos una Red Blindada mediante protocolos de seguridad \"uno a uno\". Protegemos tu infraestructura desde las aplicaciones hasta las IP's y puertos, creando una barrera robusta que blinda cada punto de entrada de tu red contra accesos no autorizados."
+  },
+  {
+    question: "¿Qué ventaja ofrece el uso de Inteligencia Artificial (IA) en mi seguridad?",
+    answer: "Nuestra solución cuenta con un activador de IA que permite una actualización constante de los puntos de control. A diferencia de los sistemas tradicionales que esperan a ser atacados para reaccionar, nuestra IA evoluciona día con día para reconocer y bloquear comportamientos sospechosos de manera autónoma."
+  },
+  {
+    question: "¿El sistema puede detectar amenazas nuevas que no han sido registradas?",
+    answer: "Sí. Gracias a nuestro diferenciador de Auto Aprendizaje, el sistema identifica y registra riesgos en la nube de manera global. Esto nos permite anticipar vulnerabilidades incluso antes de que lleguen a tu red, aprendiendo de patrones detectados en otros puntos para proteger tu entorno proactivamente."
+  },
+  {
+    question: "¿Qué tan específica es la protección que ofrecen para mis aplicaciones?",
+    answer: "Es total. Nuestros protocolos de Red Blindada analizan el tráfico a nivel de aplicaciones, permitiendo filtrar qué software tiene permitido comunicarse con el exterior. Esto evita que programas maliciosos (malware) operen en segundo plano y pongan en riesgo tus datos operativos."
+  },
+  {
+    question: "¿Es necesario que mi equipo de TI actualice el software de seguridad manualmente?",
+    answer: "No. El sistema de Ciberseguridad de Xcien está diseñado para ser autogestionable en su núcleo. Las actualizaciones de los puntos de control y la base de datos de amenazas se realizan de forma automática a través de nuestra red y el activador de IA, garantizando que siempre cuentes con la versión de protección más reciente sin interrumpir tus operaciones."
+  }
+];
 ---
 
-<Layout>
+<Layout title="Ciberseguridad | Xcien">
   <PageHeroWithForm 
     title="Ciber"
     greenTitle="seguridad"
@@ -37,5 +61,9 @@ const specialFeatures = [
   <CommonBenefits />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Ciberseguridad", "Descripción General"]} />
 </Layout>
+

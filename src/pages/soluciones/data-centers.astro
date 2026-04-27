@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,9 +29,32 @@ const specialFeatures = [
     description: "No hay límite en la transferencia de datos."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Qué nivel de seguridad y disponibilidad ofrecen sus Data Centers?",
+    answer: "Operamos bajo estándares de Centros Tier, lo que garantiza una infraestructura de alta disponibilidad. Contamos con Redundancia total en ubicación e instalaciones propias, asegurando que tanto el suministro eléctrico como el enfriamiento y la conectividad tengan respaldos activos para que tu información nunca esté fuera de línea."
+  },
+  {
+    question: "¿Existe algún límite en la transferencia de datos?",
+    answer: "No. Uno de nuestros principales beneficios en los Centros Tier de Xcien es que no hay límite en la transferencia de datos. Esto permite que tu empresa gestione grandes volúmenes de información, respaldos constantes y tráfico intenso sin preocuparse por costos variables o cuellos de botella."
+  },
+  {
+    question: "¿Qué opciones de conectividad tienen para mis servidores?",
+    answer: "Ofrecemos una Conectividad robusta con opción de enlaces directos a múltiples operadoras Tier 1. Esto garantiza rutas de internet más cortas, menor latencia y una estabilidad superior, permitiendo que tu infraestructura de datos esté interconectada con los estándares más altos del mercado global."
+  },
+  {
+    question: "¿Puedo aumentar el espacio o la capacidad contratada rápidamente?",
+    answer: "Sí. Entendemos que los datos crecen exponencialmente, por ello ofrecemos una Escalabilidad total. Tenemos la flexibilidad de incrementar tu capacidad de servicio y espacio en rack de manera ágil, basándonos en las necesidades cambiantes de tu negocio sin procesos burocráticos lentos."
+  },
+  {
+    question: "¿Por qué es importante que cuenten con instalaciones propias?",
+    answer: "Tener ubicación e instalaciones propias nos permite garantizar una Redundancia física real. Al ser dueños de la infraestructura, tenemos control total sobre el mantenimiento, la seguridad perimetral y el monitoreo constante, eliminando la dependencia de terceros y mejorando los tiempos de respuesta técnica."
+  }
+];
 ---
 
-<Layout>
+<Layout title="Data Centers | Xcien">
   <PageHeroWithForm 
     title="Data"
     greenTitle="Centers"
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Data Centers", "Descripción General"]} />
 </Layout>
+

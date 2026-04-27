@@ -5,6 +5,7 @@ import CommonBenefits from "../../components/sections/solutions/CommonBenefits.a
 import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures.astro";
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const specialFeatures = [
   {
@@ -28,6 +29,29 @@ const specialFeatures = [
     description: "Grabación y almacenamiento de llamadas de hasta 90 días."
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Qué son las Comunicaciones Unificadas y cómo benefician a mi empresa?",
+    answer: "Es una solución que integra diversos canales de comunicación (como voz, chat y video) en una sola plataforma. Esto permite que tu equipo colabore de manera más eficiente, eliminando las barreras entre dispositivos y asegurando que la comunicación interna y con clientes sea fluida y profesional."
+  },
+  {
+    question: "¿Puedo utilizar mi extensión telefónica fuera de la oficina?",
+    answer: "¡Claro que sí! Gracias al Acceso Total, puedes conectarte desde cualquier parte del mundo con un punto de conexión a Internet. Además, nuestro sistema es Multidispositivo, lo que significa que puedes usar tu extensión en tu smartphone (mobile), tablet, computadora (desktop) o teléfono fijo de oficina indistintamente."
+  },
+  {
+    question: "¿Cómo puedo supervisar la calidad de las llamadas de mi equipo?",
+    answer: "Ponemos a tu disposición una Plataforma de Gestión intuitiva. Desde ella, tendrás acceso directo para monitorear el desempeño de las llamadas de tus usuarios en tiempo real, obtener estadísticas y asegurar que el nivel de servicio al cliente cumpla con los estándares de tu organización."
+  },
+  {
+    question: "¿Cuentan con servicio de respaldo o grabación de llamadas?",
+    answer: "Sí. Ofrecemos una función avanzada de Grabación y Almacenamiento. Puedes grabar todas las llamadas entrantes y salientes y mantenerlas almacenadas de forma segura hasta por 90 días. Esto es ideal para auditorías de calidad, capacitación de personal o seguimiento de acuerdos comerciales."
+  },
+  {
+    question: "¿Es difícil de configurar en los dispositivos de mis empleados?",
+    answer: "Para nada. Nuestra solución está diseñada para ser flexible y de fácil adopción. Al ser compatible con múltiples plataformas, la transición es casi inmediata. Tu equipo solo necesita una conexión vía Internet para tener Acceso Total a todas las herramientas de colaboración, sin configuraciones técnicas complejas."
+  }
+];
 ---
 
 <Layout title="Comunicaciones Unificadas | Xcien">
@@ -42,5 +66,9 @@ const specialFeatures = [
   <SpecialFeatures features={specialFeatures} />
   
   <HighAvailabilityDiagram />
+  
+  <FAQ faqs={faqs} />
+  
   <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
 </Layout>
+
