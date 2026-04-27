@@ -10,17 +10,12 @@ interface Props {
 const { title, greenTitle, description } = Astro.props;
 ---
 
-<section class="relative min-h-[80vh] flex items-center bg-[#0a1128] overflow-hidden pt-28 pb-16">
-  <!-- Abstract Network Background (Placeholder effect with CSS + image) -->
-  <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-gradient-to-r from-[#0a1128] via-[#0a1128]/80 to-transparent"></div>
-    <!-- We can use a generated image for the network web background -->
-    <img 
-      src="/network-web.png" 
-      alt="Network Background" 
-      class="w-full h-full object-cover opacity-40 mix-blend-screen"
-    />
-  </div>
+<section class="relative min-h-[80vh] flex items-center overflow-hidden pt-28 pb-16" style="background: #080c1a;">
+  <!-- Animated Fiber Optic Canvas -->
+  <canvas id="fiber-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+  <!-- Overlay gradient to blend canvas with content area -->
+  <div class="absolute inset-0 z-0 bg-gradient-to-r from-[#080c1a]/95 via-[#080c1a]/60 to-[#080c1a]/30 pointer-events-none"></div>
+  <div class="absolute inset-0 z-0 bg-gradient-to-t from-[#080c1a]/80 via-transparent to-[#080c1a]/40 pointer-events-none"></div>
 
   <div class="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
     <!-- Left: Content -->
@@ -99,6 +94,7 @@ const { title, greenTitle, description } = Astro.props;
 </section>
 
 <script>
+  // Form submit
   const form = document.querySelector('form');
   const modal = document.getElementById('form_success') as HTMLDialogElement;
   form?.addEventListener('submit', (e) => {
@@ -106,4 +102,261 @@ const { title, greenTitle, description } = Astro.props;
     modal?.showModal();
     (form as HTMLFormElement).reset();
   });
+
+  // ── Fiber Optic Self-Drawing Canvas ─────────────────────────────────────────
+  const canvas = document.getElementById('fiber-canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); });
+
+  // ── Types ────────────────────────────────────────────────────────────────────
+  type State = 'drawing' | 'holding' | 'fading';
+
+  interface Fiber {
+    // Path
+    yOffset: number;   // -0.8..0.8 (vertical offset from center, normalized)
+    waveAmp: number;   // extra sinewave amplitude
+    wavePhase: number;
+    startSide: 'left' | 'right';
+    // Color
+    colorA: string;    // near source
+    colorB: string;    // toward center
+    lineWidth: number;
+    // State
+    progress: number;  // 0..1 how much has been drawn
+    alpha: number;     // 0..1 opacity
+    state: State;
+    holdFrames: number;
+    // Drawing speed (frames to draw fully — slow!)
+    drawSpeed: number;
+    fadeSpeed: number;
+  }
+
+  interface Spark {
+    fiberId: number;
+    t: number;         // position on fiber 0..1
+    speed: number;
+    r: number;
+    glowR: number;
+    color: string;
+  }
+
+  // ── Bezier path helper ───────────────────────────────────────────────────────
+  // Returns the (x,y) on a fiber at parametric t=0..1 (from source to center)
+  function fiberPoint(f: Fiber, t: number, w: number, h: number): [number,number] {
+    const cy = h / 2;
+    // Source side
+    const sx = f.startSide === 'left' ? -10 : w + 10;
+    const sy = cy + f.yOffset * h * 0.45;
+    // Destination: center ± small spread
+    const ex = w / 2 + (f.startSide === 'left' ? -w*0.04 : w*0.04);
+    const ey = cy + f.yOffset * h * 0.04;
+    // Control point: converges inward
+    const cpx = f.startSide === 'left' ? w * 0.30 : w * 0.70;
+    const cpy = cy + f.yOffset * h * 0.12;
+    // Quadratic bezier
+    const bx = (1-t)**2 * sx + 2*(1-t)*t * cpx + t**2 * ex;
+    const by = (1-t)**2 * sy + 2*(1-t)*t * cpy + t**2 * ey;
+    // Subtle wave that damps toward center
+    const wave = Math.sin(t * Math.PI * 3.5 + f.wavePhase) * f.waveAmp * (1 - t * 0.6);
+    return [bx, by + wave];
+  }
+
+  // ── Factory ──────────────────────────────────────────────────────────────────
+  const TOTAL_FIBERS = 32;   // pool size
+  const MAX_ACTIVE   = 18;   // how many alive at once
+
+  function makeFiber(id: number): Fiber {
+    const side = Math.random() > 0.5 ? 'left' : 'right';
+    const magenta = side === 'left';
+    // Near-source color (bright magenta or blue)
+    const cA = magenta
+      ? `rgba(210,${20+Math.round(Math.random()*30)},255,1)`
+      : `rgba(${20+Math.round(Math.random()*30)},${90+Math.round(Math.random()*60)},255,1)`;
+    // Center color (purple-ish mix)
+    const cB = magenta
+      ? `rgba(140,30,255,0.6)`
+      : `rgba(60,80,255,0.6)`;
+    return {
+      yOffset:   (Math.random() - 0.5) * 1.8,
+      waveAmp:   4 + Math.random() * 14,
+      wavePhase: Math.random() * Math.PI * 2,
+      startSide: side,
+      colorA: cA, colorB: cB,
+      lineWidth: 0.4 + Math.random() * 0.9,
+      progress:  0,
+      alpha:     0,
+      state:     'drawing',
+      holdFrames: 60 + Math.floor(Math.random() * 80),
+      drawSpeed:  0.0018 + Math.random() * 0.0022,  // ~250-550 frames to fully draw
+      fadeSpeed:  0.008 + Math.random() * 0.008,
+    };
+  }
+
+  // ── Fiber pool ───────────────────────────────────────────────────────────────
+  let fibers: (Fiber | null)[] = Array(TOTAL_FIBERS).fill(null);
+  let activeCount = 0;
+
+  function spawnFiber() {
+    if (activeCount >= MAX_ACTIVE) return;
+    const slot = fibers.findIndex(f => f === null);
+    if (slot === -1) return;
+    fibers[slot] = makeFiber(slot);
+    activeCount++;
+  }
+
+  // ── Sparks ───────────────────────────────────────────────────────────────────
+  const sparks: Spark[] = Array.from({ length: 40 }, (_, i) => ({
+    fiberId: Math.floor(Math.random() * TOTAL_FIBERS),
+    t: Math.random(),
+    speed: 0.0008 + Math.random() * 0.0012,
+    r: 1 + Math.random() * 1.8,
+    glowR: 5 + Math.random() * 9,
+    color: Math.random() > 0.5
+      ? `rgba(220,50,255,0.9)` : `rgba(60,120,255,0.9)`,
+  }));
+
+  // ── Spawn initial batch staggered ────────────────────────────────────────────
+  let spawnCooldown = 0;
+  for (let i = 0; i < 8; i++) spawnFiber();
+
+  // ── Main draw loop ───────────────────────────────────────────────────────────
+  const STEPS = 120; // path resolution
+
+  function draw() {
+    const w = canvas.width;
+    const h = canvas.height;
+
+    // Slow trail: semi-transparent clear
+    ctx.fillStyle = 'rgba(8,12,26,0.20)';
+    ctx.fillRect(0, 0, w, h);
+
+    // Spawn control
+    spawnCooldown--;
+    if (spawnCooldown <= 0 && activeCount < MAX_ACTIVE) {
+      spawnFiber();
+      spawnCooldown = 12 + Math.floor(Math.random() * 18);
+    }
+
+    // Draw each fiber
+    fibers.forEach((f, idx) => {
+      if (!f) return;
+
+      // State machine
+      if (f.state === 'drawing') {
+        f.progress = Math.min(1, f.progress + f.drawSpeed);
+        f.alpha = Math.min(1, f.alpha + 0.025);
+        if (f.progress >= 1) { f.state = 'holding'; }
+      } else if (f.state === 'holding') {
+        f.holdFrames--;
+        if (f.holdFrames <= 0) f.state = 'fading';
+      } else {
+        f.alpha -= f.fadeSpeed;
+        if (f.alpha <= 0) {
+          fibers[idx] = null;
+          activeCount--;
+          return;
+        }
+      }
+
+      // Build visible path up to f.progress
+      const visibleSteps = Math.floor(f.progress * STEPS);
+      if (visibleSteps < 2) return;
+
+      // Gradient along the line from source color → center color
+      const [x0] = fiberPoint(f, 0, w, h);
+      const [x1] = fiberPoint(f, 1, w, h);
+      const grad = ctx.createLinearGradient(x0, 0, x1, 0);
+      grad.addColorStop(0,   f.colorA.replace('1)', `${f.alpha})`));
+      grad.addColorStop(0.6, f.colorB.replace('0.6)', `${f.alpha * 0.6})`));
+      grad.addColorStop(1,   `rgba(100,50,255,${f.alpha * 0.3})`);
+
+      ctx.beginPath();
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = f.lineWidth;
+      ctx.shadowColor = f.startSide === 'left'
+        ? `rgba(200,20,255,${f.alpha * 0.6})`
+        : `rgba(30,100,255,${f.alpha * 0.6})`;
+      ctx.shadowBlur = 10;
+      ctx.lineCap = 'round';
+
+      for (let s = 0; s <= visibleSteps; s++) {
+        const t = s / STEPS;
+        const [x, y] = fiberPoint(f, t, w, h);
+        s === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Bright leading tip (drawing head)
+      if (f.state === 'drawing') {
+        const [tx, ty] = fiberPoint(f, f.progress, w, h);
+        const tipGrad = ctx.createRadialGradient(tx, ty, 0, tx, ty, 12);
+        tipGrad.addColorStop(0, f.startSide === 'left'
+          ? `rgba(255,180,255,${f.alpha})`
+          : `rgba(180,220,255,${f.alpha})`);
+        tipGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = tipGrad;
+        ctx.beginPath();
+        ctx.arc(tx, ty, 12, 0, Math.PI * 2);
+        ctx.fill();
+        // Core white dot
+        ctx.fillStyle = `rgba(255,255,255,${f.alpha * 0.95})`;
+        ctx.beginPath();
+        ctx.arc(tx, ty, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    // Sparks (only on active fibers)
+    sparks.forEach(sp => {
+      const f = fibers[sp.fiberId % TOTAL_FIBERS];
+      if (!f || f.alpha < 0.1) {
+        // Jump to a random active fiber
+        const active = fibers.map((f,i)=>f?i:-1).filter(i=>i>=0);
+        if (active.length) sp.fiberId = active[Math.floor(Math.random()*active.length)];
+        sp.t = Math.random();
+        return;
+      }
+      // Only travel up to drawn segment
+      sp.t += sp.speed;
+      if (sp.t > f.progress) sp.t = 0;
+      const [x, y] = fiberPoint(f, sp.t, w, h);
+      const sparkalpha = f.alpha * 0.9;
+      const gGrad = ctx.createRadialGradient(x, y, 0, x, y, sp.glowR);
+      gGrad.addColorStop(0, sp.color.replace('0.9)', `${sparkalpha})`));
+      gGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = gGrad;
+      ctx.beginPath();
+      ctx.arc(x, y, sp.glowR, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = `rgba(255,255,255,${sparkalpha * 0.9})`;
+      ctx.beginPath();
+      ctx.arc(x, y, sp.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Edge glows (always visible)
+    const lg = ctx.createRadialGradient(0, h/2, 0, 0, h/2, w * 0.22);
+    lg.addColorStop(0, 'rgba(200,20,255,0.45)');
+    lg.addColorStop(1, 'transparent');
+    ctx.fillStyle = lg;
+    ctx.fillRect(0, 0, w, h);
+
+    const rg = ctx.createRadialGradient(w, h/2, 0, w, h/2, w * 0.22);
+    rg.addColorStop(0, 'rgba(30,100,255,0.45)');
+    rg.addColorStop(1, 'transparent');
+    ctx.fillStyle = rg;
+    ctx.fillRect(0, 0, w, h);
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
 </script>
+
