@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SuccessModal from "../components/layout/SuccessModal.astro";
+import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
+---
+
+<Layout title="Talento Humano | Xcien">
+  <section class="relative min-h-screen pt-40 pb-20 overflow-hidden">
+    <!-- Animated background -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-[#06070a]"></div>
+      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 blur-[120px] rounded-full"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[100px] rounded-full"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: Text content -->
+        <div class="space-y-8">
+          <div>
+            <h1 class="text-6xl md:text-7xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
+              Únete a <span class="text-primary italic-none">Nuestro</span> Equipo
+            </h1>
+            <p class="text-white/60 text-xl leading-relaxed italic max-w-xl">
+              En Xcien, estamos transformando la conectividad empresarial. Buscamos mentes brillantes y apasionadas que quieran construir el futuro de las telecomunicaciones.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
+              <h3 class="text-primary font-bold uppercase text-xs tracking-widest mb-2">Cultura</h3>
+              <p class="text-white/70 text-sm italic">Innovación constante y un ambiente de colaboración genuina.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
+              <h3 class="text-primary font-bold uppercase text-xs tracking-widest mb-2">Impacto</h3>
+              <p class="text-white/70 text-sm italic">Llegamos a donde otros dicen que no es posible.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-white/40 italic">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>O envíanos tu CV a: <strong class="text-white">talento@xcien.com</strong></span>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="bg-white/5 backdrop-blur-2xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl relative">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full -mr-16 -mt-16"></div>
+          
+          <h2 class="text-3xl font-black text-white italic uppercase tracking-tighter mb-8">Envía tu CV</h2>
+
+          <form id="talent-form" class="space-y-6">
+            <div class="space-y-2">
+              <label class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] px-1">Nombre completo *</label>
+              <input type="text" required placeholder="Ej. Juan Pérez" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/10"/>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] px-1">Email *</label>
+                <input type="email" required placeholder="juan@gmail.com" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/10"/>
+              </div>
+              <div class="space-y-2">
+                <label class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] px-1">Teléfono *</label>
+                <input type="tel" required placeholder="10 dígitos" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/10"/>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] px-1">Área de interés</label>
+              <select class="w-full bg-[#1a1c22] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors appearance-none cursor-pointer">
+                <option>Ingeniería de Red</option>
+                <option>Ventas Corporativas</option>
+                <option>Soporte Técnico</option>
+                <option>Administración</option>
+                <option>Operaciones</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] px-1">Háblanos de ti</label>
+              <textarea rows="3" placeholder="Experiencia, retos o por qué Xcien..." class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/10 resize-none"></textarea>
+            </div>
+
+            <div class="p-6 border-2 border-dashed border-white/10 rounded-2xl text-center hover:border-primary/50 transition-colors cursor-pointer group">
+              <p class="text-white/40 text-sm italic group-hover:text-primary transition-colors">Adjunta tu CV (PDF)</p>
+              <input type="file" class="hidden" id="cv-upload"/>
+            </div>
+
+            <button type="submit" class="w-full bg-primary text-black font-black py-5 rounded-2xl uppercase tracking-tighter text-xl hover:bg-primary/90 transition-all hover:scale-[1.02] shadow-xl shadow-primary/20">
+              Enviar solicitud
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <SuccessModal id="talent_success_modal" />
+    <BreadcrumbBar path={["Empresa", "Talento Humano", "Formulario"]} />
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('talent-form');
+  const modal = document.getElementById('talent_success_modal') as HTMLDialogElement;
+
+  if (form && modal) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      modal.showModal();
+      (form as HTMLFormElement).reset();
+    });
+  }
+
+  // File upload trigger
+  const dropzone = document.querySelector('.border-dashed');
+  const fileInput = document.getElementById('cv-upload') as HTMLInputElement;
+
+  dropzone?.addEventListener('click', () => {
+    fileInput?.click();
+  });
+
+  fileInput?.addEventListener('change', () => {
+    if (fileInput.files?.length) {
+      const p = dropzone?.querySelector('p');
+      if (p) p.textContent = fileInput.files[0].name;
+    }
+  });
+</script>
