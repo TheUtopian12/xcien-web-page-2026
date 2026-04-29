@@ -88,14 +88,131 @@ const faqs = [
     description="Nuestro servicio de Internet Satelital ofrece una solución de conectividad robusta y de alto rendimiento, aprovechando la innovadora constelación de satélites de órbita baja. Ideal para empresas, organizaciones y usuarios que requieren una conexión confiable, principal o de respaldo, de alta disponibilidad en ubicaciones remotas o con infraestructura terrestre limitada."
   />
   
-  <SpecialFeatures features={specialFeatures} />
-  
-  <CommonBenefits benefits={benefits} />
-  
-  <HighAvailabilityDiagram />
-  
-  <FAQ faqs={faqs} />
+  <div class="relative overflow-hidden bg-[#06070a]">
+    <!-- Green Plexus Particle Background -->
+    <canvas id="satelital-plexus-canvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-60"></canvas>
+    
+    <div class="relative z-10">
+      <SpecialFeatures features={specialFeatures} transparent={true} />
+      <CommonBenefits benefits={benefits} transparent={true} />
+      <HighAvailabilityDiagram transparent={true} />
+      <FAQ faqs={faqs} transparent={true} />
+    </div>
+  </div>
   
   <BreadcrumbBar path={["Soluciones", "Movilidad", "Descripción General"]} />
 </Layout>
+
+<script>
+  function initPlexus() {
+    const canvas = document.getElementById('satelital-plexus-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d', { alpha: true })!;
+    let w: number, h: number;
+    let particles: Particle[] = [];
+    const dpr = window.devicePixelRatio || 1;
+    let animationFrame: number;
+    
+    function resize() {
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      
+      // Get parent dimensions accurately
+      const rect = parent.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.scale(dpr, dpr);
+      
+      const isMobile = window.innerWidth < 768;
+      const count = isMobile ? 30 : 70; 
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    class Particle {
+      x: number; y: number;
+      vx: number; vy: number;
+      size: number;
+
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.size = Math.random() * 2 + 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      const connectionDist = 200;
+      const particleColor = '#22c55e';
+      const lineColorPrefix = 'rgba(34, 197, 94, ';
+
+      for (let p of particles) p.update();
+
+      ctx.lineWidth = 1;
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < connectionDist * connectionDist) {
+            const dist = Math.sqrt(distSq);
+            const alpha = (1 - dist / connectionDist) * 0.5; // High visibility
+            ctx.beginPath();
+            ctx.strokeStyle = lineColorPrefix + alpha + ')';
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      ctx.fillStyle = particleColor;
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      animationFrame = requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+    
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(animationFrame);
+      resize();
+      draw();
+    });
+  }
+
+  // Run on multiple events to ensure it catches the right moment
+  if (document.readyState === 'complete') {
+    initPlexus();
+  } else {
+    window.addEventListener('load', initPlexus);
+  }
+  
+  // For Astro transitions if they are enabled
+  document.addEventListener('astro:page-load', initPlexus);
+</script>
 

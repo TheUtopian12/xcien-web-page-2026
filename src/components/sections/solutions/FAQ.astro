@@ -7,12 +7,13 @@ interface FAQ {
 interface Props {
   faqs: FAQ[];
   title?: string;
+  transparent?: boolean;
 }
 
-const { faqs, title = "Preguntas Frecuentes" } = Astro.props;
+const { faqs, title = "Preguntas Frecuentes", transparent = false } = Astro.props;
 ---
 
-<section class="py-24 bg-[#0a0b0d]">
+<section class={`py-24 ${transparent ? 'bg-transparent' : 'bg-[#0a0b0d]'}`}>
   <div class="container mx-auto px-4 max-w-4xl">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-black text-white italic uppercase tracking-tighter mb-4">
