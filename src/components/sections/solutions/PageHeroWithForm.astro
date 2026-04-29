@@ -30,63 +30,79 @@ const { title, greenTitle, description } = Astro.props;
     </div>
 
     <!-- Right: Form -->
-    <div class="bg-[#1a1c22]/90 backdrop-blur-2xl p-8 rounded-[2rem] border border-white/10 shadow-2xl">
-        <h2 class="text-2xl font-black text-white mb-2">Solicita tu propuesta personalizada.</h2>
-        <p class="text-white/50 text-sm mb-8">Cuéntanos de tu empresa y te contactamos en &lt; 24 hrs</p>
-        
-        <form class="space-y-4">
-            <div class="form-control">
-                <label class="label py-1">
-                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Nombre completo *</span>
-                </label>
-                <input type="text" placeholder="Ej. Alex Fdz." class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
-            </div>
+    <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full -mr-32 -mt-32"></div>
+      
+      <h2 class="text-3xl font-black text-white italic uppercase mb-2 relative z-10">
+        Solicita tu <span class="text-primary">propuesta</span>
+      </h2>
+      <p class="text-white/40 text-sm mb-8 relative z-10 italic">Cuéntanos de tu empresa y te contactamos en &lt; 24 hrs</p>
+      
+      <form class="space-y-6 relative z-10">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Nombre Completo *</label>
+            <input type="text" placeholder="Ej. Juan Pérez" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" required />
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Compañía / Giro *</label>
+            <input type="text" placeholder="Ej. Comercializadora" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" required />
+          </div>
+        </div>
 
-            <div class="form-control">
-                <label class="label py-1">
-                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Compañía / Giro *</span>
-                </label>
-                <input type="text" placeholder="Ej. Comercializadora" class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
-            </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Correo Electrónico *</label>
+            <input type="email" placeholder="juan@empresa.com" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" required />
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Teléfono *</label>
+            <input type="tel" placeholder="10 dígitos" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" required />
+          </div>
+        </div>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div class="form-control">
-                    <label class="label py-1">
-                        <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Teléfono *</span>
-                    </label>
-                    <input type="tel" class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
+        <div class="space-y-2 relative" id="custom-select-container">
+          <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">¿Qué necesitas?</label>
+          <div 
+            id="select-trigger"
+            class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors cursor-pointer flex justify-between items-center group"
+          >
+            <span id="selected-value">Selecciona una opción</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/30 group-hover:text-primary transition-colors"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          
+          <input type="hidden" name="solucion" id="solucion-input" />
+
+          <div 
+            id="select-options"
+            class="absolute left-0 right-0 top-full mt-2 bg-[#1a1c22]/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl z-50 hidden opacity-0 translate-y-2 transition-all duration-300"
+          >
+            <div class="max-h-64 overflow-y-auto scrollbar-hide py-2">
+              {[
+                "Internet Dedicado", "Internet Pyme", "Internet Eventos", "Internet Satelital",
+                "Alta Disponibilidad", "Comunicaciones Unificadas", "Red WiFi", "Ciberseguridad",
+                "Servicios Tic's", "SD-WAN", "Video Vigilancia", "Data Centers"
+              ].map(option => (
+                <div 
+                  class="px-6 py-3 text-white/70 hover:text-primary hover:bg-white/5 cursor-pointer transition-colors text-sm font-medium"
+                  data-value={option}
+                >
+                  {option}
                 </div>
-                <div class="form-control">
-                    <label class="label py-1">
-                        <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Email *</span>
-                    </label>
-                    <input type="email" class="input bg-[#2a2d34] w-full border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm" required />
-                </div>
+              ))}
             </div>
+          </div>
+        </div>
 
-            <div class="form-control">
-                <label class="label py-1">
-                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">¿Qué necesitas?</span>
-                </label>
-                <select class="select bg-[#2a2d34] border-none focus:ring-1 focus:ring-primary h-12 rounded-lg text-sm w-full">
-                    <option disabled selected>Internet Dedicado</option>
-                    <option>Seguridad Administrada</option>
-                    <option>Redes Locales</option>
-                    <option>Telefonía IP</option>
-                </select>
-            </div>
+        <div class="space-y-2">
+          <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Mensaje</label>
+          <textarea rows="3" placeholder="Cuéntanos el reto o la ubicación de tu sitios ..." class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20 resize-none"></textarea>
+        </div>
 
-            <div class="form-control">
-                <label class="label py-1">
-                    <span class="label-text font-bold text-primary text-[10px] tracking-widest uppercase">Mensaje</span>
-                </label>
-                <textarea class="textarea bg-[#2a2d34] border-none focus:ring-1 focus:ring-primary rounded-lg text-sm p-4 h-24 w-full" placeholder="Cuéntanos el reto o la ubicación de tu sitios ..."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-full h-14 rounded-xl normal-case font-black text-base shadow-lg shadow-primary/20 mt-4 hover:scale-[1.01] transition-transform">
-                Enviar y recibir propuesta
-            </button>
-        </form>
+        <button type="submit" class="w-full bg-primary text-black font-black py-5 rounded-2xl uppercase tracking-tighter text-xl hover:bg-primary/90 transition-all hover:scale-[1.02] shadow-xl shadow-primary/20">
+          Enviar y recibir propuesta
+        </button>
+      </form>
     </div>
   </div>
 
@@ -101,6 +117,59 @@ const { title, greenTitle, description } = Astro.props;
     e.preventDefault();
     modal?.showModal();
     (form as HTMLFormElement).reset();
+    // Reset custom select
+    const selectedValue = document.getElementById('selected-value');
+    if (selectedValue) selectedValue.textContent = 'Selecciona una opción';
+  });
+
+  // Custom Select Logic
+  const trigger = document.getElementById('select-trigger');
+  const optionsMenu = document.getElementById('select-options');
+  const selectedValue = document.getElementById('selected-value');
+  const hiddenInput = document.getElementById('solucion-input') as HTMLInputElement;
+  const options = document.querySelectorAll('#select-options [data-value]');
+
+  trigger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !optionsMenu?.classList.contains('hidden');
+    
+    if (isOpen) {
+      closeSelect();
+    } else {
+      openSelect();
+    }
+  });
+
+  function openSelect() {
+    optionsMenu?.classList.remove('hidden');
+    setTimeout(() => {
+      optionsMenu?.classList.remove('opacity-0', 'translate-y-2');
+    }, 10);
+    trigger?.classList.add('border-primary/50');
+  }
+
+  function closeSelect() {
+    optionsMenu?.classList.add('opacity-0', 'translate-y-2');
+    setTimeout(() => {
+      optionsMenu?.classList.add('hidden');
+    }, 300);
+    trigger?.classList.remove('border-primary/50');
+  }
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      const val = (option as HTMLElement).dataset.value;
+      if (selectedValue && hiddenInput && val) {
+        selectedValue.textContent = val;
+        hiddenInput.value = val;
+        closeSelect();
+      }
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', () => {
+    closeSelect();
   });
 
   // ── Fiber Optic Self-Drawing Canvas ─────────────────────────────────────────

@@ -148,9 +148,9 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       </div>
 
       <a
-        href="#"
-        class="hover:text-primary transition-colors flex items-center gap-1 text-white"
-        >Soporte <span class="text-xs opacity-50">+</span></a
+        href="/contacto"
+        class={`hover:text-primary transition-colors flex items-center gap-1 ${pathname === '/contacto' ? 'text-primary' : 'text-white'}`}
+        >Contacto <span class="text-xs opacity-50">+</span></a
       >
       <a
         href="#"

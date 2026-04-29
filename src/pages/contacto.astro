@@ -1,0 +1,298 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FAQ from "../components/sections/solutions/FAQ.astro";
+import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
+import SuccessModal from "../components/layout/SuccessModal.astro";
+
+const faqs = [
+  {
+    question: "¿Cómo puedo solicitar una cotización formal para mi empresa?",
+    answer: "Es muy sencillo. Puede completar el formulario en esta sección o contactarnos vía WhatsApp. Para brindarle una propuesta precisa y personalizada, le sugerimos tener a la mano la ubicación de su empresa (coordenadas o dirección) y los requerimientos de ancho de banda necesarios para su operación. Uno de nuestros consultores TIC se pondrá en contacto con usted en menos de 24 horas."
+  },
+  {
+    question: "¿Tienen cobertura en mi zona o ciudad?",
+    answer: "Xcien cuenta con una amplia infraestructura de red propia en diversas regiones. En la sección de Cobertura de nuestro sitio puede consultar las zonas habilitadas. Si su empresa se encuentra en una zona remota o de difícil acceso, nuestra tecnología de microondas o internet satelital nos permite llevar conectividad donde otros proveedores no llegan."
+  },
+  {
+    question: "Ya soy cliente, ¿cuál es el canal para reportar una falla técnica?",
+    answer: "Para garantizar una respuesta inmediata, nuestros clientes cuentan con acceso directo al Centro de Operaciones de Red (NOC) disponible 24/7. Puede realizar su reporte a través de nuestro portal de clientes o llamando a nuestra línea exclusiva de soporte técnico, donde un ingeniero especializado le brindará asistencia personalizada sin pasar por filtros de atención general."
+  },
+  {
+    question: "¿Pueden realizar una visita técnica antes de la contratación?",
+    answer: "Sí. Como parte de nuestro Servicio de Consultoría, realizamos levantamientos técnicos y estudios de factibilidad en sitio para asegurar que la solución propuesta (ya sea WiFi a la medida, video vigilancia o enlace dedicado) se adapte perfectamente a las condiciones físicas y requerimientos de su infraestructura."
+  },
+  {
+    question: "¿Qué métodos de pago y facturación manejan?",
+    answer: "Ofrecemos flexibilidad en la gestión administrativa. Aceptamos transferencias electrónicas y pagos domiciliados. Todas nuestras soluciones son 100% deducibles y podrá descargar sus facturas fiscales (CFDI) de forma inmediata desde nuestro portal de autogestión de clientes."
+  }
+];
+
+const socialMedia = [
+  {
+    name: "LinkedIn",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
+    url: "https://www.linkedin.com/company/xcien/"
+  },
+  {
+    name: "Facebook",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+    url: "https://www.facebook.com/xcien"
+  },
+  {
+    name: "Instagram",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
+    url: "https://www.instagram.com/xcien_/"
+  }
+];
+---
+
+<Layout title="Contacto | Xcien">
+  <!-- Hero / Header Section -->
+  <section class="pt-32 pb-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none"></div>
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h1 class="text-5xl md:text-7xl font-black text-white italic uppercase tracking-tighter mb-6">
+        Contac<span class="text-primary">to</span>
+      </h1>
+      <p class="text-xl text-white/70 max-w-2xl mx-auto">
+        Estamos listos para impulsar la conectividad de tu empresa. Encuéntranos o escríbenos.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Info & Form Section -->
+  <section class="py-20 relative">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        
+        <!-- Info Side -->
+        <div class="space-y-12">
+          <div class="space-y-8">
+            <div class="flex gap-6 items-start group">
+              <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-9 13-9 13s-9-7-9-13a9 9 0 0 1 18 0z"/><circle cx="11" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-2">Dirección</h3>
+                <p class="text-white/60 text-lg leading-relaxed">
+                  Martín de Zavala # 840, Col. Centro, <br />
+                  CP 64000, Monterrey, N.L. México
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-6 items-start group">
+              <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-2">Horario</h3>
+                <p class="text-white/60 text-lg">
+                  Lunes - Viernes <br />
+                  9:00 AM - 7:00 PM
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-6 items-start group">
+              <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-2">Contacto</h3>
+                <p class="text-white/60 text-lg mb-1">800-288-0092</p>
+                <p class="text-primary font-bold text-lg">contacto@xcien.com</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative map hint or additional content could go here -->
+          <div class="p-8 rounded-3xl bg-white/[0.02] border border-white/5 relative overflow-hidden group">
+             <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
+             <h4 class="text-white font-bold mb-4 relative z-10">Atención Personalizada</h4>
+             <p class="text-white/40 text-sm relative z-10">Contamos con consultores expertos listos para realizar un levantamiento técnico y diseñar la solución que tu empresa necesita.</p>
+          </div>
+        </div>
+
+        <!-- Form Side -->
+        <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full -mr-32 -mt-32"></div>
+          
+          <h2 class="text-3xl font-black text-white italic uppercase mb-8 relative z-10">
+            Contacta<span class="text-primary">nos</span>
+          </h2>
+          
+          <form class="space-y-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Nombre Completo</label>
+                <input type="text" placeholder="Ej. Juan Pérez" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" />
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Empresa</label>
+                <input type="text" placeholder="Nombre de tu empresa" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" />
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Correo Electrónico</label>
+                <input type="email" placeholder="juan@empresa.com" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" />
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Teléfono</label>
+                <input type="tel" placeholder="10 dígitos" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20" />
+              </div>
+            </div>
+
+            <div class="space-y-2 relative" id="custom-select-container">
+              <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Solución de interés</label>
+              <div 
+                id="select-trigger"
+                class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors cursor-pointer flex justify-between items-center group"
+              >
+                <span id="selected-value">Selecciona una opción</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/30 group-hover:text-primary transition-colors"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+              
+              <input type="hidden" name="solucion" id="solucion-input" />
+
+              <div 
+                id="select-options"
+                class="absolute left-0 right-0 top-full mt-2 bg-[#1a1c22]/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl z-50 hidden opacity-0 translate-y-2 transition-all duration-300"
+              >
+                <div class="max-h-64 overflow-y-auto scrollbar-hide py-2">
+                  {[
+                    "Internet Dedicado", "Internet Pyme", "Internet Eventos", "Internet Satelital",
+                    "Alta Disponibilidad", "Comunicaciones Unificadas", "Red WiFi", "Ciberseguridad",
+                    "Servicios Tic's", "SD-WAN", "Video Vigilancia", "Data Centers"
+                  ].map(option => (
+                    <div 
+                      class="px-6 py-3 text-white/70 hover:text-primary hover:bg-white/5 cursor-pointer transition-colors text-sm font-medium"
+                      data-value={option}
+                    >
+                      {option}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-white/50 uppercase tracking-widest px-1">Mensaje</label>
+              <textarea rows="3" placeholder="Cuéntanos sobre tus necesidades de conectividad..." class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors placeholder:text-white/20 resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-primary text-black font-black py-5 rounded-2xl uppercase tracking-tighter text-xl hover:bg-primary/90 transition-all hover:scale-[1.02] shadow-xl shadow-primary/20">
+              Solicitar Cotización
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section class="py-24 bg-white/[0.02]">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-black text-white italic uppercase tracking-tighter mb-4">
+          Nuestras <span class="text-primary">Redes</span>
+        </h2>
+        <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {socialMedia.map((social) => (
+          <a href={social.url} class="group block p-10 rounded-[2.5rem] bg-white/[0.03] border border-white/5 hover:border-primary/30 transition-all duration-500 text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            
+            <h3 class="text-2xl font-bold text-white mb-8 group-hover:text-primary transition-colors">{social.name}</h3>
+            
+            <div class="flex justify-center text-white/20 group-hover:text-primary group-hover:scale-125 transition-all duration-500">
+              <Fragment set:html={social.icon} />
+            </div>
+            
+            <div class="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/30 group-hover:text-white transition-colors">
+              Seguir ahora
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <FAQ faqs={faqs} />
+
+  <SuccessModal id="contact_success" />
+
+  <BreadcrumbBar path={["Inicio", "Contacto"]} />
+</Layout>
+
+<script>
+  const form = document.querySelector('form');
+  const modal = document.getElementById('contact_success') as HTMLDialogElement;
+  
+  if (form && modal) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      modal.showModal();
+      (form as HTMLFormElement).reset();
+      // Reset custom select
+      const selectedValue = document.getElementById('selected-value');
+      if (selectedValue) selectedValue.textContent = 'Selecciona una opción';
+    });
+  }
+
+  // Custom Select Logic
+  const trigger = document.getElementById('select-trigger');
+  const optionsMenu = document.getElementById('select-options');
+  const selectedValue = document.getElementById('selected-value');
+  const hiddenInput = document.getElementById('solucion-input') as HTMLInputElement;
+  const options = document.querySelectorAll('#select-options [data-value]');
+
+  trigger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !optionsMenu?.classList.contains('hidden');
+    
+    if (isOpen) {
+      closeSelect();
+    } else {
+      openSelect();
+    }
+  });
+
+  function openSelect() {
+    optionsMenu?.classList.remove('hidden');
+    setTimeout(() => {
+      optionsMenu?.classList.remove('opacity-0', 'translate-y-2');
+    }, 10);
+    trigger?.classList.add('border-primary/50');
+  }
+
+  function closeSelect() {
+    optionsMenu?.classList.add('opacity-0', 'translate-y-2');
+    setTimeout(() => {
+      optionsMenu?.classList.add('hidden');
+    }, 300);
+    trigger?.classList.remove('border-primary/50');
+  }
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      const val = (option as HTMLElement).dataset.value;
+      if (selectedValue && hiddenInput && val) {
+        selectedValue.textContent = val;
+        hiddenInput.value = val;
+        closeSelect();
+      }
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', () => {
+    closeSelect();
+  });
+</script>
