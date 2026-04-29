@@ -11,12 +11,26 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
   <!-- Simple Hero for About -->
   <section class="pt-40 pb-20 bg-[#0a0b0d] relative overflow-hidden">
     <div class="container mx-auto px-4 relative z-10">
-      <h1 class="text-6xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-8 py-1">
-        ¿<span class="text-primary italic-none">Quienes</span> Somos?
+      <h1 class="text-6xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-12 py-1">
+        Quiénes <span class="text-primary italic-none">Somos</span>
       </h1>
-      <p class="text-white/50 text-xl leading-relaxed max-w-2xl">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-      </p>
+      
+      <div class="space-y-8 max-w-3xl">
+        <p class="text-white text-2xl md:text-3xl font-bold leading-tight italic">
+          Iniciamos operaciones hace <span class="text-primary">+25 años</span> con un solo objetivo: dar acceso a internet de calidad y con precios accesibles.
+        </p>
+        
+        <p class="text-white/70 text-xl leading-relaxed">
+          Hoy podemos decir que el objetivo se ha cumplido, cada día la confianza de nuestros clientes y amigos crece.
+        </p>
+
+        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
+          <p class="text-white/80 text-lg leading-relaxed relative z-10 italic">
+            Hoy nuestra promesa de valor y lealtad se ha transformado, continuaremos llegando hasta donde dijeron que no era posible, entregándote la mejor tecnología, la red de mayor alcance, cobertura y capacidad, con un equipo listo para escucharte, atenderte y ayudarte a resolver cada desafío.
+          </p>
+        </div>
+      </div>
     </div>
     <div class="absolute -right-20 -top-20 w-96 h-96 bg-primary/10 blur-[150px] rounded-full"></div>
   </section>
