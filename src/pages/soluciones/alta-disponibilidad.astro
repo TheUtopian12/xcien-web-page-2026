@@ -30,6 +30,29 @@ const specialFeatures = [
   }
 ];
 
+const benefits = [
+  {
+    title: "Multi Tecnología de acceso.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`
+  },
+  {
+    title: "Tiempo de implementación remota rápida y fácil.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+  },
+  {
+    title: "Soporte 24/7.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v5"/><path d="M12 16h.01"/></svg>`
+  },
+  {
+    title: "Reportes de consumo.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`
+  },
+  {
+    title: "No está limitado solamente a nuestra cobertura.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`
+  }
+];
+
 const faqs = [
   {
     question: "¿Qué es exactamente una solución de Alta Disponibilidad?",
@@ -61,9 +84,9 @@ const faqs = [
     description="La solución de Alta Disponibilidad minimiza y reduce un posible corte de servicio, derivado de una falla o degradación de alguno de los proveedores de Internet conectados al equipo Alta Disponibilidad. Con esto se garantiza la continuidad de forma rápida y automática."
   />
   
-  <CommonBenefits />
-  
   <SpecialFeatures features={specialFeatures} />
+  
+  <CommonBenefits benefits={benefits} />
   
   <HighAvailabilityDiagram />
   

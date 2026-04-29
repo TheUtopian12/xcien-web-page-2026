@@ -1,5 +1,6 @@
 ---
 import logo from "../../../public/Logo.png";
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <header
@@ -46,7 +47,7 @@ import logo from "../../../public/Logo.png";
       <div class="dropdown dropdown-hover">
         <label
           tabindex="0"
-          class="hover:text-primary transition-colors cursor-pointer flex items-center gap-1 text-white py-4"
+          class={`hover:text-primary transition-colors cursor-pointer flex items-center gap-1 py-4 ${['/quienes-somos', '/alianzas', '/eventos', '/blog'].some(p => pathname.startsWith(p)) ? 'text-primary' : 'text-white'}`}
         >
           XCIEN <span class="text-xs opacity-50">+</span>
         </label>
@@ -55,25 +56,25 @@ import logo from "../../../public/Logo.png";
           class="dropdown-content z-[1] menu p-2 shadow-2xl bg-[#1a1c22] border border-white/5 rounded-box w-52"
         >
           <li>
-            <a href="/quienes-somos" class="hover:text-primary">Quiénes Somos</a
+            <a href="/quienes-somos" class={`hover:text-primary ${pathname === '/quienes-somos' ? 'text-primary bg-white/5' : ''}`}>Quiénes Somos</a
             >
           </li>
-          <li><a href="/alianzas" class="hover:text-primary">Alianzas</a></li>
-          <li><a href="/eventos" class="hover:text-primary">Eventos</a></li>
-          <li><a href="/blog" class="hover:text-primary">Blog</a></li>
+          <li><a href="/alianzas" class={`hover:text-primary ${pathname === '/alianzas' ? 'text-primary bg-white/5' : ''}`}>Alianzas</a></li>
+          <li><a href="/eventos" class={`hover:text-primary ${pathname === '/eventos' ? 'text-primary bg-white/5' : ''}`}>Eventos</a></li>
+          <li><a href="/blog" class={`hover:text-primary ${pathname === '/blog' ? 'text-primary bg-white/5' : ''}`}>Blog</a></li>
         </ul>
       </div>
 
       <a
         href="/mapa-de-cobertura"
-        class="hover:text-primary transition-colors flex items-center gap-1 text-white py-4"
+        class={`hover:text-primary transition-colors flex items-center gap-1 py-4 ${pathname === '/mapa-de-cobertura' ? 'text-primary' : 'text-white'}`}
         >Mapa de Cobertura</a
       >
 
       <div class="dropdown dropdown-hover">
         <label
           tabindex="0"
-          class="hover:text-primary transition-colors cursor-pointer flex items-center gap-1 text-white py-4"
+          class={`hover:text-primary transition-colors cursor-pointer flex items-center gap-1 py-4 ${pathname.startsWith('/soluciones') ? 'text-primary' : 'text-white'}`}
         >
           Soluciones <span class="text-xs opacity-50">+</span>
         </label>
@@ -84,62 +85,62 @@ import logo from "../../../public/Logo.png";
           <li>
             <a
               href="/soluciones/internet-dedicado"
-              class="hover:text-primary font-bold">Internet Dedicado</a
+              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-dedicado' ? 'text-primary bg-white/5' : ''}`}>Internet Dedicado</a
             >
           </li>
           <li>
             <a
               href="/soluciones/internet-pyme"
-              class="hover:text-primary font-bold">Internet Pyme</a
+              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-pyme' ? 'text-primary bg-white/5' : ''}`}>Internet Pyme</a
             >
           </li>
           <li>
             <a
               href="/soluciones/internet-eventos"
-              class="hover:text-primary font-bold">Internet Eventos</a
+              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-eventos' ? 'text-primary bg-white/5' : ''}`}>Internet Eventos</a
             >
           </li>
           <li>
             <a
               href="/soluciones/internet-satelital"
-              class="hover:text-primary font-bold">Internet Satelital</a
+              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-satelital' ? 'text-primary bg-white/5' : ''}`}>Internet Satelital</a
             >
           </li><li>
             <a
               href="/soluciones/alta-disponibilidad"
-              class="hover:text-primary font-bold">Alta Disponibilidad</a
+              class={`hover:text-primary font-bold ${pathname === '/soluciones/alta-disponibilidad' ? 'text-primary bg-white/5' : ''}`}>Alta Disponibilidad</a
             >
           </li>
           <li>
             <a
               href="/soluciones/comunicaciones-unificadas"
-              class="hover:text-primary">Comunicaciones Unificadas</a
+              class={`hover:text-primary ${pathname === '/soluciones/comunicaciones-unificadas' ? 'text-primary bg-white/5' : ''}`}>Comunicaciones Unificadas</a
             >
           </li>
           <li>
-            <a href="/soluciones/red-wifi" class="hover:text-primary"
+            <a href="/soluciones/red-wifi" class={`hover:text-primary ${pathname === '/soluciones/red-wifi' ? 'text-primary bg-white/5' : ''}`}
               >Red WiFi</a
             >
           </li>
           <li>
-            <a href="/soluciones/ciberseguridad" class="hover:text-primary"
+            <a href="/soluciones/ciberseguridad" class={`hover:text-primary ${pathname === '/soluciones/ciberseguridad' ? 'text-primary bg-white/5' : ''}`}
               >Ciberseguridad</a
             >
           </li>
           <li>
-            <a href="/soluciones/servicios-tics" class="hover:text-primary"
+            <a href="/soluciones/servicios-tics" class={`hover:text-primary ${pathname === '/soluciones/servicios-tics' ? 'text-primary bg-white/5' : ''}`}
               >Servicios Tic's</a
             >
           </li>
           <li>
-            <a href="/soluciones/sd-wan" class="hover:text-primary">SD-WAN</a>
+            <a href="/soluciones/sd-wan" class={`hover:text-primary ${pathname === '/soluciones/sd-wan' ? 'text-primary bg-white/5' : ''}`}>SD-WAN</a>
           </li>
           <li>
-            <a href="/soluciones/video-vigilancia" class="hover:text-primary"
+            <a href="/soluciones/video-vigilancia" class={`hover:text-primary ${pathname === '/soluciones/video-vigilancia' ? 'text-primary bg-white/5' : ''}`}
               >Video Vigilancia</a
             >
           </li><li>
-            <a href="/soluciones/data-centers" class="hover:text-primary"
+            <a href="/soluciones/data-centers" class={`hover:text-primary ${pathname === '/soluciones/data-centers' ? 'text-primary bg-white/5' : ''}`}
               >Data Centers</a
             >
           </li>

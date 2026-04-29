@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <!doctype html>
@@ -108,130 +109,129 @@ import Analytics from "@vercel/analytics/astro";
           <li>
             <a
               href="/mapa-de-cobertura"
-              class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white"
+              class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname === '/mapa-de-cobertura' ? 'text-primary bg-white/5' : 'text-white'}`}
               >Mapa de Cobertura</a
             >
           </li>
           <li>
-            <details>
+            <details open={['/quienes-somos', '/alianzas', '/eventos', '/blog'].some(p => pathname.startsWith(p))}>
               <summary
-                class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white"
+                class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${['/quienes-somos', '/alianzas', '/eventos', '/blog'].some(p => pathname.startsWith(p)) ? 'text-primary' : 'text-white'}`}
                 >XCIEN</summary
               >
               <ul class="pl-4">
                 <li>
                   <a
                     href="/quienes-somos"
-                    class="py-2 opacity-70 hover:opacity-100">Quiénes Somos</a
+                    class={`py-2 hover:opacity-100 ${pathname === '/quienes-somos' ? 'text-primary opacity-100' : 'opacity-70'}`}>Quiénes Somos</a
                   >
                 </li>
                 <li>
-                  <a href="/alianzas" class="py-2 opacity-70 hover:opacity-100"
+                  <a href="/alianzas" class={`py-2 hover:opacity-100 ${pathname === '/alianzas' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Alianzas</a
                   >
                 </li>
                 <li>
-                  <a href="/eventos" class="py-2 opacity-70 hover:opacity-100"
+                  <a href="/eventos" class={`py-2 hover:opacity-100 ${pathname === '/eventos' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Eventos</a
                   >
                 </li>
                 <li>
-                  <a href="/blog" class="py-2 opacity-70 hover:opacity-100"
+                  <a href="/blog" class={`py-2 hover:opacity-100 ${pathname === '/blog' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Blog</a
                   >
                 </li>
               </ul>
             </details>
-          </li>
-          <li>
-            <details>
+               <li>
+            <details open={pathname.startsWith('/soluciones')}>
               <summary
-                class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white"
+                class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname.startsWith('/soluciones') ? 'text-primary' : 'text-white'}`}
                 >Soluciones</summary
               >
               <ul class="pl-4">
                 <li>
                   <a
                     href="/soluciones/internet-dedicado"
-                    class="py-2 opacity-70 hover:opacity-100"
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/internet-dedicado' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Internet Dedicado</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/internet-pyme"
-                    class="py-2 opacity-70 hover:opacity-100">Internet Pyme</a
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/internet-pyme' ? 'text-primary opacity-100' : 'opacity-70'}`}>Internet Pyme</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/internet-eventos"
-                    class="py-2 opacity-70 hover:opacity-100"
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/internet-eventos' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Internet Eventos</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/internet-satelital"
-                    class="py-2 opacity-70 hover:opacity-100"
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/internet-satelital' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Internet Satelital</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/alta-disponibilidad"
-                    class="py-2 opacity-70 hover:opacity-100 font-bold"
+                    class={`py-2 hover:opacity-100 font-bold ${pathname === '/soluciones/alta-disponibilidad' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Alta Disponibilidad</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/comunicaciones-unificadas"
-                    class="py-2 opacity-70 hover:opacity-100"
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/comunicaciones-unificadas' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Comunicaciones Unificadas</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/ciberseguridad"
-                    class="py-2 opacity-70 hover:opacity-100">Ciberseguridad</a
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/ciberseguridad' ? 'text-primary opacity-100' : 'opacity-70'}`}>Ciberseguridad</a
                   >
                 </li>
-
+ 
                 <li>
                   <a
                     href="/soluciones/red-wifi"
-                    class="py-2 opacity-70 hover:opacity-100">Red WiFi</a
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/red-wifi' ? 'text-primary opacity-100' : 'opacity-70'}`}>Red WiFi</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/servicios-tics"
-                    class="py-2 opacity-70 hover:opacity-100">Servicios Tic's</a
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/servicios-tics' ? 'text-primary opacity-100' : 'opacity-70'}`}>Servicios Tic's</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/sd-wan"
-                    class="py-2 opacity-70 hover:opacity-100">SD-WAN</a
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/sd-wan' ? 'text-primary opacity-100' : 'opacity-70'}`}>SD-WAN</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/video-vigilancia"
-                    class="py-2 opacity-70 hover:opacity-100"
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/video-vigilancia' ? 'text-primary opacity-100' : 'opacity-70'}`}
                     >Video Vigilancia</a
                   >
                 </li>
                 <li>
                   <a
                     href="/soluciones/data-centers"
-                    class="py-2 opacity-70 hover:opacity-100">Data Centers</a
+                    class={`py-2 hover:opacity-100 ${pathname === '/soluciones/data-centers' ? 'text-primary opacity-100' : 'opacity-70'}`}>Data Centers</a
                   >
                 </li>
               </ul>
             </details>
-          </li>
+          </li>      </li>
           <li>
             <a
               href="#"
