@@ -104,21 +104,24 @@ const faqs = [
 </Layout>
 
 <script>
+  let plexusInitialized = false;
+  
   function initPlexus() {
+    if (plexusInitialized) return;
     const canvas = document.getElementById('satelital-plexus-canvas') as HTMLCanvasElement;
     if (!canvas) return;
-
+    
+    plexusInitialized = true;
     const ctx = canvas.getContext('2d', { alpha: true })!;
     let w: number, h: number;
     let particles: Particle[] = [];
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2 for performance
     let animationFrame: number;
     
     function resize() {
       const parent = canvas.parentElement;
       if (!parent) return;
       
-      // Get parent dimensions accurately
       const rect = parent.getBoundingClientRect();
       w = rect.width;
       h = rect.height;
@@ -128,7 +131,7 @@ const faqs = [
       ctx.scale(dpr, dpr);
       
       const isMobile = window.innerWidth < 768;
-      const count = isMobile ? 30 : 70; 
+      const count = isMobile ? 20 : 60; // Fewer particles
       particles = [];
       for (let i = 0; i < count; i++) {
         particles.push(new Particle());
@@ -143,9 +146,9 @@ const faqs = [
       constructor() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.size = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.15; // Slower movement
+        this.vy = (Math.random() - 0.5) * 0.15;
+        this.size = Math.random() * 1.5 + 0.5; // Smaller particles
       }
 
       update() {
@@ -158,13 +161,16 @@ const faqs = [
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      const connectionDist = 200;
+      const isMobile = window.innerWidth < 768;
+      const connectionDist = isMobile ? 100 : 150; // Shorter connections
+      const connectionDistSq = connectionDist * connectionDist;
       const particleColor = '#22c55e';
       const lineColorPrefix = 'rgba(34, 197, 94, ';
 
       for (let p of particles) p.update();
 
-      ctx.lineWidth = 1;
+      // Draw connections
+      ctx.lineWidth = 0.5; // Thinner lines
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
@@ -173,9 +179,8 @@ const faqs = [
           const dy = p1.y - p2.y;
           const distSq = dx * dx + dy * dy;
 
-          if (distSq < connectionDist * connectionDist) {
-            const dist = Math.sqrt(distSq);
-            const alpha = (1 - dist / connectionDist) * 0.5; // High visibility
+          if (distSq < connectionDistSq) {
+            const alpha = (1 - Math.sqrt(distSq) / connectionDist) * 0.3;
             ctx.beginPath();
             ctx.strokeStyle = lineColorPrefix + alpha + ')';
             ctx.moveTo(p1.x, p1.y);
@@ -185,12 +190,14 @@ const faqs = [
         }
       }
 
+      // Batch draw particles
       ctx.fillStyle = particleColor;
+      ctx.beginPath();
       for (let p of particles) {
-        ctx.beginPath();
+        ctx.moveTo(p.x + p.size, p.y);
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
       }
+      ctx.fill();
 
       animationFrame = requestAnimationFrame(draw);
     }
@@ -198,21 +205,33 @@ const faqs = [
     resize();
     draw();
     
+    let resizeTimeout: any;
     window.addEventListener('resize', () => {
-      cancelAnimationFrame(animationFrame);
-      resize();
-      draw();
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        cancelAnimationFrame(animationFrame);
+        resize();
+        draw();
+      }, 200); // Debounce resize
     });
   }
 
-  // Run on multiple events to ensure it catches the right moment
+  // Use a cleaner way to initialize
+  const handleInit = () => {
+    if (document.getElementById('satelital-plexus-canvas')) {
+      initPlexus();
+    }
+  };
+
   if (document.readyState === 'complete') {
-    initPlexus();
+    handleInit();
   } else {
-    window.addEventListener('load', initPlexus);
+    window.addEventListener('load', handleInit);
   }
   
-  // For Astro transitions if they are enabled
-  document.addEventListener('astro:page-load', initPlexus);
+  document.addEventListener('astro:page-load', () => {
+    plexusInitialized = false; // Allow re-init on page change
+    handleInit();
+  });
 </script>
 

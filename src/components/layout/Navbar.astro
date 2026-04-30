@@ -1,6 +1,31 @@
 ---
 import logo from "../../../public/Logo.png";
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+const connectivity = [
+  { name: "Internet Dedicado", href: "/soluciones/internet-dedicado" },
+  { name: "Internet PYME", href: "/soluciones/internet-pyme" },
+  { name: "Internet Satelital", href: "/soluciones/internet-satelital" },
+  { name: "Internet Eventos", href: "/soluciones/internet-eventos" },
+  { name: "SD-WAN", href: "/soluciones/sd-wan" },
+  { name: "Conectividad", href: "/soluciones/conectividad" },
+];
+
+const tiServices = [
+  { name: "Comunicaciones Unificadas", href: "/soluciones/comunicaciones-unificadas" },
+  { name: "Red WiFi", href: "/soluciones/red-wifi" },
+  { name: "Ciberseguridad", href: "/soluciones/ciberseguridad" },
+  { name: "Servicios Tic's", href: "/soluciones/servicios-tics" },
+  { name: "Video Vigilancia", href: "/soluciones/video-vigilancia" },
+  { name: "Servicios Administrados", href: "/soluciones/servicios-administrados" },
+];
+
+const specialized = [
+  { name: "Alta Disponibilidad", href: "/soluciones/alta-disponibilidad" },
+  { name: "Data Centers", href: "/soluciones/data-centers" },
+  { name: "Inteligencia Artificial", href: "/soluciones/inteligencia-artificial" },
+  { name: "Proyectos Especiales", href: "/soluciones/proyectos-especiales" },
+];
 ---
 
 <header
@@ -74,77 +99,76 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       <div class="dropdown dropdown-hover">
         <label
           tabindex="0"
-          class={`hover:text-primary transition-colors cursor-pointer flex items-center gap-1 py-4 ${pathname.startsWith('/soluciones') ? 'text-primary' : 'text-white'}`}
+          class={`hover:text-primary transition-colors cursor-pointer flex items-center gap-1 py-4 ${pathname.startsWith("/soluciones") ? "text-primary" : "text-white"}`}
         >
           Soluciones <span class="text-xs opacity-50">+</span>
         </label>
-        <ul
+        <div
           tabindex="0"
-          class="dropdown-content z-[1] menu p-2 shadow-2xl bg-[#1a1c22] border border-white/5 rounded-box w-64"
+          class="dropdown-content z-[1] p-10 shadow-2xl bg-[#1a1c22]/98 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] w-[850px] -left-[350px] mt-2"
         >
-          <li>
-            <a
-              href="/soluciones/internet-dedicado"
-              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-dedicado' ? 'text-primary bg-white/5' : ''}`}>Internet Dedicado</a
-            >
-          </li>
-          <li>
-            <a
-              href="/soluciones/internet-pyme"
-              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-pyme' ? 'text-primary bg-white/5' : ''}`}>Internet Pyme</a
-            >
-          </li>
-          <li>
-            <a
-              href="/soluciones/internet-eventos"
-              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-eventos' ? 'text-primary bg-white/5' : ''}`}>Internet Eventos</a
-            >
-          </li>
-          <li>
-            <a
-              href="/soluciones/internet-satelital"
-              class={`hover:text-primary font-bold ${pathname === '/soluciones/internet-satelital' ? 'text-primary bg-white/5' : ''}`}>Internet Satelital</a
-            >
-          </li><li>
-            <a
-              href="/soluciones/alta-disponibilidad"
-              class={`hover:text-primary font-bold ${pathname === '/soluciones/alta-disponibilidad' ? 'text-primary bg-white/5' : ''}`}>Alta Disponibilidad</a
-            >
-          </li>
-          <li>
-            <a
-              href="/soluciones/comunicaciones-unificadas"
-              class={`hover:text-primary ${pathname === '/soluciones/comunicaciones-unificadas' ? 'text-primary bg-white/5' : ''}`}>Comunicaciones Unificadas</a
-            >
-          </li>
-          <li>
-            <a href="/soluciones/red-wifi" class={`hover:text-primary ${pathname === '/soluciones/red-wifi' ? 'text-primary bg-white/5' : ''}`}
-              >Red WiFi</a
-            >
-          </li>
-          <li>
-            <a href="/soluciones/ciberseguridad" class={`hover:text-primary ${pathname === '/soluciones/ciberseguridad' ? 'text-primary bg-white/5' : ''}`}
-              >Ciberseguridad</a
-            >
-          </li>
-          <li>
-            <a href="/soluciones/servicios-tics" class={`hover:text-primary ${pathname === '/soluciones/servicios-tics' ? 'text-primary bg-white/5' : ''}`}
-              >Servicios Tic's</a
-            >
-          </li>
-          <li>
-            <a href="/soluciones/sd-wan" class={`hover:text-primary ${pathname === '/soluciones/sd-wan' ? 'text-primary bg-white/5' : ''}`}>SD-WAN</a>
-          </li>
-          <li>
-            <a href="/soluciones/video-vigilancia" class={`hover:text-primary ${pathname === '/soluciones/video-vigilancia' ? 'text-primary bg-white/5' : ''}`}
-              >Video Vigilancia</a
-            >
-          </li><li>
-            <a href="/soluciones/data-centers" class={`hover:text-primary ${pathname === '/soluciones/data-centers' ? 'text-primary bg-white/5' : ''}`}
-              >Data Centers</a
-            >
-          </li>
-        </ul>
+          <div class="grid grid-cols-3 gap-16">
+            <!-- Conectividad -->
+            <div class="flex flex-col gap-8">
+              <div class="flex items-center gap-3 pb-4 border-b border-primary/40 relative">
+                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary"></div>
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <span class="font-black italic uppercase tracking-[0.1em] text-white text-lg">Conectividad</span>
+              </div>
+              <ul class="flex flex-col gap-4">
+                {connectivity.map(item => (
+                  <li>
+                    <a href={item.href} class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? 'text-primary' : ''}`}>
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Servicios TI -->
+            <div class="flex flex-col gap-8">
+              <div class="flex items-center gap-3 pb-4 border-b border-primary/40 relative">
+                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary"></div>
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+                </div>
+                <span class="font-black italic uppercase tracking-[0.1em] text-white text-lg">Servicios TI</span>
+              </div>
+              <ul class="flex flex-col gap-4">
+                {tiServices.map(item => (
+                  <li>
+                    <a href={item.href} class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? 'text-primary' : ''}`}>
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Especializados -->
+            <div class="flex flex-col gap-8">
+              <div class="flex items-center gap-3 pb-4 border-b border-primary/40 relative">
+                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary"></div>
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="font-black italic uppercase tracking-[0.1em] text-white text-lg">Especializados</span>
+              </div>
+              <ul class="flex flex-col gap-4">
+                {specialized.map(item => (
+                  <li>
+                    <a href={item.href} class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? 'text-primary' : ''}`}>
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
 
       <a
