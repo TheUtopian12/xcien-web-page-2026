@@ -14,7 +14,7 @@
       >
         {
           [1, 2].map(() => (
-            <div class="flex items-center gap-24">
+            <div class="flex items-center gap-24 flex-shrink-0">
               <img
                 src="/logos/logos xcien-01.png"
                 alt="Partner"
@@ -118,14 +118,17 @@
     display: flex;
     width: max-content;
     animation: marquee 60s linear infinite;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   @keyframes marquee {
     0% {
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
     }
   }
 </style>

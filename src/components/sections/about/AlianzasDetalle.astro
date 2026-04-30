@@ -86,10 +86,10 @@ const partners = [
         <div class="grid grid-cols-3 gap-6 h-full">
           {/* Column 1 */}
           <div class="relative h-full overflow-hidden">
-            <div class="flex flex-col gap-6 animate-marquee-vertical-up">
+            <div class="flex flex-col gap-6 animate-marquee-vertical-up will-change-transform">
               {
                 [1, 2].map(() => (
-                  <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-6 flex-shrink-0">
                     {[1, 2, 3, 4, 5, 6].map((num) => (
                       <div class="relative group">
                         <div class="aspect-square rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-8 hover:bg-white/[0.07] hover:border-primary/30 transition-all duration-500">
@@ -114,10 +114,10 @@ const partners = [
 
           {/* Column 2 */}
           <div class="relative h-full overflow-hidden mt-12">
-            <div class="flex flex-col gap-6 animate-marquee-vertical-down">
+            <div class="flex flex-col gap-6 animate-marquee-vertical-down will-change-transform">
               {
                 [1, 2].map(() => (
-                  <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-6 flex-shrink-0">
                     {[7, 8, 9, 10, 11, 12].map((num) => (
                       <div class="aspect-square rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-8 hover:bg-white/[0.07] hover:border-primary/30 transition-all duration-500 group">
                         <img
@@ -136,11 +136,11 @@ const partners = [
           {/* Column 3 */}
           <div class="relative h-full overflow-hidden">
             <div
-              class="flex flex-col gap-6 animate-marquee-vertical-up [animation-duration:45s]"
+              class="flex flex-col gap-6 animate-marquee-vertical-up will-change-transform [animation-duration:45s]"
             >
               {
                 [1, 2].map(() => (
-                  <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-6 flex-shrink-0">
                     {[13, 14, 15, 16, 17, 18].map((num) => (
                       <div class="aspect-square rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-8 hover:bg-white/[0.07] hover:border-primary/30 transition-all duration-500 group">
                         <img
@@ -164,27 +164,35 @@ const partners = [
 <style>
   .animate-marquee-vertical-up {
     animation: marquee-up 35s linear infinite;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .animate-marquee-vertical-down {
     animation: marquee-down 45s linear infinite;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .will-change-transform {
+    will-change: transform;
   }
 
   @keyframes marquee-up {
     0% {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translateY(-50%);
+      transform: translate3d(0, -50%, 0);
     }
   }
 
   @keyframes marquee-down {
     0% {
-      transform: translateY(-50%);
+      transform: translate3d(0, -50%, 0);
     }
     100% {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>
