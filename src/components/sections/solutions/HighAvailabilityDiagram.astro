@@ -98,43 +98,15 @@ const { transparent = false } = Astro.props;
           <!-- Central Device -->
           <div class="relative group">
             <div
-              class="absolute -inset-1 bg-primary/20 blur-2xl rounded-3xl opacity-0 group-hover:opacity-100 transition duration-700"
+              class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition duration-700"
             >
             </div>
-            <div
-              class="relative w-[340px] sm:w-[420px] h-32 bg-[#1a1c22] border border-white/10 rounded-2xl flex items-center justify-between px-8 shadow-2xl overflow-hidden"
-            >
-              <!-- Device Details -->
-              <div class="flex items-center gap-6">
-                <!-- Logo stylized -->
-                <div
-                  class="text-primary opacity-80 group-hover:opacity-100 transition-opacity"
-                >
-                  <img src="../../../public/Logo.png" class="w-12" alt="" />
-                </div>
-              </div>
-
-              <!-- Ports -->
-              <div class="flex gap-3">
-                <div class="port"></div>
-                <div class="port"></div>
-                <div class="port"></div>
-              </div>
-
-              <!-- Status LEDs -->
-              <div class="flex flex-col gap-2">
-                <div
-                  class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(101,212,110,0.8)]"
-                >
-                </div>
-                <div class="w-1.5 h-1.5 rounded-full bg-primary/40"></div>
-              </div>
-
-              <!-- Glossy overlay -->
-              <div
-                class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"
-              >
-              </div>
+            <div class="relative w-[340px] sm:w-[480px] transition-transform duration-500 group-hover:scale-105">
+              <img 
+                src="/assets/router-xcien.png" 
+                class="w-full h-auto drop-shadow-[0_0_20px_rgba(101,212,110,0.3)]" 
+                alt="Router Xcien"
+              />
             </div>
           </div>
 
