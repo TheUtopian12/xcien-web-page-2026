@@ -5,7 +5,7 @@ interface Props {
   title: string;
   greenTitle?: string;
   description: string;
-  variant?: 'fiber' | 'wave' | 'cyber' | 'nodes';
+  variant?: 'fiber' | 'wave' | 'cyber' | 'prisms' | 'satellite';
 }
 
 const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
@@ -240,15 +240,37 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       }
     }
 
-    // --- Nodes & Satellite Variants (Plexus) ---
+    // --- Prisms & Satellite Variants ---
+    let prisms: any[] = [];
     let nodes: any[] = [];
-    if (variant === 'nodes' || variant === 'satellite') {
-      const count = isMobile ? 40 : (variant === 'satellite' ? 120 : 80);
+
+    if (variant === 'prisms') {
+      const count = isMobile ? 8 : 15;
+      for (let i = 0; i < count; i++) {
+        prisms.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          z: Math.random() * 500,
+          size: isMobile ? 30 + Math.random() * 40 : 40 + Math.random() * 80,
+          rx: Math.random() * Math.PI,
+          ry: Math.random() * Math.PI,
+          rz: Math.random() * Math.PI,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          vrx: (Math.random() - 0.5) * 0.01,
+          vry: (Math.random() - 0.5) * 0.01,
+          color: '34, 197, 94'
+        });
+      }
+    }
+
+    if (variant === 'satellite') {
+      const count = isMobile ? 40 : 120;
       for (let i = 0; i < count; i++) {
         nodes.push({
           x: Math.random() * w, y: Math.random() * h,
-          vx: (Math.random() - 0.5) * (variant === 'satellite' ? 0.8 : 0.4), 
-          vy: (Math.random() - 0.5) * (variant === 'satellite' ? 0.8 : 0.4),
+          vx: (Math.random() - 0.5) * 0.8, 
+          vy: (Math.random() - 0.5) * 0.8,
           size: Math.random() * 2 + 1
         });
       }
@@ -282,7 +304,6 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
           }
           else if (f.state === 'hold') { f.hold--; if(f.hold<=0) f.state='fade'; }
           else { f.alpha -= f.fSpd; if(f.alpha<=0) {
-            // Re-create logic
             f.side = Math.random() > 0.5 ? 'left' : 'right';
             f.yO = (Math.random() - 0.5) * 2;
             f.amp = 10 + Math.random() * 20;
@@ -357,17 +378,57 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
         });
       }
 
-      if (variant === 'nodes' || variant === 'satellite') {
+      if (variant === 'prisms') {
+        prisms.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          p.rx += p.vrx; p.ry += p.vry;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+
+          const s = p.size;
+          const points = [
+            [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1],
+            [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1]
+          ].map(pt => {
+            let [x, y, z] = pt;
+            // Rotate X
+            let ny = y * Math.cos(p.rx) - z * Math.sin(p.rx);
+            let nz = y * Math.sin(p.rx) + z * Math.cos(p.rx);
+            y = ny; z = nz;
+            // Rotate Y
+            let nx = x * Math.cos(p.ry) + z * Math.sin(p.ry);
+            nz = -x * Math.sin(p.ry) + z * Math.cos(p.ry);
+            x = nx; z = nz;
+            return [x * s/2 + p.x, y * s/2 + p.y];
+          });
+
+          ctx.beginPath();
+          ctx.lineWidth = isMobile ? 1 : 1.5;
+          ctx.strokeStyle = `rgba(${p.color}, 0.4)`;
+          if (!isMobile) {
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = `rgba(${p.color}, 0.8)`;
+          }
+          // Draw cube edges
+          const edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+          edges.forEach(([i, j]) => {
+            ctx.moveTo(points[i][0], points[i][1]);
+            ctx.lineTo(points[j][0], points[j][1]);
+          });
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        });
+      }
+
+      if (variant === 'satellite') {
         const color = '34, 197, 94';
-        const distLimit = isMobile ? 6000 : (variant === 'satellite' ? 15000 : 10000);
-        
+        const distLimit = isMobile ? 6000 : 15000;
         nodes.forEach(n => {
           n.x += n.vx; n.y += n.vy;
           if(n.x<0 || n.x>w) n.vx *= -1; if(n.y<0 || n.y>h) n.vy *= -1;
           ctx.fillStyle = `rgba(${color}, 0.8)`;
           ctx.beginPath(); ctx.arc(n.x, n.y, n.size, 0, Math.PI*2); ctx.fill();
         });
-        
         for(let i=0; i<nodes.length; i++) {
           for(let j=i+1; j<nodes.length; j++) {
             const dx = nodes[i].x - nodes[j].x;
