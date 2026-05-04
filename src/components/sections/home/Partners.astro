@@ -15,96 +15,15 @@
         {
           [1, 2].map(() => (
             <div class="flex items-center gap-24 flex-shrink-0">
-              <img
-                src="/logos/logos xcien-01.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-02.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-03.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-04.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-05.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-06.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-07.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-08.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-09.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-10.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-11.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-12.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-13.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-14.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-15.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-16.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-17.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
-              <img
-                src="/logos/logos xcien-18.png"
-                alt="Partner"
-                class="h-28 md:h-36 object-contain"
-              />
+              {Array.from({ length: 18 }).map((_, i) => (
+                <a href="/alianzas" class="hover:scale-110 transition-transform duration-500 block">
+                  <img
+                    src={`/logos/logos xcien-${(i + 1).toString().padStart(2, '0')}.png`}
+                    alt={`Partner ${i + 1}`}
+                    class="h-28 md:h-36 object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  />
+                </a>
+              ))}
             </div>
           ))
         }

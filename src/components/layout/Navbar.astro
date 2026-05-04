@@ -12,18 +12,27 @@ const connectivity = [
 ];
 
 const tiServices = [
-  { name: "Comunicaciones Unificadas", href: "/soluciones/comunicaciones-unificadas" },
+  {
+    name: "Comunicaciones Unificadas",
+    href: "/soluciones/comunicaciones-unificadas",
+  },
   { name: "Red WiFi", href: "/soluciones/red-wifi" },
   { name: "Ciberseguridad", href: "/soluciones/ciberseguridad" },
   { name: "Servicios Tic's", href: "/soluciones/servicios-tics" },
   { name: "Video Vigilancia", href: "/soluciones/video-vigilancia" },
-  { name: "Servicios Administrados", href: "/soluciones/servicios-administrados" },
+  {
+    name: "Servicios Administrados",
+    href: "/soluciones/servicios-administrados",
+  },
 ];
 
 const specialized = [
   { name: "Alta Disponibilidad", href: "/soluciones/alta-disponibilidad" },
   { name: "Data Centers", href: "/soluciones/data-centers" },
-  { name: "Inteligencia Artificial", href: "/soluciones/inteligencia-artificial" },
+  {
+    name: "Inteligencia Artificial",
+    href: "/soluciones/inteligencia-artificial",
+  },
   { name: "Proyectos Especiales", href: "/soluciones/proyectos-especiales" },
 ];
 ---
@@ -57,7 +66,11 @@ const specialized = [
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2">
-        <img src="/Logo.png" class="w-12 h-12 object-contain" alt="Xcien Logo" />
+        <img
+          src="/Logo.png"
+          class="w-12 h-12 object-contain"
+          alt="Xcien Logo"
+        />
 
         <span
           class="text-xl font-light tracking-tight text-white hidden sm:block"
@@ -65,6 +78,29 @@ const specialized = [
           <span class="font-extrabold">x</span>cien</span
         >
       </a>
+      <!-- Badge next to logo -->
+      <div
+        class="animate-pulse hidden lg:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest"
+      >
+        Conectividad Inteligente <span
+          ><svg
+            class="w-4 h-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 12H5m14 0-4 4m4-4-4-4"></path>
+          </svg>
+        </span>
+      </div>
     </div>
 
     <!-- Desktop Menu -->
@@ -72,7 +108,7 @@ const specialized = [
       <div class="dropdown dropdown-hover">
         <label
           tabindex="0"
-          class={`hover:text-primary transition-colors cursor-pointer flex items-center gap-1 py-4 ${['/quienes-somos', '/alianzas', '/eventos', '/blog'].some(p => pathname.startsWith(p)) ? 'text-primary' : 'text-white'}`}
+          class={`hover:text-primary transition-colors cursor-pointer flex items-center gap-1 py-4 ${["/quienes-somos", "/alianzas", "/eventos", "/blog"].some((p) => pathname.startsWith(p)) ? "text-primary" : "text-white"}`}
         >
           XCIEN <span class="text-xs opacity-50">+</span>
         </label>
@@ -81,18 +117,39 @@ const specialized = [
           class="dropdown-content z-[1] menu p-2 shadow-2xl bg-[#1a1c22] border border-white/5 rounded-box w-52"
         >
           <li>
-            <a href="/quienes-somos" class={`hover:text-primary ${pathname === '/quienes-somos' ? 'text-primary bg-white/5' : ''}`}>Quiénes Somos</a
+            <a
+              href="/quienes-somos"
+              class={`hover:text-primary ${pathname === "/quienes-somos" ? "text-primary bg-white/5" : ""}`}
+              >Quiénes Somos</a
             >
           </li>
-          <li><a href="/alianzas" class={`hover:text-primary ${pathname === '/alianzas' ? 'text-primary bg-white/5' : ''}`}>Alianzas</a></li>
-          <li><a href="/eventos" class={`hover:text-primary ${pathname === '/eventos' ? 'text-primary bg-white/5' : ''}`}>Eventos</a></li>
-          <li><a href="/blog" class={`hover:text-primary ${pathname === '/blog' ? 'text-primary bg-white/5' : ''}`}>Blog</a></li>
+          <li>
+            <a
+              href="/alianzas"
+              class={`hover:text-primary ${pathname === "/alianzas" ? "text-primary bg-white/5" : ""}`}
+              >Alianzas Estratégicas</a
+            >
+          </li>
+          <li>
+            <a
+              href="/eventos"
+              class={`hover:text-primary ${pathname === "/eventos" ? "text-primary bg-white/5" : ""}`}
+              >Eventos</a
+            >
+          </li>
+          <li>
+            <a
+              href="/blog"
+              class={`hover:text-primary ${pathname === "/blog" ? "text-primary bg-white/5" : ""}`}
+              >Blog</a
+            >
+          </li>
         </ul>
       </div>
 
       <a
         href="/mapa-de-cobertura"
-        class={`hover:text-primary transition-colors flex items-center gap-1 py-4 ${pathname === '/mapa-de-cobertura' ? 'text-primary' : 'text-white'}`}
+        class={`hover:text-primary transition-colors flex items-center gap-1 py-4 ${pathname === "/mapa-de-cobertura" ? "text-primary" : "text-white"}`}
         >Mapa de Cobertura</a
       >
 
@@ -110,61 +167,137 @@ const specialized = [
           <div class="grid grid-cols-3 gap-16">
             <!-- Conectividad -->
             <div class="flex flex-col gap-8">
-              <div class="flex items-center gap-3 pb-4 border-b border-primary/40 relative">
-                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary"></div>
-                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+              <div
+                class="flex items-center gap-3 pb-4 border-b border-primary/40 relative"
+              >
+                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary">
                 </div>
-                <span class="font-black italic uppercase tracking-[0.1em] text-white text-lg">Conectividad</span>
+                <div
+                  class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><circle cx="12" cy="12" r="10"></circle><circle
+                      cx="12"
+                      cy="12"
+                      r="2"></circle></svg
+                  >
+                </div>
+                <span
+                  class="font-black italic uppercase tracking-[0.1em] text-white text-lg"
+                  >Conectividad</span
+                >
               </div>
               <ul class="flex flex-col gap-4">
-                {connectivity.map(item => (
-                  <li>
-                    <a href={item.href} class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? 'text-primary' : ''}`}>
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
+                {
+                  connectivity.map((item) => (
+                    <li>
+                      <a
+                        href={item.href}
+                        class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? "text-primary" : ""}`}>
+                        {item.name}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
 
             <!-- Servicios TI -->
             <div class="flex flex-col gap-8">
-              <div class="flex items-center gap-3 pb-4 border-b border-primary/40 relative">
-                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary"></div>
-                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+              <div
+                class="flex items-center gap-3 pb-4 border-b border-primary/40 relative"
+              >
+                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary">
                 </div>
-                <span class="font-black italic uppercase tracking-[0.1em] text-white text-lg">Servicios TI</span>
+                <div
+                  class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle
+                      cx="17"
+                      cy="17"
+                      r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg
+                  >
+                </div>
+                <span
+                  class="font-black italic uppercase tracking-[0.1em] text-white text-lg"
+                  >Servicios TI</span
+                >
               </div>
               <ul class="flex flex-col gap-4">
-                {tiServices.map(item => (
-                  <li>
-                    <a href={item.href} class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? 'text-primary' : ''}`}>
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
+                {
+                  tiServices.map((item) => (
+                    <li>
+                      <a
+                        href={item.href}
+                        class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? "text-primary" : ""}`}>
+                        {item.name}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
 
             <!-- Especializados -->
             <div class="flex flex-col gap-8">
-              <div class="flex items-center gap-3 pb-4 border-b border-primary/40 relative">
-                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary"></div>
-                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div
+                class="flex items-center gap-3 pb-4 border-b border-primary/40 relative"
+              >
+                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-primary">
                 </div>
-                <span class="font-black italic uppercase tracking-[0.1em] text-white text-lg">Especializados</span>
+                <div
+                  class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                    ></path></svg
+                  >
+                </div>
+                <span
+                  class="font-black italic uppercase tracking-[0.1em] text-white text-lg"
+                  >Especializados</span
+                >
               </div>
               <ul class="flex flex-col gap-4">
-                {specialized.map(item => (
-                  <li>
-                    <a href={item.href} class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? 'text-primary' : ''}`}>
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
+                {
+                  specialized.map((item) => (
+                    <li>
+                      <a
+                        href={item.href}
+                        class={`text-white/50 hover:text-primary transition-all hover:translate-x-1 inline-block text-[15px] font-semibold ${pathname === item.href ? "text-primary" : ""}`}>
+                        {item.name}
+                      </a>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
           </div>
@@ -173,7 +306,7 @@ const specialized = [
 
       <a
         href="/contacto"
-        class={`hover:text-primary transition-colors flex items-center gap-1 ${pathname === '/contacto' ? 'text-primary' : 'text-white'}`}
+        class={`hover:text-primary transition-colors flex items-center gap-1 ${pathname === "/contacto" ? "text-primary" : "text-white"}`}
         >Contacto <span class="text-xs opacity-50">+</span></a
       >
       <a
@@ -184,7 +317,7 @@ const specialized = [
     </div>
 
     <!-- CTA Button -->
-    <div class="flex items-center shrink-0">
+    <div class="hidden items-center shrink-0">
       <a
         href="https://wa.me/something"
         class="flex items-center gap-2 bg-primary text-black px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-bold hover:bg-primary/90 transition-transform hover:scale-105 shadow-lg shadow-primary/20"

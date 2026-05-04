@@ -109,91 +109,208 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
           <li>
             <a
               href="/mapa-de-cobertura"
-              class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname === '/mapa-de-cobertura' ? 'text-primary bg-white/5' : 'text-white'}`}
+              class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname === "/mapa-de-cobertura" ? "text-primary bg-white/5" : "text-white"}`}
               >Mapa de Cobertura</a
             >
           </li>
           <li>
-            <details open={['/quienes-somos', '/alianzas', '/eventos', '/blog'].some(p => pathname.startsWith(p))}>
+            <details
+              open={["/quienes-somos", "/alianzas", "/eventos", "/blog"].some(
+                (p) => pathname.startsWith(p)
+              )}
+            >
               <summary
-                class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${['/quienes-somos', '/alianzas', '/eventos', '/blog'].some(p => pathname.startsWith(p)) ? 'text-primary' : 'text-white'}`}
+                class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${["/quienes-somos", "/alianzas", "/eventos", "/blog"].some((p) => pathname.startsWith(p)) ? "text-primary" : "text-white"}`}
                 >XCIEN</summary
               >
               <ul class="pl-4">
                 <li>
                   <a
                     href="/quienes-somos"
-                    class={`py-2 hover:opacity-100 ${pathname === '/quienes-somos' ? 'text-primary opacity-100' : 'opacity-70'}`}>Quiénes Somos</a
+                    class={`py-2 hover:opacity-100 ${pathname === "/quienes-somos" ? "text-primary opacity-100" : "opacity-70"}`}
+                    >Quiénes Somos</a
                   >
                 </li>
                 <li>
-                  <a href="/alianzas" class={`py-2 hover:opacity-100 ${pathname === '/alianzas' ? 'text-primary opacity-100' : 'opacity-70'}`}
-                    >Alianzas</a
+                  <a
+                    href="/alianzas"
+                    class={`py-2 hover:opacity-100 ${pathname === "/alianzas" ? "text-primary opacity-100" : "opacity-70"}`}
+                    >Alianzas Estratégicas</a
                   >
                 </li>
                 <li>
-                  <a href="/eventos" class={`py-2 hover:opacity-100 ${pathname === '/eventos' ? 'text-primary opacity-100' : 'opacity-70'}`}
+                  <a
+                    href="/eventos"
+                    class={`py-2 hover:opacity-100 ${pathname === "/eventos" ? "text-primary opacity-100" : "opacity-70"}`}
                     >Eventos</a
                   >
                 </li>
                 <li>
-                  <a href="/blog" class={`py-2 hover:opacity-100 ${pathname === '/blog' ? 'text-primary opacity-100' : 'opacity-70'}`}
+                  <a
+                    href="/blog"
+                    class={`py-2 hover:opacity-100 ${pathname === "/blog" ? "text-primary opacity-100" : "opacity-70"}`}
                     >Blog</a
                   >
                 </li>
               </ul>
             </details>
-          <li>
-            <details open={pathname.startsWith('/soluciones')}>
-              <summary
-                class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname.startsWith('/soluciones') ? 'text-primary' : 'text-white'}`}
-                >Soluciones</summary
-              >
-              <ul class="pl-4">
-                <li>
-                  <details>
-                    <summary class="py-2 opacity-70 hover:opacity-100 font-bold">Conectividad</summary>
-                    <ul class="pl-4">
-                      <li><a href="/soluciones/internet-dedicado" class="py-2 opacity-60 hover:opacity-100 block text-sm">Internet Dedicado</a></li>
-                      <li><a href="/soluciones/internet-pyme" class="py-2 opacity-60 hover:opacity-100 block text-sm">Internet Pyme</a></li>
-                      <li><a href="/soluciones/internet-satelital" class="py-2 opacity-60 hover:opacity-100 block text-sm">Internet Satelital</a></li>
-                      <li><a href="/soluciones/internet-eventos" class="py-2 opacity-60 hover:opacity-100 block text-sm">Internet Eventos</a></li>
-                      <li><a href="/soluciones/sd-wan" class="py-2 opacity-60 hover:opacity-100 block text-sm">SD-WAN</a></li>
-                      <li><a href="/soluciones/conectividad" class="py-2 opacity-60 hover:opacity-100 block text-sm">Conectividad</a></li>
-                    </ul>
-                  </details>
-                </li>
-                <li>
-                  <details>
-                    <summary class="py-2 opacity-70 hover:opacity-100 font-bold">Servicios TI</summary>
-                    <ul class="pl-4">
-                      <li><a href="/soluciones/comunicaciones-unificadas" class="py-2 opacity-60 hover:opacity-100 block text-sm">Comunicaciones Unificadas</a></li>
-                      <li><a href="/soluciones/red-wifi" class="py-2 opacity-60 hover:opacity-100 block text-sm">Red WiFi</a></li>
-                      <li><a href="/soluciones/ciberseguridad" class="py-2 opacity-60 hover:opacity-100 block text-sm">Ciberseguridad</a></li>
-                      <li><a href="/soluciones/servicios-tics" class="py-2 opacity-60 hover:opacity-100 block text-sm">Servicios Tic's</a></li>
-                      <li><a href="/soluciones/video-vigilancia" class="py-2 opacity-60 hover:opacity-100 block text-sm">Video Vigilancia</a></li>
-                      <li><a href="/soluciones/servicios-administrados" class="py-2 opacity-60 hover:opacity-100 block text-sm">Servicios Administrados</a></li>
-                    </ul>
-                  </details>
-                </li>
-                <li>
-                  <details>
-                    <summary class="py-2 opacity-70 hover:opacity-100 font-bold">Especializados</summary>
-                    <ul class="pl-4">
-                      <li><a href="/soluciones/alta-disponibilidad" class="py-2 opacity-60 hover:opacity-100 block text-sm">Alta Disponibilidad</a></li>
-                      <li><a href="/soluciones/data-centers" class="py-2 opacity-60 hover:opacity-100 block text-sm">Data Centers</a></li>
-                      <li><a href="/soluciones/inteligencia-artificial" class="py-2 opacity-60 hover:opacity-100 block text-sm">Inteligencia Artificial</a></li>
-                      <li><a href="/soluciones/proyectos-especiales" class="py-2 opacity-60 hover:opacity-100 block text-sm">Proyectos Especiales</a></li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>
-            </details>
-          </li>      </li>
+            <li>
+              <details open={pathname.startsWith("/soluciones")}>
+                <summary
+                  class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname.startsWith("/soluciones") ? "text-primary" : "text-white"}`}
+                  >Soluciones</summary
+                >
+                <ul class="pl-4">
+                  <li>
+                    <details>
+                      <summary
+                        class="py-2 opacity-70 hover:opacity-100 font-bold"
+                        >Conectividad</summary
+                      >
+                      <ul class="pl-4">
+                        <li>
+                          <a
+                            href="/soluciones/internet-dedicado"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Internet Dedicado</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/internet-pyme"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Internet Pyme</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/internet-satelital"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Internet Satelital</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/internet-eventos"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Internet Eventos</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/sd-wan"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >SD-WAN</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/conectividad"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Conectividad</a
+                          >
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary
+                        class="py-2 opacity-70 hover:opacity-100 font-bold"
+                        >Servicios TI</summary
+                      >
+                      <ul class="pl-4">
+                        <li>
+                          <a
+                            href="/soluciones/comunicaciones-unificadas"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Comunicaciones Unificadas</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/red-wifi"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Red WiFi</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/ciberseguridad"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Ciberseguridad</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/servicios-tics"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Servicios Tic's</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/video-vigilancia"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Video Vigilancia</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/servicios-administrados"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Servicios Administrados</a
+                          >
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary
+                        class="py-2 opacity-70 hover:opacity-100 font-bold"
+                        >Especializados</summary
+                      >
+                      <ul class="pl-4">
+                        <li>
+                          <a
+                            href="/soluciones/alta-disponibilidad"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Alta Disponibilidad</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/data-centers"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Data Centers</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/inteligencia-artificial"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Inteligencia Artificial</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/proyectos-especiales"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Proyectos Especiales</a
+                          >
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          </li>
           <li>
             <a
               href="/contacto"
-              class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname === '/contacto' ? 'text-primary bg-white/5' : 'text-white'}`}
+              class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname === "/contacto" ? "text-primary bg-white/5" : "text-white"}`}
               >Contacto</a
             >
           </li>
