@@ -84,7 +84,15 @@ const faqs = [
   <PageHeroWithForm 
     title="Servicios"
     greenTitle="Tic's"
-    description="Los Hackers están siempre al acecho, ¿tu red está preparada para ellos?, con Xcien puedes tener tu información protegida, segura y a la mano."
+    description={`
+      <p>Los Hackers están siempre al acecho, ¿tu red está preparada para ellos?, con Xcien puedes tener tu información protegida, segura y a la mano.</p>
+      <p><strong>Ideal para:</strong></p>
+      <ul class="space-y-2 text-sm md:text-base">
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas chicas, medianas y grandes/corporativos de cualquier sector o industria.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas que no cuenten o tengan limitado el depto. Ti o redes.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas que busquen la mejora continua sin perjudicar sus operaciones diarias.</li>
+      </ul>
+    `}
   />
   
   <SpecialFeatures features={specialFeatures} />

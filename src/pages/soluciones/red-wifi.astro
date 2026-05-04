@@ -79,9 +79,24 @@ const faqs = [
 
 <Layout title="Red WiFi | Xcien">
   <PageHeroWithForm 
-    title="Red"
-    greenTitle="WiFi"
-    description="Buscas potenciar la información de los invitados a tu evento, utiliza Nuestra plataforma y Red para lograr eso y mucho más."
+    title="Red WiFi"
+    greenTitle=""
+    description={`
+      <p>Buscas potenciar la información de los invitados a tu evento, utiliza Nuestra plataforma y Red para lograr eso y mucho más.</p>
+      <p><strong>Ideal para:</strong></p>
+      <ul class="space-y-2 text-sm md:text-base">
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas con necesidad de cobertura WiFi óptima dentro de sus instalaciones</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas con necesidad de movilidad de sus usuarios dentro de sus instalaciones
+          <ul class="ml-6 mt-2 space-y-1 opacity-80">
+            <li>a. Plantas o naves industriales</li>
+            <li>b. Colegios, escuelas o Campus</li>
+            <li>c. Centros deportivos/recreativos</li>
+            <li>d. Plazas comerciales</li>
+          </ul>
+        </li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Servicios eventuales</li>
+      </ul>
+    `}
   />
   
   <SpecialFeatures features={specialFeatures} />

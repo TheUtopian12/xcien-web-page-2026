@@ -81,7 +81,16 @@ const faqs = [
   <PageHeroWithForm 
     title="Alta"
     greenTitle="Disponibilidad"
-    description="La solución de Alta Disponibilidad minimiza y reduce un posible corte de servicio, derivado de una falla o degradación de alguno de los proveedores de Internet conectados al equipo Alta Disponibilidad. Con esto se garantiza la continuidad de forma rápida y automática."
+    description={`
+      <p>La solución de Alta Disponibilidad minimiza y reduce un posible corte de servicio, derivado de una falla o degradación de alguno de los proveedores de internet conectados al equipo Alta Disponibilidad. Con esto se garantiza la continuidad operativa de forma rápida y automática.</p>
+      <p><strong>Ideal para:</strong></p>
+      <ul class="space-y-2 text-sm md:text-base">
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas con necesidad de conexión constante.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas con giros críticos dependientes de conexiones a internet.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas con departamentos de Ti limitados.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Empresas con múltiples sucursales/ubicaciones con operaciones transaccionales.</li>
+      </ul>
+    `}
   />
   
   <SpecialFeatures features={specialFeatures} />

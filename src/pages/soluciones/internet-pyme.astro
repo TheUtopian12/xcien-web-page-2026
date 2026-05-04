@@ -81,7 +81,18 @@ const faqs = [
   <PageHeroWithForm 
     title="Internet"
     greenTitle="Pyme"
-    description="Una solución personalizada de Internet de Alta Disponibilidad, para cualquier tamaño de negocio o proyecto, la respuesta que buscabas."
+    description={`
+      <p>Una solución personalizada de Internet de Alta Disponibilidad, para cualquier tamaño de negocio o proyecto, la respuesta que buscabas.</p>
+      <p><strong>Ideal para: Clientes pequeños, medianos, con necesidad de un internet estable y económico como:</strong></p>
+      <ul class="space-y-2 text-sm md:text-base">
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Trabajo Remoto.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Oficinas, Despachos y Tiendas/Puntos de Venta pequeñas (con menor de 50 dispositivos).</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Call Centers, Agencias de Cobranza.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Estudios de MKT, Audiovisuales.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> SPA's, Barberías, Salones de Belleza.</li>
+        <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Comercios, Cafeterías, Restaurantes.</li>
+      </ul>
+    `}
   />
   
   <SpecialFeatures features={specialFeatures} />

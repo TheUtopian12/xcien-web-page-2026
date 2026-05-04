@@ -21,12 +21,11 @@ const { title, greenTitle, description } = Astro.props;
     <!-- Left: Content -->
     <div>
       <h1 class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-tight italic uppercase">
-        {title} <br/>
-        <span class="text-primary">{greenTitle}</span>
+        {title} {greenTitle && <><br/><span class="text-primary">{greenTitle}</span></>}
       </h1>
-      <p class="text-xl text-white/70 leading-relaxed max-w-xl">
-        {description}
-      </p>
+      <div class="text-xl text-white/70 leading-relaxed max-w-xl space-y-4">
+        <Fragment set:html={description} />
+      </div>
     </div>
 
     <!-- Right: Form -->
