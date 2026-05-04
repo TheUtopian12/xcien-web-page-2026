@@ -67,7 +67,10 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
       <!-- Map Component -->
       <div class="relative group max-w-5xl mx-auto">
         <div
-          class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-blue-500/20 rounded-[3rem] blur-3xl opacity-20 group-hover:opacity-30 transition duration-1000"
+          class="absolute -inset-20 bg-primary/10 rounded-full blur-[120px] opacity-50 pointer-events-none"
+        ></div>
+        <div
+          class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-[#4fb156]/30 rounded-[3rem] blur-3xl opacity-20 group-hover:opacity-40 transition duration-1000"
         >
         </div>
         <div
@@ -87,22 +90,22 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
           [
             {
               title: "Fibra Óptica",
-              desc: "Enlaces simétricos con latencia mínima para aplicaciones críticas.",
+              desc: "Potencia tu empresa con enlaces de alta capacidad. Velocidad simétrica y latencia mínima para que tus operaciones críticas nunca se detengan.",
               icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><path d="M4 14.5a3.5 3.5 0 1 0 7 0h-7Z"/><path d="M12 2v2"/><path d="m16.2 16.2 1.4 1.4"/><path d="M22 12h-2"/><path d="m17.6 7.8-1.4 1.4"/><path d="M5 8.7V5"/><path d="m5 15.3-2 2h3"/><path d="M11 20h2"/></svg>',
             },
             {
               title: "Microondas Carrier Class",
-              desc: "Instalación rápida con tecnología que compite en velocidad y estabilidad.",
+              desc: "Conectividad inalámbrica de grado corporativo con despliegue inmediato, garantizando el mismo nivel de estabilidad y ancho de banda.",
               icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-antenna"><path d="M2 12 7 2l5 10Z"/><path d="m7 2 5 10H2Z"/><path d="M12 12 17 2l5 10Z"/><path d="m17 2 5 10h-5Z"/><path d="M7 12v10"/><path d="M17 12v10"/><path d="M2 22h20"/></svg>',
             },
             {
               title: "Monitoreo Proactivo",
-              desc: "Centro de Operaciones de Red (NOC) activo las 24 horas del día.",
+              desc: "Vigilancia 24/7 desde nuestro Centro de Operaciones de Red (NOC). Anticipamos y resolvemos incidencias de red antes de que afecten a tu empresa.",
               icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>',
             },
             {
               title: "Asesores técnicos especializados",
-              desc: "Infraestructura lista para segmentación y control inteligente de tráfico.",
+              desc: "Acompañamiento de un experto en cada paso. Diseñamos redes a la medida con control inteligente de tráfico para maximizar la eficiencia de tu infraestructura.",
               icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hub"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>',
             },
           ].map((item) => (

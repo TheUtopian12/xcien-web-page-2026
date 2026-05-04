@@ -1,70 +1,90 @@
 ---
 const steps = [
-  { 
-    id: "01", 
-    title: "ESCUCHANDO TUS NECESIDADES", 
-    description: "Analizamos la infraestructura actual de tu empresa para identificar brechas de conectividad y seguridad. Ya sea que necesites un Internet Dedicado de alta capacidad o una red para eventos masivos, nuestro primer paso es entender tus objetivos críticos de negocio."
+  {
+    id: "01",
+    title: "ESCUCHANDO TUS NECESIDADES",
+    description:
+      "Analizamos la infraestructura actual de tu empresa para identificar brechas de conectividad y seguridad. Ya sea que necesites un Internet Dedicado de alta capacidad o una red para eventos masivos, nuestro primer paso es entender tus objetivos críticos de negocio.",
   },
-  { 
-    id: "02", 
-    title: "SOLUCIONES A LA MEDIDA", 
-    description: "Diseñamos un ecosistema tecnológico integral que incluye desde Internet Satelital para zonas remotas hasta arquitecturas SD-WAN y Data Centers. Creamos una solución única que combina servicios de TI y videovigilancia para proteger y potenciar tu operación."
+  {
+    id: "02",
+    title: "SOLUCIONES A LA MEDIDA",
+    description:
+      "Diseñamos un ecosistema tecnológico integral que incluye desde Internet Satelital para zonas remotas hasta arquitecturas SD-WAN y Data Centers. Creamos una solución única que combina servicios de TI y videovigilancia para proteger y potenciar tu operación.",
   },
-  { 
-    id: "03", 
-    title: "ALINEAMIENTO TÁCTICO", 
-    description: "Implementamos nuestras soluciones utilizando tecnología de líderes mundiales como Cisco y Meraki. Aseguramos una transición sin fricciones mediante una configuración de Alta Disponibilidad y comunicaciones unificadas que garantizan que tu equipo esté siempre conectado y productivo."
+  {
+    id: "03",
+    title: "ALINEAMIENTO TÁCTICO",
+    description:
+      "Implementamos nuestras soluciones utilizando tecnología de líderes mundiales como Cisco y Meraki. Aseguramos una transición sin fricciones mediante una configuración de Alta Disponibilidad y comunicaciones unificadas que garantizan que tu equipo esté siempre conectado y productivo.",
   },
-  { 
-    id: "04", 
-    title: "RESULTADOS MEDIBLES", 
-    description: "Garantizamos la continuidad de tu negocio con monitoreo constante y soporte especializado en Servicios Tic's. Optimizamos tu inversión mediante indicadores claros de rendimiento, disponibilidad de red y niveles de seguridad proactiva contra amenazas digitales."
-  }
+  {
+    id: "04",
+    title: "RESULTADOS MEDIBLES",
+    description:
+      "Garantizamos la continuidad de tu negocio con monitoreo constante y soporte especializado en Servicios Tic's. Optimizamos tu inversión mediante indicadores claros de rendimiento, disponibilidad de red y niveles de seguridad proactiva contra amenazas digitales.",
+  },
 ];
 ---
 
 <section class="py-24 bg-[#0a0b0d] overflow-hidden">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl md:text-6xl font-black text-white mb-16 tracking-tight uppercase italic">Nuestro <span class="text-primary italic-none">Proceso</span></h2>
-    
+    <h2
+      class="text-4xl md:text-6xl font-black text-white mb-16 tracking-tight uppercase italic"
+    >
+      Nuestro <span class="text-primary italic-none">Proceso</span>
+    </h2>
+
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
       <!-- Left: Steps -->
       <div class="space-y-4">
-        {steps.map((step, index) => (
-          <div 
-            class="process-step group p-6 rounded-2xl border bg-white/[0.02] border-white/5 text-white cursor-pointer transition-all duration-500"
-            data-index={index}
-          >
-            <div class="flex items-center justify-between font-black uppercase tracking-widest text-sm mb-0 transition-all duration-500 group-[.active]:mb-4 group-[.active]:text-primary">
-                <span>{step.id}. {step.title}</span>
-                <span class="text-xl transition-transform duration-500 group-[.active]:rotate-45">+</span>
+        {
+          steps.map((step, index) => (
+            <div
+              class="process-step group p-6 rounded-2xl border bg-white/[0.02] border-white/5 text-white cursor-pointer transition-all duration-500"
+              data-index={index}>
+              <div class="flex items-center justify-between font-black uppercase tracking-widest text-sm mb-0 transition-all duration-500 group-[.active]:mb-4 group-[.active]:text-primary">
+                <span>
+                  {step.id}. {step.title}
+                </span>
+                <span class="text-xl transition-transform duration-500 group-[.active]:rotate-45">
+                  +
+                </span>
+              </div>
+              <div class="max-h-0 overflow-hidden transition-all duration-500 group-[.active]:max-h-40">
+                <p class="text-white/60 text-sm leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </div>
-            <div class="max-h-0 overflow-hidden transition-all duration-500 group-[.active]:max-h-40">
-              <p class="text-white/60 text-sm leading-relaxed">
-                {step.description}
-              </p>
-            </div>
-          </div>
-        ))}
-        
-        <div class="p-8 mt-12 bg-white/[0.03] rounded-3xl border border-white/5 text-xs text-white/40 leading-relaxed max-w-lg italic">
-           Nuestras soluciones se construyen sobre alianzas estratégicas con proveedores líderes de la industria como Cisco, Meraki y VMware, lo que te brinda acceso a servicios y tecnologías de primer nivel.
+          ))
+        }
+
+        <div
+          class="p-8 mt-12 bg-white/[0.03] rounded-3xl border border-white/5 text-xs text-white/40 leading-relaxed max-w-lg italic"
+        >
+          Nuestras soluciones se construyen sobre alianzas estratégicas con
+          proveedores líderes de la industria como Cisco, Meraki y Net2phone,
+          Peplink, Ubiquiti, Hillstone, entre otras, lo que te brinda acceso a
+          servicios y tecnologías de primer nivel.
         </div>
       </div>
 
       <!-- Right: Circles Representation -->
       <div class="relative py-10 lg:py-20 flex justify-center">
-         <div class="absolute inset-0 bg-primary/5 blur-[120px] rounded-full"></div>
-         <div class="relative flex flex-col items-center gap-6 w-full max-w-md">
-            {steps.map((step, index) => (
-              <div 
+        <div class="absolute inset-0 bg-primary/5 blur-[120px] rounded-full">
+        </div>
+        <div class="relative flex flex-col items-center gap-6 w-full max-w-md">
+          {
+            steps.map((step, index) => (
+              <div
                 class="visual-pill w-full py-5 px-8 border border-white/10 rounded-full flex items-center justify-center text-[10px] md:text-xs uppercase font-black text-white/20 italic transition-all duration-700 ease-out"
-                data-index={index}
-              >
+                data-index={index}>
                 {step.title}
               </div>
-            ))}
-         </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
@@ -93,25 +113,25 @@ const steps = [
 
 <script>
   function initProcess() {
-    const steps = document.querySelectorAll('.process-step');
-    const pills = document.querySelectorAll('.visual-pill');
+    const steps = document.querySelectorAll(".process-step");
+    const pills = document.querySelectorAll(".visual-pill");
 
     function setActive(index) {
       steps.forEach((s, i) => {
-        if (i === index) s.classList.add('active');
-        else s.classList.remove('active');
+        if (i === index) s.classList.add("active");
+        else s.classList.remove("active");
       });
 
       pills.forEach((p, i) => {
-        if (i === index) p.classList.add('active');
-        else p.classList.remove('active');
+        if (i === index) p.classList.add("active");
+        else p.classList.remove("active");
       });
     }
 
     steps.forEach((step, index) => {
-      step.addEventListener('mouseenter', () => setActive(index));
+      step.addEventListener("mouseenter", () => setActive(index));
       // Optional: click for mobile
-      step.addEventListener('click', () => setActive(index));
+      step.addEventListener("click", () => setActive(index));
     });
 
     // Set first one active by default
@@ -120,5 +140,5 @@ const steps = [
 
   // Run on load and on astro page changes
   initProcess();
-  document.addEventListener('astro:page-load', initProcess);
+  document.addEventListener("astro:page-load", initProcess);
 </script>
