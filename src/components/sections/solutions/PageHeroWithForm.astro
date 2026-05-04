@@ -5,14 +5,19 @@ interface Props {
   title: string;
   greenTitle?: string;
   description: string;
+  variant?: 'fiber' | 'wave' | 'cyber' | 'nodes';
 }
 
-const { title, greenTitle, description } = Astro.props;
+const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
 ---
 
 <section class="relative min-h-[80vh] flex items-center overflow-hidden pt-28 pb-16" style="background: #080c1a;">
-  <!-- Animated Fiber Optic Canvas -->
-  <canvas id="fiber-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+  <!-- Dynamic Background Canvas -->
+  <canvas 
+    id="hero-canvas" 
+    class="absolute inset-0 w-full h-full z-0" 
+    data-variant={variant}
+  ></canvas>
   <!-- Overlay gradient to blend canvas with content area -->
   <div class="absolute inset-0 z-0 bg-gradient-to-r from-[#080c1a]/95 via-[#080c1a]/60 to-[#080c1a]/30 pointer-events-none"></div>
   <div class="absolute inset-0 z-0 bg-gradient-to-t from-[#080c1a]/80 via-transparent to-[#080c1a]/40 pointer-events-none"></div>
@@ -109,322 +114,289 @@ const { title, greenTitle, description } = Astro.props;
 </section>
 
 <script>
-  // Form submit
-  const form = document.querySelector('form');
-  const modal = document.getElementById('form_success') as HTMLDialogElement;
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    modal?.showModal();
-    (form as HTMLFormElement).reset();
-    // Reset custom select
-    const selectedValue = document.getElementById('selected-value');
-    if (selectedValue) selectedValue.textContent = 'Selecciona una opción';
-  });
-
-  // Custom Select Logic
-  const trigger = document.getElementById('select-trigger');
-  const optionsMenu = document.getElementById('select-options');
-  const selectedValue = document.getElementById('selected-value');
-  const hiddenInput = document.getElementById('solucion-input') as HTMLInputElement;
-  const options = document.querySelectorAll('#select-options [data-value]');
-
-  trigger?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = !optionsMenu?.classList.contains('hidden');
-    
-    if (isOpen) {
-      closeSelect();
-    } else {
-      openSelect();
-    }
-  });
-
-  function openSelect() {
-    optionsMenu?.classList.remove('hidden');
-    setTimeout(() => {
-      optionsMenu?.classList.remove('opacity-0', 'translate-y-2');
-    }, 10);
-    trigger?.classList.add('border-primary/50');
-  }
-
-  function closeSelect() {
-    optionsMenu?.classList.add('opacity-0', 'translate-y-2');
-    setTimeout(() => {
-      optionsMenu?.classList.add('hidden');
-    }, 300);
-    trigger?.classList.remove('border-primary/50');
-  }
-
-  options.forEach(option => {
-    option.addEventListener('click', () => {
-      const val = (option as HTMLElement).dataset.value;
-      if (selectedValue && hiddenInput && val) {
-        selectedValue.textContent = val;
-        hiddenInput.value = val;
-        closeSelect();
-      }
+  // --- Form & UI Logic ---
+  function initUI() {
+    const form = document.querySelector('form');
+    const modal = document.getElementById('form_success') as HTMLDialogElement;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      modal?.showModal();
+      (form as HTMLFormElement).reset();
+      const selectedValue = document.getElementById('selected-value');
+      if (selectedValue) selectedValue.textContent = 'Selecciona una opción';
     });
-  });
 
-  // Close when clicking outside
-  document.addEventListener('click', () => {
-    closeSelect();
-  });
+    const trigger = document.getElementById('select-trigger');
+    const optionsMenu = document.getElementById('select-options');
+    const selectedValue = document.getElementById('selected-value');
+    const hiddenInput = document.getElementById('solucion-input') as HTMLInputElement;
+    const options = document.querySelectorAll('#select-options [data-value]');
 
-  // ── Fiber Optic Self-Drawing Canvas ─────────────────────────────────────────
-  const canvas = document.getElementById('fiber-canvas') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d')!;
+    trigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !optionsMenu?.classList.contains('hidden');
+      if (isOpen) closeSelect(); else openSelect();
+    });
 
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', () => { resize(); });
-
-  // ── Types ────────────────────────────────────────────────────────────────────
-  type State = 'drawing' | 'holding' | 'fading';
-
-  interface Fiber {
-    // Path
-    yOffset: number;   // -0.8..0.8 (vertical offset from center, normalized)
-    waveAmp: number;   // extra sinewave amplitude
-    wavePhase: number;
-    startSide: 'left' | 'right';
-    // Color
-    colorA: string;    // near source
-    colorB: string;    // toward center
-    lineWidth: number;
-    // State
-    progress: number;  // 0..1 how much has been drawn
-    alpha: number;     // 0..1 opacity
-    state: State;
-    holdFrames: number;
-    // Drawing speed (frames to draw fully — slow!)
-    drawSpeed: number;
-    fadeSpeed: number;
-  }
-
-  interface Spark {
-    fiberId: number;
-    t: number;         // position on fiber 0..1
-    speed: number;
-    r: number;
-    glowR: number;
-    color: string;
-  }
-
-  // ── Bezier path helper ───────────────────────────────────────────────────────
-  // Returns the (x,y) on a fiber at parametric t=0..1 (from source to center)
-  function fiberPoint(f: Fiber, t: number, w: number, h: number): [number,number] {
-    const cy = h / 2;
-    // Source side
-    const sx = f.startSide === 'left' ? -10 : w + 10;
-    const sy = cy + f.yOffset * h * 0.45;
-    // Destination: center ± small spread
-    const ex = w / 2 + (f.startSide === 'left' ? -w*0.04 : w*0.04);
-    const ey = cy + f.yOffset * h * 0.04;
-    // Control point: converges inward
-    const cpx = f.startSide === 'left' ? w * 0.30 : w * 0.70;
-    const cpy = cy + f.yOffset * h * 0.12;
-    // Quadratic bezier
-    const bx = (1-t)**2 * sx + 2*(1-t)*t * cpx + t**2 * ex;
-    const by = (1-t)**2 * sy + 2*(1-t)*t * cpy + t**2 * ey;
-    // Subtle wave that damps toward center
-    const wave = Math.sin(t * Math.PI * 3.5 + f.wavePhase) * f.waveAmp * (1 - t * 0.6);
-    return [bx, by + wave];
-  }
-
-  // ── Factory ──────────────────────────────────────────────────────────────────
-  const TOTAL_FIBERS = 32;   // pool size
-  const MAX_ACTIVE   = 18;   // how many alive at once
-
-  function makeFiber(id: number): Fiber {
-    const side = Math.random() > 0.5 ? 'left' : 'right';
-    const magenta = side === 'left';
-    // Near-source color (bright magenta or blue)
-    const cA = magenta
-      ? `rgba(210,${20+Math.round(Math.random()*30)},255,1)`
-      : `rgba(${20+Math.round(Math.random()*30)},${90+Math.round(Math.random()*60)},255,1)`;
-    // Center color (purple-ish mix)
-    const cB = magenta
-      ? `rgba(140,30,255,0.6)`
-      : `rgba(60,80,255,0.6)`;
-    return {
-      yOffset:   (Math.random() - 0.5) * 1.8,
-      waveAmp:   4 + Math.random() * 14,
-      wavePhase: Math.random() * Math.PI * 2,
-      startSide: side,
-      colorA: cA, colorB: cB,
-      lineWidth: 0.4 + Math.random() * 0.9,
-      progress:  0,
-      alpha:     0,
-      state:     'drawing',
-      holdFrames: 60 + Math.floor(Math.random() * 80),
-      drawSpeed:  0.0018 + Math.random() * 0.0022,  // ~250-550 frames to fully draw
-      fadeSpeed:  0.008 + Math.random() * 0.008,
-    };
-  }
-
-  // ── Fiber pool ───────────────────────────────────────────────────────────────
-  let fibers: (Fiber | null)[] = Array(TOTAL_FIBERS).fill(null);
-  let activeCount = 0;
-
-  function spawnFiber() {
-    if (activeCount >= MAX_ACTIVE) return;
-    const slot = fibers.findIndex(f => f === null);
-    if (slot === -1) return;
-    fibers[slot] = makeFiber(slot);
-    activeCount++;
-  }
-
-  // ── Sparks ───────────────────────────────────────────────────────────────────
-  const sparks: Spark[] = Array.from({ length: 40 }, (_, i) => ({
-    fiberId: Math.floor(Math.random() * TOTAL_FIBERS),
-    t: Math.random(),
-    speed: 0.0008 + Math.random() * 0.0012,
-    r: 1 + Math.random() * 1.8,
-    glowR: 5 + Math.random() * 9,
-    color: Math.random() > 0.5
-      ? `rgba(220,50,255,0.9)` : `rgba(60,120,255,0.9)`,
-  }));
-
-  // ── Spawn initial batch staggered ────────────────────────────────────────────
-  let spawnCooldown = 0;
-  for (let i = 0; i < 8; i++) spawnFiber();
-
-  // ── Main draw loop ───────────────────────────────────────────────────────────
-  const STEPS = 120; // path resolution
-
-  function draw() {
-    const w = canvas.width;
-    const h = canvas.height;
-
-    // Slow trail: semi-transparent clear
-    ctx.fillStyle = 'rgba(8,12,26,0.20)';
-    ctx.fillRect(0, 0, w, h);
-
-    // Spawn control
-    spawnCooldown--;
-    if (spawnCooldown <= 0 && activeCount < MAX_ACTIVE) {
-      spawnFiber();
-      spawnCooldown = 12 + Math.floor(Math.random() * 18);
+    function openSelect() {
+      optionsMenu?.classList.remove('hidden');
+      setTimeout(() => optionsMenu?.classList.remove('opacity-0', 'translate-y-2'), 10);
+      trigger?.classList.add('border-primary/50');
     }
 
-    // Draw each fiber
-    fibers.forEach((f, idx) => {
-      if (!f) return;
+    function closeSelect() {
+      optionsMenu?.classList.add('opacity-0', 'translate-y-2');
+      setTimeout(() => optionsMenu?.classList.add('hidden'), 300);
+      trigger?.classList.remove('border-primary/50');
+    }
 
-      // State machine
-      if (f.state === 'drawing') {
-        f.progress = Math.min(1, f.progress + f.drawSpeed);
-        f.alpha = Math.min(1, f.alpha + 0.025);
-        if (f.progress >= 1) { f.state = 'holding'; }
-      } else if (f.state === 'holding') {
-        f.holdFrames--;
-        if (f.holdFrames <= 0) f.state = 'fading';
-      } else {
-        f.alpha -= f.fadeSpeed;
-        if (f.alpha <= 0) {
-          fibers[idx] = null;
-          activeCount--;
-          return;
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        const val = (option as HTMLElement).dataset.value;
+        if (selectedValue && hiddenInput && val) {
+          selectedValue.textContent = val;
+          hiddenInput.value = val;
+          closeSelect();
+        }
+      });
+    });
+
+    document.addEventListener('click', closeSelect);
+  }
+
+  // --- Animation Engine ---
+  let currentAnimation: number | null = null;
+
+  function initCanvas() {
+    if (currentAnimation) cancelAnimationFrame(currentAnimation);
+    
+    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d', { alpha: false })!;
+    const variant = canvas.dataset.variant || 'fiber';
+    
+    let w: number, h: number;
+    const dpr = window.devicePixelRatio || 1;
+
+    function resize() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const isMobile = window.innerWidth < 768;
+
+    // --- Fiber Variant ---
+    let fiberFibers: any[] = [];
+    let fiberSparks: any[] = [];
+    if (variant === 'fiber') {
+      const createFiber = () => ({
+        side: Math.random() > 0.5 ? 'left' : 'right',
+        yO: (Math.random() - 0.5) * 2,
+        amp: 10 + Math.random() * 20,
+        ph: Math.random() * Math.PI * 2,
+        cA: Math.random() > 0.5 ? 'rgba(255,50,255,' : 'rgba(0,200,255,',
+        prog: 0, alpha: 0, state: 'draw',
+        hold: 100 + Math.random() * 150,
+        spd: 0.003 + Math.random() * 0.004,
+        fSpd: 0.005 + Math.random() * 0.01
+      });
+
+      const fiberCount = isMobile ? 12 : 25;
+      const sparkCount = isMobile ? 20 : 50;
+
+      for(let i=0; i<fiberCount; i++) fiberFibers.push(createFiber());
+      for(let i=0; i<sparkCount; i++) fiberSparks.push({ fId: Math.floor(Math.random()*fiberCount), t: Math.random(), spd: 0.002 + Math.random()*0.003 });
+    }
+
+    // --- Wave Variant ---
+    let wavePoints: any[] = [];
+    if (variant === 'wave') {
+      const cols = isMobile ? 30 : 50;
+      const rows = isMobile ? 15 : 25;
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          wavePoints.push({ x: i / cols, y: j / rows, z: 0 });
+        }
+      }
+    }
+
+    // --- Cyber Variant (Hexagons) ---
+    let hexes: any[] = [];
+    if (variant === 'cyber') {
+      const size = isMobile ? 80 : 60;
+      const h_dist = size * 1.5;
+      const v_dist = size * Math.sqrt(3);
+      for (let x = -size; x < w + size; x += h_dist) {
+        let offset = 0;
+        for (let y = -size; y < h + size; y += v_dist) {
+          const cx = x;
+          const cy = y + (offset % 2 === 0 ? 0 : v_dist / 2);
+          hexes.push({ x: cx, y: cy, active: Math.random() * Math.PI * 2, spd: 0.02 + Math.random()*0.03 });
+          offset++;
+        }
+      }
+    }
+
+    // --- Nodes & Satellite Variants (Plexus) ---
+    let nodes: any[] = [];
+    if (variant === 'nodes' || variant === 'satellite') {
+      const count = isMobile ? 40 : (variant === 'satellite' ? 120 : 80);
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * (variant === 'satellite' ? 0.8 : 0.4), 
+          vy: (Math.random() - 0.5) * (variant === 'satellite' ? 0.8 : 0.4),
+          size: Math.random() * 2 + 1
+        });
+      }
+    }
+
+    let time = 0;
+    function render() {
+      time += 0.01;
+      ctx.fillStyle = '#080c1a';
+      ctx.fillRect(0, 0, w, h);
+
+      if (variant === 'fiber') {
+        const fiberPoint = (f: any, t: number) => {
+          const sx = f.side === 'left' ? -20 : w + 20;
+          const ex = w / 2 + (f.side === 'left' ? -w*0.05 : w*0.05);
+          const cpx = f.side === 'left' ? w * 0.35 : w * 0.65;
+          const sy = h/2 + f.yO * h * 0.5;
+          const ey = h/2 + f.yO * h * 0.05;
+          const cpy = h/2 + f.yO * h * 0.15;
+          const bx = (1-t)**2 * sx + 2*(1-t)*t * cpx + t**2 * ex;
+          const by = (1-t)**2 * sy + 2*(1-t)*t * cpy + t**2 * ey;
+          const wave = Math.sin(t * Math.PI * 4 + f.ph) * f.amp * (1 - t * 0.7);
+          return [bx, by + wave];
+        };
+
+        fiberFibers.forEach((f, i) => {
+          if (f.state === 'draw') { 
+            f.prog = Math.min(1, f.prog + f.spd); 
+            f.alpha = Math.min(1, f.alpha + 0.05); 
+            if(f.prog>=1) f.state='hold'; 
+          }
+          else if (f.state === 'hold') { f.hold--; if(f.hold<=0) f.state='fade'; }
+          else { f.alpha -= f.fSpd; if(f.alpha<=0) {
+            // Re-create logic
+            f.side = Math.random() > 0.5 ? 'left' : 'right';
+            f.yO = (Math.random() - 0.5) * 2;
+            f.amp = 10 + Math.random() * 20;
+            f.cA = Math.random() > 0.5 ? 'rgba(255,50,255,' : 'rgba(0,200,255,';
+            f.prog = 0; f.alpha = 0; f.state = 'draw';
+          }}
+
+          const steps = isMobile ? 30 : 50;
+          ctx.beginPath();
+          ctx.lineWidth = isMobile ? 1.5 : 2;
+          ctx.strokeStyle = f.cA + f.alpha + ')';
+          if (!isMobile) {
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = f.cA + '1)';
+          }
+          
+          for(let s=0; s<=steps*f.prog; s++) {
+            const [px, py] = fiberPoint(f, s/steps);
+            s===0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+          }
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        });
+
+        fiberSparks.forEach(s => {
+          const f = fiberFibers[s.fId];
+          s.t += s.spd; if(s.t > f.prog) s.t = 0;
+          const [px, py] = fiberPoint(f, s.t);
+          ctx.fillStyle = '#fff';
+          if (!isMobile) {
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = f.cA + '1)';
+          }
+          ctx.beginPath(); ctx.arc(px, py, isMobile ? 1.5 : 2.5, 0, Math.PI*2); ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+      }
+
+      if (variant === 'wave') {
+        ctx.fillStyle = '#22c55e';
+        wavePoints.forEach(p => {
+          const noise = Math.sin(p.x * 6 + time) * Math.cos(p.y * 4 + time) * 60;
+          const px = p.x * w + Math.cos(time + p.x * 12) * 15;
+          const py = p.y * h + noise;
+          const alpha = 0.3 + (noise + 60) / 120 * 0.6;
+          ctx.globalAlpha = alpha;
+          ctx.beginPath(); ctx.arc(px, py, isMobile ? 1.5 : 2.5, 0, Math.PI*2); ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      if (variant === 'cyber') {
+        hexes.forEach(h => {
+          h.active += h.spd;
+          const pulse = (Math.sin(h.active) + 1) / 2;
+          ctx.lineWidth = isMobile ? 1 : 1.5;
+          ctx.strokeStyle = `rgba(34, 197, 94, ${0.1 + pulse * 0.3})`;
+          ctx.beginPath();
+          const hexSize = isMobile ? 55 : 45;
+          for(let i=0; i<6; i++) {
+            const angle = (Math.PI / 3) * i;
+            const px = h.x + Math.cos(angle) * hexSize;
+            const py = h.y + Math.sin(angle) * hexSize;
+            i===0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+          }
+          ctx.closePath();
+          ctx.stroke();
+          if (pulse > 0.75) {
+            ctx.fillStyle = `rgba(34, 197, 94, ${pulse * (isMobile ? 0.2 : 0.4)})`;
+            ctx.fill();
+          }
+        });
+      }
+
+      if (variant === 'nodes' || variant === 'satellite') {
+        const color = '34, 197, 94';
+        const distLimit = isMobile ? 6000 : (variant === 'satellite' ? 15000 : 10000);
+        
+        nodes.forEach(n => {
+          n.x += n.vx; n.y += n.vy;
+          if(n.x<0 || n.x>w) n.vx *= -1; if(n.y<0 || n.y>h) n.vy *= -1;
+          ctx.fillStyle = `rgba(${color}, 0.8)`;
+          ctx.beginPath(); ctx.arc(n.x, n.y, n.size, 0, Math.PI*2); ctx.fill();
+        });
+        
+        for(let i=0; i<nodes.length; i++) {
+          for(let j=i+1; j<nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = dx*dx + dy*dy;
+            if (dist < distLimit) {
+              const alpha = (1 - Math.sqrt(dist) / Math.sqrt(distLimit)) * 0.6;
+              ctx.strokeStyle = `rgba(${color}, ${alpha})`;
+              ctx.lineWidth = isMobile ? 0.8 : 1.5;
+              ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
+            }
+          }
         }
       }
 
-      // Build visible path up to f.progress
-      const visibleSteps = Math.floor(f.progress * STEPS);
-      if (visibleSteps < 2) return;
-
-      // Gradient along the line from source color → center color
-      const [x0] = fiberPoint(f, 0, w, h);
-      const [x1] = fiberPoint(f, 1, w, h);
-      const grad = ctx.createLinearGradient(x0, 0, x1, 0);
-      grad.addColorStop(0,   f.colorA.replace('1)', `${f.alpha})`));
-      grad.addColorStop(0.6, f.colorB.replace('0.6)', `${f.alpha * 0.6})`));
-      grad.addColorStop(1,   `rgba(100,50,255,${f.alpha * 0.3})`);
-
-      ctx.beginPath();
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = f.lineWidth;
-      ctx.shadowColor = f.startSide === 'left'
-        ? `rgba(200,20,255,${f.alpha * 0.6})`
-        : `rgba(30,100,255,${f.alpha * 0.6})`;
-      ctx.shadowBlur = 10;
-      ctx.lineCap = 'round';
-
-      for (let s = 0; s <= visibleSteps; s++) {
-        const t = s / STEPS;
-        const [x, y] = fiberPoint(f, t, w, h);
-        s === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-      ctx.shadowBlur = 0;
-
-      // Bright leading tip (drawing head)
-      if (f.state === 'drawing') {
-        const [tx, ty] = fiberPoint(f, f.progress, w, h);
-        const tipGrad = ctx.createRadialGradient(tx, ty, 0, tx, ty, 12);
-        tipGrad.addColorStop(0, f.startSide === 'left'
-          ? `rgba(255,180,255,${f.alpha})`
-          : `rgba(180,220,255,${f.alpha})`);
-        tipGrad.addColorStop(1, 'transparent');
-        ctx.fillStyle = tipGrad;
-        ctx.beginPath();
-        ctx.arc(tx, ty, 12, 0, Math.PI * 2);
-        ctx.fill();
-        // Core white dot
-        ctx.fillStyle = `rgba(255,255,255,${f.alpha * 0.95})`;
-        ctx.beginPath();
-        ctx.arc(tx, ty, 1.8, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    });
-
-    // Sparks (only on active fibers)
-    sparks.forEach(sp => {
-      const f = fibers[sp.fiberId % TOTAL_FIBERS];
-      if (!f || f.alpha < 0.1) {
-        // Jump to a random active fiber
-        const active = fibers.map((f,i)=>f?i:-1).filter(i=>i>=0);
-        if (active.length) sp.fiberId = active[Math.floor(Math.random()*active.length)];
-        sp.t = Math.random();
-        return;
-      }
-      // Only travel up to drawn segment
-      sp.t += sp.speed;
-      if (sp.t > f.progress) sp.t = 0;
-      const [x, y] = fiberPoint(f, sp.t, w, h);
-      const sparkalpha = f.alpha * 0.9;
-      const gGrad = ctx.createRadialGradient(x, y, 0, x, y, sp.glowR);
-      gGrad.addColorStop(0, sp.color.replace('0.9)', `${sparkalpha})`));
-      gGrad.addColorStop(1, 'transparent');
-      ctx.fillStyle = gGrad;
-      ctx.beginPath();
-      ctx.arc(x, y, sp.glowR, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = `rgba(255,255,255,${sparkalpha * 0.9})`;
-      ctx.beginPath();
-      ctx.arc(x, y, sp.r, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    // Edge glows (always visible)
-    const lg = ctx.createRadialGradient(0, h/2, 0, 0, h/2, w * 0.22);
-    lg.addColorStop(0, 'rgba(200,20,255,0.45)');
-    lg.addColorStop(1, 'transparent');
-    ctx.fillStyle = lg;
-    ctx.fillRect(0, 0, w, h);
-
-    const rg = ctx.createRadialGradient(w, h/2, 0, w, h/2, w * 0.22);
-    rg.addColorStop(0, 'rgba(30,100,255,0.45)');
-    rg.addColorStop(1, 'transparent');
-    ctx.fillStyle = rg;
-    ctx.fillRect(0, 0, w, h);
-
-    requestAnimationFrame(draw);
+      currentAnimation = requestAnimationFrame(render);
+    }
+    render();
   }
 
-  draw();
+  // Initial runs
+  initUI();
+  initCanvas();
+
+  // Support for Astro View Transitions
+  document.addEventListener('astro:page-load', () => {
+    initUI();
+    initCanvas();
+  });
 </script>
 

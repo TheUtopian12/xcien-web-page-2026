@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import SolutionHero from "../../components/sections/solutions/SolutionHero.astro";
+import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
 import SolutionDetails from "../../components/sections/solutions/SolutionDetails.astro";
 
 const features = [
@@ -23,11 +23,11 @@ const features = [
 ---
 
 <Layout>
-  <SolutionHero 
+  <PageHeroWithForm 
     title="Conectividad"
-    subtitle="Network & Fiber"
+    greenTitle=""
+    variant="fiber"
     description="Con el respaldo de nuestra infraestructura propia, brindamos soluciones de conectividad para garantizar la continuidad de tu negocio mediante el diseño, implementación y administración de redes robustas."
-    image="/background.png"
   />
   
   <SolutionDetails 
