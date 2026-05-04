@@ -1,42 +1,124 @@
 ---
 const steps = [
-  { id: "01", title: "Escuchando tus Necesidades", active: false },
-  { id: "02", title: "Soluciones a la Medida", active: false },
-  { id: "03", title: "Alineamiento Táctico", active: false },
-  { id: "04", title: "Resultados Medibles", active: true }
+  { 
+    id: "01", 
+    title: "ESCUCHANDO TUS NECESIDADES", 
+    description: "Analizamos la infraestructura actual de tu empresa para identificar brechas de conectividad y seguridad. Ya sea que necesites un Internet Dedicado de alta capacidad o una red para eventos masivos, nuestro primer paso es entender tus objetivos críticos de negocio."
+  },
+  { 
+    id: "02", 
+    title: "SOLUCIONES A LA MEDIDA", 
+    description: "Diseñamos un ecosistema tecnológico integral que incluye desde Internet Satelital para zonas remotas hasta arquitecturas SD-WAN y Data Centers. Creamos una solución única que combina servicios de TI y videovigilancia para proteger y potenciar tu operación."
+  },
+  { 
+    id: "03", 
+    title: "ALINEAMIENTO TÁCTICO", 
+    description: "Implementamos nuestras soluciones utilizando tecnología de líderes mundiales como Cisco y Meraki. Aseguramos una transición sin fricciones mediante una configuración de Alta Disponibilidad y comunicaciones unificadas que garantizan que tu equipo esté siempre conectado y productivo."
+  },
+  { 
+    id: "04", 
+    title: "RESULTADOS MEDIBLES", 
+    description: "Garantizamos la continuidad de tu negocio con monitoreo constante y soporte especializado en Servicios Tic's. Optimizamos tu inversión mediante indicadores claros de rendimiento, disponibilidad de red y niveles de seguridad proactiva contra amenazas digitales."
+  }
 ];
 ---
 
 <section class="py-24 bg-[#0a0b0d] overflow-hidden">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-black text-white mb-16 tracking-tight uppercase italic">Nuestro <span class="text-primary italic-none">Proceso</span></h2>
+    <h2 class="text-4xl md:text-6xl font-black text-white mb-16 tracking-tight uppercase italic">Nuestro <span class="text-primary italic-none">Proceso</span></h2>
     
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
       <!-- Left: Steps -->
       <div class="space-y-4">
-        {steps.map((step) => (
-          <div class={`p-6 rounded-2xl border transition-all ${step.active ? 'bg-primary/10 border-primary text-primary' : 'bg-white/[0.02] border-white/5 text-white/50'}`}>
-            <div class="flex items-center justify-between font-black uppercase tracking-widest text-sm">
+        {steps.map((step, index) => (
+          <div 
+            class="process-step group p-6 rounded-2xl border bg-white/[0.02] border-white/5 text-white cursor-pointer transition-all duration-500"
+            data-index={index}
+          >
+            <div class="flex items-center justify-between font-black uppercase tracking-widest text-sm mb-0 transition-all duration-500 group-[.active]:mb-4 group-[.active]:text-primary">
                 <span>{step.id}. {step.title}</span>
-                <span>+</span>
+                <span class="text-xl transition-transform duration-500 group-[.active]:rotate-45">+</span>
+            </div>
+            <div class="max-h-0 overflow-hidden transition-all duration-500 group-[.active]:max-h-40">
+              <p class="text-white/60 text-sm leading-relaxed">
+                {step.description}
+              </p>
             </div>
           </div>
         ))}
-        <div class="p-8 mt-8 bg-white/[0.03] rounded-2xl border border-white/5 text-sm text-white/50 leading-relaxed max-w-lg">
-           Nuestras soluciones se construyen sobre alianzas estratégicas con proveedores líderes de la industria como Cisco, Meraki y VMware, la que te brinda acceso a servicios y tecnologías de primer nivel.
+        
+        <div class="p-8 mt-12 bg-white/[0.03] rounded-3xl border border-white/5 text-xs text-white/40 leading-relaxed max-w-lg italic">
+           Nuestras soluciones se construyen sobre alianzas estratégicas con proveedores líderes de la industria como Cisco, Meraki y VMware, lo que te brinda acceso a servicios y tecnologías de primer nivel.
         </div>
       </div>
 
       <!-- Right: Circles Representation -->
-      <div class="relative py-20">
-         <div class="absolute inset-0 bg-primary/5 blur-[100px]"></div>
-         <div class="relative flex flex-col items-center gap-4">
-            <div class="w-full max-w-sm py-4 border border-white/10 rounded-full flex items-center justify-center text-[10px] uppercase font-bold text-white/30 italic">Escuchando tus Necesidades</div>
-            <div class="w-full max-w-sm py-4 border border-white/15 rounded-full flex items-center justify-center text-[10px] uppercase font-bold text-white/40 italic">Soluciones a la Medida</div>
-            <div class="w-full max-w-sm py-4 border border-white/20 rounded-full flex items-center justify-center text-[10px] uppercase font-bold text-white/50 italic">Alineamiento Táctico</div>
-            <div class="w-full max-w-sm py-8 bg-primary rounded-full flex items-center justify-center text-sm font-black text-black uppercase scale-110 shadow-2xl shadow-primary/30 transform hover:rotate-2 transition-transform">Resultados Medibles</div>
+      <div class="relative py-10 lg:py-20 flex justify-center">
+         <div class="absolute inset-0 bg-primary/5 blur-[120px] rounded-full"></div>
+         <div class="relative flex flex-col items-center gap-6 w-full max-w-md">
+            {steps.map((step, index) => (
+              <div 
+                class="visual-pill w-full py-5 px-8 border border-white/10 rounded-full flex items-center justify-center text-[10px] md:text-xs uppercase font-black text-white/20 italic transition-all duration-700 ease-out"
+                data-index={index}
+              >
+                {step.title}
+              </div>
+            ))}
          </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .process-step.active {
+    background: rgba(34, 197, 94, 0.05);
+    border-color: rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.05);
+  }
+
+  .visual-pill.active {
+    background: #22c55e;
+    color: #000;
+    border-color: #22c55e;
+    transform: scale(1.1);
+    box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+    opacity: 1;
+    font-style: normal;
+    font-size: 14px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+</style>
+
+<script>
+  function initProcess() {
+    const steps = document.querySelectorAll('.process-step');
+    const pills = document.querySelectorAll('.visual-pill');
+
+    function setActive(index) {
+      steps.forEach((s, i) => {
+        if (i === index) s.classList.add('active');
+        else s.classList.remove('active');
+      });
+
+      pills.forEach((p, i) => {
+        if (i === index) p.classList.add('active');
+        else p.classList.remove('active');
+      });
+    }
+
+    steps.forEach((step, index) => {
+      step.addEventListener('mouseenter', () => setActive(index));
+      // Optional: click for mobile
+      step.addEventListener('click', () => setActive(index));
+    });
+
+    // Set first one active by default
+    setActive(0);
+  }
+
+  // Run on load and on astro page changes
+  initProcess();
+  document.addEventListener('astro:page-load', initProcess);
+</script>
