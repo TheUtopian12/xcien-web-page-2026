@@ -285,7 +285,7 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       if (variant === 'fiber') {
         const fiberPoint = (f: any, t: number) => {
           const sx = f.side === 'left' ? -20 : w + 20;
-          const ex = w / 2 + (f.side === 'left' ? -w*0.05 : w*0.05);
+          const ex = w / 2 + (f.side === 'left' ? w * 0.15 : -w * 0.15);
           const cpx = f.side === 'left' ? w * 0.35 : w * 0.65;
           const sy = h/2 + f.yO * h * 0.5;
           const ey = h/2 + f.yO * h * 0.05;

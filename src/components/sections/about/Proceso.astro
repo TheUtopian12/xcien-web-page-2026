@@ -4,25 +4,25 @@ const steps = [
     id: "01",
     title: "ESCUCHANDO TUS NECESIDADES",
     description:
-      "Analizamos la infraestructura actual de tu empresa para identificar brechas de conectividad y seguridad. Ya sea que necesites un Internet Dedicado de alta capacidad o una red para eventos masivos, nuestro primer paso es entender tus objetivos críticos de negocio.",
+      "Análisis de red consultivo. Escuchamos tus metas empresariales y diagnosticamos desafíos críticos para diseñar una Conectividad Inteligente a tu medida.",
   },
   {
     id: "02",
     title: "SOLUCIONES A LA MEDIDA",
     description:
-      "Diseñamos un ecosistema tecnológico integral que incluye desde Internet Satelital para zonas remotas hasta arquitecturas SD-WAN y Data Centers. Creamos una solución única que combina servicios de TI y videovigilancia para proteger y potenciar tu operación.",
+      "Diseño arquitectónico de red escalable. Integramos soluciones avanzadas de red (SD-WAN), conectividad multi-nube y ciberseguridad, maximizando el rendimiento de tu negocio.",
   },
   {
     id: "03",
     title: "ALINEAMIENTO TÁCTICO",
     description:
-      "Implementamos nuestras soluciones utilizando tecnología de líderes mundiales como Cisco y Meraki. Aseguramos una transición sin fricciones mediante una configuración de Alta Disponibilidad y comunicaciones unificadas que garantizan que tu equipo esté siempre conectado y productivo.",
+      "Puesta en marcha gestionada y optimizada. Implementación precisa con interrupción mínima del servicio, alineando tus procesos tácticos para una adopción tecnológica fluida.",
   },
   {
     id: "04",
     title: "RESULTADOS MEDIBLES",
     description:
-      "Garantizamos la continuidad de tu negocio con monitoreo constante y soporte especializado en Servicios Tic's. Optimizamos tu inversión mediante indicadores claros de rendimiento, disponibilidad de red y niveles de seguridad proactiva contra amenazas digitales.",
+      "Monitoreo 24/7 impulsado por IA. Paneles de control con KPIs de rendimiento clave e informes de eficiencia y ahorro de costos, para una toma de decisiones informada.",
   },
 ];
 ---
@@ -60,14 +60,7 @@ const steps = [
           ))
         }
 
-        <div
-          class="p-8 mt-12 bg-white/[0.03] rounded-3xl border border-white/5 text-xs text-white/40 leading-relaxed max-w-lg italic"
-        >
-          Nuestras soluciones se construyen sobre alianzas estratégicas con
-          proveedores líderes de la industria como Cisco, Meraki y Net2phone,
-          Peplink, Ubiquiti, Hillstone, entre otras, lo que te brinda acceso a
-          servicios y tecnologías de primer nivel.
-        </div>
+
       </div>
 
       <!-- Right: Circles Representation -->
@@ -78,7 +71,7 @@ const steps = [
           {
             steps.map((step, index) => (
               <div
-                class="visual-pill w-full py-5 px-8 border border-white/10 rounded-full flex items-center justify-center text-[10px] md:text-xs uppercase font-black text-white/20 italic transition-all duration-700 ease-out"
+                class="visual-pill w-full py-5 px-8 border border-white/10 rounded-full flex items-center justify-center text-[10px] md:text-xs uppercase font-black text-white/20 italic transition-all duration-700 ease-out cursor-pointer"
                 data-index={index}>
                 {step.title}
               </div>
@@ -130,8 +123,12 @@ const steps = [
 
     steps.forEach((step, index) => {
       step.addEventListener("mouseenter", () => setActive(index));
-      // Optional: click for mobile
       step.addEventListener("click", () => setActive(index));
+    });
+
+    pills.forEach((pill, index) => {
+      pill.addEventListener("mouseenter", () => setActive(index));
+      pill.addEventListener("click", () => setActive(index));
     });
 
     // Set first one active by default

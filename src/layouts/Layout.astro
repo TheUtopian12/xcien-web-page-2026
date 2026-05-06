@@ -138,7 +138,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                     >Alianzas Estratégicas</a
                   >
                 </li>
-                <li>
+                <!-- <li>
                   <a
                     href="/eventos"
                     class={`py-2 hover:opacity-100 ${pathname === "/eventos" ? "text-primary opacity-100" : "opacity-70"}`}
@@ -151,7 +151,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                     class={`py-2 hover:opacity-100 ${pathname === "/blog" ? "text-primary opacity-100" : "opacity-70"}`}
                     >Blog</a
                   >
-                </li>
+                </li> -->
               </ul>
             </details>
             <li>
@@ -177,9 +177,30 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                         </li>
                         <li>
                           <a
+                            href="/soluciones/alta-disponibilidad"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Alta Disponibilidad</a
+                          >
+                        </li>
+                        <li>
+                          <a
                             href="/soluciones/internet-pyme"
                             class="py-2 opacity-60 hover:opacity-100 block text-sm"
                             >Internet Pyme</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/conectividad"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Redes Privadas Virtuales</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="/soluciones/internet-eventos"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >Internet para eventos</a
                           >
                         </li>
                         <li>
@@ -189,27 +210,6 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                             >Internet Satelital</a
                           >
                         </li>
-                        <li>
-                          <a
-                            href="/soluciones/internet-eventos"
-                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Internet Eventos</a
-                          >
-                        </li>
-                        <li>
-                          <a
-                            href="/soluciones/sd-wan"
-                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >SD-WAN</a
-                          >
-                        </li>
-                        <li>
-                          <a
-                            href="/soluciones/conectividad"
-                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Conectividad</a
-                          >
-                        </li>
                       </ul>
                     </details>
                   </li>
@@ -217,7 +217,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                     <details>
                       <summary
                         class="py-2 opacity-70 hover:opacity-100 font-bold"
-                        >Servicios TI</summary
+                        >Servicios Administrados</summary
                       >
                       <ul class="pl-4">
                         <li>
@@ -231,7 +231,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                           <a
                             href="/soluciones/red-wifi"
                             class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Red WiFi</a
+                            >Red WiFi Administrada</a
                           >
                         </li>
                         <li>
@@ -243,23 +243,23 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                         </li>
                         <li>
                           <a
+                            href="/soluciones/sd-wan"
+                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
+                            >SDWAN</a
+                          >
+                        </li>
+                        <li>
+                          <a
                             href="/soluciones/servicios-tics"
                             class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Servicios Tic's</a
+                            >Servicios TIC</a
                           >
                         </li>
                         <li>
                           <a
                             href="/soluciones/video-vigilancia"
                             class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Video Vigilancia</a
-                          >
-                        </li>
-                        <li>
-                          <a
-                            href="/soluciones/servicios-administrados"
-                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Servicios Administrados</a
+                            >VideoVigilancia</a
                           >
                         </li>
                       </ul>
@@ -269,35 +269,14 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                     <details>
                       <summary
                         class="py-2 opacity-70 hover:opacity-100 font-bold"
-                        >Especializados</summary
+                        >Data Centers y Co-ubicaciones</summary
                       >
                       <ul class="pl-4">
                         <li>
                           <a
-                            href="/soluciones/alta-disponibilidad"
-                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Alta Disponibilidad</a
-                          >
-                        </li>
-                        <li>
-                          <a
                             href="/soluciones/data-centers"
                             class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Data Centers</a
-                          >
-                        </li>
-                        <li>
-                          <a
-                            href="/soluciones/inteligencia-artificial"
-                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Inteligencia Artificial</a
-                          >
-                        </li>
-                        <li>
-                          <a
-                            href="/soluciones/proyectos-especiales"
-                            class="py-2 opacity-60 hover:opacity-100 block text-sm"
-                            >Proyectos Especiales</a
+                            >Data Center</a
                           >
                         </li>
                       </ul>
@@ -312,13 +291,6 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
               href="/contacto"
               class={`text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white ${pathname === "/contacto" ? "text-primary bg-white/5" : "text-white"}`}
               >Contacto</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="text-lg py-3 font-semibold hover:text-primary transition-colors focus:bg-white/5 focus:text-white"
-              >Comunidad</a
             >
           </li>
         </ul>

@@ -4,36 +4,24 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
 const connectivity = [
   { name: "Internet Dedicado", href: "/soluciones/internet-dedicado" },
-  { name: "Internet PYME", href: "/soluciones/internet-pyme" },
-  { name: "Internet Satelital", href: "/soluciones/internet-satelital" },
-  { name: "Internet Eventos", href: "/soluciones/internet-eventos" },
-  { name: "SD-WAN", href: "/soluciones/sd-wan" },
-  { name: "Conectividad", href: "/soluciones/conectividad" },
-];
-
-const tiServices = [
-  {
-    name: "Comunicaciones Unificadas",
-    href: "/soluciones/comunicaciones-unificadas",
-  },
-  { name: "Red WiFi", href: "/soluciones/red-wifi" },
-  { name: "Ciberseguridad", href: "/soluciones/ciberseguridad" },
-  { name: "Servicios Tic's", href: "/soluciones/servicios-tics" },
-  { name: "Video Vigilancia", href: "/soluciones/video-vigilancia" },
-  {
-    name: "Servicios Administrados",
-    href: "/soluciones/servicios-administrados",
-  },
-];
-
-const specialized = [
   { name: "Alta Disponibilidad", href: "/soluciones/alta-disponibilidad" },
-  { name: "Data Centers", href: "/soluciones/data-centers" },
-  {
-    name: "Inteligencia Artificial",
-    href: "/soluciones/inteligencia-artificial",
-  },
-  { name: "Proyectos Especiales", href: "/soluciones/proyectos-especiales" },
+  { name: "Internet Pyme", href: "/soluciones/internet-pyme" },
+  { name: "Redes Privadas Virtuales", href: "/soluciones/conectividad" },
+  { name: "Internet Para Eventos", href: "/soluciones/internet-eventos" },
+  { name: "Internet Satelital", href: "/soluciones/internet-satelital" },
+];
+
+const managedServices = [
+  { name: "Comunicaciones Unificadas", href: "/soluciones/comunicaciones-unificadas" },
+  { name: "Red Wifi Administrada", href: "/soluciones/red-wifi" },
+  { name: "Ciberseguridad", href: "/soluciones/ciberseguridad" },
+  { name: "SD-WAN", href: "/soluciones/sd-wan" },
+  { name: "Servicios TIC", href: "/soluciones/servicios-tics" },
+  { name: "VideoVigilancia", href: "/soluciones/video-vigilancia" },
+];
+
+const dataCenters = [
+  { name: "Data Center", href: "/soluciones/data-centers" },
 ];
 ---
 
@@ -162,7 +150,7 @@ const specialized = [
         </label>
         <div
           tabindex="0"
-          class="dropdown-content z-[1] p-10 shadow-2xl bg-[#1a1c22]/98 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] w-[850px] -left-[350px] mt-2"
+          class="dropdown-content z-[1] p-10 shadow-2xl bg-[#1a1c22]/98 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] w-[850px] -left-[350px]"
         >
           <div class="grid grid-cols-3 gap-16">
             <!-- Conectividad -->
@@ -239,12 +227,12 @@ const specialized = [
                 </div>
                 <span
                   class="font-black italic uppercase tracking-[0.1em] text-white text-lg"
-                  >Servicios TI</span
+                  >Servicios Administrados</span
                 >
               </div>
               <ul class="flex flex-col gap-4">
                 {
-                  tiServices.map((item) => (
+                  managedServices.map((item) => (
                     <li>
                       <a
                         href={item.href}
@@ -283,12 +271,12 @@ const specialized = [
                 </div>
                 <span
                   class="font-black italic uppercase tracking-[0.1em] text-white text-lg"
-                  >Especializados</span
+                  >Data Centers y Co-ubicaciones</span
                 >
               </div>
               <ul class="flex flex-col gap-4">
                 {
-                  specialized.map((item) => (
+                  dataCenters.map((item) => (
                     <li>
                       <a
                         href={item.href}
@@ -308,11 +296,6 @@ const specialized = [
         href="/contacto"
         class={`hover:text-primary transition-colors flex items-center gap-1 ${pathname === "/contacto" ? "text-primary" : "text-white"}`}
         >Contacto <span class="text-xs opacity-50">+</span></a
-      >
-      <a
-        href="#"
-        class="hover:text-primary transition-colors flex items-center gap-1 text-white"
-        >Comunidad <span class="text-xs opacity-50">+</span></a
       >
     </div>
 
@@ -341,3 +324,15 @@ const specialized = [
     </div>
   </nav>
 </header>
+<style is:global>
+  /* Bridge to prevent dropdown from closing when moving mouse from label to content */
+  .dropdown-hover .dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+  }
+</style>
