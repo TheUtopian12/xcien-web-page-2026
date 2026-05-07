@@ -6,7 +6,7 @@ import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 const WP_BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/utopianscommx.wordpress.com";
 
 export async function getStaticPaths() {
-  const WP_API_URL = "https://public-api.wordpress.com/wp/v2/sites/utopianscommx.wordpress.com/posts?_embed&per_page=20";
+  const WP_API_URL = "https://public-api.wordpress.com/wp/v2/sites/utopianscommx.wordpress.com/posts?_embed&per_page=100";
   const response = await fetch(WP_API_URL);
   const posts = await response.json();
   
