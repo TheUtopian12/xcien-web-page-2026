@@ -6,6 +6,7 @@ import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
+import SplitFeature from "../../components/sections/solutions/SplitFeature.astro";
 
 const specialFeatures = [
   {
@@ -100,10 +101,29 @@ const faqs = [
   
   <SpecialFeatures features={specialFeatures} />
   
-  <CommonBenefits benefits={benefits} />
+  <CommonBenefits benefits={benefits} serviceName="Video Vigilancia" />
   
   <HighAvailabilityDiagram />
   
+  <SplitFeature 
+    leftTitle="Seguridad"
+    leftTitleHighlight="CCTV"
+    leftDescription={[
+      "Contamos con sistemas de cámaras de circuito cerrado que sin dudas te brindará una sensación de tranquilidad y seguridad.",
+      "Esto no sólo para robos o algún incidente, sino que con las nuevas tecnologías podemos tener notificaciones basadas en zonas específicas de seguridad o restringidas, detección de rostros y conteo de personas."
+    ]}
+    rightTitle="Beneficios de"
+    rightTitleHighlight="nuestro"
+    rightTitlePill="Servicio"
+    list={[
+      { text: "Revisión periódica de sistema de video" },
+      { text: "Monitoreo de disponibilidad de cámaras (siempre funcionando)" },
+      { text: "Alarmas inteligentes (detección de cambios en el video)" },
+      { text: "Mantenimiento (limpieza, ajuste de cámaras, reubicación de cámaras)" }
+    ]}
+    useCheckmarks={true}
+  />
+
   <FAQ faqs={faqs} />
   
   <BreadcrumbBar path={["Soluciones", "Video Vigilancia", "Descripción General"]} />

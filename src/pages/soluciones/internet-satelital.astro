@@ -6,6 +6,7 @@ import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
+import SolutionGrid from "../../components/sections/solutions/SolutionGrid.astro";
 
 const specialFeatures = [
   {
@@ -79,6 +80,16 @@ const faqs = [
     answer: "Nuestras soluciones satelitales de última generación están diseñadas para ofrecer una alta disponibilidad. Además, al integrar redundancia con SIM LTE, creamos un ecosistema de conectividad híbrido que minimiza las interrupciones, asegurando que tu comunicación sea constante y segura sin importar el entorno."
   }
 ];
+const satelitalEmpresaCards = [
+  {
+    title: "Zonas remotas o construcciones limitadas",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`
+  },
+  {
+    title: "Entrega de internet inmediata",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+  }
+];
 ---
 
 <Layout title="Internet Satelital | Xcien">
@@ -109,7 +120,16 @@ const faqs = [
     
     <div class="relative z-10">
       <SpecialFeatures features={specialFeatures} transparent={true} />
-      <CommonBenefits benefits={benefits} transparent={true} />
+      
+      <SolutionGrid 
+        title="Para"
+        titleHighlight="empresas"
+        description="Ideal para empresas, organizaciones y usuarios que requieren una conexión confiable, principal o de respaldo, de alta velocidad en ubicaciones remotas o con infraestructura terrestre limitada."
+        cards={satelitalEmpresaCards}
+        columns={2}
+      />
+
+      <CommonBenefits benefits={benefits} transparent={true} serviceName="Internet Satelital" />
       <HighAvailabilityDiagram transparent={true} />
       <FAQ faqs={faqs} transparent={true} />
     </div>

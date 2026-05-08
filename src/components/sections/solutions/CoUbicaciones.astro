@@ -1,0 +1,92 @@
+---
+const locations = [
+  { 
+    city: "Monterrey", 
+    state: "Nuevo León", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>` 
+  },
+  { 
+    city: "Saltillo", 
+    state: "Coahuila", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>` 
+  },
+  { 
+    city: "Querétaro", 
+    state: "Querétaro", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>` 
+  },
+  { 
+    city: "Guadalajara", 
+    state: "Jalisco", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>` 
+  }
+];
+
+const benefits = [
+  { 
+    title: "Renta desde 1 Rack hasta por M2", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-panel-left"><rect width="7" height="18" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>` 
+  },
+  { 
+    title: "Acceso protegido con Multi-Carrier", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>` 
+  },
+  { 
+    title: "Generador de energía de respaldo", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><path d="M4 14.71 12 2.25V10.5h8l-8 12.46V13.5H4Z"/></svg>` 
+  },
+  { 
+    title: "Respaldo via UPS", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-battery-charging"><path d="M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><path d="M6 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1"/><path d="m11 7-3 5h4l-3 5"/><line x1="22" x2="22" y1="11" y2="13"/></svg>` 
+  },
+  { 
+    title: "Seguridad perimetral", 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-fence"><path d="M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5L4 3Z"/><path d="M10 3 8 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5l-2-2Z"/><path d="M16 3l-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5l-2-2Z"/><path d="M22 3l-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5l-2-2Z"/><path d="M2 8h20"/><path d="M2 16h20"/></svg>` 
+  }
+];
+---
+
+<section class="py-24 border-t border-white/5 bg-[#0a0b0d]/50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <span class="text-primary font-black italic uppercase tracking-[0.2em] text-sm mb-4 block">DATA CENTER'S</span>
+      <h2 class="text-5xl md:text-6xl font-black italic uppercase tracking-tighter text-white mb-6">Co-Ubicaciones</h2>
+      <p class="text-white/50 text-xl max-w-2xl mx-auto">Infraestructura propia en las principales ciudades del país</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      {locations.map((loc) => (
+        <div class="p-8 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/30 transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+            <Fragment set:html={loc.icon} />
+          </div>
+          <h3 class="text-2xl font-black italic uppercase text-white mb-1">{loc.city}</h3>
+          <p class="text-primary font-bold uppercase tracking-widest text-xs">{loc.state}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Separator with label -->
+    <div class="relative flex items-center justify-center mb-20">
+      <div class="absolute inset-0 flex items-center">
+        <div class="w-full border-t border-white/10"></div>
+      </div>
+      <div class="relative px-8 bg-[#0a0b0d] rounded-full border border-white/10 py-2">
+        <span class="text-primary font-black italic uppercase tracking-[0.3em] text-sm">Beneficios</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      {benefits.map((benefit) => (
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all text-center flex flex-col items-center group">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:rotate-12 transition-transform shadow-[0_0_20px_rgba(163,230,53,0.1)]">
+            <Fragment set:html={benefit.icon} />
+          </div>
+          <h4 class="text-white font-bold leading-tight group-hover:text-primary transition-colors text-sm uppercase tracking-wide">
+            {benefit.title}
+          </h4>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

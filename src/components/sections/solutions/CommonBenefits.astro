@@ -7,9 +7,10 @@ interface Benefit {
 interface Props {
   benefits: Benefit[];
   transparent?: boolean;
+  serviceName?: string;
 }
 
-const { benefits, transparent = false } = Astro.props;
+const { benefits, transparent = false, serviceName = "Xcien" } = Astro.props;
 ---
 
 <section
@@ -23,7 +24,7 @@ const { benefits, transparent = false } = Astro.props;
     >
       <div>
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-          <span class="text-primary tracking-tight">Beneficios</span> clave de Xcien
+          <span class="text-primary tracking-tight">Beneficios</span> clave de {serviceName}
         </h2>
         <p class="text-white/50 max-w-2xl text-lg">
           Soluciones diseñadas para potenciar la continuidad y eficiencia de tu

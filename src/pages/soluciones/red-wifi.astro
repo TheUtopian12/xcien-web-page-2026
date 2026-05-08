@@ -6,6 +6,7 @@ import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
+import SolutionGrid from "../../components/sections/solutions/SolutionGrid.astro";
 
 const specialFeatures = [
   {
@@ -75,6 +76,34 @@ const faqs = [
     answer: "Sí, a través de nuestro Reporte de Red. Tendrás acceso a la generación de reportes detallados sobre el consumo de los dispositivos dentro de tu red. Esto te da una visibilidad total para gestionar mejor tu ancho de banda y detectar usos no autorizados o cuellos de botella."
   }
 ];
+
+const wifiCards = [
+  {
+    title: "Diseño",
+    number: "01",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>`
+  },
+  {
+    title: "Implementacion",
+    number: "02",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>`
+  },
+  {
+    title: "Monitoreo",
+    number: "03",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`
+  },
+  {
+    title: "Soporte Tecnico",
+    number: "04",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>`
+  },
+  {
+    title: "Mantenimiento",
+    number: "05",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`
+  }
+];
 ---
 
 <Layout title="Red WiFi | Xcien">
@@ -105,12 +134,20 @@ const faqs = [
   
   <SpecialFeatures features={specialFeatures} />
   
-  <CommonBenefits benefits={benefits} />
+  <CommonBenefits benefits={benefits} serviceName="Red WiFi" />
   
   <HighAvailabilityDiagram />
+
+  <SolutionGrid 
+    title="Red"
+    titleHighlight="WiFi"
+    description="Con nuestro servicio de WiFi administrado tomamos la responsabilidad de todo el ciclo de vida de su red inalambrica, garantizando un rendimiento optimo de su red WiFi sin la carga de la gestion tecnica que implica."
+    cards={wifiCards}
+    columns={5}
+    variant="process"
+  />
   
   <FAQ faqs={faqs} />
   
   <BreadcrumbBar path={["Soluciones", "Red WiFi", "Descripción General"]} />
 </Layout>
-

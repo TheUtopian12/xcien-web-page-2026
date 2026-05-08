@@ -6,6 +6,7 @@ import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
+import SolutionGrid from "../../components/sections/solutions/SolutionGrid.astro";
 
 const specialFeatures = [
   {
@@ -75,6 +76,25 @@ const faqs = [
     answer: "Para nada. Nuestra solución está diseñada para ser flexible y de fácil adopción. Al ser compatible con múltiples plataformas, la transición es casi inmediata. Tu equipo solo necesita una conexión vía Internet para tener Acceso Total a todas las herramientas de colaboración, sin configuraciones técnicas complejas."
   }
 ];
+
+const couCards = [
+  {
+    title: "Panel de control con reportes en tiempo real para monitorear llamadas y desempeño.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>`
+  },
+  {
+    title: "Funciona en la nube, sin necesidad de conmutadores físicos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M17.5 19c2.5 0 4.5-2 4.5-4.5 0-2.3-1.7-4.2-3.9-4.5a7 7 0 1 0-13.1 3.5c.1.3.1.7.1 1 0 2.5 2 4.5 4.5 4.5h7.9z"/></svg>`
+  },
+  {
+    title: "App móvil y de escritorio para atender llamadas desde cualquier lugar.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>`
+  },
+  {
+    title: "Escalable y flexible, ideal para empresas en crecimiento.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="m22 7-8.5 8.5L9 11l-7 7"/><path d="M16 7h6v6"/></svg>`
+  }
+];
 ---
 
 <Layout title="Comunicaciones Unificadas | Xcien">
@@ -98,8 +118,16 @@ const faqs = [
   />
   
   <SpecialFeatures features={specialFeatures} />
+
+  <SolutionGrid 
+    title="Beneficios"
+    description="Gestiona en la nube tus comunicaciones de manera fácil, efectiva y flexible en tu negocio. La vida es móvil y las empresas cada vez demandan más soluciones que puedan ser ejecutadas desde cualquier dispositivo, lugar y momento."
+    cards={couCards}
+    columns={4}
+    variant="process-diamond"
+  />
   
-  <CommonBenefits benefits={benefits} />
+  <CommonBenefits benefits={benefits} serviceName="Comunicaciones Unificadas" />
   
   <HighAvailabilityDiagram />
   

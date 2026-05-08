@@ -1,0 +1,179 @@
+---
+interface Card {
+  title: string;
+  description?: string;
+  icon?: string;
+  number?: string;
+  isPopular?: boolean;
+  footer?: string;
+}
+
+interface Props {
+  subtitle?: string;
+  title: string;
+  titleHighlight?: string;
+  description?: string;
+  cards: Card[];
+  columns?: number;
+  variant?: "default" | "process" | "numbered";
+}
+
+const { 
+  subtitle, 
+  title, 
+  titleHighlight, 
+  description, 
+  cards, 
+  columns = 3,
+  variant = "default" 
+} = Astro.props;
+
+const gridCols = {
+  2: "lg:grid-cols-2",
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+  5: "lg:grid-cols-5",
+}[columns] || "lg:grid-cols-3";
+---
+
+<section class="py-24 border-t border-white/5 relative overflow-hidden">
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16">
+      {subtitle && (
+        <span class="text-primary font-black italic uppercase tracking-[0.2em] text-sm mb-4 block">
+          {subtitle}
+        </span>
+      )}
+      <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-white mb-6 leading-none">
+        {title} <span class="text-primary">{titleHighlight}</span>
+      </h2>
+      {description && (
+        <p class="text-white/50 text-xl max-w-3xl mx-auto leading-relaxed">
+          {description}
+        </p>
+      )}
+    </div>
+
+    {variant === 'funnel' ? (
+      <div class="max-w-4xl mx-auto flex flex-col gap-4 relative">
+        {cards.map((card, index) => (
+          <div 
+            class={`relative flex items-center gap-6 p-4 rounded-full transition-all duration-500 group border overflow-hidden ${
+              index % 2 === 0 ? 'bg-gradient-to-r from-blue-600 to-blue-800' : 'bg-gradient-to-r from-cyan-500 to-cyan-700'
+            } border-white/10 shadow-xl hover:scale-[1.02]`}
+            style={`margin-left: ${index * 10}%; max-width: ${100 - (index * 5)}%;`}
+          >
+            <!-- Icon Circle -->
+            <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shrink-0 shadow-inner">
+              <div class="text-blue-600 w-8 h-8 flex items-center justify-center">
+                <Fragment set:html={card.icon} />
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-grow">
+              <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight">
+                {card.title}
+              </h3>
+            </div>
+
+            <!-- Decorative Glow -->
+            <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class={`grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-8 relative`}>
+        {variant === 'process-diamond' && (
+          <div class="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-y-1/2 hidden lg:block z-0"></div>
+        )}
+        
+        {cards.map((card, index) => (
+          <div class="relative group">
+            <div class={`relative p-8 rounded-[2.5rem] transition-all duration-500 border h-full flex flex-col items-center text-center z-10 ${
+              variant === 'process-diamond' 
+                ? (index === 2 ? 'bg-primary/5 border-primary/40 shadow-[0_0_50px_rgba(163,230,53,0.15)]' : 'bg-white/[0.02] border-white/5 hover:border-primary/20 hover:bg-white/[0.04]')
+                : (card.isPopular ? 'bg-primary/5 border-primary/30 shadow-[0_0_30px_rgba(163,230,53,0.1)]' : 'bg-white/[0.02] border-white/5 hover:border-primary/20 hover:bg-white/[0.04]')
+            }`}>
+              
+              {variant === 'process-diamond' ? (
+                <>
+                  <!-- Diamond Icon -->
+                  <div class="relative mb-8">
+                    <div class={`w-20 h-20 rotate-45 border-2 transition-all duration-500 flex items-center justify-center overflow-hidden ${
+                      index === 2 ? 'border-primary bg-primary/20 shadow-[0_0_30px_rgba(163,230,53,0.4)]' : 'border-primary/30 bg-primary/5 group-hover:border-primary group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(163,230,53,0.3)]'
+                    }`}>
+                      <div class="-rotate-45 text-primary w-10 h-10 flex items-center justify-center">
+                        <Fragment set:html={card.icon} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Step Number -->
+                  <div class={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-sm font-black mb-8 transition-all duration-500 ${
+                    index === 2 ? 'border-primary bg-primary text-black' : 'border-primary/30 text-primary group-hover:bg-primary group-hover:text-black'
+                  }`}>
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {card.isPopular && (
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-black text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-lg">
+                      Popular
+                    </div>
+                  )}
+
+                  {card.number && (
+                    <div class={`absolute top-6 right-6 w-8 h-8 rounded-full border flex items-center justify-center text-xs font-bold transition-colors ${card.isPopular ? 'border-primary text-primary' : 'border-white/10 text-white/30 group-hover:border-primary group-hover:text-primary'}`}>
+                      {card.number}
+                    </div>
+                  )}
+
+                  {card.icon && (
+                    <div class={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${variant === 'process' ? 'rounded-full border-2 border-primary/20 bg-primary/5 group-hover:scale-110 group-hover:border-primary/50' : 'bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-primary/10 group-hover:border-primary/20'}`}>
+                      <div class="text-primary w-10 h-10 flex items-center justify-center">
+                        <Fragment set:html={card.icon} />
+                      </div>
+                    </div>
+                  )}
+
+                  {variant === 'numbered' && card.number && !card.icon && (
+                    <div class="w-12 h-12 rounded-full border-2 border-primary/30 flex items-center justify-center text-primary font-black mb-6 group-hover:bg-primary group-hover:text-black transition-all">
+                      {card.number}
+                    </div>
+                  )}
+                </>
+              )}
+
+              <h3 class={`text-xl font-bold text-white mb-4 group-hover:text-primary transition-colors ${variant === 'process' || variant === 'process-diamond' ? 'uppercase tracking-wide' : ''}`}>
+                {card.title}
+              </h3>
+              
+              {card.description && (
+                <p class="text-white/50 text-sm leading-relaxed">
+                  {card.description}
+                </p>
+              )}
+
+              {card.footer && (
+                <div class="mt-6 pt-6 border-t border-white/5 w-full text-[10px] uppercase tracking-widest text-white/30 group-hover:text-primary/50 transition-colors">
+                  {card.footer}
+                </div>
+              )}
+            </div>
+
+            <!-- Connecting Arrow for process-diamond -->
+            {variant === 'process-diamond' && index < cards.length - 1 && (
+              <div class="absolute top-[40%] -right-4 translate-x-1/2 z-20 hidden lg:block">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#a3e635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" />
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

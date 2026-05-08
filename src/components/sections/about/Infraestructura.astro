@@ -1,0 +1,64 @@
+---
+const stats = [
+  {
+    title: "1er concesionario federal",
+    text: "de Telecomunicaciones con un proyecto inalámbrico.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>`
+  },
+  {
+    title: "Integración en soluciones",
+    text: "de conectividad con alta disponibilidad y seguridad.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M12 11v10"/></svg>`
+  },
+  {
+    title: "Operación Nacional",
+    text: "en las 20 ciudades más importantes de México.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`
+  },
+  {
+    title: "+200 torres y 30 Pop's",
+    text: "de fibra óptica en distintos puntos del interior de la República Mexicana.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 12.27 20 6H4l1.8 6.27a1 1 0 0 0 .95.73h10.5a1 1 0 0 0 .95-.73Z"/><path d="M8 13v9"/><path d="M16 13v9"/><path d="M10 6V2"/><path d="M14 6V2"/></svg>`
+  },
+  {
+    title: "1er proveedor híbrido",
+    text: "de México, nuestros servicios son entregados mediante Fibra Óptica y Microonda.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>`
+  }
+];
+---
+
+<section class="py-32 bg-[#0a0b0d] relative overflow-hidden">
+  <!-- Grid Background -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+      <div>
+        <h2 class="text-6xl md:text-7xl font-black text-white italic uppercase tracking-tighter mb-4 leading-none">
+          NUESTRA <span class="text-primary italic-none">INFRAESTRUCTURA</span>
+        </h2>
+        <p class="text-primary font-bold uppercase tracking-[0.2em] text-sm">DATOS QUE NOS RESPALDAN</p>
+      </div>
+      <div class="hidden md:block w-32 h-1.5 bg-primary rounded-full mb-2"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {stats.map((stat, i) => (
+        <div class={`group p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-primary/20 transition-all duration-500 hover:-translate-y-2 flex flex-col ${i === 3 ? 'lg:col-span-2' : ''}`}>
+          <div class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+            <Fragment set:html={stat.icon} />
+          </div>
+          
+          <h3 class="text-2xl font-black text-white italic uppercase mb-4 tracking-tighter leading-tight group-hover:text-primary transition-colors">
+            {stat.title}
+          </h3>
+          
+          <p class="text-white/50 text-lg leading-relaxed">
+            {stat.text}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

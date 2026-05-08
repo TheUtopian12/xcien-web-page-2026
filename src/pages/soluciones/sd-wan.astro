@@ -6,6 +6,7 @@ import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
+import SolutionGrid from "../../components/sections/solutions/SolutionGrid.astro";
 
 const specialFeatures = [
   {
@@ -75,6 +76,43 @@ const faqs = [
     answer: "Con nuestro servicio de Monitoreo Libre, tienes acceso total a reportes históricos del consumo. Podrás ver exactamente cómo se están utilizando tus conexiones en cada sucursal, identificar cuellos de botella y optimizar tus recursos para mejorar el rendimiento general de la empresa."
   }
 ];
+
+const sdwanCards = [
+  {
+    title: "Un internet sin caidas.",
+    description: "Tu conexion nunca se interrumpe, incluso si uno de tus proveedores falla. El trafico se redirige automaticamente al enlace disponible.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><line x1="2" x2="22" y1="2" y2="22"/><path d="M8.5 8.5a5 5 0 0 1 7 7"/><path d="M16.5 16.5a10 10 0 0 1-9-9"/><path d="M22 8.5a15.3 15.3 0 0 0-4.5-4.5"/><path d="M6.5 6.5a15.3 15.3 0 0 0-4.5 4.5"/><path d="M12 17h.01"/></svg>`
+  },
+  {
+    title: "Conectividad en todo momento.",
+    description: "Acceso continuo y estable a tus aplicaciones criticas desde cualquier ubicacion, garantizando la productividad de tu equipo.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>`
+  },
+  {
+    title: "Reduccion de costos.",
+    description: "Optimiza tus gastos de conectividad al aprovechar multiples proveedores sin necesidad de invertir en infraestructura costosa.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><path d="M16 17h6v-6"/></svg>`
+  }
+];
+import SdwanFeatures from "../../components/sections/solutions/SdwanFeatures.astro";
+
+const sdwanFeaturesList = [
+  {
+    title: "Un internet sin caídas.",
+    color: "blue",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" x2="22" y1="20" y2="20"/><path d="M12 4v12"/><circle cx="12" cy="10" r="3"/></svg>`
+  },
+  {
+    title: "Conectividad en todo momento.",
+    color: "green",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/><rect width="8" height="6" x="14" y="14" rx="1"/><path d="M18 14v-2"/></svg>`
+  },
+  {
+    title: "Reducción de costos.",
+    color: "cyan",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M22 7l-5 5-4-4-3 3"/></svg>`
+  }
+];
 ---
 
 <Layout title="SD-WAN | Xcien">
@@ -96,13 +134,19 @@ const faqs = [
   
   <SpecialFeatures features={specialFeatures} />
   
-  <CommonBenefits benefits={benefits} />
+  <CommonBenefits benefits={benefits} serviceName="SD-WAN" />
   
   <HighAvailabilityDiagram />
+
+  <SdwanFeatures 
+    title="SD"
+    titleHighlight="WAN"
+    description="Software que unifica y administra a tus proveedores de internet actuales generando una sola conexion a internet."
+    descriptionSecondary="Logra alta disponibilidad en tu negocio a bajo costo."
+    features={sdwanFeaturesList}
+  />
   
   <FAQ faqs={faqs} />
   
   <BreadcrumbBar path={["Soluciones", "SD-WAN", "Descripción General"]} />
-</Layout>nes", "SD-WAN", "Descripción General"]} />
-</Layout>
 

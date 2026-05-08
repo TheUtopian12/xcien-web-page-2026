@@ -6,6 +6,7 @@ import SpecialFeatures from "../../components/sections/solutions/SpecialFeatures
 import HighAvailabilityDiagram from "../../components/sections/solutions/HighAvailabilityDiagram.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
+import CoUbicaciones from "../../components/sections/solutions/CoUbicaciones.astro";
 
 const specialFeatures = [
   {
@@ -96,12 +97,13 @@ const faqs = [
   
   <SpecialFeatures features={specialFeatures} />
   
-  <CommonBenefits benefits={benefits} />
+  <CommonBenefits benefits={benefits} serviceName="Data Centers" />
   
   <HighAvailabilityDiagram />
+
+  <CoUbicaciones />
   
   <FAQ faqs={faqs} />
   
   <BreadcrumbBar path={["Soluciones", "Data Centers", "Descripción General"]} />
 </Layout>
-
