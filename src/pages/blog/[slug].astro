@@ -2,21 +2,22 @@
 import Layout from "../../layouts/Layout.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 
-// Configuración de la API (Igual que en la lista)
+export const prerender = false;
+
+// Configuración de la API
 const WP_BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/utopianscommx.wordpress.com";
 
-export async function getStaticPaths() {
-  const WP_API_URL = "https://public-api.wordpress.com/wp/v2/sites/utopianscommx.wordpress.com/posts?_embed&per_page=100";
-  const response = await fetch(WP_API_URL);
-  const posts = await response.json();
-  
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+const { slug } = Astro.params;
+
+// Buscar el post por slug
+const response = await fetch(`${WP_BASE_URL}/posts?slug=${slug}&_embed`);
+const posts = await response.json();
+
+if (!posts || posts.length === 0) {
+  return Astro.redirect("/blog");
 }
 
-const { post } = Astro.props;
+const post = posts[0];
 
 // Función auxiliar para obtener la imagen destacada
 const getFeaturedImage = (post) => {

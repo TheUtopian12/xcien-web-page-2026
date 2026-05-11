@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^10.0.6",
     "@tailwindcss/vite": "^4.2.2",
     "@types/animejs": "^3.1.13",
     "@vercel/analytics": "^2.0.1",
