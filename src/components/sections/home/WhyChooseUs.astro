@@ -6,9 +6,14 @@ const reasons = [
     description: "Contamos con más de 25 años de experiencia.",
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>`,
-    title: "Velocidad garantizada.",
-    description: "Conexión simétrica, estable y dedicada.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>`,
+    title: "Concesionario Federal.",
+    description: "1er concesionario federal de Telecomunicaciones con un proyecto inalámbrico.",
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><path d="M4 14.71V2.1L18.42 12l-6.17 2.1L12.25 21.9 4 14.71z"/></svg>`,
+    title: "Proveedor Híbrido.",
+    description: "Somos el primer proveedor híbrido de México, nuestros servicios son entregados mediante Fibra Óptica y Microonda.",
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-9"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 7.5 12"/></svg>`,
@@ -17,9 +22,9 @@ const reasons = [
       "Centro de Operaciones de Red (NOC) propio y soporte siempre activo. Ingeniero capacitados y especializados.",
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`,
-    title: "Seguridad empresarial.",
-    description: "Protección, seguridad y cifrado para todos nuestros clientes.",
+    icon: `<span class="font-bold text-xs">AI</span>`,
+    title: "Inteligencia Artificial.",
+    description: "Implementamos IA para optimizar y proteger tu conectividad de manera proactiva.",
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize-2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`,
@@ -50,7 +55,7 @@ const reasons = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         reasons.map((reason) => (
           <div class="group p-8 rounded-2xl bg-[#191e24] backdrop-blur-sm border border-white/5 hover:border-primary/30 transition-all duration-500 hover:bg-black/60 flex flex-col gap-6">
