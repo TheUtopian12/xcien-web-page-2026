@@ -13,96 +13,110 @@ const specialFeatures = [
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`,
     title: "Red Blindada.",
-    description: "Protocolos de seguridad uno a uno, desde aplicaciones, Burles e IP's para blindar en todos los puntos."
+    description:
+      "Protocolos de seguridad uno a uno, desde aplicaciones, Burles e IP's para blindar en todos los puntos.",
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .52 8.125A5 5 0 0 0 12 22a5 5 0 0 0 8-4.018 4 4 0 0 0 .52-8.125 4 4 0 0 0-2.526-5.77A3 3 0 1 0 12 5z"/></svg>`,
     title: "Auto Aprendizaje.",
-    description: "Identificación y registro de riesgos en la nube para anticipar vulnerabilidades."
+    description:
+      "Identificación y registro de riesgos en la nube para anticipar vulnerabilidades.",
   },
   {
     icon: `<span class="font-bold text-xs">AI</span>`,
     title: "IA.",
-    description: "Actualización constante de puntos de control, a través de su activador IA."
-  }
+    description:
+      "Actualización constante de puntos de control, a través de su activador IA.",
+  },
 ];
 
 const benefits = [
   {
     title: "Rápida implementación.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   },
   {
     title: "Configuración a la medida.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
   },
   {
     title: "Análisis de comportamientos para prevención de ataques.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"/><path d="M12 18v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M18 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"/><path d="M12 18v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M18 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>`,
   },
   {
     title: "Detección y Análisis de Tráfico.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
   },
   {
     title: "Gestión remota y posibilidad de administración compartida.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
   },
   {
     title: "Soporte 24/7.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v5"/><path d="M12 16h.01"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v5"/><path d="M12 16h.01"/></svg>`,
   },
   {
-    title: "Análisis y dimensionamiento del equipo en base a las necesidades del cliente.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="17" x2="22" y2="17"/></svg>`
-  }
+    title:
+      "Análisis y dimensionamiento del equipo en base a las necesidades del cliente.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="17" x2="22" y2="17"/></svg>`,
+  },
 ];
 
 const faqs = [
   {
-    question: "¿Cómo garantiza Xcien la seguridad de mi información empresarial?",
-    answer: "Implementamos una Red Blindada mediante protocolos de seguridad \"uno a uno\". Protegemos tu infraestructura desde las aplicaciones hasta las IP's y puertos, creando una barrera robusta que blinda cada punto de entrada de tu red contra accesos no autorizados."
+    question:
+      "¿Cómo garantiza Xcien la seguridad de mi información empresarial?",
+    answer:
+      'Implementamos una Red Blindada mediante protocolos de seguridad "uno a uno". Protegemos tu infraestructura desde las aplicaciones hasta las IP\'s y puertos, creando una barrera robusta que blinda cada punto de entrada de tu red contra accesos no autorizados.',
   },
   {
-    question: "¿Qué ventaja ofrece el uso de Inteligencia Artificial (IA) en mi seguridad?",
-    answer: "Nuestra solución cuenta con un activador de IA que permite una actualización constante de los puntos de control. A diferencia de los sistemas tradicionales que esperan a ser atacados para reaccionar, nuestra IA evoluciona día con día para reconocer y bloquear comportamientos sospechosos de manera autónoma."
+    question:
+      "¿Qué ventaja ofrece el uso de Inteligencia Artificial (IA) en mi seguridad?",
+    answer:
+      "Nuestra solución cuenta con un activador de IA que permite una actualización constante de los puntos de control. A diferencia de los sistemas tradicionales que esperan a ser atacados para reaccionar, nuestra IA evoluciona día con día para reconocer y bloquear comportamientos sospechosos de manera autónoma.",
   },
   {
-    question: "¿El sistema puede detectar amenazas nuevas que no han sido registradas?",
-    answer: "Sí. Gracias a nuestro diferenciador de Auto Aprendizaje, el sistema identifica y registra riesgos en la nube de manera global. Esto nos permite anticipar vulnerabilidades incluso antes de que lleguen a tu red, aprendiendo de patrones detectados en otros puntos para proteger tu entorno proactivamente."
+    question:
+      "¿El sistema puede detectar amenazas nuevas que no han sido registradas?",
+    answer:
+      "Sí. Gracias a nuestro diferenciador de Auto Aprendizaje, el sistema identifica y registra riesgos en la nube de manera global. Esto nos permite anticipar vulnerabilidades incluso antes de que lleguen a tu red, aprendiendo de patrones detectados en otros puntos para proteger tu entorno proactivamente.",
   },
   {
-    question: "¿Qué tan específica es la protección que ofrecen para mis aplicaciones?",
-    answer: "Es total. Nuestros protocolos de Red Blindada analizan el tráfico a nivel de aplicaciones, permitiendo filtrar qué software tiene permitido comunicarse con el exterior. Esto evita que programas maliciosos (malware) operen en segundo plano y pongan en riesgo tus datos operativos."
+    question:
+      "¿Qué tan específica es la protección que ofrecen para mis aplicaciones?",
+    answer:
+      "Es total. Nuestros protocolos de Red Blindada analizan el tráfico a nivel de aplicaciones, permitiendo filtrar qué software tiene permitido comunicarse con el exterior. Esto evita que programas maliciosos (malware) operen en segundo plano y pongan en riesgo tus datos operativos.",
   },
   {
-    question: "¿Es necesario que mi equipo de TI actualice el software de seguridad manualmente?",
-    answer: "No. El sistema de Ciberseguridad de Xcien está diseñado para ser autogestionable en su núcleo. Las actualizaciones de los puntos de control y la base de datos de amenazas se realizan de forma automática a través de nuestra red y el activador de IA, garantizando que siempre cuentes con la versión de protección más reciente sin interrumpir tus operaciones."
-  }
+    question:
+      "¿Es necesario que mi equipo de TI actualice el software de seguridad manualmente?",
+    answer:
+      "No. El sistema de Ciberseguridad de Xcien está diseñado para ser autogestionable en su núcleo. Las actualizaciones de los puntos de control y la base de datos de amenazas se realizan de forma automática a través de nuestra red y el activador de IA, garantizando que siempre cuentes con la versión de protección más reciente sin interrumpir tus operaciones.",
+  },
 ];
 
 const ciberCards = [
   {
     title: "Filtrado de redes sociales/streaming/apps",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-12.7c.9 0 1.8.2 2.6.5"/><path d="M18.12 15.88 15 12.75"/><path d="M12 11h3.5c1.4 0 2.5 1.1 2.5 2.5a2.5 2.5 0 0 1-5 0v-2.5z"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-12.7c.9 0 1.8.2 2.6.5"/><path d="M18.12 15.88 15 12.75"/><path d="M12 11h3.5c1.4 0 2.5 1.1 2.5 2.5a2.5 2.5 0 0 1-5 0v-2.5z"/></svg>`,
   },
   {
     title: "Prevención y detección de intrusiones",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg>`,
   },
   {
     title: "Filtrado de búsqueda web",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>`,
   },
   {
     title: "Filtrado de contenido",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m12 11-4 4"/><path d="m8 11 4 4"/></svg>`
-  }
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m12 11-4 4"/><path d="m8 11 4 4"/></svg>`,
+  },
 ];
 ---
 
 <Layout title="Ciberseguridad | Xcien">
-  <PageHeroWithForm 
+  <PageHeroWithForm
     title="Ciber"
     greenTitle="seguridad"
     variant="cyber"
@@ -126,42 +140,16 @@ const ciberCards = [
       </ul>
     `}
   />
-  
+
   <SpecialFeatures features={specialFeatures} />
 
   <CommonBenefits benefits={benefits} serviceName="Ciberseguridad" />
-  
+
   <HighAvailabilityDiagram />
 
-  <SdwanFeatures 
-    title="Seguridad"
-    titleHighlight="Administrada"
-    description="Seguridad administrada para tu negocio, 100% desde la nube, la instalacion y administracion es simple y sencilla."
-    features={[
-      {
-        title: "Filtrado de redes sociales/streaming/apps",
-        color: "blue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-12.7c.9 0 1.8.2 2.6.5"/><path d="M18.12 15.88 15 12.75"/><path d="M12 11h3.5c1.4 0 2.5 1.1 2.5 2.5a2.5 2.5 0 0 1-5 0v-2.5z"/></svg>`
-      },
-      {
-        title: "Prevención y detección de intrusiones",
-        color: "green",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg>`
-      },
-      {
-        title: "Filtrado de búsqueda web",
-        color: "cyan",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>`
-      },
-      {
-        title: "Filtrado de contenido",
-        color: "blue",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m12 11-4 4"/><path d="m8 11 4 4"/></svg>`
-      }
-    ]}
-  />
-  
   <FAQ faqs={faqs} />
-  
-  <BreadcrumbBar path={["Soluciones", "Ciberseguridad", "Descripción General"]} />
+
+  <BreadcrumbBar
+    path={["Soluciones", "Ciberseguridad", "Descripción General"]}
+  />
 </Layout>
