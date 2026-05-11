@@ -7,7 +7,7 @@ import HighAvailabilityDiagram from "../../components/sections/solutions/HighAva
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
 import SolutionGrid from "../../components/sections/solutions/SolutionGrid.astro";
-import PymeComparison from "../../components/sections/solutions/PymeComparison.astro";
+import SdwanFeatures from "../../components/sections/solutions/SdwanFeatures.astro";
 
 const specialFeatures = [
   {
@@ -133,7 +133,33 @@ const ciberCards = [
   
   <HighAvailabilityDiagram />
 
-  <PymeComparison />
+  <SdwanFeatures 
+    title="Seguridad"
+    titleHighlight="Administrada"
+    description="Seguridad administrada para tu negocio, 100% desde la nube, la instalacion y administracion es simple y sencilla."
+    features={[
+      {
+        title: "Filtrado de redes sociales/streaming/apps",
+        color: "blue",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-12.7c.9 0 1.8.2 2.6.5"/><path d="M18.12 15.88 15 12.75"/><path d="M12 11h3.5c1.4 0 2.5 1.1 2.5 2.5a2.5 2.5 0 0 1-5 0v-2.5z"/></svg>`
+      },
+      {
+        title: "Prevención y detección de intrusiones",
+        color: "green",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg>`
+      },
+      {
+        title: "Filtrado de búsqueda web",
+        color: "cyan",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>`
+      },
+      {
+        title: "Filtrado de contenido",
+        color: "blue",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m12 11-4 4"/><path d="m8 11 4 4"/></svg>`
+      }
+    ]}
+  />
   
   <FAQ faqs={faqs} />
   
