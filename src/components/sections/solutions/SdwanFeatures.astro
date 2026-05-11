@@ -1,6 +1,7 @@
 ---
 interface Feature {
   title: string;
+  description?: string;
   icon: string;
   color: string;
 }
@@ -14,99 +15,92 @@ interface Props {
 }
 
 const { title, titleHighlight, description, descriptionSecondary, features } = Astro.props;
-
-const colors = {
-  blue: "border-blue-500 bg-blue-500",
-  green: "border-green-500 bg-green-500",
-  cyan: "border-cyan-400 bg-cyan-400",
-};
 ---
 
 <section class="py-24 border-t border-white/5 relative overflow-hidden bg-black">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full"></div>
-  </div>
-
   <div class="container mx-auto px-4 relative z-10">
-    <div class="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24">
+    <div class="flex flex-col lg:flex-row items-start justify-center gap-16 lg:gap-24">
       <!-- Left Content -->
-      <div class="lg:w-1/2">
-        <h2 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter text-white mb-8 leading-none">
-          <span class="text-primary">{title}</span>{titleHighlight}
+      <div class="lg:w-2/5">
+        <div class="flex items-center gap-2 mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="m13 2-2 2.5h3L11 11h3L11 22v-5.5H8l3-10.5H8L13 2Z"/></svg>
+          <span class="text-primary font-black italic uppercase tracking-[0.2em] text-xs">
+            Qué es {title}{titleHighlight}
+          </span>
+        </div>
+        
+        <h2 class="text-7xl md:text-8xl font-black italic uppercase tracking-tighter text-white mb-8 leading-[0.85]">
+          <span class="block">{title}</span>
+          <span class="block">{titleHighlight}</span>
         </h2>
-        <div class="space-y-6">
-          <p class="text-white text-xl md:text-2xl font-medium leading-relaxed max-w-xl">
+        
+        <div class="space-y-6 mb-10">
+          <p class="text-white text-xl md:text-2xl font-medium leading-relaxed max-w-md">
             {description}
           </p>
           {descriptionSecondary && (
-            <p class="text-white text-xl md:text-2xl font-medium leading-relaxed max-w-xl">
+            <p class="text-white/60 text-lg md:text-xl font-medium leading-relaxed max-w-md">
               {descriptionSecondary}
             </p>
           )}
         </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-1 bg-primary rounded-full"></div>
+          <div class="w-2 h-2 bg-primary rounded-full"></div>
+        </div>
       </div>
 
-      <!-- Right Content: Staggered Pins -->
-      <div class="lg:w-1/2 relative min-h-[500px] flex flex-col md:grid md:grid-cols-2 gap-8 lg:block">
+      <!-- Right Content: Stacked Cards -->
+      <div class="lg:w-3/5 flex flex-col gap-8 relative">
+        <!-- Vertical Line -->
+        <div class="absolute left-10 top-12 bottom-12 w-px bg-white/10 z-0 hidden md:block"></div>
+        
         {features.map((feature, index) => (
-          <div 
-            class={`relative lg:absolute transition-all duration-700 hover:scale-105 group z-${30 - (index * 10)}`}
-            style={index === 0 ? "top: 0%; left: 50%; transform: translateX(-50%);" : 
-                   index === 1 ? "top: 45%; left: 20%; transform: translateX(0);" : 
-                   "top: 55%; left: 60%; transform: translateX(0);"}
-          >
-            <div class="flex flex-col items-center">
-              <!-- Pin Head (Circle) -->
-              <div class={`w-32 h-32 md:w-36 md:h-36 rounded-full border-4 flex items-center justify-center bg-black/60 backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-all duration-500 ${
-                feature.color === 'blue' ? 'border-blue-500 shadow-blue-500/20 group-hover:shadow-blue-500/40' : 
-                feature.color === 'green' ? 'border-green-500 shadow-green-500/20 group-hover:shadow-green-500/40' : 
-                'border-cyan-400 shadow-cyan-400/20 group-hover:shadow-cyan-400/40'
-              }`}>
-                <div class={`w-16 h-16 md:w-20 md:h-20 ${
-                  feature.color === 'blue' ? 'text-blue-500' : 
-                  feature.color === 'green' ? 'text-green-500' : 
-                  'text-cyan-400'
-                }`}>
-                  <Fragment set:html={feature.icon} />
-                </div>
+          <div class="relative flex flex-col md:flex-row items-center md:items-start gap-8 group">
+            <!-- Icon Container -->
+            <div class={`relative z-10 w-20 h-20 shrink-0 rounded-2xl border-2 flex items-center justify-center bg-[#1a1c22]/80 backdrop-blur-md transition-all duration-500 group-hover:scale-110 ${
+              feature.color === 'blue' ? 'border-blue-500/30 text-blue-400 group-hover:border-blue-500 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]' : 
+              feature.color === 'green' ? 'border-green-500/30 text-green-400 group-hover:border-green-500 group-hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]' : 
+              'border-cyan-400/30 text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]'
+            }`}>
+              <div class="w-10 h-10">
+                <Fragment set:html={feature.icon} />
               </div>
-
-              <!-- Pin Tail (Triangle) -->
-              <div class={`w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[18px] -mt-1 relative z-10 ${
-                feature.color === 'blue' ? 'border-t-blue-500' : 
-                feature.color === 'green' ? 'border-t-green-500' : 
-                'border-t-cyan-400'
+              
+              <!-- Dot on Line -->
+              <div class={`absolute -left-[45px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-black hidden md:block ${
+                feature.color === 'blue' ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]' : 
+                feature.color === 'green' ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]' : 
+                'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]'
               }`}></div>
+            </div>
 
-              <!-- Label Box -->
-              <div class={`mt-2 px-6 py-3 rounded-xl text-white font-black italic uppercase text-center tracking-tight shadow-2xl transition-all duration-500 group-hover:translate-y-[-4px] whitespace-nowrap ${
-                feature.color === 'blue' ? 'bg-blue-500 shadow-blue-500/30' : 
-                feature.color === 'green' ? 'bg-green-500 shadow-green-500/30' : 
-                'bg-cyan-400 shadow-cyan-400/30'
-              }`}>
-                {feature.title}
+            <!-- Content Card -->
+            <div class="relative flex-grow bg-[#1a1c22]/40 backdrop-blur-sm border border-white/5 rounded-3xl p-8 overflow-hidden transition-all duration-500 group-hover:border-white/10 group-hover:bg-[#1a1c22]/60">
+              <!-- Background Number -->
+              <div class="absolute top-1/2 right-4 -translate-y-1/2 text-[120px] font-black text-white/[0.03] leading-none select-none pointer-events-none italic">
+                {String(index + 1).padStart(2, '0')}
+              </div>
+              
+              <div class="relative z-10">
+                <div class={`inline-block px-6 py-1.5 rounded-full text-xs font-black uppercase italic tracking-wider mb-4 ${
+                  feature.color === 'blue' ? 'bg-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)]' : 
+                  feature.color === 'green' ? 'bg-green-500 text-black shadow-[0_0_15px_rgba(34,197,94,0.4)]' : 
+                  'bg-cyan-400 text-black shadow-[0_0_15px_rgba(34,211,238,0.4)]'
+                }`}>
+                  {feature.title}
+                </div>
+                
+                {feature.description && (
+                  <p class="text-white/60 text-lg leading-relaxed max-w-xl">
+                    {feature.description}
+                  </p>
+                )}
               </div>
             </div>
           </div>
         ))}
-
-        <!-- Decorative Globe in Corner -->
-        <div class="absolute bottom-0 right-0 w-48 h-48 opacity-40 pointer-events-none">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="globeGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" style="stop-color:#a3e635;stop-opacity:0.3" />
-                <stop offset="100%" style="stop-color:#a3e635;stop-opacity:0" />
-              </radialGradient>
-            </defs>
-            <circle cx="100" cy="100" r="80" fill="url(#globeGrad)" />
-            <path d="M100 20 A80 80 0 0 1 100 180 M20 100 A80 80 0 0 1 180 100" stroke="#a3e635" stroke-width="0.5" fill="none" opacity="0.5" />
-            <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#a3e635" stroke-width="0.5" fill="none" opacity="0.3" />
-            <ellipse cx="100" cy="100" rx="30" ry="80" stroke="#a3e635" stroke-width="0.5" fill="none" opacity="0.3" />
-          </svg>
-        </div>
       </div>
     </div>
   </div>

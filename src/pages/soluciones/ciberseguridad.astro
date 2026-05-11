@@ -7,6 +7,7 @@ import HighAvailabilityDiagram from "../../components/sections/solutions/HighAva
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
 import SolutionGrid from "../../components/sections/solutions/SolutionGrid.astro";
+import PymeComparison from "../../components/sections/solutions/PymeComparison.astro";
 
 const specialFeatures = [
   {
@@ -132,13 +133,7 @@ const ciberCards = [
   
   <HighAvailabilityDiagram />
 
-  <SolutionGrid 
-    title="Seguridad"
-    titleHighlight="Administrada"
-    description="Seguridad administrada para tu negocio, 100% desde la nube, la instalacion y administracion es simple y sencilla."
-    cards={ciberCards}
-    variant="funnel"
-  />
+  <PymeComparison />
   
   <FAQ faqs={faqs} />
   
