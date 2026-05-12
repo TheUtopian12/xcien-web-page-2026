@@ -1,4 +1,10 @@
 ---
+interface Props {
+  hideButton?: boolean;
+}
+
+const { hideButton = false } = Astro.props;
+
 const partners = [
   {
     name: "Cisco",
@@ -36,10 +42,12 @@ const partners = [
           Casos de exito
         </p>
         <h2
-          class="text-6xl md:text-8xl font-black text-white leading-[0.9] italic uppercase tracking-tighter mb-8"
+          class="text-6xl md:text-7xl font-black text-white leading-[0.9] italic uppercase tracking-tighter mb-8"
         >
-          Alianzas <br />
-          <span class="text-white italic-none">Estratégicas</span>
+          Alianzas y <br />
+          <span class="text-white italic-none"
+            >Certificaciones Estratégicas</span
+          >
         </h2>
         <p class="text-white/50 text-xl leading-relaxed max-w-xl mb-12 italic">
           Nuestras soluciones se construyen sobre alianzas estratégicas con
@@ -48,29 +56,32 @@ const partners = [
           servicios y tecnologías de primer nivel.
         </p>
 
-        <a
-          href="/alianzas"
-          class="inline-flex items-center gap-6 bg-[#65d46e] text-black px-10 py-5 rounded-full font-black uppercase text-xs hover:scale-105 transition-all shadow-[0_0_40px_rgba(101,212,110,0.3)] group"
-        >
-          COMIENZA AHORA
-          <div
-            class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white group-hover:rotate-45 transition-transform"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              ><line x1="7" y1="17" x2="17" y2="7"></line><polyline
-                points="7 7 17 7 17 17"></polyline></svg
-            >
-          </div>
-        </a>
+        {
+          !hideButton && (
+            <a
+              href="/alianzas"
+              class="inline-flex items-center gap-6 bg-[#65d46e] text-black px-10 py-5 rounded-full font-black uppercase text-xs hover:scale-105 transition-all shadow-[0_0_40px_rgba(101,212,110,0.3)] group">
+              COMIENZA AHORA
+              <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white group-hover:rotate-45 transition-transform">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <>
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </>
+                </svg>
+              </div>
+            </a>
+          )
+        }
       </div>
 
       <div class="h-[700px] overflow-hidden relative">

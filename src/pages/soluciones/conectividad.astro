@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import PageHeroWithForm from "../../components/sections/solutions/PageHeroWithForm.astro";
 import SolutionDetails from "../../components/sections/solutions/SolutionDetails.astro";
 import SolutionGrid from "../../components/sections/solutions/SolutionGrid.astro";
+import FAQ from "../../components/sections/solutions/FAQ.astro";
 
 const features = [
   {
@@ -54,6 +55,29 @@ const characteristicCards = [
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shuffle"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2"/><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8"/><path d="m18 14 4 4-4 4"/></svg>`
   }
 ];
+
+const faqs = [
+  {
+    question: "¿Qué es una Red Privada Virtual (VPN/MPLS) y cómo beneficia a mi empresa?",
+    answer: "Es una solución que permite interconectar varias sucursales o puntos remotos de forma segura, como si estuvieran en la misma oficina. El beneficio principal para tu empresa es que permite compartir recursos (servidores, bases de datos, telefonía IP) de manera privada y protegida, garantizando que la información sensible no viaje por el internet público sin cifrado."
+  },
+  {
+    question: "¿Cómo garantiza Xcien la disponibilidad de la conexión en mis sucursales?",
+    answer: "Xcien utiliza esquemas de Alta Disponibilidad (High Availability). Esto significa que la red está diseñada con enlaces redundantes y monitoreo constante 24/7/365. Si un enlace falla, el sistema conmuta automáticamente a una vía alterna para que tu operación nunca se detenga."
+  },
+  {
+    question: "¿El servicio de conectividad es simétrico y dedicado?",
+    answer: "Sí. A diferencia del internet comercial, las soluciones de conectividad de Xcien suelen ser simétricas (misma velocidad de carga y descarga) y dedicadas (el ancho de banda no se comparte con otros usuarios). Esto es crucial para empresas que realizan videoconferencias constantes, suben archivos pesados a la nube o gestionan puntos de venta de alta transaccionalidad."
+  },
+  {
+    question: "¿Qué alcance geográfico tiene la solución de conectividad?",
+    answer: "Xcien cuenta con una red de más de 15,000 km de cobertura y más de 200 radiobases a nivel nacional. Esto permite llevar conectividad incluso a zonas de difícil acceso o donde otros proveedores no llegan, utilizando tecnologías que van desde fibra hasta microondas y enlaces satelitales para asegurar que todas tus ubicaciones estén enlazadas."
+  },
+  {
+    question: "¿Cómo se protege la información que viaja a través de estas redes?",
+    answer: "La solución integra capas de Ciberseguridad que incluyen firewalls avanzados y protocolos de cifrado de extremo a extremo. Al ser una red gestionada, Xcien blinda el flujo de datos para prevenir ciberataques, asegurando que solo el personal autorizado de tu organización pueda acceder a los nodos de la red privada."
+  }
+];
 ---
 
 <Layout title="Redes Privadas | Xcien">
@@ -68,6 +92,8 @@ const characteristicCards = [
     features={features}
     sectionTitle="Redes Privadas Virtuales"
   />
+
+  <FAQ faqs={faqs} />
 
   <SolutionGrid 
     title="Características"
