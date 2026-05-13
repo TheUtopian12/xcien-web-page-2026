@@ -27,9 +27,11 @@ const dataCenters = [
 
 <header
   id="main-header"
-  class="sticky top-0 z-50 bg-[#1a1c22]/80 backdrop-blur-md border-b border-white/5"
+  class="sticky top-0 z-50 bg-[#1a1c22]/80 backdrop-blur-md border-b border-white/5 overflow-visible"
 >
-  <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+  <nav
+    class="container mx-auto px-4 py-4 flex items-center justify-between overflow-visible"
+  >
     <div class="flex items-center gap-4">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2">
@@ -93,7 +95,9 @@ const dataCenters = [
     </div>
 
     <!-- Desktop Menu -->
-    <div class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+    <div
+      class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-semibold overflow-visible shrink-0"
+    >
       <div class="dropdown dropdown-hover">
         <label
           tabindex="0"
@@ -142,7 +146,7 @@ const dataCenters = [
         >Mapa de Cobertura</a
       >
 
-      <div class="dropdown dropdown-hover">
+      <div class="dropdown dropdown-hover dropdown-end dropdown-bottom">
         <label
           tabindex="0"
           class={`hover:text-primary transition-colors cursor-pointer flex items-center gap-1 py-4 ${pathname.startsWith("/soluciones") ? "text-primary" : "text-white"}`}
@@ -151,9 +155,11 @@ const dataCenters = [
         </label>
         <div
           tabindex="0"
-          class="dropdown-content z-[1] p-10 shadow-2xl bg-[#1a1c22]/98 backdrop-blur-2xl border border-white/5 rounded-[2.5rem] w-[850px] -left-[350px]"
+          class="mega-menu-soluciones dropdown-content z-[1] p-6 lg:p-8 xl:p-10 shadow-2xl bg-[#1a1c22]/98 backdrop-blur-2xl border border-white/5 rounded-2xl xl:rounded-[2.5rem] max-h-[min(32rem,calc(100dvh-6rem))] overflow-y-auto overscroll-contain"
         >
-          <div class="grid grid-cols-3 gap-16">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 lg:gap-12 xl:gap-16"
+          >
             <!-- Conectividad -->
             <div class="flex flex-col gap-8">
               <div
@@ -335,5 +341,12 @@ const dataCenters = [
     width: 100%;
     height: 20px;
     background: transparent;
+  }
+
+  /* Mega menú Soluciones: cabe en viewport (tablets apaisadas, lg estrecho) */
+  .mega-menu-soluciones.dropdown-content {
+    width: min(53.125rem, calc(100vw - 1.5rem));
+    max-width: calc(100vw - 1rem);
+    box-sizing: border-box;
   }
 </style>

@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="relative flex flex-col items-center justify-center min-h-[500px] lg:min-h-[650px] rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-white/[0.02] to-transparent border border-white/5 shadow-3xl">
+  <div class="relative flex flex-col items-center justify-center min-h-[500px] lg:min-h-[650px] rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-slate-600/10 via-[#0d1520]/80 to-[#0a1218] border border-white/10 shadow-3xl">
     
     <!-- Map Canvas -->
     <div id="svg-map-wrapper" class="w-full h-full flex items-center justify-center transition-all duration-700 opacity-0 relative z-10 p-4 md:p-8">
@@ -139,7 +139,7 @@
   <!-- Advanced Tooltip -->
   <div
     id="state-tooltip"
-    class="pointer-events-none fixed z-[100] bg-[#0a0b0d]/95 border border-white/10 p-5 rounded-2xl shadow-3xl backdrop-blur-2xl opacity-0 transition-all duration-300 flex flex-col gap-1 min-w-[200px]"
+    class="pointer-events-none absolute z-[100] bg-[#0a0b0d]/95 border border-white/10 p-5 rounded-2xl shadow-3xl backdrop-blur-2xl opacity-0 transition-opacity duration-200 flex flex-col gap-1 min-w-[200px] max-w-[min(280px,calc(100%-1.5rem))]"
     style="left: 0; top: 0;"
   >
     <div class="flex justify-between items-center mb-1">
@@ -159,46 +159,47 @@
   #svg-container svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.28));
     transition: all 1s cubic-bezier(0.2, 0, 0.2, 1);
   }
 
+  /* Estados sin cobertura: tonos pizarra/azulado legibles sobre fondo oscuro */
   #svg-container path {
     transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
     cursor: pointer;
-    stroke: rgba(255, 255, 255, 0.05) !important;
-    stroke-width: 0.8px !important;
-    fill: rgba(255, 255, 255, 0.02) !important;
+    stroke: rgba(148, 163, 184, 0.45) !important;
+    stroke-width: 1.05px !important;
+    fill: rgba(51, 65, 85, 0.42) !important;
     outline: none;
     vector-effect: non-scaling-stroke;
   }
 
   #svg-container path.is-covered {
-    fill: rgba(101, 212, 110, 0.08) !important;
-    stroke: rgba(101, 212, 110, 0.15) !important;
+    fill: rgba(101, 212, 110, 0.3) !important;
+    stroke: rgba(167, 243, 208, 0.75) !important;
   }
 
   #svg-container path:hover {
-    fill: rgba(255, 255, 255, 0.08) !important;
-    stroke: rgba(255, 255, 255, 0.2) !important;
+    fill: rgba(71, 85, 105, 0.55) !important;
+    stroke: rgba(203, 213, 225, 0.65) !important;
   }
 
   #svg-container path.is-covered:hover {
-    fill: rgba(101, 212, 110, 0.2) !important;
-    stroke: #65d46e !important;
-    filter: drop-shadow(0 0 15px rgba(101, 212, 110, 0.4));
+    fill: rgba(101, 212, 110, 0.45) !important;
+    stroke: #86efac !important;
+    filter: drop-shadow(0 0 18px rgba(101, 212, 110, 0.55));
   }
 
   #svg-container path.is-selected {
-    fill: rgba(101, 212, 110, 0.3) !important;
-    stroke: #65d46e !important;
+    fill: rgba(101, 212, 110, 0.52) !important;
+    stroke: #bbf7d0 !important;
     stroke-width: 2px !important;
-    filter: drop-shadow(0 0 30px rgba(101, 212, 110, 0.5));
+    filter: drop-shadow(0 0 28px rgba(101, 212, 110, 0.6));
   }
 
   #svg-container.has-selection path:not(.is-selected) {
-    opacity: 0.1;
-    filter: grayscale(1);
+    opacity: 0.22;
+    filter: grayscale(0.85) brightness(0.85);
     pointer-events: none;
   }
 </style>
@@ -240,6 +241,27 @@
 
     if (!wrapper || !container || !tooltip || !panel || !backNav) return;
 
+    const mapRoot = document.getElementById("mexico-map-container");
+    if (!mapRoot) return;
+
+    const placeTooltip = (e: MouseEvent) => {
+      const rect = mapRoot.getBoundingClientRect();
+      const edgePad = 10;
+      const cursorOffset = 14;
+
+      let x = e.clientX - rect.left + cursorOffset;
+      let y = e.clientY - rect.top + cursorOffset;
+
+      const tw = tooltip.offsetWidth || 240;
+      const th = tooltip.offsetHeight || 96;
+
+      x = Math.max(edgePad, Math.min(x, rect.width - tw - edgePad));
+      y = Math.max(edgePad, Math.min(y, rect.height - th - edgePad));
+
+      tooltip.style.left = `${x}px`;
+      tooltip.style.top = `${y}px`;
+    };
+
     let currentStateData = null;
 
     try {
@@ -272,7 +294,7 @@
 
         if (isCovered) path.classList.add("is-covered");
 
-        path.addEventListener("mouseenter", () => {
+        path.addEventListener("mouseenter", (e) => {
           if (container.classList.contains("has-selection")) return;
           if (tooltipName) tooltipName.textContent = name;
           if (tooltipStatus) {
@@ -283,16 +305,11 @@
             tooltipInstruction.textContent = isCovered ? "Click para ver cobertura" : "Click para ver estatus";
           }
           tooltip.style.opacity = "1";
+          placeTooltip(e);
         });
 
         path.addEventListener("mousemove", (e) => {
-          const offset = 25;
-          let x = e.clientX + offset;
-          let y = e.clientY + offset;
-          if (x + 220 > window.innerWidth) x = e.clientX - 220 - offset;
-          if (y + 120 > window.innerHeight) y = e.clientY - 120 - offset;
-          tooltip.style.left = `${x}px`;
-          tooltip.style.top = `${y}px`;
+          placeTooltip(e);
         });
 
         path.addEventListener("mouseleave", () => tooltip.style.opacity = "0");
