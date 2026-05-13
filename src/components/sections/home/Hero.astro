@@ -45,7 +45,7 @@ import SuccessModal from "../../layout/SuccessModal.astro";
           id="hero-title"
           class="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-black leading-[1.1] tracking-tighter text-white mb-6 italic uppercase relative z-10"
         >
-          Impulsa la evolución de tu negocio con <span class="text-primary"
+          Impulsa la evolución de tu negocio con <span class="text-secondary"
             >Conectividad Inteligente</span
           >
         </h1>
@@ -200,7 +200,8 @@ import SuccessModal from "../../layout/SuccessModal.astro";
                   ].map((option) => (
                     <div
                       class="px-6 py-3 text-white/70 hover:text-primary hover:bg-white/5 cursor-pointer transition-colors text-xs font-bold uppercase tracking-wider"
-                      data-value={option}>
+                      data-value={option}
+                    >
                       {option}
                     </div>
                   ))
@@ -262,7 +263,7 @@ import SuccessModal from "../../layout/SuccessModal.astro";
   const optionsMenu = document.getElementById("select-options");
   const selectedValue = document.getElementById("selected-value");
   const hiddenInput = document.getElementById(
-    "solucion-input"
+    "solucion-input",
   ) as HTMLInputElement;
   const options = document.querySelectorAll("#select-options [data-value]");
 
