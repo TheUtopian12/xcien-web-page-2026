@@ -5,7 +5,7 @@ import SuccessModal from "../../layout/SuccessModal.astro";
 <section
   class="relative min-h-screen flex items-center overflow-hidden pt-20 lg:pt-0"
 >
-  <!-- Background Image with Overlay -->
+  
   <div class="absolute inset-0 z-0">
     <img
       src="/images/cerro-de-la-silla-in-monterrey-mexico-2026-03-18-06-47-11-utc.jpg"
@@ -26,7 +26,7 @@ import SuccessModal from "../../layout/SuccessModal.astro";
   <div
     class="z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-6 xl:gap-16 pt-10 pb-12 lg:py-12 max-w-480 mx-auto"
   >
-    <!-- Left Section: Bleed-out box -->
+    
     <div
       class="w-full lg:w-[55%] xl:w-[52%] flex items-center order-2 lg:order-1"
     >
@@ -70,7 +70,7 @@ import SuccessModal from "../../layout/SuccessModal.astro";
       </div>
     </div>
 
-    <!-- Right Section: Compact Form -->
+    
     <div
       id="proposta"
       class="w-full max-w-lg md:max-w-3xl lg:w-[45%] xl:w-[40%] flex items-center order-1 lg:order-2 px-4 sm:px-8 lg:px-6 xl:pr-12 2xl:pr-32"
@@ -236,15 +236,13 @@ import SuccessModal from "../../layout/SuccessModal.astro";
 </section>
 
 <style>
-  /* Custom scroll smooth for anchor links */
+  
   html {
     scroll-behavior: smooth;
   }
 </style>
 
-<script>
-  // Modal Submit Logic
-  const form = document.querySelector("form");
+<script>  const form = document.querySelector("form");
   const modal = document.getElementById("success_modal") as HTMLDialogElement;
 
   form?.addEventListener("submit", (e) => {
@@ -253,12 +251,9 @@ import SuccessModal from "../../layout/SuccessModal.astro";
     if (form instanceof HTMLFormElement) {
       form.reset();
     }
-    // Reset custom select
     const selectedValue = document.getElementById("selected-value");
     if (selectedValue) selectedValue.textContent = "Selecciona una opción";
   });
-
-  // Custom Select Logic
   const trigger = document.getElementById("select-trigger");
   const optionsMenu = document.getElementById("select-options");
   const selectedValue = document.getElementById("selected-value");
@@ -304,8 +299,6 @@ import SuccessModal from "../../layout/SuccessModal.astro";
       }
     });
   });
-
-  // Close when clicking outside
   document.addEventListener("click", () => {
     closeSelect();
   });

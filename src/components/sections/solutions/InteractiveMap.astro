@@ -1,5 +1,5 @@
 <div class="relative w-full max-w-6xl mx-auto py-10 lg:py-16 px-4" id="mexico-map-container">
-  <!-- Header Info -->
+  
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 relative z-20">
     <div class="space-y-1">
       <h2 class="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter">
@@ -10,7 +10,7 @@
       </p>
     </div>
 
-    <!-- Legend -->
+    
     <div class="flex items-center gap-4 bg-white/[0.03] backdrop-blur-xl p-1.5 rounded-full border border-white/10 shadow-2xl">
       <div class="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
         <div class="w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_#65d46e] animate-pulse"></div>
@@ -25,14 +25,14 @@
 
   <div class="relative flex flex-col items-center justify-center min-h-[500px] lg:min-h-[650px] rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-slate-600/10 via-[#0d1520]/80 to-[#0a1218] border border-white/10 shadow-3xl">
     
-    <!-- Map Canvas -->
+    
     <div id="svg-map-wrapper" class="w-full h-full flex items-center justify-center transition-all duration-700 opacity-0 relative z-10 p-4 md:p-8">
       <div id="svg-container" class="w-full h-full max-w-4xl flex items-center justify-center cursor-crosshair">
         <span class="loading loading-ring loading-lg text-primary"></span>
       </div>
     </div>
 
-    <!-- Floating Details Panel -->
+    
     <div 
       id="municipality-panel" 
       class="absolute right-6 top-6 bottom-6 w-full max-w-[320px] bg-[#0a0b0d]/95 backdrop-blur-3xl border border-white/10 rounded-[2rem] p-8 flex flex-col transition-all duration-700 translate-x-[110%] opacity-0 pointer-events-none z-30 shadow-[0_0_100px_rgba(0,0,0,0.8)]"
@@ -49,13 +49,13 @@
 
       <div class="flex-1 overflow-y-auto custom-scrollbar pr-2 mb-6">
         <div id="municipality-list" class="flex flex-col gap-1.5 text-white/60">
-          <!-- Dynamic -->
+          
         </div>
         
         <div id="localities-container" class="mt-8 hidden">
           <p class="text-primary/40 font-black uppercase text-[8px] tracking-[0.3em] mb-4 border-b border-primary/10 pb-2 italic">Zonas Especiales</p>
           <div id="localities-list" class="flex flex-wrap gap-2 text-[9px] uppercase font-bold italic text-white/40">
-            <!-- Dynamic -->
+            
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <!-- Back Navigation -->
+    
     <div id="back-nav" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 transition-all duration-500 opacity-0 pointer-events-none translate-y-4">
       <button 
         id="btn-back-map"
@@ -83,9 +83,9 @@
     </div>
   </div>
 
-  <!-- MODALS INTEGRATION -->
   
-  <!-- QUOTE MODAL -->
+  
+  
   <dialog id="coverage_info_modal" class="modal modal-bottom sm:modal-middle bg-black/60 backdrop-blur-sm z-[110]">
     <div class="modal-box bg-[#0a0b0d] border border-white/10 p-0 overflow-hidden max-w-2xl shadow-3xl rounded-[2rem]">
       <div class="p-8 lg:p-12 bg-gradient-to-br from-primary/10 to-transparent border-b border-white/5">
@@ -114,7 +114,7 @@
     </div>
   </dialog>
 
-  <!-- NO COVERAGE MODAL -->
+  
   <dialog id="no_coverage_info_modal" class="modal modal-bottom sm:modal-middle bg-black/80 backdrop-blur-sm z-[110]">
     <div class="modal-box bg-[#0d0a0a] border border-red-500/20 p-0 overflow-hidden max-w-md shadow-[0_0_100px_rgba(239,68,68,0.1)] rounded-[2.5rem]">
       <div class="p-10 bg-gradient-to-br from-red-600/10 to-transparent text-center">
@@ -136,7 +136,7 @@
     </div>
   </dialog>
 
-  <!-- Advanced Tooltip -->
+  
   <div
     id="state-tooltip"
     class="pointer-events-none absolute z-[100] bg-[#0a0b0d]/95 border border-white/10 p-5 rounded-2xl shadow-3xl backdrop-blur-2xl opacity-0 transition-opacity duration-200 flex flex-col gap-1 min-w-[200px] max-w-[min(280px,calc(100%-1.5rem))]"
@@ -163,7 +163,7 @@
     transition: all 1s cubic-bezier(0.2, 0, 0.2, 1);
   }
 
-  /* Estados sin cobertura: tonos pizarra/azulado legibles sobre fondo oscuro */
+  
   #svg-container path {
     transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
     cursor: pointer;

@@ -36,7 +36,7 @@ const steps = [
     </h2>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-      <!-- Left: Steps -->
+      
       <div class="space-y-4">
         {
           steps.map((step, index) => (
@@ -63,7 +63,7 @@ const steps = [
 
       </div>
 
-      <!-- Right: Circles Representation -->
+      
       <div class="relative py-10 lg:py-20 flex justify-center">
         <div class="absolute inset-0 bg-primary/5 blur-[120px] rounded-full">
         </div>
@@ -130,12 +130,8 @@ const steps = [
       pill.addEventListener("mouseenter", () => setActive(index));
       pill.addEventListener("click", () => setActive(index));
     });
-
-    // Set first one active by default
     setActive(0);
   }
-
-  // Run on load and on astro page changes
   initProcess();
   document.addEventListener("astro:page-load", initProcess);
 </script>

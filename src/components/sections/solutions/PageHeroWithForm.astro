@@ -12,18 +12,18 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
 ---
 
 <section class="relative min-h-[80vh] flex items-center overflow-hidden pt-28 pb-16" style="background: #080c1a;">
-  <!-- Dynamic Background Canvas -->
+  
   <canvas 
     id="hero-canvas" 
     class="absolute inset-0 w-full h-full z-0" 
     data-variant={variant}
   ></canvas>
-  <!-- Overlay gradient to blend canvas with content area -->
+  
   <div class="absolute inset-0 z-0 bg-gradient-to-r from-[#080c1a]/95 via-[#080c1a]/60 to-[#080c1a]/30 pointer-events-none"></div>
   <div class="absolute inset-0 z-0 bg-gradient-to-t from-[#080c1a]/80 via-transparent to-[#080c1a]/40 pointer-events-none"></div>
 
   <div class="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-    <!-- Left: Content -->
+    
     <div>
       <h1 class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-tight italic uppercase">
         {title} {greenTitle && <><br/><span class="text-primary">{greenTitle}</span></>}
@@ -33,7 +33,7 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       </div>
     </div>
 
-    <!-- Right: Form -->
+    
     <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
       <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full -mr-32 -mt-32"></div>
       
@@ -113,9 +113,7 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
   <SuccessModal id="form_success" />
 </section>
 
-<script>
-  // --- Form & UI Logic ---
-  function initUI() {
+<script>  function initUI() {
     const form = document.querySelector('form');
     const modal = document.getElementById('form_success') as HTMLDialogElement;
     form?.addEventListener('submit', (e) => {
@@ -163,8 +161,6 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
 
     document.addEventListener('click', closeSelect);
   }
-
-  // --- Animation Engine ---
   let currentAnimation: number | null = null;
 
   function initCanvas() {
@@ -187,8 +183,6 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
     window.addEventListener('resize', resize);
 
     const isMobile = window.innerWidth < 768;
-
-    // --- Fiber Variant ---
     let fiberFibers: any[] = [];
     let fiberSparks: any[] = [];
     if (variant === 'fiber') {
@@ -210,8 +204,6 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       for(let i=0; i<fiberCount; i++) fiberFibers.push(createFiber());
       for(let i=0; i<sparkCount; i++) fiberSparks.push({ fId: Math.floor(Math.random()*fiberCount), t: Math.random(), spd: 0.002 + Math.random()*0.003 });
     }
-
-    // --- Wave Variant ---
     let wavePoints: any[] = [];
     if (variant === 'wave') {
       const cols = isMobile ? 30 : 50;
@@ -222,8 +214,6 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
         }
       }
     }
-
-    // --- Cyber Variant (Hexagons) ---
     let hexes: any[] = [];
     if (variant === 'cyber') {
       const size = isMobile ? 80 : 60;
@@ -239,8 +229,6 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
         }
       }
     }
-
-    // --- Prisms & Satellite Variants ---
     let prisms: any[] = [];
     let nodes: any[] = [];
 
@@ -391,11 +379,9 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
             [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1]
           ].map(pt => {
             let [x, y, z] = pt;
-            // Rotate X
             let ny = y * Math.cos(p.rx) - z * Math.sin(p.rx);
             let nz = y * Math.sin(p.rx) + z * Math.cos(p.rx);
             y = ny; z = nz;
-            // Rotate Y
             let nx = x * Math.cos(p.ry) + z * Math.sin(p.ry);
             nz = -x * Math.sin(p.ry) + z * Math.cos(p.ry);
             x = nx; z = nz;
@@ -409,7 +395,6 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
             ctx.shadowBlur = 10;
             ctx.shadowColor = `rgba(${p.color}, 0.8)`;
           }
-          // Draw cube edges
           const edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
           edges.forEach(([i, j]) => {
             ctx.moveTo(points[i][0], points[i][1]);
@@ -449,12 +434,8 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
     }
     render();
   }
-
-  // Initial runs
   initUI();
   initCanvas();
-
-  // Support for Astro View Transitions
   document.addEventListener('astro:page-load', () => {
     initUI();
     initCanvas();

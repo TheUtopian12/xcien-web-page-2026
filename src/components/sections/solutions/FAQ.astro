@@ -76,23 +76,17 @@ const { faqs, title = "Preguntas Frecuentes", transparent = false } = Astro.prop
       
       trigger?.addEventListener('click', () => {
         const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-        
-        // Close others
         document.querySelectorAll('.faq-trigger').forEach(otherTrigger => {
           if (otherTrigger !== trigger) {
             otherTrigger.setAttribute('aria-expanded', 'false');
             (otherTrigger.nextElementSibling as HTMLElement).style.maxHeight = '0';
           }
         });
-        
-        // Toggle current
         trigger.setAttribute('aria-expanded', (!isExpanded).toString());
         content.style.maxHeight = isExpanded ? '0' : `${content.scrollHeight}px`;
       });
     });
   }
-
-  // Initialize on load and on Astro swap
   document.addEventListener('astro:page-load', initFAQ);
   initFAQ();
 </script>

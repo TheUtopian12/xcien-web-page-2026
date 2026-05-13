@@ -15,7 +15,7 @@ const { benefits, transparent = false } = Astro.props;
 <section
   class={`py-24 relative overflow-hidden ${transparent ? "bg-transparent" : "bg-[#0a0b0d]"}`}
 >
-  <!-- Decorative background element -->
+  
 
   <div class="container mx-auto px-4 relative z-10">
     <div
@@ -31,7 +31,7 @@ const { benefits, transparent = false } = Astro.props;
         </p>
       </div>
 
-      <!-- Desktop Navigation Arrows -->
+      
       <div class="hidden md:flex gap-3">
         <button
           id="prev-benefit"
@@ -112,8 +112,6 @@ const { benefits, transparent = false } = Astro.props;
     prevBtn.addEventListener("click", () => {
       slider.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
     });
-
-    // Optional: Disable buttons at ends
     slider.addEventListener("scroll", () => {
       const isAtStart = slider.scrollLeft <= 0;
       const isAtEnd =
@@ -122,8 +120,6 @@ const { benefits, transparent = false } = Astro.props;
       (prevBtn as HTMLButtonElement).disabled = isAtStart;
       (nextBtn as HTMLButtonElement).disabled = isAtEnd;
     });
-
-    // Initial check
     (prevBtn as HTMLButtonElement).disabled = true;
     if (slider.scrollWidth <= slider.clientWidth) {
       (nextBtn as HTMLButtonElement).disabled = true;

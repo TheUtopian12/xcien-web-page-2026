@@ -11,7 +11,7 @@ const { transparent = false } = Astro.props;
 >
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-      <!-- Left: Text -->
+      
       <div>
         <span
           class="inline-block px-4 py-1.5 rounded-full border border-white/20 text-xs font-bold text-white mb-6"
@@ -48,12 +48,12 @@ const { transparent = false } = Astro.props;
         </div>
       </div>
 
-      <!-- Right: The Advanced Diagram -->
+      
       <div class="relative py-20 lg:py-0">
         <div
           class="relative w-full max-w-2xl mx-auto flex flex-col items-center"
         >
-          <!-- Top Nodes -->
+          
           <div class="w-full flex justify-between items-end px-4 mb-2">
             <div class="node-top">Data Center</div>
             <div class="node-top-empty"></div>
@@ -62,7 +62,7 @@ const { transparent = false } = Astro.props;
             <div class="node-top">Sucursales</div>
           </div>
 
-          <!-- SVG Connections (Top) -->
+          
           <div class="w-full h-32 relative">
             <svg
               class="w-full h-full"
@@ -70,7 +70,7 @@ const { transparent = false } = Astro.props;
               fill="none"
               preserveAspectRatio="none"
             >
-              <!-- Animated Paths -->
+              
               <path d="M50 0 C 50 80, 300 40, 300 128" class="connection-line"
               ></path>
               <path d="M175 0 C 175 80, 300 40, 300 128" class="connection-line"
@@ -83,7 +83,7 @@ const { transparent = false } = Astro.props;
             </svg>
           </div>
 
-          <!-- Central Device -->
+          
           <div class="relative group">
             <div
               class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition duration-700"
@@ -98,9 +98,9 @@ const { transparent = false } = Astro.props;
             </div>
           </div>
 
-          <!-- Bottom Connections Container -->
+          
           <div class="w-full flex justify-between h-48 relative px-10">
-            <!-- Connection Satelital -->
+            
             <div class="flex-1 flex flex-col items-center">
               <div class="w-px h-24 bg-primary/30"></div>
               <div class="node-bottom group">
@@ -134,7 +134,7 @@ const { transparent = false } = Astro.props;
               </div>
             </div>
 
-            <!-- Connection Microondas -->
+            
             <div class="flex-1 flex flex-col items-center mt-12">
               <div class="w-px h-24 bg-primary/30"></div>
               <div class="node-bottom">
@@ -168,7 +168,7 @@ const { transparent = false } = Astro.props;
               </div>
             </div>
 
-            <!-- Connection Fibra -->
+            
             <div class="flex-1 flex flex-col items-center">
               <div class="w-px h-24 bg-primary/30"></div>
               <div class="node-bottom">
@@ -232,7 +232,7 @@ const { transparent = false } = Astro.props;
     @apply w-5 h-3 border border-white/10 rounded-sm bg-white/5;
   }
 
-  /* Drawing line animation */
+  
   .connection-line {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
