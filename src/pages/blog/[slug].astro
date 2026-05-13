@@ -3,13 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 
 export const prerender = false;
-
-// Configuración de la API
 const WP_BASE_URL = "https://public-api.wordpress.com/wp/v2/sites/blogxcien.wordpress.com";
 
 const { slug } = Astro.params;
-
-// Buscar el post por slug
 const response = await fetch(`${WP_BASE_URL}/posts?slug=${slug}&_embed`);
 const posts = await response.json();
 
@@ -18,8 +14,6 @@ if (!posts || posts.length === 0) {
 }
 
 const post = posts[0];
-
-// Función auxiliar para obtener la imagen destacada
 const getFeaturedImage = (post) => {
   if (post._embedded && post._embedded["wp:featuredmedia"]) {
     return post._embedded["wp:featuredmedia"][0].source_url;
@@ -32,7 +26,7 @@ const getFeaturedImage = (post) => {
   <main class="min-h-screen pt-32 pb-20 bg-[#0a0b0d]">
     <div class="container mx-auto px-6">
       <div class="max-w-4xl mx-auto">
-        <!-- Header -->
+        
         <div class="text-center mb-16">
           <div class="flex items-center justify-center gap-4 mb-6">
             <span class="text-[10px] font-black text-primary uppercase tracking-[0.3em] bg-primary/10 px-4 py-2 rounded-full border border-primary/20">Articulo Técnico</span>
@@ -41,7 +35,7 @@ const getFeaturedImage = (post) => {
           <h1 class="text-4xl md:text-7xl font-black text-white italic uppercase tracking-tighter mb-8 leading-[1.1]" set:html={post.title.rendered}></h1>
         </div>
 
-        <!-- Featured Image -->
+        
         <div class="relative h-[300px] md:h-[600px] rounded-[3rem] overflow-hidden mb-20 border border-white/5 shadow-2xl">
           <img 
             src={getFeaturedImage(post)} 
@@ -51,7 +45,7 @@ const getFeaturedImage = (post) => {
           <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0d] via-transparent to-transparent"></div>
         </div>
 
-        <!-- Content -->
+        
         <div class="glass-card bg-white/[0.01] border border-white/5 rounded-[3rem] p-8 md:p-20 relative overflow-hidden">
           <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-5 pointer-events-none"></div>
           
@@ -65,7 +59,7 @@ const getFeaturedImage = (post) => {
             set:html={post.content.rendered}
           />
 
-          <!-- Footer Share/Actions -->
+          
           <div class="mt-20 pt-10 border-t border-white/5 flex flex-wrap items-center justify-between gap-6">
             <div class="flex items-center gap-4">
               <span class="text-[10px] font-black text-white/20 uppercase tracking-widest italic">Compartir:</span>

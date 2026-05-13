@@ -63,21 +63,21 @@ const gridCols = {
             } border-white/10 shadow-xl hover:scale-[1.02]`}
             style={`margin-left: ${index * 10}%; max-width: ${100 - (index * 5)}%;`}
           >
-            <!-- Icon Circle -->
+            
             <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shrink-0 shadow-inner">
               <div class="text-blue-600 w-8 h-8 flex items-center justify-center">
                 <Fragment set:html={card.icon} />
               </div>
             </div>
 
-            <!-- Content -->
+            
             <div class="flex-grow">
               <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight">
                 {card.title}
               </h3>
             </div>
 
-            <!-- Decorative Glow -->
+            
             <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </div>
         ))}
@@ -98,7 +98,7 @@ const gridCols = {
               
               {variant === 'process-diamond' ? (
                 <>
-                  <!-- Diamond Icon -->
+                  
                   <div class="relative mb-8">
                     <div class={`w-20 h-20 rotate-45 border-2 transition-all duration-500 flex items-center justify-center overflow-hidden ${
                       index === 2 ? 'border-primary bg-primary/20 shadow-[0_0_30px_rgba(163,230,53,0.4)]' : 'border-primary/30 bg-primary/5 group-hover:border-primary group-hover:bg-primary/20 group-hover:shadow-[0_0_30px_rgba(163,230,53,0.3)]'
@@ -109,7 +109,7 @@ const gridCols = {
                     </div>
                   </div>
 
-                  <!-- Step Number -->
+                  
                   <div class={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-sm font-black mb-8 transition-all duration-500 ${
                     index === 2 ? 'border-primary bg-primary text-black' : 'border-primary/30 text-primary group-hover:bg-primary group-hover:text-black'
                   }`}>
@@ -163,7 +163,7 @@ const gridCols = {
               )}
             </div>
 
-            <!-- Connecting Arrow for process-diamond -->
+            
             {variant === 'process-diamond' && index < cards.length - 1 && (
               <div class="absolute top-[40%] -right-4 translate-x-1/2 z-20 hidden lg:block">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

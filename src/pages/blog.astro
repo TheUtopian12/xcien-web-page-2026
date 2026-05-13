@@ -3,8 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
 
 export const prerender = false;
-
-// Configuración de la API de WordPress
 const WP_API_URL =
   "https://public-api.wordpress.com/wp/v2/sites/blogxcien.wordpress.com/posts?_embed&per_page=100";
 
@@ -20,13 +18,11 @@ try {
   console.error(e);
   error = "No se pudieron cargar los artículos en este momento.";
 }
-
-// Función auxiliar para obtener la imagen destacada
 const getFeaturedImage = (post) => {
   if (post._embedded && post._embedded["wp:featuredmedia"]) {
     return post._embedded["wp:featuredmedia"][0].source_url;
   }
-  return "/blog-1.png"; // Placeholder
+  return "/blog-1.png";
 };
 ---
 

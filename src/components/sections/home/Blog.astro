@@ -1,5 +1,4 @@
 ---
-// Componente de Blog Dinámico desde WordPress
 const WP_API_URL =
   "https://public-api.wordpress.com/wp/v2/sites/blogxcien.wordpress.com/posts?_embed&per_page=100";
 
@@ -20,7 +19,7 @@ const getFeaturedImage = (post) => {
 ---
 
 <section class="py-24 relative overflow-hidden">
-  <!-- Ambient light -->
+  
   <div
     class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full translate-y-1/2 translate-x-1/2"
   >
@@ -114,7 +113,7 @@ const getFeaturedImage = (post) => {
                 </div>
               </article>
             ))
-          : // Skeleton or fallback
+          :
             Array(3)
               .fill(0)
               .map(() => (

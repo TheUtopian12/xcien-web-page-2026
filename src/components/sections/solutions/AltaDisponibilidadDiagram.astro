@@ -1,6 +1,4 @@
 ---
-// 8 petals arranged at 45° intervals
-// Angles: -90 (top), -45 (top-right), 0 (right), 45 (bottom-right), 90 (bottom), 135 (bottom-left), 180 (left), -135 (top-left)
 
 const petals = [
   { label: "Excelente QoS",                  angle: -90,   color: "green", icon: "qos" },
@@ -12,10 +10,8 @@ const petals = [
   { label: "Confiabilidad a prueba de fallos",angle: 180,   color: "green", icon: "reliability" },
   { label: "QoE Excepcional",                angle: -135,  color: "green", icon: "qoe" },
 ];
-
-// Compute petal center positions and icon positions
-const R = 210; // distance from center to petal center
-const iconR = 210; // same, icons inside petals
+const R = 210;
+const iconR = 210;
 
 function petalPoints(angleDeg: number, size: number, cx: number, cy: number): string {
   return Array.from({length: 5}, (_, k) => {
@@ -27,7 +23,7 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
 
 <section class="py-24 border-t border-white/5 bg-black overflow-hidden">
   <div class="container mx-auto px-4">
-    <!-- Header -->
+    
     <div class="text-center mb-4">
       <span class="text-primary font-black italic uppercase tracking-[0.3em] text-sm block mb-4">Alta Disponibilidad</span>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-black italic uppercase tracking-tighter text-white mb-8 leading-none">
@@ -38,7 +34,7 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
       </p>
     </div>
 
-    <!-- Flower Diagram -->
+    
     <div class="flex items-center justify-center mt-10">
       <svg
         viewBox="-450 -400 900 800"
@@ -68,7 +64,7 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
           </filter>
         </defs>
 
-        <!-- ============ PETALS ============ -->
+        
         {petals.map((p) => {
           const rad = (p.angle * Math.PI) / 180;
           const cx = R * Math.cos(rad);
@@ -86,14 +82,12 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
           );
         })}
 
-        <!-- ============ ICONS INSIDE PETALS ============ -->
+        
         {petals.map((p) => {
           const rad = (p.angle * Math.PI) / 180;
           const iconCX = iconR * Math.cos(rad);
           const iconCY = iconR * Math.sin(rad);
-          const s = 22; // icon half-size
-
-          // Each icon as inline SVG paths
+          const s = 22;
           let iconPath = '';
           if (p.icon === 'qos') iconPath = `<rect x="-16" y="-10" width="20" height="22" rx="2" fill="none" stroke="white" stroke-width="1.8"/>
             <line x1="-16" y1="-3" x2="4" y2="-3" stroke="white" stroke-width="1.5"/>
@@ -127,10 +121,10 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
           );
         })}
 
-        <!-- ============ CENTER CIRCLE ============ -->
+        
         <circle cx="0" cy="0" r="90" fill="url(#ctr)" filter="url(#softglow)" stroke="rgba(255,255,255,0.2)" stroke-width="3" />
 
-        <!-- Cloud shape in center -->
+        
         <g transform="translate(0, -18)" fill="white" opacity="0.95">
           <ellipse cx="-18" cy="0" rx="10" ry="8"/>
           <ellipse cx="0" cy="-8" rx="14" ry="12"/>
@@ -138,11 +132,11 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
           <rect x="-28" y="-4" width="56" height="14" rx="1"/>
         </g>
 
-        <!-- Center Text -->
+        
         <text x="0" y="22" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="system-ui,sans-serif">Alta</text>
         <text x="0" y="40" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="system-ui,sans-serif">Disponibilidad</text>
 
-        <!-- ============ LABELS OUTSIDE ============ -->
+        
         {petals.map((p) => {
           const rad = (p.angle * Math.PI) / 180;
           const labelR = 350;
