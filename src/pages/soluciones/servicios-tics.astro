@@ -7,6 +7,26 @@ import HighAvailabilityDiagram from "../../components/sections/solutions/HighAva
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
 import SplitFeature from "../../components/sections/solutions/SplitFeature.astro";
+import Blog from "../../components/sections/home/Blog.astro";
+// EL ID DE WORDPRESS
+const CATEGORY_ID = "23387770"; 
+
+const WP_API_URL = `https://public-api.wordpress.com/wp/v2/sites/blogxcien.wordpress.com/posts?_embed&categories=${CATEGORY_ID}&per_page=3`;
+
+const getFeaturedImage = (post) => {
+  if (post?._embedded && post?._embedded["wp:featuredmedia"]) {
+    return post._embedded["wp:featuredmedia"][0].source_url;
+  }
+  return "/blog-1.png";
+};
+
+let relatedPosts = [];
+try {
+  const response = await fetch(WP_API_URL);
+  relatedPosts = await response.json();
+} catch (e) {
+  console.error("Error fetching related posts:", e);
+}
 
 const specialFeatures = [
   {
@@ -137,5 +157,55 @@ const ticsList = [
     list={ticsList}
   />
   
+{relatedPosts.length > 0 && (
+    <section class="py-24 bg-[#06070a]">
+      <div class="container mx-auto px-6">
+        <div class="mb-12">
+          <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>
+          <h3 class="text-4xl font-black text-white italic uppercase tracking-tighter">
+            Aprende más sobre <span class="text-primary">Servicios TIC's</span>
+          </h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {relatedPosts.map((post) => (
+            <article class="group relative bg-[#191e24] border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col hover:border-primary/20 transition-all duration-500">
+              <div class="h-64 overflow-hidden relative">
+                <img
+                  src={getFeaturedImage(post)}
+                  alt={post.title.rendered}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0d] via-[#0a0b0d]/20 to-transparent" />
+              </div>
+
+              <div class="p-8 flex flex-col flex-grow">
+                <h3
+                  class="text-xl font-black text-white italic uppercase mb-4 leading-tight group-hover:text-primary transition-colors line-clamp-2"
+                  set:html={post.title.rendered}
+                />
+                <div
+                  class="text-white/40 text-sm leading-relaxed mb-6 line-clamp-2 italic"
+                  set:html={post.excerpt.rendered}
+                />
+                <div class="mt-auto">
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="inline-flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-[0.3em] group-hover:gap-5 transition-all"
+                  >
+                    Leer Artículo
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                      <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}  
+
   <BreadcrumbBar path={["Soluciones", "Servicios Tic's", "Descripción General"]} />
 </Layout>
