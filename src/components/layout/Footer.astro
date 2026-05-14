@@ -1,3 +1,34 @@
+---
+import PdfModal from "./PdfModal.astro";
+
+/**
+ * Rutas a `public/pdf/…` (percent-encoding alineado con los nombres en disco, NFD).
+ * Si renombras un PDF, actualiza aquí la entrada correspondiente.
+ */
+const pdf = {
+  avisoPrivacidad: "/pdf/Aviso%20de%20privacidad%20xcien.pdf",
+  codigoPracticasComerciales:
+    "/pdf/Co%CC%81digo%20Pra%CC%81cticas%20Comerciales%20xcien.pdf",
+  tasaTransmision:
+    "/pdf/Tasa%20de%20Transmisio%CC%81n%20de%20Datos%20Promedio%20de%20Descarga.pdf",
+  contratoAdhesion: "/pdf/Contrato%20de%20Adhesio%CC%81n%20xcien.pdf",
+  declaracionAccesibilidad:
+    "/pdf/Declaracio%CC%81n%20de%20Accesibilidad%20xcien.pdf",
+  derechosMinimos:
+    "/pdf/Derechos%20Mi%CC%81nimos%20de%20los%20Usuarios%20xcien.pdf",
+  colaboracionJusticia:
+    "/pdf/Colaboracio%CC%81n%20en%20Materia%20de%20Seguridad%20y%20Justicia%20XCIEN.pdf",
+  informacionTransparente:
+    "/pdf/Informacio%CC%81n%20transparente%20XCIEN.pdf",
+  politicasTrafico:
+    "/pdf/Co%CC%81digo%20de%20poli%CC%81ticas%20de%20gestio%CC%81n%20de%20tra%CC%81fico%20y%20administracio%CC%81n%20de%20red%20xcien.pdf",
+} as const;
+
+const pdfLinkProps = {
+  target: "_blank",
+  rel: "noopener noreferrer",
+} as const;
+---
 
 <footer class="bg-black py-20 px-4 md:px-10 border-t border-white/5">
   <div class="container mx-auto">
@@ -10,62 +41,82 @@
         <ul class="space-y-3">
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.avisoPrivacidad}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Política de privacidad"
               >Política de privacidad</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.codigoPracticasComerciales}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Términos y Condiciones del Sitio Web"
               >Términos y Condiciones del Sitio Web</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.tasaTransmision}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Términos y Condiciones de uso del Internet"
               >Términos y Condiciones de uso del Internet</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.contratoAdhesion}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Contrato marco de presentación de servicios"
               >Contrato marco de presentación de servicios</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.declaracionAccesibilidad}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Términos y condiciones del portal"
               >Términos y condiciones del portal</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.derechosMinimos}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Carta de derechos de los usuarios"
               >Carta de derechos de los usuarios</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.colaboracionJusticia}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Colaboración con la justicia"
               >Colaboración con la justicia</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.avisoPrivacidad}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Aviso de Privacidad"
               >Aviso de Privacidad</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.informacionTransparente}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Cobertura"
               >Cobertura</a>
           </li>
           <li>
             <a
-              href="#"
-              class="text-sm text-white/50 hover:text-primary transition-colors"
+              href={pdf.politicasTrafico}
+              {...pdfLinkProps}
+              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
+              data-title="Política de uso justo"
               >Política de uso justo</a>
           </li>
         </ul>
@@ -196,8 +247,10 @@
       </p>
       <div class="flex items-center gap-8">
         <a
-          href="#"
-          class="text-xs text-white/30 hover:text-white transition-colors"
+          href={pdf.avisoPrivacidad}
+          {...pdfLinkProps}
+          class="text-xs text-white/30 hover:text-white transition-colors pdf-link"
+          data-title="Aviso de privacidad"
           >Aviso de privacidad</a
         >
         <a
@@ -215,3 +268,24 @@
     </div>
   </div>
 </footer>
+
+<PdfModal />
+
+<script>
+  // Interceptar clicks en los enlaces PDF
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest('.pdf-link') as HTMLAnchorElement;
+    
+    if (link) {
+      e.preventDefault();
+      const url = link.href;
+      const title = link.getAttribute('data-title') || 'Documento';
+      
+      // Disparar evento personalizado para abrir el modal
+      window.dispatchEvent(new CustomEvent('openPdf', { 
+        detail: { url, title } 
+      }));
+    }
+  });
+</script>
