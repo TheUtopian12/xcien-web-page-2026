@@ -18,6 +18,7 @@ try {
   console.error(e);
   error = "No se pudieron cargar los artículos en este momento.";
 }
+
 const getFeaturedImage = (post) => {
   if (post._embedded && post._embedded["wp:featuredmedia"]) {
     return post._embedded["wp:featuredmedia"][0].source_url;
@@ -27,109 +28,100 @@ const getFeaturedImage = (post) => {
 ---
 
 <Layout title="Blog | XCIEN">
-  <main class="min-h-screen pt-32 pb-20 bg-[#0a0b0d]">
+  <main class="min-h-screen pt-32 pb-20 bg-[#06070a]">
     <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto text-center mb-20">
-        <h2
-          class="text-primary font-bold tracking-[0.3em] uppercase text-sm mb-4"
-        >
-          Comunidad XCIEN
-        </h2>
-        <h1
-          class="text-6xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-8 leading-none"
-        >
-          Nuestro <span
-            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#4fb156]"
-            >Blog</span
-          >
+      <!-- Header Section -->
+      <div class="max-w-4xl mx-auto text-center mb-24">
+        <div class="inline-flex items-center gap-3 mb-6 px-4 py-2 rounded-full border border-primary/20 bg-primary/5">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-primary font-black tracking-[0.3em] uppercase text-[10px]">Comunidad XCIEN</span>
+        </div>
+        <h1 class="text-6xl md:text-5xl font-black text-white italic uppercase  mb-8 ">
+          Mundo  <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#4fb156]">XCIEN</span>
         </h1>
-        <p class="text-white/50 text-xl leading-relaxed max-w-2xl mx-auto">
-          Noticias, artículos técnicos y novedades sobre el mundo de la
-          conectividad y tecnología empresarial.
+        <p class="text-white/40 text-xl leading-relaxed max-w-2xl mx-auto italic">
+          Explora artículos técnicos, noticias y la visión del futuro de la conectividad empresarial.
         </p>
       </div>
 
-      {
-        error && (
-          <div class="bg-red-500/10 border border-red-500/20 p-8 rounded-3xl text-center">
-            <p class="text-red-500 font-bold italic uppercase tracking-widest">
-              {error}
-            </p>
-          </div>
-        )
-      }
+      {error && (
+        <div class="bg-red-500/10 border border-red-500/20 p-8 rounded-[3rem] text-center mb-10">
+          <p class="text-red-500 font-bold italic uppercase tracking-widest">{error}</p>
+        </div>
+      )}
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {
-          posts.map((post) => (
-            <article class="group bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden flex flex-col hover:border-primary/20 transition-all duration-500">
-              <div class="h-64 overflow-hidden relative">
+      <!-- Bento Grid (Synced with Home Section) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+        {posts.map((post, index) => {
+          // Repeating pattern of 6
+          const pos = index % 6;
+          let cardClasses = "group relative rounded-[3rem] overflow-hidden border border-white/5 transition-all duration-500 hover:border-primary/30 bg-[#121418] ";
+          
+          if (pos === 0) {
+            // Featured Card (2x2)
+            cardClasses += "md:col-span-2 md:row-span-2 shadow-2xl";
+          } else {
+            // Regular Card (1x1)
+            cardClasses += "shadow-lg";
+          }
+
+          return (
+            <article class={cardClasses}>
+              <!-- Image Overlay Layer -->
+              <div class="absolute inset-0 z-0">
                 <img
                   src={getFeaturedImage(post)}
                   alt={post.title.rendered}
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  class={`w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 ${pos === 0 ? 'opacity-60' : 'opacity-30 group-hover:opacity-50'}`}
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0d] to-transparent opacity-60" />
+                <div class={`absolute inset-0 bg-gradient-to-t from-[#06070a] ${pos === 0 ? 'via-[#06070a]/40' : 'via-[#06070a]/60'} to-transparent`} />
               </div>
 
-              <div class="p-8 flex flex-col flex-grow">
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="text-[10px] font-black text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full">
-                    Noticias
-                  </span>
-                  <span class="text-[10px] font-bold text-white/30 uppercase tracking-widest">
-                    {new Date(post.date).toLocaleDateString("es-MX", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                </div>
-
-                <h3
-                  class="text-2xl font-black text-white italic uppercase mb-4 leading-tight group-hover:text-primary transition-colors"
-                  set:html={post.title.rendered}
-                />
-
-                <div
-                  class="text-white/40 text-sm leading-relaxed mb-8 line-clamp-3"
-                  set:html={post.excerpt.rendered}
-                />
-
+              <!-- Content Layer -->
+              <div class={`relative z-10 p-8 h-full flex flex-col ${pos === 0 ? 'p-10 md:p-16' : ''}`}>
                 <div class="mt-auto">
-                  <a
-                    href={`/blog/${post.slug}`}
-                    class="inline-flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-[0.2em] group-hover:gap-5 transition-all"
-                  >
-                    Leer Más
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="text-primary"
-                    >
-                      <>
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                      </>
-                    </svg>
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[10px] font-black text-primary uppercase tracking-widest px-3 py-1 rounded-full border border-primary/20 bg-primary/10">
+                      {pos === 0 ? 'Destacado' : 'Noticia'}
+                    </span>
+                    <span class="text-[10px] font-bold text-white/30 uppercase tracking-widest">
+                      {new Date(post.date).toLocaleDateString("es-MX", { month: "short", day: "numeric" })}
+                    </span>
+                  </div>
+                  
+                  <h3 class={`${pos === 0 ? 'text-3xl md:text-5xl' : 'text-xl md:text-2xl'} font-black text-white italic uppercase leading-tight group-hover:text-primary transition-colors line-clamp-3 mb-6`} set:html={post.title.rendered} />
+                  
+                  {pos === 0 && (
+                    <div class="text-white/40 text-sm md:text-base leading-relaxed mb-8 line-clamp-2 italic max-w-2xl" set:html={post.excerpt.rendered} />
+                  )}
+
+                  <a href={`/blog/${post.slug}`} class={`inline-flex items-center gap-3 font-black text-white uppercase tracking-[0.2em] group/btn transition-all ${pos === 0 ? 'btn btn-primary rounded-full px-8 h-12 text-xs italic' : 'text-[10px] hover:gap-5'}`}>
+                    {pos === 0 ? 'Leer artículo completo' : 'Explorar'}
+                    <svg xmlns="http://www.w3.org/2000/svg" width={pos === 0 ? "20" : "14"} height={pos === 0 ? "20" : "14"} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class={pos === 0 ? 'group-hover/btn:translate-x-2 transition-transform' : 'text-primary'}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                   </a>
                 </div>
               </div>
             </article>
-          ))
-        }
+          )
+        })}
+
+       
       </div>
     </div>
   </main>
 
-  <div class="pb-20 bg-[#0a0b0d]">
+  <div class="pb-20 bg-[#06070a]">
     <BreadcrumbBar path={["Comunidad", "Blog", "Artículos"]} />
   </div>
 </Layout>
+
+<style>
+  article {
+    backdrop-filter: blur(10px);
+  }
+  
+  article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(101, 212, 110, 0.1);
+  }
+</style>

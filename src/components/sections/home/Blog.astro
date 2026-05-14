@@ -1,6 +1,6 @@
 ---
 const WP_API_URL =
-  "https://public-api.wordpress.com/wp/v2/sites/blogxcien.wordpress.com/posts?_embed&per_page=100";
+  "https://public-api.wordpress.com/wp/v2/sites/blogxcien.wordpress.com/posts?_embed&per_page=6";
 
 let posts = [];
 try {
@@ -18,107 +18,163 @@ const getFeaturedImage = (post) => {
 };
 ---
 
-<section class="py-24 relative overflow-hidden">
-  
+<section class="py-24 relative overflow-hidden bg-[#06070a]">
+  <!-- Decorative Background Elements -->
   <div
-    class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full translate-y-1/2 translate-x-1/2"
+    class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden"
   >
+    <div
+      class="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 blur-[120px] rounded-full"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary/10 blur-[150px] rounded-full translate-y-1/2 translate-x-1/2"
+    >
+    </div>
   </div>
 
-  <div class="container mx-auto px-6">
+  <div class="container mx-auto px-6 relative z-10">
     <div
-      class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6"
+      class="flex flex-col md:flex-row items-end justify-between mb-20 gap-8"
     >
-      <div class="max-w-2xl">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-12 h-px bg-primary/50"></span>
+          <h2
+            class="text-primary font-black tracking-[0.4em] uppercase text-[10px]"
+          >
+            Actualidad Técnica
+          </h2>
+        </div>
         <h2
-          class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4"
+          class="text-5xl md:text-7xl font-black text-white italic uppercase tracking-tighter leading-[0.9]"
         >
-          Actualidad Técnica
-        </h2>
-        <h2
-          class="text-5xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-none"
-        >
-          Dale un vistazo a nuestro <span class="text-primary">blog</span>
+          Explora lo más <br />
+          <span class="text-primary">reciente</span>
         </h2>
       </div>
+
       <a
         href="/blog"
-        class="btn btn-primary rounded-full px-8 font-black italic uppercase tracking-widest text-[10px]"
+        class="btn btn-primary rounded-full px-10 h-14 font-black italic uppercase tracking-widest text-[10px]"
       >
         Ver todos los artículos
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {
-    posts.length > 0
-      ? posts.slice(0, 3).map((post) => (
-          <article class="group relative bg-[#191e24] border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col hover:border-primary/20 transition-all duration-500">
-            <div class="h-72 overflow-hidden relative">
+    <!-- Bento Grid for 5 Posts -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]"
+    >
+      {
+        posts.length >= 1 && (
+          <article class="md:col-span-2 md:row-span-2 group relative bg-[#121418] border border-white/5 rounded-[3rem] overflow-hidden flex flex-col hover:border-primary/30 transition-all duration-500 shadow-2xl">
+            <div class="absolute inset-0 overflow-hidden">
               <img
-                src={getFeaturedImage(post)}
-                alt={post.title.rendered}
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                src={getFeaturedImage(posts[0])}
+                alt={posts[0].title.rendered}
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0d] via-[#0a0b0d]/20 to-transparent" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/40 to-transparent" />
             </div>
 
-            <div class="p-10 flex flex-col flex-grow">
-              <div class="flex items-center gap-4 mb-6">
-                <span class="text-[10px] font-black text-primary uppercase tracking-widest italic">
+            <div class="relative mt-auto p-10 md:p-16">
+              <span class="text-xs font-black text-primary uppercase tracking-widest italic bg-primary/10 px-4 py-2 rounded-full border border-primary/20 mb-6 inline-block">
+                Más Reciente
+              </span>
+              <h3
+                class="text-3xl md:text-5xl font-black text-white italic uppercase mb-8 leading-tight group-hover:text-primary transition-colors"
+                set:html={posts[0].title.rendered}
+              />
+              <a
+                href={`/blog/${posts[0].slug}`}
+                class="btn btn-primary rounded-full px-8 font-black italic uppercase tracking-widest text-xs group/btn inline-flex items-center gap-3">
+                Leer artículo
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="group-hover/btn:translate-x-2 transition-transform">
+                  <>
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </>
+                </svg>
+              </a>
+            </div>
+          </article>
+        )
+      }
+
+      {
+        posts.slice(1, 6).map((post, index) => {
+          let cardClasses =
+            "group relative bg-[#121418] border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col hover:border-primary/20 transition-all duration-500 ";
+
+          return (
+            <article class={cardClasses}>
+              <div class="absolute inset-0 overflow-hidden opacity-30 group-hover:opacity-50 transition-opacity">
+                <img
+                  src={getFeaturedImage(post)}
+                  alt={post.title.rendered}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-[#06070a]/60" />
+              </div>
+
+              <div class="relative p-8 h-full flex flex-col">
+                <span class="text-[10px] font-black text-primary uppercase tracking-widest italic mb-4">
                   {new Date(post.date).toLocaleDateString("es-MX", {
                     month: "short",
                     day: "numeric",
                   })}
                 </span>
-                <div class="h-px w-8 bg-white/10" />
-                <span class="text-[10px] font-bold text-white/30 uppercase tracking-widest line-clamp-1">
-                  Por XCIEN Team
-                </span>
+                <h4
+                  class="text-xl font-black text-white uppercase italic tracking-tight line-clamp-3 group-hover:text-primary transition-colors mb-6"
+                  set:html={post.title.rendered}
+                />
+
+                <div class="mt-auto">
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] group-hover:text-white transition-all flex items-center gap-2">
+                    Ver artículo
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3">
+                      <>
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </>
+                    </svg>
+                  </a>
+                </div>
               </div>
-
-              <h3
-                class="text-2xl font-black text-white italic uppercase mb-6 leading-tight group-hover:text-primary transition-colors line-clamp-2"
-                set:html={post.title.rendered}
-              />
-
-              <div
-                class="text-white/40 text-sm leading-relaxed mb-10 line-clamp-2 italic"
-                set:html={post.excerpt.rendered}
-              />
-
-              <div class="mt-auto">
-                <a
-                  href={`/blog/${post.slug}`}
-                  class="inline-flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-[0.3em] group-hover:gap-5 transition-all"
-                >
-                  Continuar Leyendo
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="text-primary"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-        ))
-      : Array(3)
-          .fill(0)
-          .map(() => (
-            <div class="h-[500px] bg-white/[0.02] border border-white/5 rounded-[2.5rem] animate-pulse" />
-          ))
-  }
-</div>
+            </article>
+          );
+        })
+      }
+    </div>
   </div>
 </section>
+
+<style>
+  article {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  article:hover {
+    transform: translateY(-5px);
+  }
+</style>
