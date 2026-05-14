@@ -84,24 +84,24 @@ const benefits = [
 
 const faqs = [
   {
-    question: "¿Cuál es la diferencia entre internet dedicado y el internet comercial (residencial)?",
-    answer: "A diferencia del internet comercial, donde el ancho de banda se comparte con otros vecinos o empresas (asimétrico), el Internet Dedicado de Xcien te ofrece un canal exclusivo para tu organización. Esto garantiza que recibas el 100% de la velocidad contratada de forma simétrica (misma velocidad de subida y bajada) y con un tiempo de respuesta (latencia) mínimo."
+    question: "¿Qué significa Internet dedicado?",
+    answer: "El Internet dedicado es un servicio de conectividad en el que una empresa o usuario cuenta con un enlace exclusivo de Internet, es decir, el ancho de banda contratado no se comparte con otros usuarios. Esto garantiza mayor estabilidad, velocidad constante y menor latencia en comparación con conexiones tradicionales. A diferencia del Internet residencial o compartido, el Internet dedicado ofrece velocidades simétricas (misma velocidad de subida y bajada) y está respaldado por acuerdos de nivel de servicio (SLA), lo que asegura disponibilidad continua y soporte prioritario."
   },
   {
-    question: "¿Qué tan confiable es la conexión por microondas comparada con la fibra óptica?",
-    answer: "En Xcien utilizamos tecnología de microondas de grado carrier, diseñada para ofrecer una máxima disponibilidad. Es una solución ideal tanto para conexión principal como para respaldo (redundancia), ya que no depende de cableado físico propenso a cortes por excavaciones o accidentes en la vía pública, asegurando que tu empresa nunca se detenga."
+    question: "¿Para qué sirve el Internet dedicado?",
+    answer: "El Internet dedicado sirve para empresas que requieren conexión confiable y de alto rendimiento, como: Operación de sistemas empresariales (ERP, CRM), Videoconferencias sin interrupciones, Servicios en la nube, Centros de datos (Data Center), Telefonía IP y Transferencia de grandes volúmenes de información."
   },
   {
-    question: "¿Qué incluye el Acuerdo de Nivel de Servicio (SLA)?",
-    answer: "Nuestro servicio está respaldado por un SLA (Service Level Agreement) robusto que garantiza altos estándares de disponibilidad y tiempos de respuesta técnicos inmediatos. Monitoreamos tu red las 24/7 para detectar cualquier anomalía y resolverla incluso antes de que tu equipo lo note."
+    question: "¿Cuál es la diferencia entre Internet dedicado y compartido?",
+    answer: "La principal diferencia es que: El Internet dedicado ofrece ancho de banda exclusivo, velocidad garantizada y mayor estabilidad; mientras que en el Internet compartido el ancho de banda se divide entre varios usuarios, lo que puede provocar variaciones en la velocidad."
   },
   {
-    question: "¿Puedo escalar mi ancho de banda si mi empresa crece?",
-    answer: "¡Totalmente! Una de las ventajas de nuestra infraestructura es la flexibilidad de capacidades. Puedes solicitar un incremento de Megas en cualquier momento sin necesidad de instalaciones complejas adicionales, permitiendo que tu conexión crezca al ritmo de tu operación, desde 50 Mbps hasta capacidades Multi-Giga."
+    question: "¿Qué ventajas tiene el Internet dedicado?",
+    answer: "Ofrece múltiples beneficios: Velocidad garantizada, conexión simétrica (subida y bajada igual), baja latencia, mayor seguridad, SLA con soporte técnico prioritario y alta disponibilidad (hasta 99.9% o más)."
   },
   {
-    question: "¿Ofrecen soporte técnico especializado o es a través de un call center general?",
-    answer: "En Xcien cuentas con soporte técnico especializado de segundo nivel. No pasarás por filtros innecesarios; nuestro equipo de ingenieros monitorea tu red proactivamente y está disponible para atender cualquier requerimiento técnico directamente, asegurando una atención ágil y profesional."
+    question: "¿Quién necesita Internet dedicado?",
+    answer: "Este servicio está diseñado para: Empresas medianas y grandes, negocios con operaciones críticas en línea, Call centers, empresas tecnológicas, instituciones financieras, hospitales y centros educativos."
   }
 ];
 
@@ -159,7 +159,7 @@ const dedicadoCards = [
   <FAQ faqs={faqs} />
 
   <HighAvailabilityDiagram />
-  
+
 {relatedPosts.length > 0 && (
     <section class="py-24 bg-[#06070a]">
       <div class="container mx-auto px-6">
