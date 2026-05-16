@@ -54,7 +54,7 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
           <div
             class="bg-white/5 px-6 py-4 rounded-2xl border border-white/5 text-center min-w-[140px]"
           >
-            <p class="text-3xl font-black text-white italic">200+</p>
+            <p class="text-3xl font-black text-white italic">+200</p>
             <p
               class="text-[10px] text-white/30 uppercase font-bold tracking-widest mt-1"
             >
@@ -86,13 +86,13 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
       </div>
 
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-32">
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-32">
         {
           [
             {
               title: "Fibra Óptica",
               desc: "Potencia tu empresa con enlaces de alta capacidad. Velocidad simétrica y latencia mínima para que tus operaciones críticas nunca se detengan.",
-              icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap"><path d="M4 14.5a3.5 3.5 0 1 0 7 0h-7Z"/><path d="M12 2v2"/><path d="m16.2 16.2 1.4 1.4"/><path d="M22 12h-2"/><path d="m17.6 7.8-1.4 1.4"/><path d="M5 8.7V5"/><path d="m5 15.3-2 2h3"/><path d="M11 20h2"/></svg>',
+              icon: "/icons/fibra.png", // Ruta a tu imagen
             },
             {
               title: "Microondas Carrier Class",
@@ -111,8 +111,13 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
             },
           ].map((item) => (
             <div class="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:border-primary/20 transition-all duration-500 group">
-              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                <Fragment set:html={item.icon} />
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform overflow-hidden">
+                
+                {item.icon.includes('.png') ? (
+                  <img src={item.icon} alt={item.title} class="w-14 h-14 object-contain" />
+                ) : (
+                  <Fragment set:html={item.icon} />
+                )}
               </div>
               <h3 class="text-xl font-black text-white italic uppercase mb-2 tracking-tight">
                 {item.title}
