@@ -92,28 +92,28 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
             {
               title: "Fibra Óptica",
               desc: "Potencia tu empresa con enlaces de alta capacidad. Velocidad simétrica y latencia mínima para que tus operaciones críticas nunca se detengan.",
-              icon: "/icons/fibra.png", // Ruta a tu imagen
+              icon: "/icons/fibra.png",
             },
             {
               title: "Microondas Carrier Class",
               desc: "Conectividad inalámbrica de grado corporativo con despliegue inmediato, garantizando el mismo nivel de estabilidad y ancho de banda.",
-              icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-antenna"><path d="M2 12 7 2l5 10Z"/><path d="m7 2 5 10H2Z"/><path d="M12 12 17 2l5 10Z"/><path d="m17 2 5 10h-5Z"/><path d="M7 12v10"/><path d="M17 12v10"/><path d="M2 22h20"/></svg>',
+              icon: "/icons/microondas.webp",
             },
             {
               title: "Monitoreo Proactivo",
               desc: "Vigilancia 24/7 desde nuestro Centro de Operaciones de Red (NOC). Anticipamos y resolvemos incidencias de red antes de que afecten a tu empresa.",
-              icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>',
+              icon: "/icons/monitoreo.webp",
             },
             {
               title: "Asesores técnicos especializados",
               desc: "Acompañamiento de un experto en cada paso. Diseñamos redes a la medida con control inteligente de tráfico para maximizar la eficiencia de tu infraestructura.",
-              icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hub"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>',
+              icon: '/icons/asesores.webp',
             },
           ].map((item) => (
             <div class="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:border-primary/20 transition-all duration-500 group">
               <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform overflow-hidden">
                 
-                {item.icon.includes('.png') ? (
+                {item.icon.includes('.png') || item.icon.includes('.webp') ? (
                   <img src={item.icon} alt={item.title} class="w-14 h-14 object-contain" />
                 ) : (
                   <Fragment set:html={item.icon} />
