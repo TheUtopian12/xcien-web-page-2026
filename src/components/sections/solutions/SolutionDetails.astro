@@ -40,7 +40,7 @@ const { features, sectionTitle = "Características Principales" } = Astro.props;
   </div>
 </section>
 
-<style>
+<style is:global>
   /* Tint any image inside the icon container to primary green */
   .icon-container img {
     filter: brightness(0) saturate(100%) invert(78%) sepia(50%) saturate(454%) hue-rotate(76deg) brightness(94%) contrast(89%);
