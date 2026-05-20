@@ -1,0 +1,1185 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
+---
+
+<Layout title="Showcase de Animaciones Premium | Xcien">
+  <div class="relative min-h-screen pt-32 pb-16 flex flex-col items-center justify-start overflow-hidden">
+    
+    <!-- Hero Header -->
+    <div class="container mx-auto px-4 z-10 text-center mb-8 relative">
+      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-1.5 text-xs text-primary uppercase font-bold tracking-widest mb-4 animate-pulse">
+        <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+        Xcien Labs • Laboratorio de Animaciones
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter mb-4">
+        Sandbox <span class="text-primary">Interactivo</span>
+      </h1>
+      <p class="text-white/60 text-lg max-w-2xl mx-auto italic">
+        Explora y personaliza las 4 nuevas animaciones interactivas premium de 60 FPS desarrolladas en Canvas HTML5.
+      </p>
+    </div>
+
+    <!-- Main Sandbox Container -->
+    <div class="container mx-auto px-4 z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch grow max-w-7xl">
+      
+      <!-- Canvas Display Card (8 cols on desktop) -->
+      <div class="lg:col-span-8 bg-black/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] relative overflow-hidden flex flex-col min-h-[480px] md:min-h-[550px] shadow-2xl group transition-all duration-500 hover:border-primary/20">
+        
+        <!-- Subtle corner borders for sci-fi look -->
+        <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/30 rounded-tl-[2.5rem] pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/30 rounded-tr-[2.5rem] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/30 rounded-bl-[2.5rem] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/30 rounded-br-[2.5rem] pointer-events-none"></div>
+        
+        <!-- Real-time HUD overlay (top left) -->
+        <div class="absolute top-6 left-6 z-20 font-mono text-[10px] text-white/50 space-y-1 bg-black/60 backdrop-blur-md px-4 py-3 rounded-2xl border border-white/5">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span>RENDER ENGINE: <span class="text-emerald-400 font-bold">ACTIVE</span></span>
+          </div>
+          <div>FPS: <span id="hud-fps" class="text-primary font-bold">60.0</span></div>
+          <div>VARIANT: <span id="hud-variant" class="text-white font-bold uppercase">OCEAN MESH</span></div>
+          <div>ACTIVE NODES: <span id="hud-nodes" class="text-white">0</span></div>
+          <div>ACTIVE LINKS: <span id="hud-links" class="text-white">0</span></div>
+        </div>
+
+        <!-- Beat Alert indicator (top right, visible for music-mesh) -->
+        <div id="beat-flash" class="absolute top-6 right-6 z-20 flex items-center gap-2 bg-primary/10 border border-primary/25 rounded-2xl px-4 py-2 opacity-0 scale-95 transition-all duration-200 font-bold uppercase text-[10px] text-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity animate-bounce"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          BEAT SIMULATED
+        </div>
+
+        <!-- Custom Interactive Canvas -->
+        <canvas id="sandbox-canvas" class="absolute inset-0 w-full h-full z-0 cursor-crosshair"></canvas>
+        
+        <!-- Mouse Interaction Helper Overlay on hover -->
+        <div class="absolute bottom-6 left-6 right-6 z-10 flex items-center justify-between text-white/40 font-mono text-[10px] pointer-events-none">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mouse-pointer-click"><path d="M14 11h-4v4"/><path d="M8.5 12.5 4 17"/><path d="m15 15 6 6"/><path d="M21 3v6l-2.8-2.8-5.7 5.7-1.4-1.4 5.7-5.7L14 3h6z"/></svg>
+            <span>Mueve el mouse para rotación con paralaje</span>
+          </div>
+          <div id="interactive-action-tip">Clic para generar impulso</div>
+        </div>
+      </div>
+
+      <!-- Control Panel Card (4 cols on desktop) -->
+      <div class="lg:col-span-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 md:p-8 flex flex-col gap-6 shadow-2xl relative">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-2xl rounded-full -mr-16 -mt-16 pointer-events-none"></div>
+
+        <div>
+          <h2 class="text-2xl font-black text-white italic uppercase mb-1">
+            Control <span class="text-primary">Panel</span>
+          </h2>
+          <p class="text-white/40 text-xs italic">Ajusta los parámetros matemáticos en tiempo real</p>
+        </div>
+
+        <!-- Selector de Variante (Tabs) -->
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-bold text-white/40 uppercase tracking-widest px-1">Selecciona Animación</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              data-variant="spheres" 
+              class="variant-btn px-3 py-4 text-[11px] font-black uppercase tracking-wider rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-20 bg-primary/10 border-primary text-primary"
+            >
+              <span class="text-white/40 text-[9px]">Animación 1</span>
+              <span>Esferas Plexus</span>
+            </button>
+            <button 
+              data-variant="ocean" 
+              class="variant-btn px-3 py-4 text-[11px] font-black uppercase tracking-wider rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-20 bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
+            >
+              <span class="text-white/40 text-[9px]">Animación 2</span>
+              <span>Malla Océano</span>
+            </button>
+            <button 
+              data-variant="music" 
+              class="variant-btn px-3 py-4 text-[11px] font-black uppercase tracking-wider rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-20 bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
+            >
+              <span class="text-white/40 text-[9px]">Animación 3</span>
+              <span>Malla Música</span>
+            </button>
+            <button 
+              data-variant="neural" 
+              class="variant-btn px-3 py-4 text-[11px] font-black uppercase tracking-wider rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-20 bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
+            >
+              <span class="text-white/40 text-[9px]">Animación 4</span>
+              <span>Red Neuronal</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Divider line -->
+        <div class="h-px bg-white/10"></div>
+
+        <!-- Sliders Dinámicos -->
+        <div class="space-y-5 grow">
+          
+          <!-- Speed -->
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs">
+              <span class="font-bold text-white/60 uppercase tracking-wider">Velocidad</span>
+              <span id="val-speed" class="text-primary font-bold">1.0x</span>
+            </div>
+            <input 
+              type="range" 
+              id="slider-speed" 
+              min="0.1" 
+              max="3" 
+              step="0.1" 
+              value="1.0"
+              class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+            />
+          </div>
+
+          <!-- Density -->
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs">
+              <span class="font-bold text-white/60 uppercase tracking-wider">Densidad / Puntos</span>
+              <span id="val-density" class="text-primary font-bold">Medio</span>
+            </div>
+            <input 
+              type="range" 
+              id="slider-density" 
+              min="0.5" 
+              max="2.0" 
+              step="0.1" 
+              value="1.0"
+              class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+            />
+          </div>
+
+          <!-- Line Thickness -->
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs">
+              <span class="font-bold text-white/60 uppercase tracking-wider">Grosor de Línea</span>
+              <span id="val-linewidth" class="text-primary font-bold">1.2px</span>
+            </div>
+            <input 
+              type="range" 
+              id="slider-linewidth" 
+              min="0.5" 
+              max="4.0" 
+              step="0.1" 
+              value="1.2"
+              class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+            />
+          </div>
+
+          <!-- Wave Height (Ocean / Music selective) -->
+          <div id="control-amplitude-box" class="space-y-2 hidden">
+            <div class="flex justify-between text-xs">
+              <span class="font-bold text-white/60 uppercase tracking-wider">Amplitud de Onda</span>
+              <span id="val-amplitude" class="text-primary font-bold">1.0x</span>
+            </div>
+            <input 
+              type="range" 
+              id="slider-amplitude" 
+              min="0.2" 
+              max="3.0" 
+              step="0.1" 
+              value="1.0"
+              class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+            />
+          </div>
+
+          <!-- Music Pulse Frequency (Music selective) -->
+          <div id="control-beat-box" class="space-y-2 hidden">
+            <div class="flex justify-between text-xs">
+              <span class="font-bold text-white/60 uppercase tracking-wider">Frecuencia del Ritmo (BPM)</span>
+              <span id="val-bpm" class="text-primary font-bold">120 BPM</span>
+            </div>
+            <input 
+              type="range" 
+              id="slider-bpm" 
+              min="40" 
+              max="200" 
+              step="5" 
+              value="120"
+              class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+            />
+          </div>
+
+          <!-- Spark Speed (Neural selective) -->
+          <div id="control-spark-box" class="space-y-2 hidden">
+            <div class="flex justify-between text-xs">
+              <span class="font-bold text-white/60 uppercase tracking-wider">Disparo Sináptico</span>
+              <span id="val-spark" class="text-primary font-bold">Frecuente</span>
+            </div>
+            <input 
+              type="range" 
+              id="slider-spark" 
+              min="0.2" 
+              max="3.0" 
+              step="0.1" 
+              value="1.0"
+              class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+            />
+          </div>
+
+          <!-- Paleta de Colores (Classic / HSL Accent Shift) -->
+          <div class="space-y-2">
+            <label class="text-xs font-bold text-white/40 uppercase tracking-widest px-1">Esquema de Color</label>
+            <div class="grid grid-cols-4 gap-2">
+              <button 
+                data-color="classic" 
+                class="color-btn py-2 text-[10px] font-bold uppercase rounded-xl border transition-colors bg-primary/10 border-primary text-primary"
+              >
+                Classic
+              </button>
+              <button 
+                data-color="cyan" 
+                class="color-btn py-2 text-[10px] font-bold uppercase rounded-xl border border-white/10 text-white/60 hover:bg-white/5"
+              >
+                Cyan
+              </button>
+              <button 
+                data-color="green" 
+                class="color-btn py-2 text-[10px] font-bold uppercase rounded-xl border border-white/10 text-white/60 hover:bg-white/5"
+              >
+                Green
+              </button>
+              <button 
+                data-color="neon" 
+                class="color-btn py-2 text-[10px] font-bold uppercase rounded-xl border border-white/10 text-white/60 hover:bg-white/5"
+              >
+                Magenta
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive options toggles -->
+          <div class="space-y-3 pt-2">
+            <label class="flex items-center gap-3 cursor-pointer group text-xs text-white/70 hover:text-white transition-colors">
+              <input type="checkbox" id="toggle-mouse" checked class="checkbox checkbox-primary checkbox-xs border-white/20 bg-white/5 rounded-md focus:ring-0 focus:outline-none" />
+              <span>Sensibilidad al Mouse (Paralaje)</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer group text-xs text-white/70 hover:text-white transition-colors">
+              <input type="checkbox" id="toggle-glow" checked class="checkbox checkbox-primary checkbox-xs border-white/20 bg-white/5 rounded-md focus:ring-0 focus:outline-none" />
+              <span>Efectos de Resplandor Neon</span>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="h-px bg-white/10"></div>
+
+        <!-- Manual Triggers and Actions -->
+        <div class="flex gap-4">
+          <button id="btn-reset" class="flex-1 bg-white/5 hover:bg-white/10 text-white border border-white/10 py-3 rounded-2xl font-black uppercase text-xs transition-colors">
+            Reiniciar
+          </button>
+          <button id="btn-action" class="flex-1 bg-primary text-black hover:bg-primary/90 py-3 rounded-2xl font-black uppercase text-xs shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+            Simular Beat
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <BreadcrumbBar path={["XCIEN Labs", "Demostraciones", "Sandbox de Animaciones"]} />
+  </div>
+</Layout>
+
+<script>
+  let activeAnimation: number | null = null;
+  let canvas: HTMLCanvasElement;
+  let ctx: CanvasRenderingContext2D;
+  
+  // Real-time tweaked params object
+  const state = {
+    variant: 'spheres', // 'spheres' | 'ocean' | 'music' | 'neural'
+    speed: 1.0,
+    density: 1.0,
+    lineWidth: 1.2,
+    amplitude: 1.0,
+    bpm: 120,
+    sparkRate: 1.0,
+    colorMode: 'classic', // 'classic' | 'cyan' | 'green' | 'neon'
+    mouseInfluence: true,
+    glowEffect: true
+  };
+
+  // Color mappings based on selection
+  function getColor(role: 'primary' | 'secondary' | 'ambient' | 'glow', customMode = state.colorMode) {
+    const modes: Record<string, Record<string, string>> = {
+      classic: {
+        primary: '0, 209, 255',   // Xcien Cyan
+        secondary: '101, 212, 110', // Xcien Green
+        glow: 'rgba(0, 209, 255, 0.8)'
+      },
+      cyan: {
+        primary: '0, 209, 255',
+        secondary: '0, 160, 240',
+        glow: 'rgba(0, 209, 255, 0.8)'
+      },
+      green: {
+        primary: '101, 212, 110',
+        secondary: '40, 190, 80',
+        glow: 'rgba(101, 212, 110, 0.8)'
+      },
+      neon: {
+        primary: '255, 50, 255',  // Magenta Neon
+        secondary: '0, 209, 255',  // Cyan
+        glow: 'rgba(255, 50, 255, 0.8)'
+      }
+    };
+    return modes[customMode]?.[role] || modes.classic[role];
+  }
+
+  function initSandbox() {
+    canvas = document.getElementById('sandbox-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+    
+    ctx = canvas.getContext('2d', { alpha: false })!;
+    let w: number, h: number;
+
+    function resize() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Physics & Mouse Variables
+    let mouseX = w / 2, mouseY = h / 2;
+    let isMouseOver = false;
+    let targetRotX = 0, targetRotY = 0;
+    let curRotX = 0, curRotY = 0;
+    let time = 0;
+
+    // Direct Click impulse wave trackers
+    let clicks: Array<{ x: number, y: number, r: number, max: number, active: boolean }> = [];
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+      isMouseOver = true;
+      if (state.mouseInfluence) {
+        targetRotY = ((mouseX - w / 2) / (w / 2)) * 0.5;
+        targetRotX = -((mouseY - h / 2) / (h / 2)) * 0.5;
+      }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      isMouseOver = false;
+      targetRotX = 0;
+      targetRotY = 0;
+    });
+
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = e.clientX - rect.left;
+      const cy = e.clientY - rect.top;
+      clicks.push({
+        x: cx,
+        y: cy,
+        r: 0,
+        max: Math.max(w, h) * 0.45,
+        active: true
+      });
+    });
+
+    // 3D projections helpers
+    class Point3D {
+      x: number; y: number; z: number;
+      ox: number; oy: number; oz: number;
+      constructor(r: number) {
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(Math.random() * 2 - 1);
+        this.ox = this.x = r * Math.sin(phi) * Math.cos(theta);
+        this.oy = this.y = r * Math.sin(phi) * Math.sin(theta);
+        this.oz = this.z = r * Math.cos(phi);
+      }
+      rotate(rx: number, ry: number, rz: number) {
+        let x1 = this.ox * Math.cos(ry) - this.oz * Math.sin(ry);
+        let z1 = this.ox * Math.sin(ry) + this.oz * Math.cos(ry);
+        let y2 = this.oy * Math.cos(rx) - z1 * Math.sin(rx);
+        let z2 = this.oy * Math.sin(rx) + z1 * Math.cos(rx);
+        this.x = x1;
+        this.y = y2;
+        this.z = z2;
+      }
+    }
+
+    class PlexusSphere {
+      cx: number; cy: number; radius: number;
+      points: Point3D[];
+      colorRole: 'primary' | 'secondary';
+      rx = 0; ry = 0; rz = 0;
+      vrx: number; vry: number; vrz: number;
+      constructor(cx: number, cy: number, r: number, count: number, role: 'primary' | 'secondary') {
+        this.cx = cx; this.cy = cy; this.radius = r;
+        this.colorRole = role;
+        this.points = Array.from({ length: count }, () => new Point3D(r));
+        this.vrx = (Math.random() - 0.5) * 0.006;
+        this.vry = (Math.random() - 0.5) * 0.006;
+        this.vrz = (Math.random() - 0.5) * 0.004;
+      }
+      update(dt: number, rxAdd: number, ryAdd: number) {
+        this.rx += (this.vrx + rxAdd * 0.02) * state.speed;
+        this.ry += (this.vry + ryAdd * 0.02) * state.speed;
+        this.rz += this.vrz * state.speed;
+        this.points.forEach(p => p.rotate(this.rx, this.ry, this.rz));
+      }
+      draw(calculatedConnections: { val: number }) {
+        const rgb = getColor(this.colorRole);
+        const projected = this.points.map(p => {
+          const scale = 1 + p.z / (this.radius * 3.5);
+          return {
+            x: this.cx + p.x * scale,
+            y: this.cy + p.y * scale,
+            z: p.z,
+            alpha: 0.2 + (p.z + this.radius) / (this.radius * 2) * 0.8
+          };
+        });
+
+        // Connections
+        ctx.lineWidth = state.lineWidth;
+        const limit = this.radius * 1.1;
+        for (let i = 0; i < projected.length; i++) {
+          for (let j = i + 1; j < projected.length; j++) {
+            const dx = projected[i].x - projected[j].x;
+            const dy = projected[i].y - projected[j].y;
+            const dist = dx*dx + dy*dy;
+            if (dist < limit * limit) {
+              calculatedConnections.val++;
+              const d = Math.sqrt(dist);
+              const factor = 1 - d / limit;
+              const alpha = Math.min(projected[i].alpha, projected[j].alpha) * factor * 0.35;
+              ctx.strokeStyle = `rgba(${rgb}, ${alpha})`;
+              ctx.beginPath();
+              ctx.moveTo(projected[i].x, projected[i].y);
+              ctx.lineTo(projected[j].x, projected[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Vertices
+        projected.forEach(p => {
+          ctx.fillStyle = `rgba(${rgb}, ${p.alpha * 0.75})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2.5 * (1 + p.z / this.radius), 0, Math.PI*2);
+          ctx.fill();
+        });
+      }
+    }
+
+    class MiniSphere {
+      x: number; y: number; radius: number;
+      sphere: PlexusSphere;
+      vx: number; vy: number;
+      life = 1.0; decay: number;
+      constructor(x: number, y: number) {
+        this.x = x; this.y = y;
+        this.radius = 28 + Math.random() * 26;
+        const pts = Math.floor((10 + Math.random() * 8) * state.density);
+        const role = Math.random() > 0.4 ? 'primary' : 'secondary';
+        this.sphere = new PlexusSphere(0, 0, this.radius, pts, role);
+        this.vx = (Math.random() - 0.4) * 0.7;
+        this.vy = -(0.4 + Math.random() * 1.0);
+        this.decay = 0.0006 + Math.random() * 0.0006;
+      }
+      update(dt: number) {
+        this.x += this.vx * state.speed;
+        this.y += this.vy * state.speed;
+        this.life -= this.decay * state.speed;
+        this.sphere.cx = this.x;
+        this.sphere.cy = this.y;
+        this.sphere.update(dt, 0, 0);
+      }
+      draw(conn: { val: number }) {
+        ctx.save();
+        ctx.globalAlpha = this.life;
+        this.sphere.draw(conn);
+        ctx.restore();
+      }
+    }
+
+    // Animation 1: Plexus spheres state variables
+    let mainSphere = new PlexusSphere(w * 0.2, h * 0.75, 140, Math.floor(30 * state.density), 'primary');
+    let secSphere = new PlexusSphere(w * 0.8, h * 0.3, 110, Math.floor(22 * state.density), 'secondary');
+    let minis: MiniSphere[] = [];
+    let spheresSpawnTimer = 0;
+
+    function resetSpheres() {
+      mainSphere = new PlexusSphere(w * 0.2, h * 0.75, 140, Math.floor(30 * state.density), 'primary');
+      secSphere = new PlexusSphere(w * 0.8, h * 0.3, 110, Math.floor(22 * state.density), 'secondary');
+      minis = [];
+      spheresSpawnTimer = 0;
+    }
+
+    // Animation 2: Ocean mesh state variables
+    let oceanGrid: any[][] = [];
+    function buildOceanGrid() {
+      oceanGrid = [];
+      const cols = Math.floor(32 * state.density);
+      const rows = Math.floor(24 * state.density);
+      for (let i = 0; i < cols; i++) {
+        oceanGrid[i] = [];
+        for (let j = 0; j < rows; j++) {
+          oceanGrid[i][j] = {
+            x: (i / (cols - 1) - 0.5) * 1.8,
+            y: (j / (rows - 1) - 0.5) * 1.8,
+            z: 0
+          };
+        }
+      }
+    }
+
+    // Animation 3: Music mesh state variables
+    let musicGrid: any[][] = [];
+    let simulatedBeatPulse = 0;
+    let simulatedBeatFlashTimer = 0;
+    function buildMusicGrid() {
+      musicGrid = [];
+      const cols = Math.floor(28 * state.density);
+      const rows = Math.floor(20 * state.density);
+      for (let i = 0; i < cols; i++) {
+        musicGrid[i] = [];
+        for (let j = 0; j < rows; j++) {
+          musicGrid[i][j] = {
+            x: (i / (cols - 1) - 0.5) * 1.6,
+            y: (j / (rows - 1) - 0.5) * 1.6,
+            z: 0
+          };
+        }
+      }
+    }
+
+    // Manual beat trigger function
+    window.triggerManualBeat = function() {
+      simulatedBeatPulse = 1.0;
+      simulatedBeatFlashTimer = 10;
+      const indicator = document.getElementById('beat-flash');
+      if (indicator) {
+        indicator.classList.remove('opacity-0', 'scale-95');
+        indicator.classList.add('opacity-100', 'scale-100');
+        setTimeout(() => {
+          indicator.classList.remove('opacity-100', 'scale-100');
+          indicator.classList.add('opacity-0', 'scale-95');
+        }, 300);
+      }
+    };
+
+    // Animation 4: Neural network state variables
+    let neurons: any[] = [];
+    function buildNeurons() {
+      neurons = [];
+      const count = Math.floor(70 * state.density);
+      for (let i = 0; i < count; i++) {
+        neurons.push({
+          id: i,
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          size: 1.5 + Math.random() * 2.5,
+          colorRole: Math.random() > 0.45 ? 'primary' : 'secondary',
+          pulseTimer: Math.random() * 3.5,
+          glow: 0
+        });
+      }
+    }
+
+    // Initialize variables
+    buildOceanGrid();
+    buildMusicGrid();
+    buildNeurons();
+
+    // Reset Sandbox button binder
+    const resetBtn = document.getElementById('btn-reset');
+    resetBtn?.addEventListener('click', () => {
+      resetSpheres();
+      buildOceanGrid();
+      buildMusicGrid();
+      buildNeurons();
+      clicks = [];
+      time = 0;
+    });
+
+    // Simulated Beat trigger button binder
+    const beatBtn = document.getElementById('btn-action');
+    beatBtn?.addEventListener('click', () => {
+      window.triggerManualBeat();
+    });
+
+    // FPS calculation helpers
+    let lastTime = performance.now();
+    let frameCount = 0;
+    let fps = 60;
+    const hudFps = document.getElementById('hud-fps');
+    const hudNodes = document.getElementById('hud-nodes');
+    const hudLinks = document.getElementById('hud-links');
+    const hudVariant = document.getElementById('hud-variant');
+
+    // Main Engine Render loop
+    function render() {
+      // Delta-time
+      const now = performance.now();
+      frameCount++;
+      if (now - lastTime >= 1000) {
+        fps = Math.round((frameCount * 1000) / (now - lastTime));
+        if (hudFps) hudFps.textContent = fps.toFixed(1);
+        frameCount = 0;
+        lastTime = now;
+      }
+
+      time += 0.012 * state.speed;
+      ctx.fillStyle = '#080c1a';
+      ctx.fillRect(0, 0, w, h);
+
+      // HUD Active Variant Sync
+      if (hudVariant) {
+        const names = { spheres: 'Esferas Plexus', ocean: 'Malla Océano', music: 'Malla Música', neural: 'Red Neuronal' };
+        hudVariant.textContent = names[state.variant as keyof typeof names] || 'Engine';
+      }
+
+      // Parallax camera interpolation
+      curRotX += (targetRotX - curRotX) * 0.05;
+      curRotY += (targetRotY - curRotY) * 0.05;
+
+      const connCounter = { val: 0 };
+      let nodeCounter = 0;
+
+      // Handle custom clicks shockwave physics
+      clicks.forEach((c, idx) => {
+        if (!c.active) return;
+        c.r += 4.5 * state.speed;
+        if (c.r >= c.max) {
+          c.active = false;
+        } else {
+          // Render thin neon glowing pulse ring
+          ctx.beginPath();
+          ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+          ctx.lineWidth = 1.0;
+          ctx.strokeStyle = `rgba(${getColor('primary')}, ${0.4 * (1 - c.r / c.max)})`;
+          ctx.stroke();
+        }
+      });
+
+      // ----------------------------------------------------
+      // VARIANT 1: SPHERES PLEXUS
+      // ----------------------------------------------------
+      if (state.variant === 'spheres') {
+        mainSphere.cx = w * 0.25;
+        mainSphere.cy = h * 0.65;
+        secSphere.cx = w * 0.75;
+        secSphere.cy = h * 0.35;
+
+        mainSphere.update(0.016, curRotX, curRotY);
+        secSphere.update(0.016, -curRotX, -curRotY);
+
+        // Glow glow filter if enabled
+        if (state.glowEffect) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `rgba(${getColor('primary')}, 0.5)`;
+        }
+        mainSphere.draw(connCounter);
+        
+        if (state.glowEffect) {
+          ctx.shadowColor = `rgba(${getColor('secondary')}, 0.5)`;
+        }
+        secSphere.draw(connCounter);
+        ctx.shadowBlur = 0;
+
+        nodeCounter += mainSphere.points.length + secSphere.points.length;
+
+        // Auto Spawner Minis
+        spheresSpawnTimer += 0.016 * state.speed;
+        if (spheresSpawnTimer > 3.0 && minis.length < 5) {
+          spheresSpawnTimer = 0;
+          minis.push(new MiniSphere(w * 0.25 + (Math.random()-0.5)*50, h * 0.65 + (Math.random()-0.5)*50));
+        }
+
+        for (let i = minis.length - 1; i >= 0; i--) {
+          minis[i].update(0.016);
+          if (minis[i].life <= 0) {
+            minis.splice(i, 1);
+          } else {
+            minis[i].draw(connCounter);
+            nodeCounter += minis[i].sphere.points.length;
+          }
+        }
+      }
+
+      // ----------------------------------------------------
+      // VARIANT 2: OCEAN MESH
+      // ----------------------------------------------------
+      else if (state.variant === 'ocean') {
+        const cols = oceanGrid.length;
+        const rows = oceanGrid[0].length;
+        nodeCounter = cols * rows;
+
+        const projectedGrid: any[][] = [];
+        for (let i = 0; i < cols; i++) {
+          projectedGrid[i] = [];
+          for (let j = 0; j < rows; j++) {
+            const node = oceanGrid[i][j];
+            
+            // 3D waves logic: superimpose sines
+            const wave1 = Math.sin(node.x * 3.5 + time * 1.2) * 0.12;
+            const wave2 = Math.cos(node.y * 2.5 - time * 0.8) * 0.08;
+            const wave3 = Math.sin((node.x + node.y) * 4.0 + time * 1.8) * 0.04;
+            
+            // Mouse gravity attraction local disturbance
+            let zDisturbance = 0;
+            if (isMouseOver && state.mouseInfluence) {
+              const ndx = node.x * w * 0.5 + w/2 - mouseX;
+              const ndy = node.y * h * 0.5 + h/2 - mouseY;
+              const dSq = ndx*ndx + ndy*ndy;
+              if (dSq < 18000) {
+                zDisturbance = (1.0 - Math.sqrt(dSq) / 134) * 0.06;
+              }
+            }
+
+            // Click shockwave displacement
+            let clickWave = 0;
+            clicks.forEach(c => {
+              if (!c.active) return;
+              const sx = node.x * w * 0.35 + w/2;
+              const sy = node.y * h * 0.4 + h/2;
+              const dx = sx - c.x;
+              const dy = sy - c.y;
+              const d = Math.sqrt(dx*dx + dy*dy);
+              const diff = Math.abs(d - c.r);
+              if (diff < 40) {
+                clickWave = (1.0 - diff / 40) * 0.15 * (1.0 - c.r / c.max);
+              }
+            });
+
+            const z = (wave1 + wave2 + wave3 + zDisturbance) * state.amplitude + clickWave;
+
+            // Simple 3D projection camera angles tilted + parallax
+            const rx = 0.95 + curRotX * 0.3; // pitch tilting
+            const ry = 0.2 - curRotY * 0.3;  // yaw tilting
+            
+            // Rotate matrix projection
+            let x1 = node.x * Math.cos(ry) - z * Math.sin(ry);
+            let z1 = node.x * Math.sin(ry) + z * Math.cos(ry);
+            let y2 = node.y * Math.cos(rx) - z1 * Math.sin(rx);
+            let z2 = node.y * Math.sin(rx) + z1 * Math.cos(rx);
+
+            // Perspective factor
+            const perspective = 0.85 / (1.0 + z2 * 0.4);
+            const screenX = w / 2 + x1 * w * 0.7 * perspective;
+            const screenY = h * 0.58 + y2 * h * 0.75 * perspective;
+
+            projectedGrid[i][j] = {
+              x: screenX,
+              y: screenY,
+              z: z2,
+              alpha: Math.max(0.08, 0.65 - z2)
+            };
+          }
+        }
+
+        ctx.lineWidth = state.lineWidth;
+        
+        if (state.glowEffect) {
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = `rgba(${getColor('primary')}, 0.25)`;
+        }
+
+        // Draw structural col grid lines
+        ctx.strokeStyle = `rgba(${getColor('primary')}, 0.18)`;
+        for (let i = 0; i < cols; i++) {
+          ctx.beginPath();
+          for (let j = 0; j < rows; j++) {
+            const p = projectedGrid[i][j];
+            if (j === 0) ctx.moveTo(p.x, p.y);
+            else ctx.lineTo(p.x, p.y);
+          }
+          ctx.stroke();
+          connCounter.val += rows - 1;
+        }
+
+        // Draw structural row grid lines
+        ctx.strokeStyle = `rgba(${getColor('secondary')}, 0.15)`;
+        for (let j = 0; j < rows; j++) {
+          ctx.beginPath();
+          for (let i = 0; i < cols; i++) {
+            const p = projectedGrid[i][j];
+            if (i === 0) ctx.moveTo(p.x, p.y);
+            else ctx.lineTo(p.x, p.y);
+          }
+          ctx.stroke();
+          connCounter.val += cols - 1;
+        }
+        ctx.shadowBlur = 0;
+
+        // Vertices dots
+        ctx.fillStyle = `rgba(${getColor('primary')}, 0.35)`;
+        for (let i = 0; i < cols; i += 2) {
+          for (let j = 0; j < rows; j += 2) {
+            const p = projectedGrid[i][j];
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+
+      // ----------------------------------------------------
+      // VARIANT 3: MUSIC REACTIVE MESH
+      // ----------------------------------------------------
+      else if (state.variant === 'music') {
+        const cols = musicGrid.length;
+        const rows = musicGrid[0].length;
+        nodeCounter = cols * rows;
+
+        // Auto BPM trigger pulsing math
+        const beatInterval = Math.floor(3600 / state.bpm); // frames between beats
+        const curFrame = Math.floor(time * 80) % beatInterval;
+        const isPulse = curFrame < 6;
+        if (isPulse && simulatedBeatPulse <= 0) {
+          simulatedBeatPulse = 1.0;
+        }
+        simulatedBeatPulse *= 0.94; // decay
+
+        const pulseAmp = simulatedBeatPulse * 0.18;
+        const highMod = Math.sin(time * 5.0) * 0.02 + 0.03;
+        const bassMod = (Math.cos(time * 2.0) * 0.04 + 0.05) + pulseAmp * state.amplitude;
+
+        const projectedGrid: any[][] = [];
+        for (let i = 0; i < cols; i++) {
+          projectedGrid[i] = [];
+          for (let j = 0; j < rows; j++) {
+            const node = musicGrid[i][j];
+            const distFromCenter = Math.sqrt(node.x*node.x + node.y*node.y);
+            
+            // Ripples spreading outwards from the epicenter
+            const ripple = Math.sin(distFromCenter * 8.5 - time * 4.5) * (bassMod * 1.6) / (1.0 + distFromCenter * 2.5);
+            const highFreq = Math.sin(node.x * 12.0 + time * 10.0) * highMod * 0.5;
+
+            // Click shockwave displacement
+            let clickWave = 0;
+            clicks.forEach(c => {
+              if (!c.active) return;
+              const sx = node.x * w * 0.35 + w/2;
+              const sy = node.y * h * 0.4 + h/2;
+              const dx = sx - c.x;
+              const dy = sy - c.y;
+              const d = Math.sqrt(dx*dx + dy*dy);
+              const diff = Math.abs(d - c.r);
+              if (diff < 40) {
+                clickWave = (1.0 - diff / 40) * 0.18 * (1.0 - c.r / c.max);
+              }
+            });
+
+            const z = ripple + highFreq + clickWave;
+
+            // Rotating pitch camera tilt + parallax scroll
+            const rx = 1.05 + curRotX * 0.25;
+            const ry = -0.15 - curRotY * 0.25;
+
+            let x1 = node.x * Math.cos(ry) - z * Math.sin(ry);
+            let z1 = node.x * Math.sin(ry) + z * Math.cos(ry);
+            let y2 = node.y * Math.cos(rx) - z1 * Math.sin(rx);
+            let z2 = node.y * Math.sin(rx) + z1 * Math.cos(rx);
+
+            const perspective = 0.8 / (1.0 + z2 * 0.35);
+            const screenX = w / 2 + x1 * w * 0.65 * perspective;
+            const screenY = h * 0.58 + y2 * h * 0.72 * perspective;
+
+            projectedGrid[i][j] = {
+              x: screenX,
+              y: screenY,
+              z: z2,
+              color: simulatedBeatPulse > 0.4 
+                ? `rgba(${getColor('secondary')}, ${0.12 + simulatedBeatPulse * 0.25})`
+                : `rgba(${getColor('primary')}, 0.16)`
+            };
+          }
+        }
+
+        ctx.lineWidth = state.lineWidth;
+        
+        if (state.glowEffect && simulatedBeatPulse > 0.2) {
+          ctx.shadowBlur = 12 * simulatedBeatPulse;
+          ctx.shadowColor = `rgba(${getColor('secondary')}, ${0.6 * simulatedBeatPulse})`;
+        }
+
+        // Draw connections
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            const p = projectedGrid[i][j];
+            if (i < cols - 1) {
+              const nextCol = projectedGrid[i + 1][j];
+              ctx.strokeStyle = p.color;
+              ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(nextCol.x, nextCol.y); ctx.stroke();
+              connCounter.val++;
+            }
+            if (j < rows - 1) {
+              const nextRow = projectedGrid[i][j + 1];
+              ctx.strokeStyle = simulatedBeatPulse > 0.4 
+                ? `rgba(${getColor('secondary')}, ${0.08 + simulatedBeatPulse * 0.18})` 
+                : `rgba(${getColor('primary')}, 0.12)`;
+              ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(nextRow.x, nextRow.y); ctx.stroke();
+              connCounter.val++;
+            }
+          }
+        }
+        ctx.shadowBlur = 0;
+      }
+
+      // ----------------------------------------------------
+      // VARIANT 4: NEURAL NETWORK PLEXUS
+      // ----------------------------------------------------
+      else if (state.variant === 'neural') {
+        const distLimit = w < 768 ? 6000 : 13000;
+        nodeCounter = neurons.length;
+
+        // Render neurons nodes
+        neurons.forEach(n => {
+          n.x += n.vx * state.speed;
+          n.y += n.vy * state.speed;
+
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+
+          // Click magnetic attraction
+          if (isMouseOver) {
+            const dx = mouseX - n.x;
+            const dy = mouseY - n.y;
+            const dist = dx*dx + dy*dy;
+            if (dist < 22000) {
+              const f = (1.0 - Math.sqrt(dist) / 148) * 0.08 * state.speed;
+              n.x += dx * f;
+              n.y += dy * f;
+            }
+          }
+
+          // Trigger synapse potentials action
+          n.pulseTimer -= 0.016 * state.speed * state.sparkRate;
+          if (n.pulseTimer <= 0) {
+            n.pulseTimer = 2.5 + Math.random() * 4.5;
+            n.glow = 1.0;
+          }
+          n.glow *= 0.94; // decay potential firing
+
+          // Rendering node
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.size + n.glow * 3, 0, Math.PI * 2);
+          const rgb = getColor(n.colorRole);
+          ctx.fillStyle = `rgba(${rgb}, ${0.5 + n.glow * 0.5})`;
+          ctx.fill();
+
+          if (state.glowEffect && n.glow > 0.1) {
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = `rgba(${rgb}, 0.85)`;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.size + n.glow * 5, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(${rgb}, ${n.glow * 0.35})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          }
+        });
+
+        // Neural links
+        for (let i = 0; i < neurons.length; i++) {
+          for (let j = i + 1; j < neurons.length; j++) {
+            const dx = neurons[i].x - neurons[j].x;
+            const dy = neurons[i].y - neurons[j].y;
+            const dSq = dx*dx + dy*dy;
+
+            if (dSq < distLimit) {
+              connCounter.val++;
+              const d = Math.sqrt(dSq);
+              const limit = Math.sqrt(distLimit);
+              const alpha = (1.0 - d / limit) * 0.45;
+
+              // Action potentials traveling spark along axon links
+              let sparkX = null, sparkY = null;
+              if (neurons[i].glow > 0.65) {
+                const prog = 1.0 - (neurons[i].glow - 0.65) / 0.35;
+                sparkX = neurons[i].x + dx * -prog;
+                sparkY = neurons[i].y + dy * -prog;
+              } else if (neurons[j].glow > 0.65) {
+                const prog = 1.0 - (neurons[j].glow - 0.65) / 0.35;
+                sparkX = neurons[j].x + dx * prog;
+                sparkY = neurons[j].y + dy * prog;
+              }
+
+              ctx.lineWidth = state.lineWidth;
+              ctx.strokeStyle = `rgba(${getColor(neurons[i].colorRole)}, ${alpha * 0.45})`;
+              ctx.beginPath();
+              ctx.moveTo(neurons[i].x, neurons[i].y);
+              ctx.lineTo(neurons[j].x, neurons[j].y);
+              ctx.stroke();
+
+              // Draw spark
+              if (sparkX !== null && sparkY !== null) {
+                ctx.fillStyle = '#ffffff';
+                if (state.glowEffect) {
+                  ctx.shadowBlur = 8;
+                  ctx.shadowColor = `rgba(${getColor(neurons[i].colorRole)}, 1)`;
+                }
+                ctx.beginPath();
+                ctx.arc(sparkX, sparkY, 2.2, 0, Math.PI*2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+              }
+            }
+          }
+        }
+      }
+
+      // Sync stats HUD
+      if (hudNodes) hudNodes.textContent = nodeCounter.toString();
+      if (hudLinks) hudLinks.textContent = connCounter.val.toString();
+
+      activeAnimation = requestAnimationFrame(render);
+    }
+
+    render();
+
+    // Event listener for tab controls
+    const tabBtns = document.querySelectorAll('.variant-btn');
+    const amplitudeBox = document.getElementById('control-amplitude-box');
+    const beatBox = document.getElementById('control-beat-box');
+    const sparkBox = document.getElementById('control-spark-box');
+
+    function syncVariantControls(variant: string) {
+      state.variant = variant;
+      
+      // Toggle selective parameters visibility
+      if (variant === 'ocean') {
+        amplitudeBox?.classList.remove('hidden');
+        beatBox?.classList.add('hidden');
+        sparkBox?.classList.add('hidden');
+      } else if (variant === 'music') {
+        amplitudeBox?.classList.remove('hidden');
+        beatBox?.classList.remove('hidden');
+        sparkBox?.classList.add('hidden');
+      } else if (variant === 'neural') {
+        amplitudeBox?.classList.add('hidden');
+        beatBox?.classList.add('hidden');
+        sparkBox?.classList.remove('hidden');
+      } else {
+        amplitudeBox?.classList.add('hidden');
+        beatBox?.classList.add('hidden');
+        sparkBox?.classList.add('hidden');
+      }
+
+      // Sync Active styling of variant selector buttons
+      tabBtns.forEach(btn => {
+        const btnVar = btn.getAttribute('data-variant');
+        if (btnVar === variant) {
+          btn.className = "variant-btn px-3 py-4 text-[11px] font-black uppercase tracking-wider rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-20 bg-primary/10 border-primary text-primary";
+        } else {
+          btn.className = "variant-btn px-3 py-4 text-[11px] font-black uppercase tracking-wider rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-20 bg-white/5 border-white/10 text-white/70 hover:bg-white/10";
+        }
+      });
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.getAttribute('data-variant');
+        if (v) syncVariantControls(v);
+      });
+    });
+
+    // Color schema selector binder
+    const colorBtns = document.querySelectorAll('.color-btn');
+    colorBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const col = btn.getAttribute('data-color');
+        if (col) {
+          state.colorMode = col;
+          colorBtns.forEach(b => {
+            const bCol = b.getAttribute('data-color');
+            if (bCol === col) {
+              b.className = "color-btn py-2 text-[10px] font-bold uppercase rounded-xl border transition-colors bg-primary/10 border-primary text-primary";
+            } else {
+              b.className = "color-btn py-2 text-[10px] font-bold uppercase rounded-xl border border-white/10 text-white/60 hover:bg-white/5";
+            }
+          });
+        }
+      });
+    });
+
+    // Inputs bindings
+    const sliderSpeed = document.getElementById('slider-speed') as HTMLInputElement;
+    const valSpeed = document.getElementById('val-speed');
+    sliderSpeed?.addEventListener('input', () => {
+      state.speed = parseFloat(sliderSpeed.value);
+      if (valSpeed) valSpeed.textContent = `${state.speed.toFixed(1)}x`;
+    });
+
+    const sliderDensity = document.getElementById('slider-density') as HTMLInputElement;
+    const valDensity = document.getElementById('val-density');
+    sliderDensity?.addEventListener('input', () => {
+      state.density = parseFloat(sliderDensity.value);
+      if (valDensity) {
+        if (state.density < 0.8) valDensity.textContent = 'Bajo';
+        else if (state.density > 1.4) valDensity.textContent = 'Alto';
+        else valDensity.textContent = 'Medio';
+      }
+      // Re-trigger geometry recalculations
+      buildOceanGrid();
+      buildMusicGrid();
+      buildNeurons();
+      resetSpheres();
+    });
+
+    const sliderLineWidth = document.getElementById('slider-linewidth') as HTMLInputElement;
+    const valLineWidth = document.getElementById('val-linewidth');
+    sliderLineWidth?.addEventListener('input', () => {
+      state.lineWidth = parseFloat(sliderLineWidth.value);
+      if (valLineWidth) valLineWidth.textContent = `${state.lineWidth.toFixed(1)}px`;
+    });
+
+    const sliderAmplitude = document.getElementById('slider-amplitude') as HTMLInputElement;
+    const valAmplitude = document.getElementById('val-amplitude');
+    sliderAmplitude?.addEventListener('input', () => {
+      state.amplitude = parseFloat(sliderAmplitude.value);
+      if (valAmplitude) valAmplitude.textContent = `${state.amplitude.toFixed(1)}x`;
+    });
+
+    const sliderBPM = document.getElementById('slider-bpm') as HTMLInputElement;
+    const valBPM = document.getElementById('val-bpm');
+    sliderBPM?.addEventListener('input', () => {
+      state.bpm = parseInt(sliderBPM.value);
+      if (valBPM) valBPM.textContent = `${state.bpm} BPM`;
+    });
+
+    const sliderSpark = document.getElementById('slider-spark') as HTMLInputElement;
+    const valSpark = document.getElementById('val-spark');
+    sliderSpark?.addEventListener('input', () => {
+      state.sparkRate = parseFloat(sliderSpark.value);
+      if (valSpark) {
+        if (state.sparkRate < 0.7) valSpark.textContent = 'Lento';
+        else if (state.sparkRate > 1.6) valSpark.textContent = 'Ráfagas';
+        else valSpark.textContent = 'Frecuente';
+      }
+    });
+
+    const toggleMouse = document.getElementById('toggle-mouse') as HTMLInputElement;
+    toggleMouse?.addEventListener('change', () => {
+      state.mouseInfluence = toggleMouse.checked;
+      if (!state.mouseInfluence) {
+        targetRotX = 0;
+        targetRotY = 0;
+      }
+    });
+
+    const toggleGlow = document.getElementById('toggle-glow') as HTMLInputElement;
+    toggleGlow?.addEventListener('change', () => {
+      state.glowEffect = toggleGlow.checked;
+    });
+
+    // Default initializer setup
+    syncVariantControls('spheres');
+  }
+
+  // Astro page hook setup
+  initSandbox();
+  document.addEventListener('astro:page-load', () => {
+    initSandbox();
+  });
+</script>

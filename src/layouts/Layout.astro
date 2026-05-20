@@ -24,6 +24,11 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       >
       </div>
 
+      <canvas 
+        id="layout-ambient-canvas" 
+        class="absolute inset-0 w-full h-full opacity-60 pointer-events-none z-[1]"
+      ></canvas>
+
       
       <div
         class="absolute top-[-10%] left-[-10%] w-[70%] h-[60%] rounded-full blur-[70px]"
@@ -283,5 +288,252 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
         </ul>
       </div>
     </div>
+
+    <script>
+      let ambientAnimFrame: number | null = null;
+
+      function initAmbientCanvas() {
+        if (ambientAnimFrame) {
+          cancelAnimationFrame(ambientAnimFrame);
+        }
+
+        const canvas = document.getElementById("layout-ambient-canvas") as HTMLCanvasElement;
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d")!;
+        let w = (canvas.width = window.innerWidth);
+        let h = (canvas.height = window.innerHeight);
+
+        const dpr = window.devicePixelRatio || 1;
+        
+        function resize() {
+          w = canvas.width = window.innerWidth;
+          h = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener("resize", resize);
+
+        // Physics variables
+        let mouseX = 0, mouseY = 0;
+        let targetRotX = 0, targetRotY = 0;
+        let curRotX = 0, curRotY = 0;
+        let lastScrollY = window.scrollY;
+        let scrollSpeed = 0;
+
+        window.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          targetRotY = ((mouseX - w / 2) / (w / 2)) * 0.4;
+          targetRotX = -((mouseY - h / 2) / (h / 2)) * 0.4;
+        });
+
+        window.addEventListener("scroll", () => {
+          const curScrollY = window.scrollY;
+          scrollSpeed += Math.abs(curScrollY - lastScrollY) * 0.05;
+          lastScrollY = curScrollY;
+        });
+
+        // 3D Point class
+        class Point3D {
+          x: number; y: number; z: number;
+          ox: number; oy: number; oz: number;
+          constructor(r: number) {
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(Math.random() * 2 - 1);
+            this.ox = this.x = r * Math.sin(phi) * Math.cos(theta);
+            this.oy = this.y = r * Math.sin(phi) * Math.sin(theta);
+            this.oz = this.z = r * Math.cos(phi);
+          }
+
+          rotate(rx: number, ry: number, rz: number) {
+            // Y-axis rotation
+            let x1 = this.ox * Math.cos(ry) - this.oz * Math.sin(ry);
+            let z1 = this.ox * Math.sin(ry) + this.oz * Math.cos(ry);
+
+            // X-axis rotation
+            let y2 = this.oy * Math.cos(rx) - z1 * Math.sin(rx);
+            let z2 = this.oy * Math.sin(rx) + z1 * Math.cos(rx);
+
+            // Z-axis rotation
+            this.x = x1 * Math.cos(rz) - y2 * Math.sin(rz);
+            this.y = x1 * Math.sin(rz) + y2 * Math.cos(rz);
+            this.z = z2;
+          }
+        }
+
+        // Plexus Sphere class
+        class PlexusSphere {
+          cx: number; cy: number;
+          radius: number;
+          points: Point3D[];
+          color: string;
+          rx = 0; ry = 0; rz = 0;
+          vrx: number; vry: number; vrz: number;
+
+          constructor(cx: number, cy: number, r: number, count: number, color: string) {
+            this.cx = cx;
+            this.cy = cy;
+            this.radius = r;
+            this.color = color;
+            this.points = Array.from({ length: count }, () => new Point3D(r));
+            this.vrx = (Math.random() - 0.5) * 0.005;
+            this.vry = (Math.random() - 0.5) * 0.005;
+            this.vrz = (Math.random() - 0.5) * 0.003;
+          }
+
+          update(dt: number, extraRotX: number, extraRotY: number) {
+            this.rx += this.vrx + extraRotX * 0.02;
+            this.ry += this.vry + extraRotY * 0.02;
+            this.rz += this.vrz;
+            this.points.forEach(p => p.rotate(this.rx, this.ry, this.rz));
+          }
+
+          draw() {
+            const projected = this.points.map(p => {
+              // Simple orthographic projection with scale depth
+              const scale = 1 + p.z / (this.radius * 3);
+              return {
+                x: this.cx + p.x * scale,
+                y: this.cy + p.y * scale,
+                z: p.z,
+                alpha: 0.15 + (p.z + this.radius) / (this.radius * 2) * 0.85
+              };
+            });
+
+            // Draw connections
+            ctx.lineWidth = 0.8;
+            for (let i = 0; i < projected.length; i++) {
+              for (let j = i + 1; j < projected.length; j++) {
+                const dx = projected[i].x - projected[j].x;
+                const dy = projected[i].y - projected[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                // Limit connection distance
+                const limit = this.radius * 1.0;
+                if (dist < limit) {
+                  const factor = (1 - dist / limit);
+                  const edgeAlpha = Math.min(projected[i].alpha, projected[j].alpha) * factor * 0.25;
+                  ctx.strokeStyle = `rgba(${this.color}, ${edgeAlpha})`;
+                  ctx.beginPath();
+                  ctx.moveTo(projected[i].x, projected[i].y);
+                  ctx.lineTo(projected[j].x, projected[j].y);
+                  ctx.stroke();
+                }
+              }
+            }
+
+            // Draw nodes
+            projected.forEach(p => {
+              ctx.fillStyle = `rgba(${this.color}, ${p.alpha * 0.6})`;
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, 2 * (1 + p.z / this.radius), 0, Math.PI * 2);
+              ctx.fill();
+            });
+          }
+        }
+
+        // Floating particle spheres (sub-spheres)
+        class MiniSphere {
+          x: number; y: number;
+          radius: number;
+          sphere: PlexusSphere;
+          vx: number; vy: number;
+          life = 1.0;
+          decay: number;
+
+          constructor(x: number, y: number) {
+            this.x = x;
+            this.y = y;
+            this.radius = 25 + Math.random() * 25;
+            const pointsCount = 8 + Math.floor(Math.random() * 6);
+            // Cyan/Blue theme
+            const color = Math.random() > 0.4 ? "0, 209, 255" : "101, 212, 110";
+            this.sphere = new PlexusSphere(0, 0, this.radius, pointsCount, color);
+            this.vx = 0.2 + Math.random() * 0.8;
+            this.vy = -(0.3 + Math.random() * 0.9);
+            this.decay = 0.0008 + Math.random() * 0.0006;
+          }
+
+          update(dt: number) {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.life -= this.decay;
+            this.sphere.cx = this.x;
+            this.sphere.cy = this.y;
+            this.sphere.update(dt, 0, 0);
+          }
+
+          draw() {
+            ctx.save();
+            ctx.globalAlpha = this.life;
+            this.sphere.draw();
+            ctx.restore();
+          }
+        }
+
+        // Initialize main anchors
+        // 1. Bottom-Left main plexus sphere
+        const mainSphere = new PlexusSphere(w * 0.08, h * 0.85, 140, 28, "0, 209, 255");
+        // 2. Top-Right secondary plexus sphere
+        const secSphere = new PlexusSphere(w * 0.92, h * 0.15, 110, 20, "101, 212, 110");
+
+        const minis: MiniSphere[] = [];
+        let spawnTimer = 0;
+
+        function loop(time: number) {
+          ctx.clearRect(0, 0, w, h);
+
+          // Damp mouse rotation
+          curRotX += (targetRotX - curRotX) * 0.05;
+          curRotY += (targetRotY - curRotY) * 0.05;
+
+          // Damp scroll speed
+          scrollSpeed *= 0.93;
+          const spinSpeed = scrollSpeed * 0.01;
+
+          // Adjust main centers on window resize dynamically
+          mainSphere.cx = w * 0.08;
+          mainSphere.cy = h * 0.85;
+          secSphere.cx = w * 0.92;
+          secSphere.cy = h * 0.15;
+
+          // Update & Draw anchors
+          mainSphere.update(0.016, curRotX + spinSpeed, curRotY + spinSpeed);
+          mainSphere.draw();
+
+          secSphere.update(0.016, curRotX - spinSpeed, curRotY - spinSpeed);
+          secSphere.draw();
+
+          // Spawn mini spheres from the bottom-left sphere
+          spawnTimer += 0.016;
+          if (spawnTimer > 4.5 && minis.length < 5) {
+            spawnTimer = 0;
+            // Spawn around the bottom-left circle
+            const ox = w * 0.08 + (Math.random() - 0.5) * 60;
+            const oy = h * 0.85 + (Math.random() - 0.5) * 60;
+            minis.push(new MiniSphere(ox, oy));
+          }
+
+          // Update & Draw minis
+          for (let i = minis.length - 1; i >= 0; i--) {
+            minis[i].update(0.016);
+            if (minis[i].life <= 0) {
+              minis.splice(i, 1);
+            } else {
+              minis[i].draw();
+            }
+          }
+
+          ambientAnimFrame = requestAnimationFrame(loop);
+        }
+
+        ambientAnimFrame = requestAnimationFrame(loop);
+      }
+
+      // Astro lifecycle hooks
+      initAmbientCanvas();
+      document.addEventListener("astro:page-load", initAmbientCanvas);
+    </script>
   </body>
 </html>
+
