@@ -5,7 +5,7 @@ interface Props {
   title: string;
   greenTitle?: string;
   description: string;
-  variant?: 'fiber' | 'wave' | 'cyber' | 'prisms' | 'satellite' | 'ocean-mesh' | 'music-mesh' | 'neural-network' | 'spheres';
+  variant?: 'fiber' | 'wave' | 'cyber' | 'prisms' | 'satellite' | 'ocean-mesh' | 'music-mesh' | 'neural-network' | 'spheres' | 'plexus-dome';
 }
 
 const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
@@ -436,6 +436,26 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       }
     }
 
+    // Plexus Dome — single large rotating sphere, only front-facing hemisphere visible
+    let domePoints: Point3D[] = [];
+    let domeRot = 0;
+    if (variant === 'plexus-dome') {
+      const pointCount = isMobile ? 260 : 600;
+      const radius = Math.min(w, h) * 0.6;
+      // Use Fibonacci sphere for evenly distributed points (no clumps/gaps)
+      const golden = Math.PI * (3 - Math.sqrt(5));
+      for (let i = 0; i < pointCount; i++) {
+        const p = new Point3D(radius);
+        const y = 1 - (i / (pointCount - 1)) * 2; // -1 to 1
+        const r = Math.sqrt(1 - y * y);
+        const theta = golden * i;
+        p.ox = p.x = Math.cos(theta) * r * radius;
+        p.oy = p.y = y * radius;
+        p.oz = p.z = Math.sin(theta) * r * radius;
+        domePoints.push(p);
+      }
+    }
+
     let neurons: any[] = [];
     let neuralConnections: any[] = [];
     if (variant === 'neural-network') {
@@ -487,6 +507,82 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
             minis[i].draw();
           }
         }
+      }
+
+      if (variant === 'plexus-dome') {
+        domeRot += 0.0024; // continuous Y rotation
+
+        const cx = w * 0.28; // center on the left half (behind title)
+        const cy = h * 0.55;
+        const r = Math.min(w, h) * 0.75;
+
+        // Rotate all points
+        for (const p of domePoints) {
+          p.rotate(0, domeRot, 0);
+        }
+
+        // Project: only nodes with z >= 0 are visible (front hemisphere)
+        const projected = domePoints.map((p) => {
+          const visible = p.z >= -r * 0.05; // slight overshoot for smooth edge
+          const depth = Math.max(0, p.z / r); // 0 (equator) → 1 (front pole)
+          const scale = 1 + depth * 0.45;
+          return {
+            x: cx + p.x * scale,
+            y: cy + p.y * scale,
+            z: p.z,
+            visible,
+            alpha: visible ? Math.pow(0.2 + depth * 0.8, 0.85) : 0,
+          };
+        });
+
+        // Connections — only between visible front nodes that are close
+        const linkLimit = r * 0.18;
+        ctx.lineWidth = 1.3;
+        for (let i = 0; i < projected.length; i++) {
+          const a = projected[i];
+          if (!a.visible) continue;
+          for (let j = i + 1; j < projected.length; j++) {
+            const b = projected[j];
+            if (!b.visible) continue;
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < linkLimit) {
+              const factor = 1 - dist / linkLimit;
+              const lineAlpha = Math.min(a.alpha, b.alpha) * factor * 1.1;
+              ctx.strokeStyle = `rgba(120, 220, 255, ${Math.min(1, lineAlpha)})`;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Nodes with stronger glow
+        for (const p of projected) {
+          if (!p.visible) continue;
+          const depth = Math.max(0, p.z / r);
+          const radius = 1.5 + depth * 3.2;
+
+          // Outer glow halo
+          ctx.shadowBlur = 18 * depth;
+          ctx.shadowColor = `rgba(0, 209, 255, ${p.alpha})`;
+          ctx.fillStyle = `rgba(170, 235, 255, ${p.alpha})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Bright center dot for foreground nodes
+          if (depth > 0.5) {
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.9})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, radius * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        ctx.shadowBlur = 0;
       }
 
       if (variant === 'fiber') {
