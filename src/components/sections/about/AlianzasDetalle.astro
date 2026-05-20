@@ -99,21 +99,25 @@ const partners = [
         <div class="grid grid-cols-3 gap-5 h-full relative">
           <div class="relative h-full overflow-hidden">
             <div
-              class="flex flex-col gap-5 animate-marquee-vertical-up will-change-transform"
+              class="flex flex-col animate-marquee-vertical-up will-change-transform"
             >
               {
-                [1, 2].map(() => (
-                  <div class="flex flex-col gap-5 flex-shrink-0">
-                    {[1, 2, 3, 4, 5, 6].map((num) => (
-                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7">
+                [1, 2].map((dup) => (
+                  <>
+                    {[1, 2, 3, 4, 5, 6, 7].map((num) => (
+                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7 mb-5 flex-shrink-0">
                         <img
-                          src={`/logos/logos xcien-0${num}.png`}
+                          src={`/logos/logos xcien-${num.toString().padStart(2, '0')}.png`}
                           alt="Partner"
+                          width="160"
+                          height="160"
+                          loading={dup === 1 && num <= 3 ? "eager" : "lazy"}
+                          decoding="async"
                           class="alliance-logo-img max-h-20 w-auto object-contain"
                         />
                       </div>
                     ))}
-                  </div>
+                  </>
                 ))
               }
             </div>
@@ -121,21 +125,25 @@ const partners = [
 
           <div class="relative h-full overflow-hidden mt-10">
             <div
-              class="flex flex-col gap-5 animate-marquee-vertical-down will-change-transform"
+              class="flex flex-col animate-marquee-vertical-down will-change-transform"
             >
               {
-                [1, 2].map(() => (
-                  <div class="flex flex-col gap-5 flex-shrink-0">
-                    {[7, 8, 9, 10, 11, 12].map((num) => (
-                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7">
+                [1, 2].map((dup) => (
+                  <>
+                    {[8, 9, 10, 11, 12, 13, 14].map((num) => (
+                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7 mb-5 flex-shrink-0">
                         <img
-                          src={`/logos/logos xcien-${num < 10 ? "0" + num : num}.png`}
+                          src={`/logos/logos xcien-${num.toString().padStart(2, '0')}.png`}
                           alt="Partner"
+                          width="160"
+                          height="160"
+                          loading={dup === 1 && num <= 10 ? "eager" : "lazy"}
+                          decoding="async"
                           class="alliance-logo-img max-h-20 w-auto object-contain"
                         />
                       </div>
                     ))}
-                  </div>
+                  </>
                 ))
               }
             </div>
@@ -143,21 +151,25 @@ const partners = [
 
           <div class="relative h-full overflow-hidden">
             <div
-              class="flex flex-col gap-5 animate-marquee-vertical-up will-change-transform [animation-duration:45s]"
+              class="flex flex-col animate-marquee-vertical-up will-change-transform [animation-duration:45s]"
             >
               {
-                [1, 2].map(() => (
-                  <div class="flex flex-col gap-5 flex-shrink-0">
-                    {[13, 14, 15, 16, 17, 18].map((num) => (
-                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7">
+                [1, 2].map((dup) => (
+                  <>
+                    {[15, 16, 17, 18, 19, 20, 21].map((num) => (
+                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7 mb-5 flex-shrink-0">
                         <img
-                          src={`/logos/logos xcien-${num}.png`}
+                          src={`/logos/logos xcien-${num.toString().padStart(2, '0')}.png`}
                           alt="Partner"
+                          width="160"
+                          height="160"
+                          loading={dup === 1 && num <= 17 ? "eager" : "lazy"}
+                          decoding="async"
                           class="alliance-logo-img max-h-20 w-auto object-contain"
                         />
                       </div>
                     ))}
-                  </div>
+                  </>
                 ))
               }
             </div>
