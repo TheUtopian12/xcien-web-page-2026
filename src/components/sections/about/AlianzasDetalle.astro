@@ -29,97 +29,87 @@ const partners = [
 ];
 ---
 
-<section class="py-12 bg-[#0a0b0d] relative overflow-hidden">
-  <div class="absolute inset-0 bg-primary/5 pointer-events-none opacity-50">
-  </div>
+<section class="pt-20 pb-16 bg-[#0a0b0d] relative overflow-hidden">
+  <div class="absolute top-1/3 -left-40 w-[500px] h-[500px] bg-primary/10 blur-[180px] rounded-full pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary/5 blur-[160px] rounded-full pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none opacity-[0.025]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0); background-size: 32px 32px;"></div>
+
   <div class="container mx-auto px-4 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
-        <p
-          class="text-primary font-bold text-xs uppercase tracking-widest mb-6 flex items-center gap-2"
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
         >
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          NUESTROS ALIADOS
-        </p>
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+          </span>
+          <span class="text-primary font-black text-[10px] uppercase tracking-[0.3em]">Nuestros Aliados</span>
+        </div>
+
         <h2
-          class="text-6xl md:text-7xl font-black text-white leading-[0.9] italic uppercase tracking-tighter mb-8"
+          class="text-6xl md:text-7xl font-black text-white leading-[0.9] italic uppercase tracking-tighter mb-8 drop-shadow-2xl"
         >
           Alianzas y <br />
-          <span class="text-white italic-none"
-            >Certificaciones Estratégicas</span
-          >
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#4fb156] italic-none"
+            >Certificaciones</span
+          ><br />
+          <span class="text-white italic-none">Estratégicas</span>
         </h2>
-        <p class="text-white/50 text-xl leading-relaxed max-w-xl mb-12 italic">
-        Trabajamos con tecnología líder <br/>
-        Nuestras soluciones se construyen sobre alianzas estratégicas con fabricantes, 
-        carriers y proveedores líderes de la industria. Esto nos permite integrar tecnologías de conectividad,
-         seguridad, administración de red e infraestructura empresarial para diseñar soluciones más confiables, 
-         escalables y alineadas a las necesidades de cada cliente.
 
+        <div class="relative pl-6 mb-10">
+          <div class="absolute left-0 top-0 h-full w-[2px] bg-gradient-to-b from-primary via-primary/40 to-transparent"></div>
+          <p class="text-white font-bold text-lg mb-3 italic">Trabajamos con tecnología líder.</p>
+          <p class="text-white/60 text-base leading-relaxed max-w-xl">
+            Nuestras soluciones se construyen sobre alianzas estratégicas con fabricantes,
+            carriers y proveedores líderes de la industria. Integramos tecnologías de conectividad,
+            seguridad, administración de red e infraestructura empresarial para diseñar soluciones
+            más confiables, escalables y alineadas a las necesidades de cada cliente.
+          </p>
+        </div>
 
-        </p>
-
-        {
-          
-        }
+        <div class="grid grid-cols-3 gap-3 max-w-md">
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
+            <p class="text-3xl font-black text-primary italic tracking-tighter">+20</p>
+            <p class="text-[9px] text-white/40 uppercase font-bold tracking-widest mt-1">Partners</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
+            <p class="text-3xl font-black text-primary italic tracking-tighter">+25</p>
+            <p class="text-[9px] text-white/40 uppercase font-bold tracking-widest mt-1">Años</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-center">
+            <p class="text-3xl font-black text-primary italic tracking-tighter">100%</p>
+            <p class="text-[9px] text-white/40 uppercase font-bold tracking-widest mt-1">Certificado</p>
+          </div>
+        </div>
       </div>
 
       <div class="h-[700px] overflow-hidden relative">
-        
         <div
-          class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a0b0d] to-transparent z-10"
+          class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a0b0d] via-[#0a0b0d]/80 to-transparent z-10 pointer-events-none"
         >
         </div>
         <div
-          class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a0b0d] to-transparent z-10"
+          class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0a0b0d] via-[#0a0b0d]/80 to-transparent z-10 pointer-events-none"
         >
         </div>
 
-        <div class="grid grid-cols-3 gap-6 h-full">
-          
+        <div class="absolute -inset-10 bg-primary/[0.04] blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="grid grid-cols-3 gap-5 h-full relative">
           <div class="relative h-full overflow-hidden">
             <div
-              class="flex flex-col gap-6 animate-marquee-vertical-up will-change-transform"
+              class="flex flex-col gap-5 animate-marquee-vertical-up will-change-transform"
             >
               {
                 [1, 2].map(() => (
-                  <div class="flex flex-col gap-6 flex-shrink-0">
+                  <div class="flex flex-col gap-5 flex-shrink-0">
                     {[1, 2, 3, 4, 5, 6].map((num) => (
-                      <div class="relative group">
-                        <div class="aspect-square rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-8 hover:bg-white/[0.07] hover:border-primary/30 transition-all duration-500">
-                          <img
-                            src={`/logos/logos xcien-0${num}.png`}
-                            alt="Partner"
-                            class="w-full h-full object-contain grayscale opacity-100 brightness-[1.8] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500"
-                          />
-                        </div>
-                        {num === 1 && (
-                          <div class="absolute bottom-4 right-4 bg-primary/20 backdrop-blur-md border border-primary/30 px-3 py-1 rounded-full text-[8px] font-black text-primary uppercase tracking-widest">
-                            Partner
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-
-          
-          <div class="relative h-full overflow-hidden mt-12">
-            <div
-              class="flex flex-col gap-6 animate-marquee-vertical-down will-change-transform"
-            >
-              {
-                [1, 2].map(() => (
-                  <div class="flex flex-col gap-6 flex-shrink-0">
-                    {[7, 8, 9, 10, 11, 12].map((num) => (
-                      <div class="aspect-square rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-8 hover:bg-white/[0.07] hover:border-primary/30 transition-all duration-500 group">
+                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7">
                         <img
-                          src={`/logos/logos xcien-${num < 10 ? "0" + num : num}.png`}
+                          src={`/logos/logos xcien-0${num}.png`}
                           alt="Partner"
-                          class="w-full h-full object-contain grayscale opacity-100 brightness-[1.8] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500"
+                          class="alliance-logo-img max-h-20 w-auto object-contain"
                         />
                       </div>
                     ))}
@@ -129,20 +119,41 @@ const partners = [
             </div>
           </div>
 
-          
-          <div class="relative h-full overflow-hidden">
+          <div class="relative h-full overflow-hidden mt-10">
             <div
-              class="flex flex-col gap-6 animate-marquee-vertical-up will-change-transform [animation-duration:45s]"
+              class="flex flex-col gap-5 animate-marquee-vertical-down will-change-transform"
             >
               {
                 [1, 2].map(() => (
-                  <div class="flex flex-col gap-6 flex-shrink-0">
+                  <div class="flex flex-col gap-5 flex-shrink-0">
+                    {[7, 8, 9, 10, 11, 12].map((num) => (
+                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7">
+                        <img
+                          src={`/logos/logos xcien-${num < 10 ? "0" + num : num}.png`}
+                          alt="Partner"
+                          class="alliance-logo-img max-h-20 w-auto object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="relative h-full overflow-hidden">
+            <div
+              class="flex flex-col gap-5 animate-marquee-vertical-up will-change-transform [animation-duration:45s]"
+            >
+              {
+                [1, 2].map(() => (
+                  <div class="flex flex-col gap-5 flex-shrink-0">
                     {[13, 14, 15, 16, 17, 18].map((num) => (
-                      <div class="aspect-square rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-8 hover:bg-white/[0.07] hover:border-primary/30 transition-all duration-500 group">
+                      <div class="alliance-logo aspect-square rounded-[1.75rem] bg-white/[0.03] border border-white/10 flex items-center justify-center p-7">
                         <img
                           src={`/logos/logos xcien-${num}.png`}
                           alt="Partner"
-                          class="w-full h-full object-contain grayscale opacity-100 brightness-[1.8] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-500"
+                          class="alliance-logo-img max-h-20 w-auto object-contain"
                         />
                       </div>
                     ))}
@@ -157,16 +168,21 @@ const partners = [
   </div>
 </section>
 
-<section class="py-24 bg-[#0a0b0d]">
-  <div class="container mx-auto px-4">
-    <div class="max-w-4xl mx-auto text-center mb-16">
-      <p class="text-primary font-bold tracking-[0.3em] uppercase text-sm mb-4">
-        Certificación
-      </p>
+<section class="pt-16 pb-24 bg-[#0a0b0d] relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.04] blur-[180px] rounded-full pointer-events-none"></div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-4xl mx-auto text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-5">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        <span class="text-primary font-black text-[10px] uppercase tracking-[0.3em]">Certificación</span>
+      </div>
       <h2 class="text-6xl md:text-7xl font-black text-white italic uppercase tracking-tighter mb-5 leading-none">
         Alianzas  <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#4fb156]">en acción</span>
       </h2>
-      
+      <p class="text-white/40 text-base max-w-2xl mx-auto leading-relaxed">
+        Nuestro equipo se mantiene en formación continua con capacitaciones y certificaciones directas con nuestros partners estratégicos.
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -261,6 +277,28 @@ const partners = [
 
 
 <style>
+  .alliance-logo {
+    transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
+  }
+
+  .alliance-logo:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(101, 212, 110, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .alliance-logo-img {
+    filter: brightness(0) invert(1);
+    opacity: 0.65;
+    transition: filter 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .alliance-logo:hover .alliance-logo-img {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
   .animate-marquee-vertical-up {
     animation: marquee-up 35s linear infinite;
     -webkit-backface-visibility: hidden;
