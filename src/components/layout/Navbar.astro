@@ -70,27 +70,52 @@ const dataCenters = [
       </label>
 
       
-      <div
-        class="animate-pulse hidden lg:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest"
-      >
-        Conectividad Inteligente <span
-          ><svg
-            class="w-4 h-4"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
+      <div class="relative group hidden lg:block">
+        <div
+          class="animate-pulse inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest cursor-pointer group-hover:bg-primary/15 group-hover:border-primary/40 transition-colors"
+          tabindex="0"
+        >
+          Conectividad Inteligente <span
+            ><svg
+              class="w-4 h-4"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 12H5m14 0-4 4m4-4-4-4"></path>
+            </svg>
+          </span>
+        </div>
+
+        <div
+          class="absolute left-0 top-full pt-3 w-[420px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 focus-within:opacity-100 focus-within:visible focus-within:translate-y-0 transition-all duration-300 z-[60]"
+        >
+          <div
+            class="relative p-6 rounded-2xl bg-[#1a1c22]/98 backdrop-blur-2xl border border-primary/20 shadow-2xl shadow-primary/10 overflow-hidden"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 12H5m14 0-4 4m4-4-4-4"></path>
-          </svg>
-        </span>
+            <div class="absolute -top-3 left-8 w-4 h-4 bg-[#1a1c22] border-l border-t border-primary/20 rotate-45"></div>
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full pointer-events-none"></div>
+            <div class="absolute left-0 top-0 h-full w-[2px] bg-gradient-to-b from-primary via-primary/40 to-transparent"></div>
+
+            <div class="relative z-10">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                <span class="text-primary text-[10px] font-black uppercase tracking-widest">Conectividad Inteligente</span>
+              </div>
+              <p class="text-white/85 text-sm leading-relaxed normal-case font-normal tracking-normal">
+                En <span class="text-primary font-semibold">XCIEN</span> la Conectividad Inteligente marca la evolución de las telecomunicaciones corporativas. Ya no se trata únicamente de proveer un "tubo con ancho de banda", sino de entregar una red viva, gestionada por sistemas en la nube y automatizados con IA, capaz de adaptarse en tiempo real a las exigencias operativas de cada negocio.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
