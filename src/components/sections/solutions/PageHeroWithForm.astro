@@ -28,7 +28,7 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       <h1 class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-tight italic uppercase">
         {title} {greenTitle && <><br/><span class="text-primary">{greenTitle}</span></>}
       </h1>
-      <div class="text-xl text-white/70 leading-relaxed max-w-xl space-y-4">
+      <div class="text-xl text-white/85 leading-relaxed max-w-xl space-y-4">
         <Fragment set:html={description} />
       </div>
     </div>
@@ -40,7 +40,7 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       <h2 class="text-3xl font-black text-white italic uppercase mb-2 relative z-10">
       <span class="text-primary">Empieza</span> aqui
       </h2>
-      <p class="text-white/40 text-sm mb-8 relative z-10 italic">Cuéntanos de tu empresa y te contactamos en &lt; 24 hrs</p>
+      <p class="text-white/70 text-sm mb-8 relative z-10 italic">Cuéntanos de tu empresa y te contactamos en &lt; 24 hrs</p>
       
       <form class="space-y-6 relative z-10">
         <div class="grid md:grid-cols-2 gap-6">
@@ -239,7 +239,7 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
         });
 
         // Draw connections
-        ctx.lineWidth = 0.8;
+        ctx.lineWidth = 1.1;
         for (let i = 0; i < projected.length; i++) {
           for (let j = i + 1; j < projected.length; j++) {
             const dx = projected[i].x - projected[j].x;
@@ -248,7 +248,7 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
             const limit = this.radius * 1.0;
             if (dist < limit) {
               const factor = (1 - dist / limit);
-              const edgeAlpha = Math.min(projected[i].alpha, projected[j].alpha) * factor * 0.25;
+              const edgeAlpha = Math.min(projected[i].alpha, projected[j].alpha) * factor * 0.55;
               ctx.strokeStyle = `rgba(${this.color}, ${edgeAlpha})`;
               ctx.beginPath();
               ctx.moveTo(projected[i].x, projected[i].y);
@@ -260,11 +260,14 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
 
         // Draw nodes
         projected.forEach(p => {
-          ctx.fillStyle = `rgba(${this.color}, ${p.alpha * 0.6})`;
+          ctx.fillStyle = `rgba(${this.color}, ${Math.min(1, p.alpha * 0.9)})`;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = `rgba(${this.color}, 0.6)`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, 2 * (1 + p.z / this.radius), 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, 2.2 * (1 + p.z / this.radius), 0, Math.PI * 2);
           ctx.fill();
         });
+        ctx.shadowBlur = 0;
       }
     }
 
@@ -299,13 +302,24 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       }
     }
 
-    let mainSphere: any;
-    let secSphere: any;
+    let mainSpheres: any[] = [];
     let minis: any[] = [];
     let spheresSpawnTimer = 0;
     if (variant === 'spheres') {
-      mainSphere = new PlexusSphere(w * 0.15, h * 0.75, 140, 30, "0, 209, 255");
-      secSphere = new PlexusSphere(w * 0.85, h * 0.25, 110, 22, "101, 212, 110");
+      mainSpheres = [
+        { sphere: new PlexusSphere(w * 0.10, h * 0.80, 150, 34, "0, 209, 255"),    rx: 0.10, ry: 0.80, rotX: 0.05,  rotY: 0.05 },
+        { sphere: new PlexusSphere(w * 0.90, h * 0.20, 130, 28, "101, 212, 110"),  rx: 0.90, ry: 0.20, rotX: -0.05, rotY: -0.05 },
+        { sphere: new PlexusSphere(w * 0.70, h * 0.78, 100, 22, "180, 120, 255"),  rx: 0.70, ry: 0.78, rotX: 0.04,  rotY: -0.03 },
+        { sphere: new PlexusSphere(w * 0.25, h * 0.22, 90,  20, "255, 180, 80"),   rx: 0.25, ry: 0.22, rotX: -0.03, rotY: 0.04 },
+        { sphere: new PlexusSphere(w * 0.50, h * 0.50, 80,  18, "101, 212, 110"),  rx: 0.50, ry: 0.50, rotX: 0.025, rotY: 0.025 },
+        { sphere: new PlexusSphere(w * 0.20, h * 0.50, 70,  16, "255, 100, 180"),  rx: 0.20, ry: 0.50, rotX: -0.04, rotY: 0.03 },
+        { sphere: new PlexusSphere(w * 0.80, h * 0.55, 75,  17, "0, 209, 255"),    rx: 0.80, ry: 0.55, rotX: 0.03,  rotY: -0.04 },
+        { sphere: new PlexusSphere(w * 0.40, h * 0.85, 65,  15, "101, 212, 110"),  rx: 0.40, ry: 0.85, rotX: -0.035, rotY: -0.025 },
+        { sphere: new PlexusSphere(w * 0.60, h * 0.15, 60,  14, "180, 120, 255"),  rx: 0.60, ry: 0.15, rotX: 0.045, rotY: 0.02 },
+        { sphere: new PlexusSphere(w * 0.05, h * 0.40, 55,  13, "255, 180, 80"),   rx: 0.05, ry: 0.40, rotX: 0.02,  rotY: -0.035 },
+        { sphere: new PlexusSphere(w * 0.95, h * 0.75, 60,  14, "0, 209, 255"),    rx: 0.95, ry: 0.75, rotX: -0.025, rotY: 0.045 },
+        { sphere: new PlexusSphere(w * 0.35, h * 0.55, 50,  12, "101, 212, 110"),  rx: 0.35, ry: 0.55, rotX: 0.04,  rotY: 0.035 },
+      ];
     }
 
     let fiberFibers: any[] = [];
@@ -448,21 +462,21 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
       ctx.fillRect(0, 0, w, h);
 
       if (variant === 'spheres') {
-        mainSphere.cx = w * 0.15;
-        mainSphere.cy = h * 0.75;
-        secSphere.cx = w * 0.85;
-        secSphere.cy = h * 0.25;
-
-        mainSphere.update(0.016, 0.05, 0.05);
-        mainSphere.draw();
-
-        secSphere.update(0.016, -0.05, -0.05);
-        secSphere.draw();
+        mainSpheres.forEach(item => {
+          item.sphere.cx = w * item.rx;
+          item.sphere.cy = h * item.ry;
+          item.sphere.update(0.016, item.rotX, item.rotY);
+          item.sphere.draw();
+        });
 
         spheresSpawnTimer += 0.016;
-        if (spheresSpawnTimer > 4.5 && minis.length < 5) {
+        if (spheresSpawnTimer > 0.7 && minis.length < 25) {
           spheresSpawnTimer = 0;
-          minis.push(new MiniSphere(w * 0.15 + (Math.random() - 0.5) * 60, h * 0.75 + (Math.random() - 0.5) * 60));
+          const anchor = mainSpheres[Math.floor(Math.random() * mainSpheres.length)];
+          minis.push(new MiniSphere(
+            w * anchor.rx + (Math.random() - 0.5) * 80,
+            h * anchor.ry + (Math.random() - 0.5) * 80
+          ));
         }
 
         for (let i = minis.length - 1; i >= 0; i--) {
@@ -720,15 +734,46 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
         const cols = musicGrid.length;
         const rows = musicGrid[0].length;
 
-        // Simulated volume / beat equalizer
-        const beatInterval = 60; // frames
-        const beatFrame = Math.floor(time * 100) % beatInterval;
-        const isBeat = beatFrame < 6;
-        const beatStrength = isBeat ? (1.0 - beatFrame / 6) : 0;
-        
-        // Base amplitude modulators
-        const highs = Math.sin(time * 6.5) * 0.02 + 0.03;
-        const bass = (Math.sin(time * 2.2) * 0.05 + 0.06) + beatStrength * 0.15;
+        // ── Simulated drum machine @ ~128 BPM ─────────────────────
+        const tempo = 2.13;                          // beats per second
+        const beatPhase = (time * tempo) % 1;        // 0–1 within each beat
+        const beatNumber = Math.floor(time * tempo) % 4;
+
+        // Kick drum on every beat (sharp attack, fast decay)
+        const kickEnv = Math.exp(-beatPhase * 7) * 1.0;
+        // Snare/clap on beats 2 and 4
+        const isSnareBeat = beatNumber === 1 || beatNumber === 3;
+        const snareEnv = isSnareBeat ? Math.exp(-beatPhase * 11) * 0.75 : 0;
+        // Hi-hat on every 1/8 note
+        const hatPhase = (time * tempo * 2) % 1;
+        const hatEnv = Math.exp(-hatPhase * 16) * 0.35;
+        // Sustained sub-bass wobble (slow LFO)
+        const subBass = (Math.sin(time * 1.4) * 0.5 + 0.5);
+        // Build-up tension every 16 beats (snare roll)
+        const buildPhase = (Math.floor(time * tempo) % 16) / 16;
+        const buildUp = buildPhase > 0.75 ? (buildPhase - 0.75) * 4 : 0;
+
+        // Aggregate "bass" + "highs" amplitudes
+        const bass = (kickEnv * 0.55 + snareEnv * 0.25 + buildUp * 0.2) * (0.6 + subBass * 0.6);
+        const highs = hatEnv * 0.4 + buildUp * 0.15;
+
+        // Smoothly blend color between calm (cyan), kick (green) and snare (magenta)
+        let kickMix = Math.min(1, kickEnv * 1.6);
+        let snareMix = Math.min(1, snareEnv * 1.6);
+        if (kickMix + snareMix > 1) {
+          const norm = kickMix + snareMix;
+          kickMix /= norm;
+          snareMix /= norm;
+        }
+        const baseMix = Math.max(0, 1 - kickMix - snareMix);
+        const baseR = 0,    baseG = 209,  baseB = 255;   // cyan (ocean)
+        const kickR = 101,  kickG = 212,  kickB = 110;   // green
+        const snareR = 255, snareG = 80,  snareB = 200;  // magenta
+        const r = Math.round(baseR * baseMix + kickR * kickMix + snareR * snareMix);
+        const g = Math.round(baseG * baseMix + kickG * kickMix + snareG * snareMix);
+        const b = Math.round(baseB * baseMix + kickB * kickMix + snareB * snareMix);
+        const beatHue = `${r}, ${g}, ${b}`;
+        const lineAlpha = 0.22 + kickEnv * 0.35 + snareEnv * 0.22;
 
         const projectedGrid: any[][] = [];
         for (let i = 0; i < cols; i++) {
@@ -736,46 +781,65 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
           for (let j = 0; j < rows; j++) {
             const node = musicGrid[i][j];
 
-            // Wave pattern: distance from center
-            const distFromCenter = Math.sqrt(node.x * node.x + node.y * node.y);
-            // Ripple waves propagating outward
-            const ripple = Math.sin(distFromCenter * 8.0 - time * 5.0) * (bass * 1.5) / (1.0 + distFromCenter * 2.0);
-            const highFreq = Math.cos(node.x * 15.0 + time * 12.0) * highs * 0.4;
-            
-            const z = ripple + highFreq;
+            // ── Base flow: ocean-like undulating waves (always moving) ──
+            const wave1 = Math.sin(node.x * 2.2 + time * 1.1) * 0.09;
+            const wave2 = Math.cos(node.y * 1.8 + time * 0.9) * 0.07;
+            const wave3 = Math.sin((node.x + node.y) * 1.5 + time * 1.4) * 0.05;
+            const baseFlow = wave1 + wave2 + wave3;
+
+            // ── Music peaks (added on top of the base flow) ──
+            const d0 = Math.sqrt(node.x * node.x + node.y * node.y);                // center kick
+            const d1 = Math.sqrt((node.x + 0.6) ** 2 + (node.y - 0.4) ** 2);        // top-left snare
+            const d2 = Math.sqrt((node.x - 0.6) ** 2 + (node.y - 0.4) ** 2);        // top-right snare
+
+            // Ripple from the kick — sharp peak emanating from center
+            const kickRipple = Math.sin(d0 * 6.0 - time * 7.5) * bass * 1.4
+                               / (1.0 + d0 * 1.6);
+
+            // Snare ripples from corners alternating
+            const snareSource = beatNumber === 1 ? d1 : d2;
+            const snareRipple = isSnareBeat
+              ? Math.sin(snareSource * 8.0 - time * 10.0) * snareEnv * 0.9
+                / (1.0 + snareSource * 1.8)
+              : 0;
+
+            // Hi-hat: fine high-frequency jitter on top
+            const hatJitter = (Math.cos(node.x * 18.0 + time * 14.0)
+                              + Math.sin(node.y * 22.0 + time * 17.0)) * highs * 0.18;
+
+            const z = baseFlow + kickRipple + snareRipple + hatJitter;
 
             // Tilting camera
             const rx = 1.0;
             const ry = -0.15;
 
-            // Apply rotation
             let x1 = node.x * Math.cos(ry) - z * Math.sin(ry);
             let z1 = node.x * Math.sin(ry) + z * Math.cos(ry);
             let y2 = node.y * Math.cos(rx) - z1 * Math.sin(rx);
             let z2 = node.y * Math.sin(rx) + z1 * Math.cos(rx);
 
-            // Project
             const perspective = 0.75 / (1.0 + z2 * 0.3);
             const screenX = w / 2 + x1 * w * 0.65 * perspective;
             const screenY = h * 0.62 + y2 * h * 0.75 * perspective;
+
+            // Per-node alpha boosts where the wave is high
+            const nodeBoost = Math.max(0, z * 1.8);
 
             projectedGrid[i][j] = {
               x: screenX,
               y: screenY,
               z: z2,
-              // Glow green on beat
-              color: isBeat ? `rgba(101, 212, 110, ${0.12 + beatStrength * 0.2})` : `rgba(0, 209, 255, 0.15)`
+              color: `rgba(${beatHue}, ${Math.min(0.8, lineAlpha + nodeBoost)})`
             };
           }
         }
 
-        // Draw connections
-        ctx.lineWidth = isMobile ? 0.7 : 1.2;
+        // Draw connections (col + row)
+        ctx.lineWidth = isMobile ? 0.8 : 1.3 + kickEnv * 0.7;
         for (let i = 0; i < cols; i++) {
           for (let j = 0; j < rows; j++) {
             const p = projectedGrid[i][j];
-            
-            // Connect to next column
+
             if (i < cols - 1) {
               const pNextCol = projectedGrid[i + 1][j];
               ctx.strokeStyle = p.color;
@@ -785,10 +849,9 @@ const { title, greenTitle, description, variant = 'fiber' } = Astro.props;
               ctx.stroke();
             }
 
-            // Connect to next row
             if (j < rows - 1) {
               const pNextRow = projectedGrid[i][j + 1];
-              ctx.strokeStyle = isBeat ? `rgba(101, 212, 110, ${0.1 + beatStrength * 0.15})` : `rgba(0, 209, 255, 0.12)`;
+              ctx.strokeStyle = p.color;
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(pNextRow.x, pNextRow.y);

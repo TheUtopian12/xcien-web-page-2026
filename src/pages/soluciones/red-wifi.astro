@@ -30,22 +30,22 @@ try {
 
 const specialFeatures = [
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>`,
+    icon: `<img src="/icons/conectividad.webp" alt="WiFi a la Medida" class="w-8 h-8 object-contain" />`,
     title: "WiFi a la Medida.",
     description: "Creación de múltiples redes WiFi de acuerdo a las necesidades del cliente."
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><path d="m22 7-8.5 8.5L9 11l-7 7"/><path d="M16 7h6v6"/></svg>`,
+    icon: `<img src="/icons/escabilidad.webp" alt="Inversión Inteligente" class="w-8 h-8 object-contain" />`,
     title: "Inversión Inteligente.",
     description: "Diseño de red pensado en el crecimiento de cobertura de red WiFi. Habilitado para realizar upgrades de AP's."
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-panel-left"><rect width="7" height="18" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>`,
+    icon: `<img src="/icons/coberturaExtendida.webp" alt="Panorama de Red" class="w-8 h-8 object-contain" />`,
     title: "Panorama de Red.",
     description: "Análisis predictivo de la cobertura de la red WiFi."
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    icon: `<img src="/icons/reportes.webp" alt="Reporte de Red" class="w-8 h-8 object-contain" />`,
     title: "Reporte de Red.",
     description: "Generación de reportes de consumo de dispositivos dentro de tu red."
   }
@@ -54,23 +54,23 @@ const specialFeatures = [
 const benefits = [
   {
     title: "Estudio de capacidad requerida.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>`
+    icon: `<img src="/icons/inspeccion.webp" alt="Estudio de capacidad" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Generación de reporte de cobertura.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`
+    icon: `<img src="/icons/coberturaExtendida.webp" alt="Cobertura" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Generación de diseño de red acorde a las necesidades del cliente.",
-    icon: "/icons/redesAdministradas.png"
+    icon: `<img src="/icons/redesAdministradas.png" alt="Diseño de red" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Soporte tecnico 24/7.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v5"/><path d="M12 16h.01"/></svg>`
+    icon: `<img src="/icons/atencionClientes.webp" alt="Soporte 24/7" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Administración compartida con el cliente.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+    icon: `<img src="/icons/colaboracion.png" alt="Administración compartida" class="w-8 h-8 object-contain" />`
   }
 ];
 
@@ -197,7 +197,7 @@ const wifiCards = [
                   set:html={post.title.rendered}
                 />
                 <div
-                  class="text-white/40 text-sm leading-relaxed mb-6 line-clamp-2 italic"
+                  class="text-white/75 text-sm leading-relaxed mb-6 line-clamp-2 italic"
                   set:html={post.excerpt.rendered}
                 />
                 <div class="mt-auto">

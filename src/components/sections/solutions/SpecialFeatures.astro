@@ -16,12 +16,12 @@ const { features, transparent = false } = Astro.props;
 <section class={`py-24 ${transparent ? 'bg-transparent' : 'bg-[#0a0b0d]'}`}>
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-white mb-4"><span class="text-primary tracking-tight">Diferenciadores</span> clave del Servicio</h2>
-    <p class="text-white/50 mb-12">Nuestros principales diferenciadores son los siguientes.</p>
+    <p class="text-white/80 mb-12">Nuestros principales diferenciadores son los siguientes.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {features.map((feature) => (
         <div class="p-8 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/30 transition-all duration-300 group">
-          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+          <div class="icon-container w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
   {feature.icon.startsWith('/') || feature.icon.match(/\.(webp|png|jpg|jpeg|svg)$/) ? (
     <img src={feature.icon} alt={feature.title} class="w-6 h-6 object-contain" />
   ) : (
@@ -29,9 +29,15 @@ const { features, transparent = false } = Astro.props;
   )}
 </div>
           <h3 class="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors">{feature.title}</h3>
-          <p class="text-sm text-white/50 leading-relaxed">{feature.description}</p>
+          <p class="text-sm text-white/75 leading-relaxed">{feature.description}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .icon-container img {
+    filter: brightness(0) saturate(100%) invert(78%) sepia(50%) saturate(454%) hue-rotate(76deg) brightness(94%) contrast(89%);
+  }
+</style>
