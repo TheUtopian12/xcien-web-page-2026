@@ -10,6 +10,17 @@ const petals = [
   { label: "Confiabilidad a prueba de fallos",angle: 180,   color: "green", icon: "reliability" },
   { label: "QoE Excepcional",                angle: -135,  color: "green", icon: "qoe" },
 ];
+
+const iconMap: Record<string, string> = {
+  qos: '/icons/excelente.webp',
+  shield: '/icons/seguridad.webp',
+  agility: '/icons/agilidad.webp',
+  zero: '/icons/zero.webp',
+  cost: '/icons/sinCostos.webp',
+  support: '/icons/soporte.webp',
+  reliability: '/icons/confibiabilidad.webp',
+  qoe: '/icons/QoE.webp',
+};
 const R = 210;
 const iconR = 210;
 
@@ -37,9 +48,9 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
     
     <div class="flex items-center justify-center mt-10">
       <svg
-        viewBox="-450 -400 900 800"
+        viewBox="-500 -420 1000 840"
         class="w-full max-w-5xl mx-auto"
-        style="max-height: 680px;"
+        style="max-height: 700px;"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
@@ -87,37 +98,17 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
           const rad = (p.angle * Math.PI) / 180;
           const iconCX = iconR * Math.cos(rad);
           const iconCY = iconR * Math.sin(rad);
-          const s = 22;
-          let iconPath = '';
-          if (p.icon === 'qos') iconPath = `<rect x="-16" y="-10" width="20" height="22" rx="2" fill="none" stroke="white" stroke-width="1.8"/>
-            <line x1="-16" y1="-3" x2="4" y2="-3" stroke="white" stroke-width="1.5"/>
-            <line x1="-12" y1="3" x2="4" y2="3" stroke="white" stroke-width="1.5"/>
-            <path d="M6 2 L16 2 L11 -8 Z" fill="white"/>`;
-          if (p.icon === 'shield') iconPath = `<path d="M0 -16 L14 -10 L14 0 C14 10 0 18 0 18 C0 18 -14 10 -14 0 L-14 -10 Z" fill="none" stroke="white" stroke-width="2"/>
-            <path d="M-6 0 L-2 4 L8 -6" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
-          if (p.icon === 'agility') iconPath = `<circle cx="0" cy="0" r="14" fill="none" stroke="white" stroke-width="2"/>
-            <path d="M-5 -5 L5 5 M5 -5 L-5 5" fill="none" stroke="white" stroke-width="0"/>
-            <path d="M-8 0 L8 0 M4 -4 L8 0 L4 4" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M0 -8 A8 8 0 0 1 8 0" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>`;
-          if (p.icon === 'zero') iconPath = `<circle cx="0" cy="0" r="8" fill="none" stroke="white" stroke-width="2"/>
-            <line x1="-16" y1="-16" x2="16" y2="16" stroke="white" stroke-width="2"/>
-            <circle cx="-10" cy="-10" r="4" fill="none" stroke="white" stroke-width="2"/>
-            <circle cx="10" cy="10" r="4" fill="none" stroke="white" stroke-width="2"/>`;
-          if (p.icon === 'cost') iconPath = `<line x1="0" y1="-16" x2="0" y2="16" stroke="white" stroke-width="2"/>
-            <path d="M8 -10 L-4 -10 A5 5 0 0 0 -4 0 L4 0 A5 5 0 0 1 4 10 L-8 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>`;
-          if (p.icon === 'support') iconPath = `<circle cx="-4" cy="-8" r="5" fill="none" stroke="white" stroke-width="2"/>
-            <path d="M-15 10 C-15 2 7 2 7 10" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="9" cy="-2" r="4" fill="none" stroke="white" stroke-width="1.8"/>
-            <path d="M13 6 C13 2 20 2 20 6" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/>`;
-          if (p.icon === 'reliability') iconPath = `<circle cx="0" cy="0" r="14" fill="none" stroke="white" stroke-width="2"/>
-            <path d="M-5 0 L-1 4 L7 -6" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
-          if (p.icon === 'qoe') iconPath = `<circle cx="-4" cy="-4" r="6" fill="none" stroke="white" stroke-width="2"/>
-            <circle cx="4" cy="4" r="4" fill="none" stroke="white" stroke-width="2"/>
-            <line x1="-10" y1="10" x2="10" y2="-10" stroke="white" stroke-width="1.5"/>
-            <path d="M-12 -12 L-4 -4 L-12 4" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`;
-
+          const href = iconMap[p.icon];
+          const size = 50;
           return (
-            <g transform={`translate(${iconCX}, ${iconCY})`} set:html={iconPath} />
+            <image
+              href={href}
+              x={iconCX - size / 2}
+              y={iconCY - size / 2}
+              width={size}
+              height={size}
+              style="filter: brightness(0) invert(1);"
+            />
           );
         })}
 
@@ -139,14 +130,15 @@ function petalPoints(angleDeg: number, size: number, cx: number, cy: number): st
         
         {petals.map((p) => {
           const rad = (p.angle * Math.PI) / 180;
-          const labelR = 350;
+          const labelR = 360;
           const lx = labelR * Math.cos(rad);
           const ly = labelR * Math.sin(rad);
           const words = p.label.split(' ');
           const half = Math.ceil(words.length / 2);
           const line1 = words.slice(0, half).join(' ');
           const line2 = words.slice(half).join(' ');
-          const anchor = rad > 0.3 && rad < 2.8 ? 'start' : rad < -0.3 && rad > -2.8 ? 'end' : 'middle';
+          const cosA = Math.cos(rad);
+          const anchor = cosA > 0.3 ? 'start' : cosA < -0.3 ? 'end' : 'middle';
 
           return (
             <g>
