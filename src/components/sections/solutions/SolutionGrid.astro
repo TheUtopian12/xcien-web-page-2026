@@ -16,16 +16,18 @@ interface Props {
   cards: Card[];
   columns?: number;
   variant?: "default" | "process" | "numbered";
+  transparent?: boolean;
 }
 
-const { 
-  subtitle, 
-  title, 
-  titleHighlight, 
-  description, 
-  cards, 
+const {
+  subtitle,
+  title,
+  titleHighlight,
+  description,
+  cards,
   columns = 3,
-  variant = "default" 
+  variant = "default",
+  transparent = false
 } = Astro.props;
 
 const gridCols = {
@@ -36,7 +38,7 @@ const gridCols = {
 }[columns] || "lg:grid-cols-3";
 ---
 
-<section class="py-24 border-t border-white/5 relative overflow-hidden">
+<section class={`py-24 border-t border-white/5 relative overflow-hidden ${transparent ? 'bg-transparent' : 'bg-[#0a0b0d]'}`}>
   <div class="container mx-auto px-4 relative z-10">
     <div class="text-center mb-16">
       {subtitle && (
