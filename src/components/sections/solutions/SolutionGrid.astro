@@ -48,7 +48,7 @@ const gridCols = {
         {title} <span class="text-primary">{titleHighlight}</span>
       </h2>
       {description && (
-        <p class="text-white/50 text-xl max-w-3xl mx-auto leading-relaxed">
+        <p class="text-white/85 text-xl max-w-3xl mx-auto leading-relaxed">
           {description}
         </p>
       )}
@@ -131,7 +131,7 @@ const gridCols = {
                   )}
 
                   {card.icon && (
-                    <div class={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${variant === 'process' ? 'rounded-full border-2 border-primary/20 bg-primary/5 group-hover:scale-110 group-hover:border-primary/50' : 'bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-primary/10 group-hover:border-primary/20'}`}>
+                    <div class={`icon-container w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${variant === 'process' ? 'rounded-full border-2 border-primary/20 bg-primary/5 group-hover:scale-110 group-hover:border-primary/50' : 'bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-primary/10 group-hover:border-primary/20'}`}>
                       <div class="text-primary w-10 h-10 flex items-center justify-center">
                         <Fragment set:html={card.icon} />
                       </div>
@@ -151,13 +151,13 @@ const gridCols = {
               </h3>
               
               {card.description && (
-                <p class="text-white/50 text-sm leading-relaxed">
+                <p class="text-white/80 text-sm leading-relaxed">
                   {card.description}
                 </p>
               )}
 
               {card.footer && (
-                <div class="mt-6 pt-6 border-t border-white/5 w-full text-[10px] uppercase tracking-widest text-white/30 group-hover:text-primary/50 transition-colors">
+                <div class="mt-6 pt-6 border-t border-white/5 w-full text-[10px] uppercase tracking-widest text-white/60 group-hover:text-primary transition-colors">
                   {card.footer}
                 </div>
               )}
@@ -177,3 +177,9 @@ const gridCols = {
     )}
   </div>
 </section>
+
+<style is:global>
+  .icon-container img {
+    filter: brightness(0) saturate(100%) invert(78%) sepia(50%) saturate(454%) hue-rotate(76deg) brightness(94%) contrast(89%);
+  }
+</style>

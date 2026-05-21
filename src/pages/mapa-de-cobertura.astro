@@ -5,10 +5,14 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
 ---
 
 <Layout title="Mapa de Cobertura | XCIEN">
-  <main class="min-h-screen pt-32 pb-20 bg-[#0a0b0d]">
-    <div class="container mx-auto px-6">
-      
-      <div class="max-w-4xl mx-auto text-center mb-20">
+  <main class="min-h-screen pt-32 pb-20 bg-[#0a0b0d] relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-primary/[0.03] blur-[180px] rounded-full pointer-events-none"></div>
+    <div class="absolute inset-0 pointer-events-none opacity-[0.025]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0); background-size: 32px 32px;"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+
+      <div class="max-w-4xl mx-auto text-center mb-20 relative">
+        <div class="absolute left-1/2 -translate-x-1/2 -top-16 w-[500px] h-[300px] bg-primary/[0.06] blur-[120px] rounded-full pointer-events-none -z-10"></div>
         <div
           class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.3em] mb-6"
         >
@@ -32,7 +36,7 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
           >
         </h1>
         <p
-          class="text-white/50 text-xl leading-relaxed max-w-2xl mx-auto mb-10"
+          class="text-white/85 text-xl leading-relaxed max-w-2xl mx-auto mb-10"
         >
           Nuestra red inteligente de alta disponibilidad se extiende por los
           polos industriales más importantes de México.
@@ -42,21 +46,25 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
 
         <div class="flex flex-wrap justify-center gap-4">
           <div
-            class="bg-white/5 px-6 py-4 rounded-2xl border border-white/5 text-center min-w-[140px]"
+            class="relative bg-white/5 px-8 py-5 rounded-2xl border border-white/10 text-center min-w-[160px] overflow-hidden hover:border-primary/30 transition-colors duration-500"
           >
-            <p class="text-3xl font-black text-white italic">+25</p>
+            <p class="text-4xl md:text-5xl font-black italic tracking-tighter leading-none">
+              <span class="text-white">+25</span>
+            </p>
             <p
-              class="text-[10px] text-white/30 uppercase font-bold tracking-widest mt-1"
+              class="text-[10px] text-white/70 uppercase font-bold tracking-widest mt-2"
             >
               Años de Expansión
             </p>
           </div>
           <div
-            class="bg-white/5 px-6 py-4 rounded-2xl border border-white/5 text-center min-w-[140px]"
+            class="relative bg-white/5 px-8 py-5 rounded-2xl border border-white/10 text-center min-w-[160px] overflow-hidden hover:border-primary/30 transition-colors duration-500"
           >
-            <p class="text-3xl font-black text-white italic">+200</p>
+            <p class="text-4xl md:text-5xl font-black italic tracking-tighter leading-none">
+              <span class="text-white">+200</span>
+            </p>
             <p
-              class="text-[10px] text-white/30 uppercase font-bold tracking-widest mt-1"
+              class="text-[10px] text-white/70 uppercase font-bold tracking-widest mt-2"
             >
               Torres en territorio nacional
             </p>
@@ -75,12 +83,8 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
         >
         </div>
         <div
-          class="glass-card border border-white/5 rounded-[3rem] p-4 md:p-12 relative overflow-hidden bg-[#0c0d10]/40 shadow-2xl"
+          class="border border-white/5 rounded-[3rem] p-4 md:p-12 relative overflow-hidden bg-black shadow-2xl"
         >
-          <div
-            class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-10 pointer-events-none"
-          >
-          </div>
           <InteractiveMap />
         </div>
       </div>
@@ -122,7 +126,7 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
               <h3 class="text-xl font-black text-white italic uppercase mb-2 tracking-tight">
                 {item.title}
               </h3>
-              <p class="text-white/40 text-[11px] leading-relaxed font-medium uppercase tracking-wider italic">
+              <p class="text-white/75 text-[11px] leading-relaxed font-medium uppercase tracking-wider italic">
                 {item.desc}
               </p>
             </div>

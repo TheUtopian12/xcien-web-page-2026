@@ -30,22 +30,22 @@ try {
 
 const specialFeatures = [
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-satellite-dish"><path d="M4 10a7.31 7.31 0 0 0 10 10Z"/><path d="m9 15 3-3"/><path d="M17 13a6 6 0 0 0-6-6"/><path d="M21 13A10 10 0 0 1 11 3"/><circle cx="4" cy="20" r="1"/></svg>`,
+    icon: `<img src="/icons/estable.webp" alt="Conexión Confiable" class="w-8 h-8 object-contain" />`,
     title: "Conexión Confiable.",
     description: "Redundancia de conexión a Internet mediante Internet satelital y SIM LTE."
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>`,
+    icon: `<img src="/icons/implementacion.webp" alt="Tiempo" class="w-8 h-8 object-contain" />`,
     title: "Tiempo.",
     description: "Tiempo de instalación de servicio menor a 3 horas."
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="15" rx="1"/></svg>`,
+    icon: `<img src="/icons/monitoreoRed.webp" alt="Gestión y Control" class="w-8 h-8 object-contain" />`,
     title: "Gestión y Control.",
     description: "Acceso personalizado a plataforma de administración de servicio incluida."
   },
   {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-2.235-2.977a1 1 0 0 0-.796-.383H15"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>`,
+    icon: `<img src="/icons/coberturaExtendida.webp" alt="Movilidad" class="w-8 h-8 object-contain" />`,
     title: "Movilidad.",
     description: "Instalación en unidades fijas or móviles."
   }
@@ -54,27 +54,27 @@ const specialFeatures = [
 const benefits = [
   {
     title: "Multi Tecnología de acceso.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`
+    icon: `<img src="/icons/multiTecnologia.webp" alt="Multi Tecnología" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Tiempo de implementación.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+    icon: `<img src="/icons/implementacion.webp" alt="Implementación" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Soporte en sitio durante el evento.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+    icon: `<img src="/icons/asesores.webp" alt="Soporte en sitio" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Soporte 24/7.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v5"/><path d="M12 16h.01"/></svg>`
+    icon: `<img src="/icons/atencionClientes.webp" alt="Soporte 24/7" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Reportes de consumo.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`
+    icon: `<img src="/icons/reportes.webp" alt="Reportes" class="w-8 h-8 object-contain" />`
   },
   {
     title: "Fácil y rápida contratación.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`
+    icon: `<img src="/icons/contratacion.webp" alt="Contratación" class="w-8 h-8 object-contain" />`
   }
 ];
 
@@ -103,11 +103,11 @@ const faqs = [
 const satelitalEmpresaCards = [
   {
     title: "Zonas remotas o construcciones limitadas",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`
+    icon: `<img src="/icons/coberturaExtendida.webp" alt="Zonas remotas" class="w-9 h-9 object-contain" />`
   },
   {
     title: "Entrega de internet inmediata",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`
+    icon: `<img src="/icons/agilidad.webp" alt="Entrega inmediata" class="w-9 h-9 object-contain" />`
   }
 ];
 ---
@@ -184,7 +184,7 @@ const satelitalEmpresaCards = [
                   set:html={post.title.rendered}
                 />
                 <div
-                  class="text-white/40 text-sm leading-relaxed mb-6 line-clamp-2 italic"
+                  class="text-white/75 text-sm leading-relaxed mb-6 line-clamp-2 italic"
                   set:html={post.excerpt.rendered}
                 />
                 <div class="mt-auto">

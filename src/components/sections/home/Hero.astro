@@ -6,11 +6,12 @@ import SuccessModal from "../../layout/SuccessModal.astro";
   class="relative min-h-screen flex items-center overflow-hidden pt-20 lg:pt-0"
 >
   
-  <div class="absolute inset-0 z-0">
+  <div class="absolute inset-0 z-0 overflow-hidden">
     <img
+      id="hero-parallax-bg"
       src="/images/cerro-de-la-silla-in-monterrey-mexico-2026-03-18-06-47-11-utc.jpg"
       alt="Monterrey Cityscape"
-      class="w-full h-full object-cover opacity-30 transform scale-105"
+      class="w-full h-full object-cover opacity-30 transform scale-105 will-change-transform"
     />
   </div>
 
@@ -52,7 +53,7 @@ import SuccessModal from "../../layout/SuccessModal.astro";
 
         <p
           id="hero-desc"
-          class="text-base sm:text-lg lg:text-lg xl:text-xl text-white/60 max-w-lg mb-10 font-medium leading-relaxed italic relative z-10"
+          class="text-base sm:text-lg lg:text-lg xl:text-xl text-white/85 max-w-lg mb-10 font-medium leading-relaxed italic relative z-10"
         >
           Internet Dedicado, Internet PYME, Alta Disponibilidad y Seguridad
           empresarial con monitoreo 24/7, 365 dias. Diseñamos tu red para que tu
@@ -90,7 +91,7 @@ import SuccessModal from "../../layout/SuccessModal.astro";
           >
             Solicita tu <span class="text-primary">propuesta</span>
           </h2>
-          <p class="text-white/40 text-xs sm:text-sm font-medium italic">
+          <p class="text-white/65 text-xs sm:text-sm font-medium italic">
             Cuéntanos de tu empresa y te contactamos en <span
               class="text-primary font-bold">&lt; 24 horas</span
             >
@@ -302,4 +303,14 @@ import SuccessModal from "../../layout/SuccessModal.astro";
   document.addEventListener("click", () => {
     closeSelect();
   });
+
+  // Parallax effect for the background image
+  const heroImage = document.getElementById("hero-parallax-bg");
+  if (heroImage) {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.scrollY;
+      // Gently translate the image down at 25% scroll speed to create a depth feel
+      heroImage.style.transform = `translateY(${scrolled * 0.25}px) scale(1.05)`;
+    }, { passive: true });
+  }
 </script>

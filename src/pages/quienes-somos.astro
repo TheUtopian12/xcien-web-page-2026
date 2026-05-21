@@ -4,43 +4,64 @@ import VisionMission from "../components/sections/about/VisionMission.astro";
 import Infraestructura from "../components/sections/about/Infraestructura.astro";
 import Valores from "../components/sections/about/Valores.astro";
 import Proceso from "../components/sections/about/Proceso.astro";
-import AlianzasDetalle from "../components/sections/about/AlianzasDetalle.astro";
 import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
 ---
 
 <Layout>
   
-  <section class="pt-40 pb-20 bg-[#0a0b0d] relative overflow-hidden">
+  <section class="pt-40 pb-24 bg-[#0a0b0d] relative overflow-hidden min-h-[90vh] flex items-center">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/images/quienesSomos.webp"
+        alt="Conectividad Inteligente"
+        class="w-full h-full object-cover scale-105"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0a0b0d] via-[#0a0b0d]/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0a0b0d] via-transparent to-[#0a0b0d]/40"></div>
+      <div class="absolute inset-0 bg-[#0a0b0d]/30"></div>
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 50%, rgba(10,11,13,0.6) 0%, transparent 60%);"></div>
+    </div>
+
+    <div class="absolute -left-40 top-1/3 w-[500px] h-[500px] bg-primary/10 blur-[180px] rounded-full pointer-events-none"></div>
+    <div class="absolute right-0 bottom-0 w-96 h-96 bg-primary/5 blur-[150px] rounded-full pointer-events-none"></div>
+
     <div class="container mx-auto px-4 relative z-10">
-      <h1 class="text-6xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-12 py-1">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span class="text-white/80 text-sm font-medium uppercase tracking-widest">Conectividad Inteligente</span>
+      </div>
+
+      <h1 class="text-6xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-10 py-1 drop-shadow-2xl">
         Quiénes <span class="text-primary italic-none">Somos</span>
       </h1>
-      
+
       <div class="space-y-8 max-w-3xl">
-        <p class="text-white text-2xl md:text-3xl font-bold leading-tight italic">
+        <p class="text-white text-2xl md:text-3xl font-bold leading-tight italic drop-shadow-lg">
           Iniciamos operaciones hace <span class="text-primary">+25 años</span> con un solo objetivo: dar acceso a internet de calidad y con precios accesibles.
         </p>
-        
-        <p class="text-white/70 text-xl leading-relaxed">
+
+        <p class="text-white/80 text-xl leading-relaxed">
           Hoy podemos decir que el objetivo se ha cumplido, cada día la confianza de nuestros clientes y Socios crece.
         </p>
 
-        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl relative overflow-hidden group">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
-          <p class="text-white/80 text-lg leading-relaxed relative z-10 italic">
+        <div class="p-8 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-xl relative overflow-hidden group hover:border-primary/30 transition-colors duration-500">
+          <div class="absolute top-0 right-0 w-40 h-40 bg-primary/15 blur-3xl rounded-full group-hover:bg-primary/25 transition-colors duration-500"></div>
+          <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent"></div>
+          <p class="text-white/85 text-lg leading-relaxed relative z-10 italic">
             Transformamos nuestra promesa de valor para impulsar tu crecimiento. Ya no solo conectamos a tu empresa; la preparamos para el futuro. Nuestra propuesta por la Conectividad Inteligente nos lleva a adoptar tecnologías de integración en la nube, automatización e IA. Pero sin perder nuestro enfoque de ofrecer un internet empresarial de alta calidad y capacidad.
           </p>
         </div>
       </div>
     </div>
-    <div class="absolute -right-20 -top-20 w-96 h-96 bg-primary/10 blur-[150px] rounded-full"></div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0b0d] to-transparent pointer-events-none z-[5]"></div>
   </section>
 
   <VisionMission />
   <Infraestructura />
   <Valores />
   <Proceso />
-  <AlianzasDetalle />
 
   <BreadcrumbBar path={["Empresa", "Quiénes Somos", "Descripción General"]} />
 </Layout>

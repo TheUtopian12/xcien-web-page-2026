@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="relative flex flex-col items-center justify-center min-h-[500px] lg:min-h-[650px] rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-slate-600/10 via-[#0d1520]/80 to-[#0a1218] border border-white/10 shadow-3xl">
+  <div class="relative flex flex-col items-center justify-center min-h-[500px] lg:min-h-[650px] rounded-[2.5rem] overflow-hidden bg-black border border-white/10 shadow-3xl">
     
     
     <div id="svg-map-wrapper" class="w-full h-full flex items-center justify-center transition-all duration-700 opacity-0 relative z-10 p-4 md:p-8">
@@ -167,34 +167,35 @@
   #svg-container path {
     transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
     cursor: pointer;
-    stroke: rgba(148, 163, 184, 0.45) !important;
+    stroke: rgba(148, 163, 184, 0.55) !important;
     stroke-width: 1.05px !important;
-    fill: rgba(51, 65, 85, 0.42) !important;
+    fill: rgba(71, 85, 105, 0.55) !important;
     outline: none;
     vector-effect: non-scaling-stroke;
   }
 
   #svg-container path.is-covered {
-    fill: rgba(101, 212, 110, 0.3) !important;
-    stroke: rgba(167, 243, 208, 0.75) !important;
+    fill: rgba(101, 212, 110, 0.55) !important;
+    stroke: rgba(187, 247, 208, 0.9) !important;
+    filter: drop-shadow(0 0 10px rgba(101, 212, 110, 0.35));
   }
 
   #svg-container path:hover {
-    fill: rgba(71, 85, 105, 0.55) !important;
-    stroke: rgba(203, 213, 225, 0.65) !important;
+    fill: rgba(100, 116, 139, 0.7) !important;
+    stroke: rgba(226, 232, 240, 0.8) !important;
   }
 
   #svg-container path.is-covered:hover {
-    fill: rgba(101, 212, 110, 0.45) !important;
-    stroke: #86efac !important;
-    filter: drop-shadow(0 0 18px rgba(101, 212, 110, 0.55));
+    fill: rgba(101, 212, 110, 0.75) !important;
+    stroke: #bbf7d0 !important;
+    filter: drop-shadow(0 0 22px rgba(101, 212, 110, 0.75));
   }
 
   #svg-container path.is-selected {
-    fill: rgba(101, 212, 110, 0.52) !important;
-    stroke: #bbf7d0 !important;
+    fill: rgba(101, 212, 110, 0.85) !important;
+    stroke: #dcfce7 !important;
     stroke-width: 2px !important;
-    filter: drop-shadow(0 0 28px rgba(101, 212, 110, 0.6));
+    filter: drop-shadow(0 0 32px rgba(101, 212, 110, 0.8));
   }
 
   #svg-container.has-selection path:not(.is-selected) {

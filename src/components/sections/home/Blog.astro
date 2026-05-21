@@ -66,7 +66,12 @@ const getFeaturedImage = (post) => {
   {
     posts.length > 0
       ? posts.slice(0, 3).map((post) => (
-          <article class="group relative bg-[#191e24] border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col hover:border-primary/20 transition-all duration-500">
+          <article class="group relative bg-[#191e24] border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col hover:border-primary/20 transition-all duration-500 cursor-pointer">
+            <a
+              href={`/blog/${post.slug}`}
+              aria-label={post.title.rendered}
+              class="absolute inset-0 z-20"
+            ></a>
             <div class="h-72 overflow-hidden relative">
               <img
                 src={getFeaturedImage(post)}
@@ -85,7 +90,7 @@ const getFeaturedImage = (post) => {
                   })}
                 </span>
                 <div class="h-px w-8 bg-white/10" />
-                <span class="text-[10px] font-bold text-white/30 uppercase tracking-widest line-clamp-1">
+                <span class="text-[10px] font-bold text-white/60 uppercase tracking-widest line-clamp-1">
                   Por XCIEN Team
                 </span>
               </div>
@@ -96,14 +101,13 @@ const getFeaturedImage = (post) => {
               />
 
               <div
-                class="text-white/40 text-sm leading-relaxed mb-10 line-clamp-2 italic"
+                class="text-white/70 text-sm leading-relaxed mb-10 line-clamp-2 italic"
                 set:html={post.excerpt.rendered}
               />
 
               <div class="mt-auto">
-                <a
-                  href={`/blog/${post.slug}`}
-                  class="inline-flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-[0.3em] group-hover:gap-5 transition-all"
+                <span
+                  class="inline-flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-[0.3em] group-hover:gap-5 group-hover:text-primary transition-all"
                 >
                   Continuar Leyendo
                   <svg
@@ -121,7 +125,7 @@ const getFeaturedImage = (post) => {
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
           </article>
