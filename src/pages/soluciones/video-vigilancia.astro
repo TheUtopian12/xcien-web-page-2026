@@ -121,36 +121,40 @@ const faqs = [
     `}
   />
   
-  <SpecialFeatures features={specialFeatures} />
-  
-  <CommonBenefits benefits={benefits} serviceName="Video Vigilancia" />
+  <div class="bg-[#080c1a]">
+    <SpecialFeatures features={specialFeatures} transparent />
+    
+    <CommonBenefits benefits={benefits} serviceName="Video Vigilancia" transparent />
 
-  <FAQ faqs={faqs} />
+    <FAQ faqs={faqs} transparent />
 
-  <HighAvailabilityDiagram />
-  
-  <SplitFeature 
-    leftTitle="Seguridad"
-    leftTitleHighlight="CCTV"
-    leftDescription={[
-      "Contamos con sistemas de cámaras de circuito cerrado que sin dudas te brindará una sensación de tranquilidad y seguridad.",
-      "Esto no sólo para robos o algún incidente, sino que con las nuevas tecnologías podemos tener notificaciones basadas en zonas específicas de seguridad o restringidas, detección de rostros y conteo de personas."
-    ]}
-    rightTitle="Beneficios de"
-    rightTitleHighlight="nuestro"
-    rightTitlePill="Servicio"
-    list={[
-      { text: "Revisión periódica de sistema de video" },
-      { text: "Monitoreo de disponibilidad de cámaras (siempre funcionando)" },
-      { text: "Alarmas inteligentes (detección de cambios en el video)" },
-      { text: "Mantenimiento (limpieza, ajuste de cámaras, reubicación de cámaras)" }
-    ]}
-    useCheckmarks={true}
-    highlightColor="#ffffff"
-  />
+    <HighAvailabilityDiagram transparent />
+    
+    <SplitFeature 
+      leftTitle="Seguridad"
+      leftTitleHighlight="CCTV"
+      leftDescription={[
+        "Contamos con sistemas de cámaras de circuito cerrado que sin dudas te brindará una sensación de tranquilidad y seguridad.",
+        "Esto no sólo para robos o algún incidente, sino que con las nuevas tecnologías podemos tener notificaciones basadas en zonas específicas de seguridad o restringidas, detección de rostros y conteo de personas."
+      ]}
+      rightTitle="Beneficios de"
+      rightTitleHighlight="nuestro"
+      rightTitlePill="Servicio"
+      list={[
+        { text: "Revisión periódica de sistema de video" },
+        { text: "Monitoreo de disponibilidad de cámaras (siempre funcionando)" },
+        { text: "Alarmas inteligentes (detección de cambios en el video)" },
+        { text: "Mantenimiento (limpieza, ajuste de cámaras, reubicación de cámaras)" }
+      ]}
+      useCheckmarks={true}
+      highlightColor="#ffffff"
+      transparent
+      showDivider={false}
+    />
+  </div>
 
 {relatedPosts.length > 0 && (
-    <section class="py-24 bg-[#0a0b0d]">
+    <section class="py-24 bg-[#080c1a]">
       <div class="container mx-auto px-6">
         <div class="mb-12">
           <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>

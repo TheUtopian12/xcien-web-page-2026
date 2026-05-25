@@ -142,26 +142,30 @@ const ticsList = [
     `}
   />
   
-  <SpecialFeatures features={specialFeatures} />
-  
-  <CommonBenefits benefits={benefits} serviceName="Servicios TICs" />
+  <div class="bg-[#080c1a]">
+    <SpecialFeatures features={specialFeatures} transparent />
+    
+    <CommonBenefits benefits={benefits} serviceName="Servicios TICs" transparent />
 
-  <FAQ faqs={faqs} />
+    <FAQ faqs={faqs} transparent />
 
-  <HighAvailabilityDiagram />
+    <HighAvailabilityDiagram transparent />
 
-  <SplitFeature
-    leftTitle="¿Qué son"
-    leftTitleHighlight="las T.I.C.?"
-    leftDescription="Las T.I.C. son acronimo de Tecnologias de la Informacion y la Comunicacion y abarcan todo tipo de tecnologias digitales como internet, telecomunicaciones, redes, sistemas y hardware. Las cuales incluyen una serie de herramientas y tecnologias generalmente unificadas para brindar gestion y procesamiento efectivo de la informacion."
-    rightTitle="¿Qué"
-    rightTitleHighlight="aportamos al cliente?"
-    list={ticsList}
-    highlightColor="#ffffff"
-  />
+    <SplitFeature
+      leftTitle="¿Qué son"
+      leftTitleHighlight="las T.I.C.?"
+      leftDescription="Las T.I.C. son acronimo de Tecnologias de la Informacion y la Comunicacion y abarcan todo tipo de tecnologias digitales como internet, telecomunicaciones, redes, sistemas y hardware. Las cuales incluyen una serie de herramientas y tecnologias generalmente unificadas para brindar gestion y procesamiento efectivo de la informacion."
+      rightTitle="¿Qué"
+      rightTitleHighlight="aportamos al cliente?"
+      list={ticsList}
+      highlightColor="#ffffff"
+      transparent
+      showDivider={false}
+    />
+  </div>
   
 {relatedPosts.length > 0 && (
-    <section class="py-24 bg-[#0a0b0d]">
+    <section class="py-24 bg-[#080c1a]">
       <div class="container mx-auto px-6">
         <div class="mb-12">
           <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>

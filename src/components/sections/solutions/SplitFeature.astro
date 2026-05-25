@@ -14,6 +14,8 @@ interface Props {
   list: ListItem[];
   useCheckmarks?: boolean;
   highlightColor?: string;
+  transparent?: boolean;
+  showDivider?: boolean;
 }
 
 const {
@@ -25,11 +27,13 @@ const {
   rightTitlePill,
   list,
   useCheckmarks = false,
-  highlightColor = "#00d1ff"
+  highlightColor = "#00d1ff",
+  transparent = false,
+  showDivider = true
 } = Astro.props;
 ---
 
-<section class="py-24 relative overflow-hidden bg-[#0a0b0d]">
+<section class={`py-24 relative overflow-hidden ${transparent ? 'bg-transparent' : 'bg-[#0a0b0d]'}`}>
   <div class="container mx-auto px-4 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
       
@@ -52,7 +56,9 @@ const {
       
       <div class="flex gap-8 md:gap-12">
         
-        <div class="w-[2px] self-stretch hidden md:block" style={`background-color: ${highlightColor}; box-shadow: 0 0 15px ${highlightColor}88;`}></div>
+        {showDivider && (
+          <div class="w-[2px] self-stretch hidden md:block" style={`background-color: ${highlightColor}; box-shadow: 0 0 15px ${highlightColor}88;`}></div>
+        )}
         
         <div class="space-y-10 flex-1">
           <h3 class="text-3xl md:text-4xl font-black italic uppercase tracking-tighter leading-none">
