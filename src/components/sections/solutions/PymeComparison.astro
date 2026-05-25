@@ -1,5 +1,13 @@
 
-<section class="py-32 bg-[#0a0b0d] relative overflow-hidden">
+---
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<section class={`py-32 relative overflow-hidden ${transparent ? 'bg-transparent' : 'bg-[#0a0b0d]'}`}>
   <div class="container mx-auto px-4 relative z-10">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold max-w-5xl mx-auto leading-tight text-white">
