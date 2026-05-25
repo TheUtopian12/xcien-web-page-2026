@@ -154,27 +154,30 @@ const wifiCards = [
     `}
   />
   
-  <SpecialFeatures features={specialFeatures} />
-  
-  <CommonBenefits benefits={benefits} serviceName="Red WiFi" />
+  <div class="bg-[#080c1a]">
+    <SpecialFeatures features={specialFeatures} transparent />
+    
+    <CommonBenefits benefits={benefits} serviceName="Red WiFi" transparent />
 
-  <FAQ faqs={faqs} />
+    <FAQ faqs={faqs} transparent />
 
-  <HighAvailabilityDiagram />
+    <HighAvailabilityDiagram transparent />
 
-  <SolutionGrid 
-    title="Red"
-    titleHighlight="WiFi"
-    description="Con nuestro servicio de WiFi administrado tomamos la responsabilidad de todo el ciclo de vida de su red inalambrica, garantizando un rendimiento optimo de su red WiFi sin la carga de la gestion tecnica que implica."
-    cards={wifiCards}
-    columns={5}
-    variant="process"
-    ctaSecondaryText="800 288 0092"
-    ctaSecondaryHref="tel:8002880092"
-  />
+    <SolutionGrid 
+      title="Red"
+      titleHighlight="WiFi"
+      description="Con nuestro servicio de WiFi administrado tomamos la responsabilidad de todo el ciclo de vida de su red inalambrica, garantizando un rendimiento optimo de su red WiFi sin la carga de la gestion tecnica que implica."
+      cards={wifiCards}
+      columns={5}
+      variant="process"
+      ctaSecondaryText="800 288 0092"
+      ctaSecondaryHref="tel:8002880092"
+      transparent
+    />
+  </div>
   
 {relatedPosts.length > 0 && (
-    <section class="py-24 bg-[#0a0b0d]">
+    <section class="py-24 bg-[#080c1a]">
       <div class="container mx-auto px-6">
         <div class="mb-12">
           <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>
