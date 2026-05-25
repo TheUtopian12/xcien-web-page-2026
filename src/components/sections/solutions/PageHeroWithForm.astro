@@ -6,13 +6,14 @@ interface Props {
   greenTitle?: string;
   description: string;
   variant?: 'fiber' | 'wave' | 'cyber' | 'prisms' | 'satellite' | 'ocean-mesh' | 'music-mesh' | 'neural-network' | 'spheres';
+  showMesh?: boolean;
   ctaPrimaryText?: string;
   ctaPrimaryHref?: string;
   ctaSecondaryText?: string;
   ctaSecondaryHref?: string;
 }
 
-const { title, greenTitle, description, variant = 'fiber', ctaPrimaryText, ctaPrimaryHref, ctaSecondaryText, ctaSecondaryHref } = Astro.props;
+const { title, greenTitle, description, variant = 'fiber', showMesh = true, ctaPrimaryText, ctaPrimaryHref, ctaSecondaryText, ctaSecondaryHref } = Astro.props;
 ---
 
 <section class="relative min-h-[80vh] flex items-center overflow-hidden pt-28 pb-16" style="background: #080c1a;">
@@ -21,6 +22,7 @@ const { title, greenTitle, description, variant = 'fiber', ctaPrimaryText, ctaPr
     id="hero-canvas" 
     class="absolute inset-0 w-full h-full z-0" 
     data-variant={variant}
+    data-show-mesh={String(showMesh)}
   ></canvas>
   
   <div class="absolute inset-0 z-0 bg-gradient-to-r from-[#080c1a]/95 via-[#080c1a]/60 to-[#080c1a]/30 pointer-events-none"></div>
@@ -201,6 +203,7 @@ const { title, greenTitle, description, variant = 'fiber', ctaPrimaryText, ctaPr
     
     const ctx = canvas.getContext('2d', { alpha: false })!;
     const variant = canvas.dataset.variant || 'fiber';
+    const showMesh = canvas.dataset.showMesh !== 'false';
     
     let w: number, h: number;
     const dpr = window.devicePixelRatio || 1;
@@ -958,27 +961,29 @@ const { title, greenTitle, description, variant = 'fiber', ctaPrimaryText, ctaPr
         }
 
         // Draw connections (col + row)
-        ctx.lineWidth = isMobile ? 0.8 : 1.3 + kickEnv * 0.7;
-        for (let i = 0; i < cols; i++) {
-          for (let j = 0; j < rows; j++) {
-            const p = projectedGrid[i][j];
+        if (showMesh) {
+          ctx.lineWidth = isMobile ? 0.8 : 1.3 + kickEnv * 0.7;
+          for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+              const p = projectedGrid[i][j];
 
-            if (i < cols - 1) {
-              const pNextCol = projectedGrid[i + 1][j];
-              ctx.strokeStyle = p.color;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(pNextCol.x, pNextCol.y);
-              ctx.stroke();
-            }
+              if (i < cols - 1) {
+                const pNextCol = projectedGrid[i + 1][j];
+                ctx.strokeStyle = p.color;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(pNextCol.x, pNextCol.y);
+                ctx.stroke();
+              }
 
-            if (j < rows - 1) {
-              const pNextRow = projectedGrid[i][j + 1];
-              ctx.strokeStyle = p.color;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(pNextRow.x, pNextRow.y);
-              ctx.stroke();
+              if (j < rows - 1) {
+                const pNextRow = projectedGrid[i][j + 1];
+                ctx.strokeStyle = p.color;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(pNextRow.x, pNextRow.y);
+                ctx.stroke();
+              }
             }
           }
         }
