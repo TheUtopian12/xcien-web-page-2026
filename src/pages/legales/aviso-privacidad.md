@@ -94,4 +94,4 @@ El Responsable podrá modificar, actualizar o cambiar el contenido y alcance de 
 * No deseo recibir información y ofertas comerciales sobre productos y/o servicios comercializados por el Responsable.
 * No deseo participar en encuestas de satisfacción.
 
-* Fecha de última actualización: Septiembre 2017
+Fecha de última actualización: Septiembre 2017
