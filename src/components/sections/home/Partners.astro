@@ -19,12 +19,12 @@
                   <img
                     src={`/logos/logos xcien-${(i + 1).toString().padStart(2, '0')}.png`}
                     alt={`Partner ${i + 1}`}
-                    width="180"
-                    height="112"
+                    width="144"
+                    height="90"
                     loading={dup === 1 && i < 8 ? "eager" : "lazy"}
                     decoding="async"
                     fetchpriority={dup === 1 && i < 4 ? "high" : "auto"}
-                    class="partner-logo-img h-32 max-w-[320px] w-auto object-contain transition-all duration-500"
+                    class="partner-logo-img h-[102px] max-w-[256px] w-auto object-contain transition-all duration-500"
                   />
                 </a>
               ))}
@@ -52,8 +52,8 @@
   }
 
   .partner-logo {
-    width: 400px;
-    height: 260px;
+    width: 320px;
+    height: 208px;
   }
 
   .partner-logo-img {
