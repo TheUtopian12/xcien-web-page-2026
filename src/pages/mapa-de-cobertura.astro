@@ -11,19 +11,11 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
 
     <div class="container mx-auto px-6 relative z-10">
 
-<<<<<<< HEAD
-      <div class="max-w-4xl mx-auto text-center mb-20 relative">
-        <div class="absolute left-1/2 -translate-x-1/2 -top-16 w-[500px] h-[300px] bg-primary/[0.06] blur-[120px] rounded-full pointer-events-none -z-10"></div>
-        <div
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.3em] mb-6"
-        >
-=======
       <!-- Header -->
       <div class="max-w-4xl mx-auto text-center mb-16 relative">
         <div class="absolute left-1/2 -translate-x-1/2 -top-16 w-[500px] h-[300px] bg-primary/[0.06] blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.3em] mb-6">
->>>>>>> dev
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -35,49 +27,13 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
           Mapa de <br />
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#4fb156]">Cobertura</span>
         </h1>
-<<<<<<< HEAD
-        <p
-          class="text-white/85 text-xl leading-relaxed max-w-2xl mx-auto mb-10"
-        >
-          Nuestra red inteligente de alta disponibilidad se extiende por los
-          polos industriales más importantes de México.
-          <span class="text-white font-bold italic">Haz clic en tu estado</span> para
-          conocer los servicios disponibles.
-=======
         <p class="text-white/70 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
           Nuestra red inteligente de alta disponibilidad se extiende por los polos industriales más importantes de México.
           <span class="text-white font-bold italic">Haz clic en tu estado</span> para conocer los servicios disponibles.
->>>>>>> dev
         </p>
 
         <!-- Stats -->
         <div class="flex flex-wrap justify-center gap-4">
-<<<<<<< HEAD
-          <div
-            class="relative bg-white/5 px-8 py-5 rounded-2xl border border-white/10 text-center min-w-[160px] overflow-hidden hover:border-primary/30 transition-colors duration-500"
-          >
-            <p class="text-4xl md:text-5xl font-black italic tracking-tighter leading-none">
-              <span class="text-white">+25</span>
-            </p>
-            <p
-              class="text-[10px] text-white/70 uppercase font-bold tracking-widest mt-2"
-            >
-              Años de Expansión
-            </p>
-          </div>
-          <div
-            class="relative bg-white/5 px-8 py-5 rounded-2xl border border-white/10 text-center min-w-[160px] overflow-hidden hover:border-primary/30 transition-colors duration-500"
-          >
-            <p class="text-4xl md:text-5xl font-black italic tracking-tighter leading-none">
-              <span class="text-white">+200</span>
-            </p>
-            <p
-              class="text-[10px] text-white/70 uppercase font-bold tracking-widest mt-2"
-            >
-              Torres en territorio nacional
-            </p>
-          </div>
-=======
           {[
             { value: "+25", label: "Años de experiencia" },
             { value: "+200", label: "Torres en territorio nacional" },
@@ -88,29 +44,14 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
               <p class="text-[9px] text-white/50 uppercase font-bold tracking-widest mt-2 relative z-10">{stat.label}</p>
             </div>
           ))}
->>>>>>> dev
         </div>
       </div>
 
       <!-- Mapa -->
       <div class="relative group max-w-5xl mx-auto">
-<<<<<<< HEAD
-        <div
-          class="absolute -inset-20 bg-primary/10 rounded-full blur-[120px] opacity-50 pointer-events-none"
-        >
-        </div>
-        <div
-          class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-[#4fb156]/30 rounded-[3rem] blur-3xl opacity-20 group-hover:opacity-40 transition duration-1000"
-        >
-        </div>
-        <div
-          class="border border-white/5 rounded-[3rem] p-4 md:p-12 relative overflow-hidden bg-black shadow-2xl"
-        >
-=======
         <div class="absolute -inset-20 bg-primary/10 rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
         <div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-[#4fb156]/30 rounded-[3rem] blur-3xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
         <div class="border border-white/5 rounded-[3rem] p-4 md:p-12 relative overflow-hidden bg-[#0a0b0d] shadow-2xl">
->>>>>>> dev
           <InteractiveMap />
         </div>
       </div>
@@ -159,11 +100,7 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
               <h3 class="text-base font-black text-white italic uppercase mb-3 tracking-tight group-hover:text-primary transition-colors relative z-10">
                 {item.title}
               </h3>
-<<<<<<< HEAD
-              <p class="text-white/75 text-[11px] leading-relaxed font-medium uppercase tracking-wider italic">
-=======
               <p class="text-white/60 text-sm leading-relaxed relative z-10">
->>>>>>> dev
                 {item.desc}
               </p>
             </div>
