@@ -1,0 +1,19 @@
+---
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={`${frontmatter.title} | Xcien`}>
+  <section class="py-32 px-4 md:px-10 container mx-auto min-h-screen">
+    <div class="max-w-4xl mx-auto bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-16">
+      <h1 class="text-3xl md:text-5xl font-black tracking-tighter mb-12 text-center">
+        {frontmatter.title}
+      </h1>
+      
+      <div class="prose prose-invert prose-p:text-white/70 prose-headings:text-white prose-a:text-primary max-w-none">
+        <slot />
+      </div>
+    </div>
+  </section>
+</Layout>

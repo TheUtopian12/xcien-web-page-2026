@@ -1,32 +1,16 @@
 ---
 import PdfModal from "./PdfModal.astro";
 
-/**
- * Rutas a `public/pdf/…` (percent-encoding alineado con los nombres en disco, NFD).
- * Si renombras un PDF, actualiza aquí la entrada correspondiente.
- */
-const pdf = {
-  avisoPrivacidad: "/pdf/Aviso%20de%20privacidad%20xcien.pdf",
-  codigoPracticasComerciales:
-    "/pdf/Co%CC%81digo%20Pra%CC%81cticas%20Comerciales%20xcien.pdf",
-  tasaTransmision:
-    "/pdf/Tasa%20de%20Transmisio%CC%81n%20de%20Datos%20Promedio%20de%20Descarga.pdf",
-  contratoAdhesion: "/pdf/Contrato%20de%20Adhesio%CC%81n%20xcien.pdf",
-  declaracionAccesibilidad:
-    "/pdf/Declaracio%CC%81n%20de%20Accesibilidad%20xcien.pdf",
-  derechosMinimos:
-    "/pdf/Derechos%20Mi%CC%81nimos%20de%20los%20Usuarios%20xcien.pdf",
-  colaboracionJusticia:
-    "/pdf/Colaboracio%CC%81n%20en%20Materia%20de%20Seguridad%20y%20Justicia%20XCIEN.pdf",
-  informacionTransparente:
-    "/pdf/Informacio%CC%81n%20transparente%20XCIEN.pdf",
-  politicasTrafico:
-    "/pdf/Co%CC%81digo%20de%20poli%CC%81ticas%20de%20gestio%CC%81n%20de%20tra%CC%81fico%20y%20administracio%CC%81n%20de%20red%20xcien.pdf",
-} as const;
-
-const pdfLinkProps = {
-  target: "_blank",
-  rel: "noopener noreferrer",
+const legales = {
+  avisoPrivacidad: "/legales/aviso-privacidad",
+  codigoPracticasComerciales: "/legales/codigo-practicas-comerciales",
+  tasaTransmision: "/legales/tasa-transmision",
+  contratoAdhesion: "/legales/contrato-adhesion",
+  declaracionAccesibilidad: "/legales/declaracion-accesibilidad",
+  derechosMinimos: "/legales/derechos-minimos",
+  colaboracionJusticia: "/legales/colaboracion-justicia",
+  informacionTransparente: "/legales/informacion-transparente",
+  politicasTrafico: "/legales/politicas-trafico",
 } as const;
 ---
 
@@ -41,82 +25,62 @@ const pdfLinkProps = {
         <ul class="space-y-3">
           <li>
             <a
-              href={pdf.avisoPrivacidad}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Política de privacidad"
+              href={legales.avisoPrivacidad}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Política de privacidad</a>
           </li>
           <li>
             <a
-              href={pdf.codigoPracticasComerciales}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Términos y Condiciones del Sitio Web"
+              href={legales.codigoPracticasComerciales}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Términos y Condiciones del Sitio Web</a>
           </li>
           <li>
             <a
-              href={pdf.tasaTransmision}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Términos y Condiciones de uso del Internet"
+              href={legales.tasaTransmision}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Términos y Condiciones de uso del Internet</a>
           </li>
           <li>
             <a
-              href={pdf.contratoAdhesion}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Contrato marco de presentación de servicios"
+              href={legales.contratoAdhesion}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Contrato marco de presentación de servicios</a>
           </li>
           <li>
             <a
-              href={pdf.declaracionAccesibilidad}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Términos y condiciones del portal"
+              href={legales.declaracionAccesibilidad}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Términos y condiciones del portal</a>
           </li>
           <li>
             <a
-              href={pdf.derechosMinimos}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Carta de derechos de los usuarios"
+              href={legales.derechosMinimos}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Carta de derechos de los usuarios</a>
           </li>
           <li>
             <a
-              href={pdf.colaboracionJusticia}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Colaboración con la justicia"
+              href={legales.colaboracionJusticia}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Colaboración con la justicia</a>
           </li>
           <li>
             <a
-              href={pdf.avisoPrivacidad}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Aviso de Privacidad"
+              href={legales.avisoPrivacidad}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Aviso de Privacidad</a>
           </li>
           <li>
             <a
-              href={pdf.informacionTransparente}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Cobertura"
+              href={legales.informacionTransparente}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Cobertura</a>
           </li>
           <li>
             <a
-              href={pdf.politicasTrafico}
-              {...pdfLinkProps}
-              class="text-sm text-white/50 hover:text-primary transition-colors pdf-link"
-              data-title="Política de uso justo"
+              href={legales.politicasTrafico}
+              class="text-sm text-white/50 hover:text-primary transition-colors"
               >Política de uso justo</a>
           </li>
         </ul>
@@ -279,21 +243,4 @@ const pdfLinkProps = {
 
 <PdfModal />
 
-<script>
-  // Interceptar clicks en los enlaces PDF
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    const link = target.closest('.pdf-link') as HTMLAnchorElement;
-    
-    if (link) {
-      e.preventDefault();
-      const url = link.href;
-      const title = link.getAttribute('data-title') || 'Documento';
-      
-      // Disparar evento personalizado para abrir el modal
-      window.dispatchEvent(new CustomEvent('openPdf', { 
-        detail: { url, title } 
-      }));
-    }
-  });
-</script>
+
