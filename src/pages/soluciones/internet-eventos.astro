@@ -103,6 +103,9 @@ const faqs = [
     title="Internet"
     greenTitle="Eventos"
     variant="music-mesh"
+    showMesh={false}
+    ctaSecondaryText="800 288 0092"
+    ctaSecondaryHref="tel:8002880092"
     description={`
       <p>Buscas potenciar la información de los invitados a tu evento, utiliza Nuestra plataforma y Red para lograr eso y mucho más.</p>
       <p><strong>Ideal para:</strong></p>
@@ -115,8 +118,10 @@ const faqs = [
         <li class="flex items-start gap-3"><span class="text-primary font-bold">●</span> Y más...</li>
       </ul>
     `}
-  />  <SpecialFeatures features={specialFeatures} />
+  />  <div class="bg-[#080c1a]">
+    <SpecialFeatures features={specialFeatures} transparent />
 
+<<<<<<< HEAD
   <SolutionGrid 
     title="Conectividad para"
     titleHighlight="cada tipo de evento"
@@ -132,13 +137,32 @@ const faqs = [
   />
   
   <CommonBenefits benefits={benefits} serviceName="Internet para Eventos" />
+=======
+    <SolutionGrid 
+      title="Conectividad para"
+      titleHighlight="cada tipo de evento"
+      description="Ofrecemos un servicio de internet simetrico, dedicado y exclusivo, disenado para garantizar el maximo desempeno y estabilidad en tu empresa."
+      cards={[
+        { title: "Corporativos", icon: `<img src="/icons/corporativo.svg" alt="Corporativos" class="w-9 h-9 object-contain" />` },
+        { title: "Conciertos", icon: `<img src="/icons/concierto.svg" alt="Conciertos" class="w-9 h-9 object-contain" />` },
+        { title: "Congresos", icon: `<img src="/icons/congresos.svg" alt="Congresos" class="w-9 h-9 object-contain" />`, isPopular: true },
+        { title: "Deportivos", icon: `<img src="/icons/deportivos.svg" alt="Deportivos" class="w-9 h-9 object-contain" />` },
+        { title: "Rueda de Prensa", icon: `<img src="/icons/ruedaDePrensa.svg" alt="Rueda de Prensa" class="w-9 h-9 object-contain" />` }
+      ]}
+      columns={5}
+      transparent
+    />
+    
+    <CommonBenefits benefits={benefits} serviceName="Internet para Eventos" transparent />
+>>>>>>> dev
 
-  <FAQ faqs={faqs} />
-  
-  <HighAvailabilityDiagram />
+    <FAQ faqs={faqs} transparent />
+    
+    <HighAvailabilityDiagram transparent />
+  </div>
   
   {relatedPosts.length > 0 && (
-    <section class="py-24 bg-[#06070a]">
+    <section class="py-24 bg-[#080c1a]">
       <div class="container mx-auto px-6">
         <div class="mb-12">
           <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>

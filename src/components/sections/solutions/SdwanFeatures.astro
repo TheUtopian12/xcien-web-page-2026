@@ -12,12 +12,13 @@ interface Props {
   description: string;
   descriptionSecondary?: string;
   features: Feature[];
+  transparent?: boolean;
 }
 
-const { title, titleHighlight, description, descriptionSecondary, features } = Astro.props;
+const { title, titleHighlight, description, descriptionSecondary, features, transparent = false } = Astro.props;
 ---
 
-<section class="py-24 border-t border-white/5 relative overflow-hidden bg-black">
+<section class={`py-24 relative overflow-hidden ${transparent ? 'bg-transparent' : 'bg-[#0a0b0d]'}`}>
   <div class="container mx-auto px-4 relative z-10">
     <div class="flex flex-col lg:flex-row items-start justify-center gap-16 lg:gap-24">
       
@@ -53,8 +54,6 @@ const { title, titleHighlight, description, descriptionSecondary, features } = A
 
       
       <div class="lg:w-3/5 flex flex-col gap-8 relative">
-        
-        <div class="absolute left-10 top-12 bottom-12 w-px bg-white/10 z-0 hidden md:block"></div>
         
         {features.map((feature, index) => (
           <div class="relative flex flex-col md:flex-row items-center md:items-start gap-8 group">

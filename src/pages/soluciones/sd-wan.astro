@@ -142,7 +142,9 @@ const sdwanFeaturesList = [
   <PageHeroWithForm 
     title="SD-WAN"
     greenTitle=""
-    variant="cyber"
+    variant="plexus-dome"
+    ctaSecondaryText="800 288 0092"
+    ctaSecondaryHref="tel:8002880092"
     description={`
       <p>La solución de Alta Disponibilidad minimiza y reduce un posible corte de servicio, derivado de una falla o degradación de alguno de los proveedores de internet conectados al equipo Alta Disponibilidad. Con esto se garantiza la continuidad operativa de forma rápida y automática.</p>
       <p><strong>Ideal para:</strong></p>
@@ -155,24 +157,27 @@ const sdwanFeaturesList = [
     `}
   />
   
-  <SpecialFeatures features={specialFeatures} />
-  
-  <CommonBenefits benefits={benefits} serviceName="SD-WAN" />
+  <div class="bg-[#080c1a]">
+    <SpecialFeatures features={specialFeatures} transparent />
+    
+    <CommonBenefits benefits={benefits} serviceName="SD-WAN" transparent />
 
-  <FAQ faqs={faqs} />
+    <FAQ faqs={faqs} transparent />
 
-  <HighAvailabilityDiagram />
+    <HighAvailabilityDiagram transparent />
 
-  <SdwanFeatures 
-    title="SD"
-    titleHighlight="WAN"
-    description="Software que unifica y administra a tus proveedores de internet actuales generando una sola conexion a internet."
-    descriptionSecondary="Logra alta disponibilidad en tu negocio a bajo costo."
-    features={sdwanFeaturesList}
-  />
+    <SdwanFeatures 
+      title="SD"
+      titleHighlight="WAN"
+      description="Software que unifica y administra a tus proveedores de internet actuales generando una sola conexion a internet."
+      descriptionSecondary="Logra alta disponibilidad en tu negocio a bajo costo."
+      features={sdwanFeaturesList}
+      transparent
+    />
+  </div>
 
   {relatedPosts.length > 0 && (
-    <section class="py-24 bg-[#06070a]">
+    <section class="py-24 bg-[#080c1a]">
       <div class="container mx-auto px-6">
         <div class="mb-12">
           <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>

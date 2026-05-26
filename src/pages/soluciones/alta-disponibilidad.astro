@@ -99,10 +99,12 @@ const faqs = [
 ---
 
 <Layout title="Alta Disponibilidad | Xcien">
-  <PageHeroWithForm 
+  <PageHeroWithForm
     title="Alta"
     greenTitle="Disponibilidad"
     variant="cyber"
+    ctaSecondaryText="800 288 0092"
+    ctaSecondaryHref="tel:8002880092"
     description={`
       <p>La solución de Alta Disponibilidad minimiza y reduce un posible corte de servicio, derivado de una falla o degradación de alguno de los proveedores de internet conectados al equipo Alta Disponibilidad. Con esto se garantiza la continuidad operativa de forma rápida y automática.</p>
       <p><strong>Ideal para:</strong></p>
@@ -115,18 +117,20 @@ const faqs = [
     `}
   />
   
-  <SpecialFeatures features={specialFeatures} />
-  
-  <CommonBenefits benefits={benefits} />
+  <div class="bg-[#080c1a]">
+    <SpecialFeatures features={specialFeatures} transparent />
+    
+    <CommonBenefits benefits={benefits} transparent />
 
-  <FAQ faqs={faqs} />
+    <FAQ faqs={faqs} transparent />
 
-  <HighAvailabilityDiagram />
-  
-  <AltaDisponibilidadDiagram />
+    <HighAvailabilityDiagram transparent />
+    
+    <AltaDisponibilidadDiagram transparent />
+  </div>
     
 {relatedPosts.length > 0 && (
-    <section class="py-24 bg-[#06070a]">
+    <section class="py-24 bg-[#080c1a]">
       <div class="container mx-auto px-6">
         <div class="mb-12">
           <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>

@@ -121,7 +121,9 @@ const couCards = [
   <PageHeroWithForm 
     title="Comunicaciones"
     greenTitle="Unificadas"
-    variant="prisms"
+    variant="wave"
+    ctaSecondaryText="800 288 0092"
+    ctaSecondaryHref="tel:8002880092"
     description={`
       <p>Eleva los resultados e imagen de tu negocio a través del PBX IP Xcien, solución que te ayudará a crear menús de atención por tipo de servicio.</p>
       <p><strong>Ideal para:</strong></p>
@@ -137,23 +139,29 @@ const couCards = [
     `}
   />
   
-  <SpecialFeatures features={specialFeatures} />
+  <div class="bg-[#080c1a]">
+    <SpecialFeatures features={specialFeatures} transparent />
 
-  <SolutionGrid 
-    title="Beneficios"
-    description="Gestiona en la nube tus comunicaciones de manera fácil, efectiva y flexible en tu negocio. La vida es móvil y las empresas cada vez demandan más soluciones que puedan ser ejecutadas desde cualquier dispositivo, lugar y momento."
-    cards={couCards}
-    columns={4}
-    variant="process-diamond"
-  />
-  
-  <CommonBenefits benefits={benefits} serviceName="Comunicaciones Unificadas" />
+    <SolutionGrid 
+      title="Beneficios"
+      description="Gestiona en la nube tus comunicaciones de manera fácil, efectiva y flexible en tu negocio. La vida es móvil y las empresas cada vez demandan más soluciones que puedan ser ejecutadas desde cualquier dispositivo, lugar y momento."
+      cards={couCards}
+      columns={4}
+      variant="process-diamond"
+      ctaSecondaryText="800 288 0092"
+      ctaSecondaryHref="tel:8002880092"
+      transparent
+    />
+    
+    <CommonBenefits benefits={benefits} serviceName="Comunicaciones Unificadas" transparent />
 
-  <FAQ faqs={faqs} />
-  
-  <HighAvailabilityDiagram />
+    <FAQ faqs={faqs} transparent />
+    
+    <HighAvailabilityDiagram transparent />
+  </div>
+
   {relatedPosts.length > 0 && (
-    <section class="py-24 bg-[#06070a]">
+    <section class="py-24 bg-[#080c1a]">
       <div class="container mx-auto px-6">
         <div class="mb-12">
           <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Contenido Relacionado</h2>
