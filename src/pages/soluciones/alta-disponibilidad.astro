@@ -7,6 +7,10 @@ import HighAvailabilityDiagram from "../../components/sections/solutions/HighAva
 import BreadcrumbBar from "../../components/layout/BreadcrumbBar.astro";
 import FAQ from "../../components/sections/solutions/FAQ.astro";
 import AltaDisponibilidadDiagram from "../../components/sections/solutions/AltaDisponibilidadDiagram.astro";
+
+//aqui importare el portal de clientes
+import PortalClientes from "../../components/sections/solutions/PortalClientes.astro";
+
 import Blog from "../../components/sections/home/Blog.astro";
 // EL ID DE WORDPRESS
 const CATEGORY_ID = "1152388"; 
@@ -127,6 +131,9 @@ const faqs = [
     <HighAvailabilityDiagram transparent />
     
     <AltaDisponibilidadDiagram transparent />
+
+    <PortalClientes transparent />
+
   </div>
     
 {relatedPosts.length > 0 && (

@@ -1,0 +1,104 @@
+---
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<section class={`py-24 relative overflow-hidden ${transparent ? 'bg-transparent' : 'bg-[#0a0b0d]'}`} id="portal-clientes">
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-8 items-center">
+
+      <!-- Left: Text Content -->
+      <div class="space-y-8">
+        <div class="space-y-2">
+          <h2 class="text-5xl md:text-6xl font-black italic uppercase tracking-tighter leading-none">
+            Portal de Clientes
+          </h2>
+          <h2 class="text-5xl md:text-6xl font-black italic uppercase tracking-tighter leading-none text-primary">
+            y Monitoreo
+          </h2>
+        </div>
+        
+        <p class="text-lg text-white/70 max-w-xl">
+          Visibilidad operativa para una <span class="text-primary">gestión informada</span>
+        </p>
+
+        <ul class="space-y-5">
+          <li class="flex items-start gap-4">
+            <img src="/icons/MonitoreoSatelital.webp" alt="Monitoreo de terminal satelital" class="w-7 h-7 object-contain shrink-0 mt-0.5" />
+            <div>
+              <p class="font-semibold text-primary">Monitoreo de terminal satelital:</p>
+              <p class="text-white/70">estado operativo Online/Offline y tráfico general.</p>
+            </div>
+          </li>
+          
+          <li class="flex items-start gap-4">
+            <img src="/icons/subidaBajada.webp" alt="Uso detallado de ancho de banda" class="w-7 h-7 object-contain shrink-0 mt-0.5" />
+            <div>
+              <p class="font-semibold text-primary">Uso detallado de ancho de banda:</p>
+              <p class="text-white/70">carga y descarga.</p>
+            </div>
+          </li>
+          
+          <li class="flex items-start gap-4">
+            <img src="/icons/reportesProgramados.webp" alt="Reportes programados" class="w-7 h-7 object-contain shrink-0 mt-0.5" />
+            <div>
+              <p class="font-semibold text-primary">Reportes programados:</p>
+              <p class="text-white/70">consumo y disponibilidad diaria, semanal y mensual.</p>
+            </div>
+          </li>
+          
+          <li class="flex items-start gap-4">
+            <img src="/icons/reportes.webp" alt="Reportes programados" class="w-7 h-7 object-contain shrink-0 mt-0.5" />
+            <div>
+              <p class="font-semibold text-primary">Información administrativa</p>
+              <p class="text-white/70">y datos de monitoreos del servicio.</p>
+            </div>
+          </li>
+          
+          <li class="flex items-start gap-4">
+            <img src="/icons/mail.webp" alt="Reportes programados" class="w-7 h-7 object-contain shrink-0 mt-0.5" />
+            <div>
+              <p class="font-semibold text-primary">Registro de cambios de estado</p>
+              <p class="text-white/70">y noticias vía email.</p>
+            </div>
+          </li>
+          
+          <li class="flex items-start gap-4">
+            <img src="/icons/reportesProgramados.webp" alt="Reportes programados" class="w-7 h-7 object-contain shrink-0 mt-0.5" />
+            <div>
+              <p class="font-semibold text-primary">Alertas automáticas</p>
+              <p class="text-white/70">y personalización de reportes.</p>
+            </div>
+          </li>
+          
+          <li class="flex items-start gap-4">
+            <img src="/icons/alertas.webp" alt="Capacitación" class="w-7 h-7 object-contain shrink-0 mt-0.5" />
+            <div>
+              <p class="font-semibold text-primary">Capacitación</p>
+              <p class="text-white/70">para equipos del cliente.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="pt-4 border-t border-white/10">
+          <p class="text-white/60 italic flex items-start gap-3">
+            <span class="text-primary text-xl">●</span>
+            <span>Más allá de la visualización básica: XCIEN agrega <span class="text-primary">monitoreo, seguimiento y reportes accionables</span>.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Image -->
+      <div class="flex justify-center lg:justify-end lg:-mr-12 xl:-mr-24">
+        <img
+          src="/images/portalClientes.webp"
+          alt="Portal de Clientes XCIEN"
+          class="w-full max-w-none lg:scale-110 xl:scale-125 origin-right drop-shadow-[0_0_60px_rgba(101,212,110,0.18)]"
+        />
+      </div>
+    </div>
+  </div>
+</section>
