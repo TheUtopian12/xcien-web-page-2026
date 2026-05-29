@@ -8,7 +8,13 @@ export const POST: APIRoute = async ({ request }) => {
     const { type, name, email, phone, company, solution, area, message, file } = body;
 
     const resendApiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY || "re_LR2zfhr5_8uwEn8zLSp3spo2ieXfqULE2";
-    const toEmail = "edwin.castruita@wispi.mx";
+    
+    // NOTA DE PRUEBAS: Resend en su plan gratuito (sin dominio propio verificado) exige que el 
+    // destinatario sea el correo de la cuenta registrada ("edwi.castruita117@gmail.com"). 
+    // Una vez que verifiques tu dominio en resend.com/domains, cambia el remitente "from" de 
+    // "onboarding@resend.dev" a "tu-correo@tu-dominio.com" y podrás enviar correos a cualquier 
+    // dirección (como "edwin.castruita@wispi.mx").
+    const toEmail = import.meta.env.RESEND_TO_EMAIL || process.env.RESEND_TO_EMAIL || "edwi.castruita117@gmail.com";
 
     let subject = "Nuevo Prospecto - XCIEN";
     let htmlContent = "";
