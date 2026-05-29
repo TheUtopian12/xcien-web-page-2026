@@ -14,8 +14,15 @@ import SuccessModal from "../../layout/SuccessModal.astro";
       loop
       muted
       playsinline
-      class="w-full h-full object-cover opacity-30 transform scale-105 will-change-transform"
+      class="w-full h-full object-cover opacity-18 transform scale-102 will-change-transform filter contrast-[1.35] saturate-[1.25] brightness-[0.85]"
+      style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
     ></video>
+    
+    <!-- Rejilla digital cruzada de alta tecnología (Enmascara por completo el pixelado con textura de holograma) -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] [background-size:4px_4px] pointer-events-none"></div>
+    
+    <!-- Gradiente de desvanecimiento hacia abajo para fusionarse con el fondo de XCIEN -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#1a1c22] via-[#1a1c22]/40 to-transparent pointer-events-none"></div>
   </div>
 
   <div
@@ -248,15 +255,60 @@ import SuccessModal from "../../layout/SuccessModal.astro";
 
 <script>  const form = document.querySelector("form");
   const modal = document.getElementById("success_modal") as HTMLDialogElement;
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
-  form?.addEventListener("submit", (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    modal?.showModal();
-    if (form instanceof HTMLFormElement) {
-      form.reset();
+    if (!form) return;
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "ENVIANDO...";
     }
-    const selectedValue = document.getElementById("selected-value");
-    if (selectedValue) selectedValue.textContent = "Selecciona una opción";
+
+    const nameInput = form.querySelector('input[placeholder="Ej. Alex Fdz."]') as HTMLInputElement;
+    const companyInput = form.querySelector('input[placeholder="Ej. Comercializadora"]') as HTMLInputElement;
+    const phoneInput = form.querySelector('input[type="tel"]') as HTMLInputElement;
+    const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+    const solutionInput = form.querySelector('#solucion-input') as HTMLInputElement;
+    const messageInput = form.querySelector('textarea') as HTMLTextAreaElement;
+
+    const payload = {
+      type: "hero",
+      name: nameInput?.value,
+      company: companyInput?.value,
+      phone: phoneInput?.value,
+      email: emailInput?.value,
+      solution: solutionInput?.value || "No especificada",
+      message: messageInput?.value
+    };
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        modal?.showModal();
+        form.reset();
+        const selectedVal = document.getElementById("selected-value");
+        if (selectedVal) {
+          selectedVal.textContent = "Selecciona una opción";
+        }
+      } else {
+        alert("Hubo un problema al enviar tu propuesta. Por favor, intenta de nuevo.");
+      }
+    } catch (err) {
+      console.error("Error al enviar email:", err);
+      alert("Hubo un problema al enviar tu propuesta. Por favor, intenta de nuevo.");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "ENVIAR";
+      }
+    }
   });
   const trigger = document.getElementById("select-trigger");
   const optionsMenu = document.getElementById("select-options");

@@ -1,0 +1,305 @@
+---
+// Componente de consentimiento de cookies premium para Xcien
+---
+
+<div
+  id="cookie-consent-banner"
+  class="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-lg z-50 translate-y-12 opacity-0 pointer-events-none transition-all duration-500 ease-out bg-[#1e2127]/95 backdrop-blur-2xl border border-white/10 rounded-[2.25rem] p-6 shadow-[0_25px_60px_rgba(0,0,0,0.65)] flex flex-col gap-5 overflow-hidden"
+>
+  <!-- Glow decorativo superior derecho con el color primario de Xcien -->
+  <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#65d46e]/10 blur-3xl rounded-full pointer-events-none"></div>
+
+  <!-- Encabezado con Icono y Título -->
+  <div class="flex items-start gap-4">
+    <div class="p-3 bg-[#65d46e]/15 text-[#65d46e] rounded-2xl shrink-0 shadow-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cookie">
+        <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
+        <path d="M8.5 8.5v.01" />
+        <path d="M16 15.5v.01" />
+        <path d="M12 12v.01" />
+        <path d="M11 17v.01" />
+        <path d="M7 14v.01" />
+      </svg>
+    </div>
+    <div class="space-y-1">
+      <h4 class="text-lg font-extrabold text-white tracking-tight">Preferencias de cookies</h4>
+      <p class="text-white/70 text-xs leading-relaxed">
+        En XCIEN utilizamos cookies para mejorar tu experiencia de navegación, resguardar tu seguridad, medir visitas y personalizar anuncios.
+      </p>
+    </div>
+  </div>
+
+  <!-- Botones de Acción Principales -->
+  <div id="cookie-main-actions" class="flex flex-col sm:flex-row gap-2.5 w-full">
+    <button
+      id="btn-cookie-accept-all"
+      class="btn btn-primary grow rounded-xl font-bold h-11 text-sm shadow-md shadow-[#65d46e]/15 cursor-pointer hover:scale-[1.02] active:scale-95 transition-all duration-200"
+    >
+      Aceptar todas
+    </button>
+    <button
+      id="btn-cookie-reject-all"
+      class="btn btn-outline border-white/10 hover:border-white/20 text-white/90 grow rounded-xl font-bold h-11 text-sm cursor-pointer hover:bg-white/5 active:scale-95 transition-all duration-200"
+    >
+      Rechazar opcionales
+    </button>
+  </div>
+
+  <!-- Enlaces inferiores rápidos -->
+  <div class="flex justify-between items-center px-1 text-[11px] text-white/45">
+    <button id="btn-cookie-customize" class="hover:text-[#65d46e] underline cursor-pointer font-semibold transition-colors">
+      Personalizar preferencias
+    </button>
+    <a href="/legales/aviso-privacidad" class="hover:text-[#65d46e] underline font-semibold transition-colors">
+      Política de privacidad
+    </a>
+  </div>
+
+  <!-- Panel de Configuración Expandido (Oculto Inicialmente) -->
+  <div id="cookie-customization-panel" class="hidden flex-col gap-4 border-t border-white/5 pt-4">
+    <div class="flex items-center justify-between">
+      <h5 class="text-[11px] font-black text-white/50 uppercase tracking-widest">Configurar mi privacidad</h5>
+    </div>
+    
+    <div class="space-y-2.5 max-h-[15rem] overflow-y-auto pr-1 customize-scroll">
+      <!-- 1. Necesarias -->
+      <div class="flex items-start justify-between gap-4 p-3 bg-white/[0.02] rounded-xl border border-white/5">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-white">Esenciales / Técnicas</span>
+            <span class="px-1.5 py-0.5 bg-[#65d46e]/10 text-[#65d46e] rounded text-[8px] font-black uppercase tracking-wider">Siempre activas</span>
+          </div>
+          <p class="text-[10.5px] text-white/50 leading-normal">
+            Requeridas para la navegación segura de la web, protección de formularios (<strong>CSRF token</strong>) y almacenamiento del propio consentimiento de cookies.
+          </p>
+        </div>
+        <input type="checkbox" disabled checked class="toggle toggle-primary toggle-sm cursor-not-allowed opacity-80 shrink-0 mt-0.5" />
+      </div>
+
+      <!-- 2. Preferencias -->
+      <div class="flex items-start justify-between gap-4 p-3 bg-white/[0.02] rounded-xl border border-white/5 hover:border-white/10 transition-colors">
+        <div class="space-y-1">
+          <span class="text-xs font-bold text-white">Preferencias y Funcionales</span>
+          <p class="text-[10.5px] text-white/50 leading-normal">
+            Permiten que el sitio web recuerde opciones personalizadas como tu <strong>idioma, tema (oscuro/claro) y región</strong> para mejorar tu experiencia.
+          </p>
+        </div>
+        <input type="checkbox" id="chk-cookie-pref" class="toggle toggle-primary toggle-sm shrink-0 mt-0.5" />
+      </div>
+
+      <!-- 3. Analíticas -->
+      <div class="flex items-start justify-between gap-4 p-3 bg-white/[0.02] rounded-xl border border-white/5 hover:border-white/10 transition-colors">
+        <div class="space-y-1">
+          <span class="text-xs font-bold text-white">Medición y Analíticas</span>
+          <p class="text-[10.5px] text-white/50 leading-normal">
+            Nos ayuda a comprender cómo interactúan los usuarios con nuestra web, recopilando de forma anónima métricas de visitas a través de cookies de Google Analytics (como <strong>_ga, _gid</strong>).
+          </p>
+        </div>
+        <input type="checkbox" id="chk-cookie-analytics" class="toggle toggle-primary toggle-sm shrink-0 mt-0.5" />
+      </div>
+
+      <!-- 4. Publicidad / Marketing -->
+      <div class="flex items-start justify-between gap-4 p-3 bg-white/[0.02] rounded-xl border border-white/5 hover:border-white/10 transition-colors">
+        <div class="space-y-1">
+          <span class="text-xs font-bold text-white">Publicidad y Marketing</span>
+          <p class="text-[10.5px] text-white/50 leading-normal">
+            Utilizadas para medir conversiones de campañas y ofrecerte anuncios relevantes y personalizados basados en tu navegación (como <strong>_gcl_au</strong> para Google Ads y <strong>_fbp, _fbc</strong> de Meta/Facebook Pixel).
+          </p>
+        </div>
+        <input type="checkbox" id="chk-cookie-marketing" class="toggle toggle-primary toggle-sm shrink-0 mt-0.5" />
+      </div>
+    </div>
+
+    <!-- Botones de Acción del Panel de Personalización -->
+    <div class="flex gap-2 w-full pt-1.5">
+      <button
+        id="btn-cookie-save-custom"
+        class="btn btn-primary grow rounded-xl font-bold h-11 text-sm shadow-md shadow-[#65d46e]/15 cursor-pointer active:scale-95 transition-all"
+      >
+        Guardar selección
+      </button>
+      <button
+        id="btn-cookie-back"
+        class="btn btn-ghost hover:bg-white/5 text-white/70 rounded-xl h-11 text-sm cursor-pointer active:scale-95 transition-all"
+      >
+        Atrás
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Estilo personalizado y sutil para el scroll del panel */
+  .customize-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  .customize-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .customize-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+  }
+  .customize-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(101, 212, 110, 0.25);
+  }
+</style>
+
+<script>
+  function setCookie(name: string, value: string, days: number) {
+    let expires = "";
+    if (days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    // Usamos Lax y Secure para máxima protección moderna
+    document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax; Secure";
+  }
+
+  function getCookie(name: string) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+  function deleteCookie(name: string) {
+    // Para borrar cookies correctamente, expiramos su tiempo en la raíz del dominio
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax; Secure';
+  }
+
+  function applyPreferences(prefs: { necessary: boolean; preferences: boolean; analytics: boolean; marketing: boolean }) {
+    // Si se desactivan analíticas, barremos con las cookies conocidas asociadas
+    if (!prefs.analytics) {
+      deleteCookie('_ga');
+      deleteCookie('_gid');
+      // Adicionalmente limpiamos cookies dinámicas de GA4 que inicien con _ga_
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        const eqPos = cookie.indexOf('=');
+        const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+        if (name.startsWith('_ga_')) {
+          deleteCookie(name);
+        }
+      }
+    }
+    
+    // Si se desactiva marketing, barremos con las cookies conocidas de Ads y Meta
+    if (!prefs.marketing) {
+      deleteCookie('_gcl_au');
+      deleteCookie('_fbp');
+      deleteCookie('_fbc');
+    }
+
+    // Disparamos un evento personalizado a nivel de documento para que otros scripts de tracking
+    // de la plataforma puedan reaccionar a los cambios de consentimiento en tiempo real.
+    document.dispatchEvent(new CustomEvent('xcien-cookie-consent-updated', { detail: prefs }));
+  }
+
+  function initCookieConsent() {
+    const banner = document.getElementById("cookie-consent-banner");
+    const btnAcceptAll = document.getElementById("btn-cookie-accept-all");
+    const btnRejectAll = document.getElementById("btn-cookie-reject-all");
+    const btnCustomize = document.getElementById("btn-cookie-customize");
+    const btnSaveCustom = document.getElementById("btn-cookie-save-custom");
+    const btnBack = document.getElementById("btn-cookie-back");
+    
+    const panelCustom = document.getElementById("cookie-customization-panel");
+    const mainActions = document.getElementById("cookie-main-actions");
+
+    const chkPref = document.getElementById("chk-cookie-pref") as HTMLInputElement;
+    const chkAnalytics = document.getElementById("chk-cookie-analytics") as HTMLInputElement;
+    const chkMarketing = document.getElementById("chk-cookie-marketing") as HTMLInputElement;
+
+    if (!banner) return;
+
+    const cookieName = "xcien-cookie-consent";
+    const consent = getCookie(cookieName);
+
+    if (consent) {
+      try {
+        const prefs = JSON.parse(consent);
+        applyPreferences(prefs);
+        return; // Ya aceptó o rechazó anteriormente, no se muestra nada
+      } catch (e) {
+        // En caso de error de parseo, se asume que no hay consentimiento y se despliega el banner
+      }
+    }
+
+    // Desplegamos el banner con un pequeño delay de 1.2 segundos para una entrada súper fluida y pulida
+    setTimeout(() => {
+      banner.classList.remove("translate-y-12", "opacity-0", "pointer-events-none");
+      banner.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+    }, 1200);
+
+    const closeBanner = () => {
+      banner.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+      banner.classList.add("translate-y-12", "opacity-0", "pointer-events-none");
+    };
+
+    // ACEPTAR TODAS las cookies
+    btnAcceptAll?.addEventListener("click", () => {
+      const prefs = {
+        necessary: true,
+        preferences: true,
+        analytics: true,
+        marketing: true
+      };
+      setCookie(cookieName, JSON.stringify(prefs), 365);
+      applyPreferences(prefs);
+      closeBanner();
+    });
+
+    // RECHAZAR todas las opcionales (Solo se conservan necesarias)
+    btnRejectAll?.addEventListener("click", () => {
+      const prefs = {
+        necessary: true,
+        preferences: false,
+        analytics: false,
+        marketing: false
+      };
+      setCookie(cookieName, JSON.stringify(prefs), 365);
+      applyPreferences(prefs);
+      closeBanner();
+    });
+
+    // Ir a panel de personalización
+    btnCustomize?.addEventListener("click", () => {
+      panelCustom?.classList.remove("hidden");
+      panelCustom?.classList.add("flex");
+      mainActions?.classList.add("hidden");
+    });
+
+    // Volver a la vista inicial
+    btnBack?.addEventListener("click", () => {
+      panelCustom?.classList.remove("flex");
+      panelCustom?.classList.add("hidden");
+      mainActions?.classList.remove("hidden");
+    });
+
+    // Guardar personalizadas
+    btnSaveCustom?.addEventListener("click", () => {
+      const prefs = {
+        necessary: true,
+        preferences: chkPref ? chkPref.checked : false,
+        analytics: chkAnalytics ? chkAnalytics.checked : false,
+        marketing: chkMarketing ? chkMarketing.checked : false
+      };
+      setCookie(cookieName, JSON.stringify(prefs), 365);
+      applyPreferences(prefs);
+      closeBanner();
+    });
+  }
+
+  // Inicialización limpia
+  initCookieConsent();
+  
+  // Soporte completo para navegación mediante transiciones de Astro (View Transitions)
+  document.addEventListener("astro:page-load", initCookieConsent);
+</script>

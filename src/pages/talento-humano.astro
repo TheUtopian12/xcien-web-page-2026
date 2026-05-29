@@ -103,16 +103,86 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
 <script>
   const form = document.getElementById('talent-form');
   const modal = document.getElementById('talent_success_modal') as HTMLDialogElement;
-
-  if (form && modal) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      modal.showModal();
-      (form as HTMLFormElement).reset();
-    });
-  }
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
   const dropzone = document.querySelector('.border-dashed');
   const fileInput = document.getElementById('cv-upload') as HTMLInputElement;
+
+  // Helper para leer archivo en base64
+  const readFileAsBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
+  };
+
+  if (form && modal) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Enviando solicitud...";
+      }
+
+      const nameInput = form.querySelector('input[placeholder="Ej. Juan Pérez"]') as HTMLInputElement;
+      const emailInput = form.querySelector('input[placeholder="juan@gmail.com"]') as HTMLInputElement;
+      const phoneInput = form.querySelector('input[type="tel"]') as HTMLInputElement;
+      const areaSelect = form.querySelector('select') as HTMLSelectElement;
+      const messageInput = form.querySelector('textarea') as HTMLTextAreaElement;
+
+      let fileData: { filename: string; content: string } | null = null;
+
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        try {
+          const base64Content = await readFileAsBase64(file);
+          fileData = {
+            filename: file.name,
+            content: base64Content
+          };
+        } catch (err) {
+          console.error("Error al procesar archivo:", err);
+        }
+      }
+
+      const payload = {
+        type: "talent",
+        name: nameInput?.value,
+        email: emailInput?.value,
+        phone: phoneInput?.value,
+        area: areaSelect?.value,
+        message: messageInput?.value,
+        file: fileData
+      };
+
+      try {
+        const response = await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          modal.showModal();
+          (form as HTMLFormElement).reset();
+          const p = dropzone?.querySelector('p');
+          if (p) p.textContent = "Adjunta tu CV (PDF)";
+        } else {
+          alert("Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo.");
+        }
+      } catch (err) {
+        console.error("Error al enviar email:", err);
+        alert("Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo.");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Enviar solicitud";
+        }
+      }
+    });
+  }
 
   dropzone?.addEventListener('click', () => {
     fileInput?.click();

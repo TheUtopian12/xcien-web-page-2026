@@ -555,16 +555,60 @@ const stats = [
   }
   const form = document.querySelector("form");
   const modal = document.getElementById("contact_success") as HTMLDialogElement;
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
   if (form && modal) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      modal.showModal();
-      form.reset();
-      const selectedValue = document.getElementById("selected-value");
-      if (selectedValue) {
-        selectedValue.textContent = "Selecciona una opción";
-        selectedValue.classList.add("text-white/40");
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "ENVIANDO...";
+      }
+
+      const nameInput = form.querySelector('input[placeholder="Ej. Juan Pérez"]') as HTMLInputElement;
+      const companyInput = form.querySelector('input[placeholder="Nombre de tu empresa"]') as HTMLInputElement;
+      const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+      const phoneInput = form.querySelector('input[type="tel"]') as HTMLInputElement;
+      const solutionInput = form.querySelector('#solucion-input') as HTMLInputElement;
+      const messageInput = form.querySelector('textarea') as HTMLTextAreaElement;
+
+      const payload = {
+        type: "contact",
+        name: nameInput?.value,
+        company: companyInput?.value,
+        email: emailInput?.value,
+        phone: phoneInput?.value,
+        solution: solutionInput?.value || "No especificada",
+        message: messageInput?.value
+      };
+
+      try {
+        const response = await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          modal.showModal();
+          form.reset();
+          const selectedValue = document.getElementById("selected-value");
+          if (selectedValue) {
+            selectedValue.textContent = "Selecciona una opción";
+            selectedValue.classList.add("text-white/40");
+          }
+        } else {
+          alert("Hubo un error al enviar tu mensaje. Por favor, intenta de nuevo.");
+        }
+      } catch (err) {
+        console.error("Error al enviar email:", err);
+        alert("Hubo un error al enviar tu mensaje. Por favor, intenta de nuevo.");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "ENVIAR";
+        }
       }
     });
   }

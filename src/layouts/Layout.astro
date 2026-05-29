@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
+import CookieConsent from "../components/layout/CookieConsent.astro";
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
@@ -84,6 +85,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
         <Footer />
         <Analytics />
+        <CookieConsent />
       </div>
 
       
