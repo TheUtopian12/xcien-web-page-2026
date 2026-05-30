@@ -147,18 +147,39 @@ import BreadcrumbBar from "../components/layout/BreadcrumbBar.astro";
         }
       }
 
-      const payload = {
-        type: "talent",
-        name: nameInput?.value,
-        email: emailInput?.value,
-        phone: phoneInput?.value,
-        area: areaSelect?.value,
-        message: messageInput?.value,
-        file: fileData
+      const payload: any = {
+        service_id: "service_d9s932s",
+        template_id: "template_tv1wxvr",
+        user_id: "NDw-sqnPn4gFu4c53",
+        template_params: {
+          form_type: "Talento Humano",
+          name: nameInput?.value || "No especificado",
+          company: "N/A",
+          email: emailInput?.value || "No especificado",
+          phone: phoneInput?.value || "No especificado",
+          solution: "N/A",
+          area: areaSelect?.value || "No especificada",
+          message: messageInput?.value || "Sin comentarios adicionales"
+        }
       };
 
+      if (fileData) {
+        // Remover cabecera data:application/pdf;base64, si estuviera presente
+        let base64Data = fileData.content;
+        if (base64Data.includes(";base64,")) {
+          base64Data = base64Data.split(";base64,").pop() || "";
+        }
+        
+        payload.attachments = [
+          {
+            name: fileData.filename,
+            data: base64Data
+          }
+        ];
+      }
+
       try {
-        const response = await fetch("/api/send-email", {
+        const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
